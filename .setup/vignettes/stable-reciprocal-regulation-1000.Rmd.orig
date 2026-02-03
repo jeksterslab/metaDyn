@@ -1,0 +1,755 @@
+---
+title: "Fit the Discrete-Time Vector Autoregressive Model By ID (Stable Reciprocal Regulation)"
+author: Ivan Jacob Agaloos Pesigan
+date: "`r Sys.Date()`"
+bibliography: "vignettes.bib"
+csl: https://raw.githubusercontent.com/citation-style-language/styles/master/apa.csl
+nocite: |
+  @RCoreTeam-2024
+  @Neale-Hunter-Pritikin-etal-2015
+  @Hunter-2017
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Fit the Discrete-Time Vector Autoregressive Model By ID (Stable Reciprocal Regulation)}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r include=FALSE}
+Sys.setenv(
+  OMP_NUM_THREADS = "1",
+  MKL_NUM_THREADS = "1",
+  OPENBLAS_NUM_THREADS = "1"
+)
+```
+
+```{r}
+#| include = FALSE
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  fig.path = "fig-vignettes-stable-reciprical-regulation-",
+  fig.cap = "",
+  fig.width = 11,
+  fig.height = 8,
+  fig.retina = 2,
+  dpi = 300,
+  comment = "#>"
+)
+```
+
+```{r}
+#| echo = FALSE
+options(scipen = 999)
+set.seed(42)
+```
+
+```{r, dimensions}
+#| echo = FALSE
+burnin <- 10000
+n <- 1000
+time <- 1000 + burnin
+k <- p <- 2
+```
+
+```{r, parameters}
+#| echo = FALSE
+alpha_mu <- c(
+  0.5,
+  -0.5
+)
+alpha_sigma <- matrix(
+  data = c(
+    0.10, -0.05,
+    -0.05, 0.10
+  ),
+  nrow = 2,
+  ncol = 2
+)
+alpha_sigma_l <- t(chol(alpha_sigma))
+beta_mu <- matrix(
+  data = c(
+    0.70, -0.15,
+    -0.20, 0.65
+  ),
+  nrow = 2,
+  ncol = 2
+)
+beta_sigma <- matrix(
+  data = c(
+    0.020, 0.010, 0.000, 0.000,
+    0.010, 0.015, 0.000, 0.000,
+    0.000, 0.000, 0.010, 0.005,
+    0.000, 0.000, 0.005, 0.015
+  ),
+  nrow = 4,
+  ncol = 4
+)
+beta_sigma_l <- t(chol(beta_sigma))
+psi <- list(
+  matrix(
+    data = c(
+      0.20, -0.05,
+      -0.05, 0.18
+    ),
+    nrow = 2,
+    ncol = 2
+  )
+)
+psi_l <- list(
+  t(chol(psi[[1]]))
+)
+```
+
+```{r, common}
+#| echo = FALSE
+nu <- list(
+  rep(
+    x = 0,
+    times = 2
+  )
+)
+lambda <- list(
+  diag(2)
+)
+theta <- list(
+  0.50 * diag(2)
+)
+theta_l <- list(
+  t(chol(theta[[1]]))
+)
+```
+
+```{r}
+#| echo = FALSE
+library(simStateSpace)
+alpha <- SimAlphaN(
+  n = n,
+  alpha = alpha_mu,
+  vcov_alpha_l = alpha_sigma_l
+)
+beta <- SimBetaN(
+  n = n,
+  beta = beta_mu,
+  vcov_beta_vec_l = beta_sigma_l,
+  margin = 0.95
+)
+mu_eta <- mapply(
+  FUN = SSMMeanEta,
+  beta = beta,
+  alpha = alpha,
+  SIMPLIFY = FALSE
+)
+bar <- function(n = 10000) {
+  beta <- SimBetaN(
+    n = n,
+    beta = beta_mu,
+    vcov_beta_vec_l = beta_sigma_l,
+    margin = 0.95
+  )
+  alpha <- SimAlphaN(
+    n = n,
+    alpha = alpha_mu,
+    vcov_alpha_l = alpha_sigma_l
+  )
+  mu_eta <- mapply(
+    FUN = SSMMeanEta,
+    beta = beta,
+    alpha = alpha,
+    SIMPLIFY = FALSE
+  )
+  pop <- do.call(
+    what = "rbind",
+    args = mapply(
+      FUN = function(beta, mu_eta) {
+        c(mu_eta, beta)
+      },
+      beta = beta,
+      mu_eta = mu_eta,
+      SIMPLIFY = FALSE
+    )
+  )
+  pop_mean <- colMeans(pop)
+  pop_cov <- cov(pop)
+  rm(pop)
+  list(
+    pop_mean = pop_mean,
+    pop_cov = pop_cov
+  )
+}
+bar <- bar()
+pop_mean <- bar$pop_mean
+pop_cov <- bar$pop_cov
+```
+
+```{r}
+#| echo = FALSE
+mu0 <- mu_eta
+sigma0 <- lapply(
+  X = beta,
+  FUN = simStateSpace::SSMCovEta,
+  psi = psi[[1]]
+)
+sigma0_l <- lapply(
+  X = sigma0,
+  FUN = function(i) {
+    t(chol(i))
+  }
+)
+```
+
+## Dynamics Description
+
+The *Stable Reciprocal Regulation* process represents a bivariate dynamic system in which two latent psychological constructs---such as positive and negative affect---mutually influence each other over time. Each construct shows moderate self-regulation (autoregressive effects) and mild opposing cross-effects, reflecting an equilibrium-seeking mechanism characteristic of emotional balance.
+
+Individuals vary in their self-regulatory tendencies and in the strength of these antagonistic couplings. At the population level, the transition matrix indicates that increases in one construct are followed by slight decreases in the other, producing a stable, damped oscillatory pattern around individual equilibrium points. The process noise covariance allows for small correlated disturbances, while measurement errors are assumed to be minimal and symmetric across indicators.
+
+This dynamic pattern captures a psychologically plausible process of *reciprocal inhibition*---where short-term fluctuations in one system component (e.g., positive affect) are naturally counteracted by adjustments in its counterpart (e.g., negative affect), leading to emotional homeostasis over time.
+
+## Model
+
+The measurement model is given by
+\begin{equation}
+  \mathbf{y}_{i, t} = \boldsymbol{\Lambda} \boldsymbol{\eta}_{i, t} + \boldsymbol{\varepsilon}_{i, t}, \quad \mathrm{with} \quad \boldsymbol{\varepsilon}_{i, t} \sim \mathcal{N} \left( \mathbf{0}, \boldsymbol{\Theta} \right)
+\end{equation}
+where $\mathbf{y}_{i, t}$, $\boldsymbol{\eta}_{i, t}$, and $\boldsymbol{\varepsilon}_{i, t}$ are random variables and $\boldsymbol{\Lambda}$, and $\boldsymbol{\Theta}$ are model parameters. $\mathbf{y}_{i, t}$ represents a vector of observed random variables, $\boldsymbol{\eta}_{i, t}$ a vector of latent random variables, and $\boldsymbol{\varepsilon}_{i, t}$ a vector of random measurement errors, at time $t$ and individual $i$. $\boldsymbol{\Lambda}$ denotes a matrix of factor loadings, and $\boldsymbol{\Theta}$ the covariance matrix of $\boldsymbol{\varepsilon}$ that is invariant across individuals. In this model, $\boldsymbol{\Lambda}$ is an identity matrix and $\boldsymbol{\Theta}$ is a symmetric matrix.
+
+The dynamic structure is given by
+\begin{equation}
+  \boldsymbol{\eta}_{i, t} = \boldsymbol{\alpha}_{i} + \boldsymbol{\beta}_{i} \boldsymbol{\eta}_{i, t - 1} + \boldsymbol{\zeta}_{i, t}, \quad \mathrm{with} \quad \boldsymbol{\zeta}_{i, t} \sim \mathcal{N}   \left( \mathbf{0}, \boldsymbol{\Psi} \right)
+\end{equation}
+where $\boldsymbol{\eta}_{i, t}$, $\boldsymbol{\eta}_{i, t - 1}$, and $\boldsymbol{\zeta}_{i, t}$ are random variables, and $\boldsymbol{\beta}_{i}$, and $\boldsymbol{\Psi}$ are model parameters. Here, $\boldsymbol{\eta}_{i, t}$ is a vector of latent variables at time $t$ and individual $i$, $\boldsymbol{\eta}_{i, t - 1}$ represents a vector of latent variables at time $t - 1$ and individual $i$, and $\boldsymbol{\zeta}_{i, t}$ represents a vector of dynamic noise at time $t$ and individual $i$. $\boldsymbol{\beta}_{i}$ is a matrix of autoregression and cross regression coefficients for individual $i$, and $\boldsymbol{\Psi}$ the covariance matrix of $\boldsymbol{\zeta}_{i, t}$ that is invariant across all individuals. In this model, $\boldsymbol{\Psi}$ is a symmetric matrix.
+
+### Alternative Parameterization
+
+An alternative parameterization of the dynamic structure that directly estimates the set-point vector $\boldsymbol{\mu}_{i}$ is given by
+\begin{equation}
+  \boldsymbol{\eta}_{i, t} = \boldsymbol{\mu}_{i} + \boldsymbol{\beta}_{i} \left( \boldsymbol{\eta}_{i, t - 1} - \boldsymbol{\mu}_{i} \right) + \boldsymbol{\zeta}_{i, t} .
+\end{equation}
+
+Algebraic manipulation of the equation results in the following
+\begin{equation}
+  \boldsymbol{\eta}_{i, t} = \boldsymbol{\mu}_{i} - \boldsymbol{\beta}_{i} \boldsymbol{\mu}_{i} + \boldsymbol{\beta}_{i} \boldsymbol{\eta}_{i, t - 1} + \boldsymbol{\zeta}_{i, t} ,
+\end{equation}
+where we can see that the intercept vector $\boldsymbol{\alpha}_{i}$ is implied by $\boldsymbol{\mu}_{i} - \boldsymbol{\beta}_{i} \boldsymbol{\mu}_{i}$.
+
+## Data Generation
+
+### Notation
+
+Let $t = `r time - burnin`$ be the number of time points and $n = `r n`$ be the number of individuals. We simulate a total of time $= `r time`$ points per individual, discarding the first $`r burnin`$ as burn-in. The analysis uses the final $`r time - burnin`$ measurement occasions.
+
+Let the factor loadings matrix $\boldsymbol{\Lambda}$ be given by
+\begin{equation}
+  \boldsymbol{\Lambda}
+  =
+  \left(
+    \begin{array}{cc}
+      `r lambda[[1]][1, 1]` & `r lambda[[1]][1, 2]` \\
+      `r lambda[[1]][2, 1]` & `r lambda[[1]][2, 2]` \\
+    \end{array}
+  \right) .
+\end{equation}
+
+Let the measurement error covariance matrix $\boldsymbol{\Theta}$ be given by
+\begin{equation}
+  \boldsymbol{\Theta}
+  =
+  \left(
+  \begin{array}{cc}
+    `r theta[[1]][1, 1]` & `r theta[[1]][1, 2]` \\
+    `r theta[[1]][2, 1]` & `r theta[[1]][2, 2]` \\
+  \end{array}
+  \right) .
+\end{equation}
+
+Let the initial condition $\boldsymbol{\eta}_{0}$ be given by
+\begin{equation}
+  \boldsymbol{\eta}_{0} \sim \mathcal{N} \left( \boldsymbol{\mu}_{\boldsymbol{\eta} \mid 0}, \boldsymbol{\Sigma}_{\boldsymbol{\eta} \mid 0} \right) .
+\end{equation}
+$\boldsymbol{\mu}_{\boldsymbol{\eta} \mid 0}$ and $\boldsymbol{\Sigma}_{\boldsymbol{\eta} \mid 0}$ are functions of $\boldsymbol{\alpha}$ and $\boldsymbol{\beta}$.
+
+Let the intercept vector $\boldsymbol{\alpha}$ be normally distributed with the following means
+\begin{equation}
+  \left(
+    \begin{array}{c}
+      `r alpha_mu[1]` \\
+      `r alpha_mu[2]` \\
+    \end{array}
+  \right)
+\end{equation}
+and covariance matrix
+\begin{equation}
+  \left(
+    \begin{array}{cc}
+      `r alpha_sigma[1, 1]` & `r alpha_sigma[1, 2]` \\
+      `r alpha_sigma[2, 1]` & `r alpha_sigma[2, 2]` \\
+    \end{array}
+  \right) .
+\end{equation}
+
+Let the transition matrix $\boldsymbol{\beta}$ be normally distributed with the following means
+\begin{equation}
+  \left(
+    \begin{array}{cc}
+      `r beta_mu[1, 1]` & `r beta_mu[1, 2]` \\
+      `r beta_mu[2, 1]` & `r beta_mu[2, 2]` \\
+    \end{array}
+  \right)
+\end{equation}
+and covariance matrix
+\begin{equation}
+  \left(
+    \begin{array}{cccc}
+      `r beta_sigma[1, 1]` & `r beta_sigma[1, 2]` & `r beta_sigma[1, 3]` & `r beta_sigma[1, 4]` \\
+      `r beta_sigma[2, 1]` & `r beta_sigma[2, 2]` & `r beta_sigma[2, 3]` & `r beta_sigma[2, 4]` \\
+      `r beta_sigma[3, 1]` & `r beta_sigma[3, 2]` & `r beta_sigma[3, 3]` & `r beta_sigma[3, 4]` \\
+      `r beta_sigma[4, 1]` & `r beta_sigma[4, 2]` & `r beta_sigma[4, 3]` & `r beta_sigma[4, 4]` \\
+    \end{array}
+  \right) .
+\end{equation}
+
+The `SimAlphaN` and `SimBetaN` functions from the `simStateSpace` package generate random intercept vectors and transition matrices from the multivariate normal distribution. Note that the `SimBetaN` function generates transition matrices that are weakly stationary with an option to set lower and upper bounds. The person-specific set-point vector $\boldsymbol{\mu}_{i}$ was derived from the generated $\boldsymbol{\alpha}_{i}$ and $\boldsymbol{\beta}_{i}$.
+
+Let the dynamic process noise $\boldsymbol{\Psi}$ be given by
+\begin{equation}
+  \boldsymbol{\Psi}
+  =
+  \left(
+    \begin{array}{cc}
+      `r psi[[1]][1, 1]` & `r psi[[1]][1, 2]` \\
+      `r psi[[1]][2, 1]` & `r psi[[1]][2, 2]` \\
+    \end{array}
+  \right) .
+\end{equation}
+
+```{r}
+#| echo = FALSE
+options(scipen = 0)
+```
+
+### R Function Arguments
+
+```{r}
+n
+time
+burnin
+# first mu0 in the list of length n
+mu0[[1]]
+# first sigma0 in the list of length n
+sigma0[[1]]
+# first sigma0_l in the list of length n
+sigma0_l[[1]] # sigma0_l <- t(chol(sigma0))
+# first alpha in the list of length n
+alpha[[1]]
+# first beta in the list of length n
+beta[[1]]
+# first psi in the list of length n
+psi[[1]]
+psi_l[[1]] # psi_l <- t(chol(psi))
+nu
+lambda
+theta
+theta_l # theta_l <- t(chol(theta))
+# first mu_eta (set-point) in the list of length n
+mu_eta[[1]]
+```
+
+### Visualizing the Dynamics Without Process Noise and Measurement Error (n = 5 with Different Initial Condition)
+
+```{r no-error}
+#| echo = FALSE
+library(simStateSpace)
+sim <- SimSSMFixed(
+  n = 5,
+  time = 20,
+  mu0 = c(0, 0),
+  sigma0_l = diag(2),
+  alpha = alpha_mu,
+  beta = beta_mu,
+  psi_l = matrix(
+    data = 0,
+    nrow = k,
+    ncol = k
+  ),
+  nu = rep(x = 0, times = 2),
+  lambda = diag(2),
+  theta_l = matrix(
+    data = 0,
+    nrow = k,
+    ncol = k
+  ),
+  type = 0
+)
+plot(sim, type = "l")
+```
+
+### Using the `SimSSMIVary` Function from the `simStateSpace` Package to Simulate Data
+
+```{r error}
+library(simStateSpace)
+sim <- SimSSMIVary(
+  n = n,
+  time = time,
+  mu0 = mu0,
+  sigma0_l = sigma0_l,
+  alpha = alpha,
+  beta = beta,
+  psi_l = psi_l,
+  nu = nu,
+  lambda = lambda,
+  theta_l = theta_l
+)
+data <- as.data.frame(sim, burnin = burnin)
+head(data)
+plot(sim, burnin = burnin)
+```
+
+## Model Fitting
+
+```{r}
+#| include = FALSE
+library(OpenMx)
+library(fitDTVARMxID)
+```
+
+```{r}
+library(OpenMx)
+library(fitDTVARMxID)
+```
+
+The `FitDTVARMxID` function fits a DT-VAR model on each individual $i$. To set up the estimation, we first provide **starting values** for each parameter matrix.
+
+### Set-Point (`mu_eta`)
+
+The set-point vector $\boldsymbol{\mu}$ is initialized with starting values.
+
+```{r}
+mu_eta_values <- mu_eta
+```
+
+### Autoregressive Parameters (`beta`)
+
+We initialize the autoregressive coefficient matrix $\boldsymbol{\beta}$ with the true values used in simulation.
+
+```{r}
+beta_values <- beta
+```
+
+### LDL'-parameterized covariance matrices
+
+Covariances such as `psi` and `theta` are estimated using the LDL' decomposition of a positive definite covariance matrix. The decomposition expresses a covariance matrix $\Sigma$ as  
+\begin{equation}
+  \boldsymbol{\Sigma} = \left( \mathbf{L} + \mathbf{I} \right) \mathrm{diag} \left( \mathrm{Softplus} \left( \mathbf{d}_{uc} \right) \right) \left( \mathbf{L} + \mathbf{I} \right)^{\prime},
+\end{equation}
+where:
+- $\mathbf{L}$ is a strictly lower-triangular matrix of free parameters (`l_mat_strict`),  
+- $\mathbf{I}$ is the identity matrix,  
+- $\mathbf{d}_{uc}$ is an unconstrained vector,  
+- $\mathrm{Softplus} \left(\mathbf{d}_{uc} \right) = \log \left(1 + \exp \left( \mathbf{d}_{uc} \right) \right)$ ensures strictly positive diagonal entries.  
+
+The `LDL()` function extracts this decomposition from a positive definite covariance matrix. It returns:  
+- `d_uc`: unconstrained diagonal parameters, equal to `InvSoftplus(d_vec)`,  
+- `d_vec`: diagonal entries, equal to `Softplus(d_uc)`,  
+- `l_mat_strict`: the strictly lower-triangular factor.  
+
+```{r}
+sigma <- matrix(
+  data = c(1.0, 0.5, 0.5, 1.0),
+  nrow = 2,
+  ncol = 2
+)
+ldl_sigma <- LDL(sigma)
+d_uc <- ldl_sigma$d_uc
+l_mat_strict <- ldl_sigma$l_mat_strict
+I <- diag(2)
+sigma_reconstructed <- (l_mat_strict + I) %*% diag(log1p(exp(d_uc)), 2) %*% t(l_mat_strict + I)
+sigma_reconstructed
+```
+
+#### Process Noise Covariance Matrix (`psi`)
+
+Starting values for the process noise covariance matrix $\boldsymbol{\Psi}$ are given below, with corresponding LDL' parameters.
+
+```{r}
+psi_values <- psi[[1]]
+ldl_psi_values <- LDL(psi_values)
+psi_d_values <- ldl_psi_values$d_uc
+psi_l_values <- ldl_psi_values$l_mat_strict
+```
+
+```{r}
+psi_d_values
+```
+
+```{r}
+psi_l_values
+```
+
+#### Measurement Error Covariance Matrix (`theta`)
+
+Starting values for the measurement error covariance matrix $\boldsymbol{\Theta}$ are given below, with corresponding LDL' parameters.
+
+```{r}
+theta_values <- theta[[1]]
+ldl_theta_values <- LDL(theta_values)
+theta_d_values <- ldl_theta_values$d_uc
+theta_l_values <- ldl_theta_values$l_mat_strict
+```
+
+```{r}
+theta_d_values
+```
+
+```{r}
+theta_l_values
+```
+
+### Initial mean vector (`mu_0`) and covariance matrix (`sigma_0`)
+
+The initial mean vector $\boldsymbol{\mu_0}$ and covariance matrix $\boldsymbol{\Sigma_0}$ are fixed using `mu0` and `sigma0`.
+
+```{r}
+mu0_values <- mu0
+```
+
+```{r}
+sigma0_values <- lapply(
+  X = sigma0,
+  FUN = LDL
+)
+sigma0_d_values <- lapply(
+  X = sigma0_values,
+  FUN = function(i) {
+    i$d_uc
+  }
+)
+sigma0_l_values <- lapply(
+  X = sigma0_values,
+  FUN = function(i) {
+    i$l_mat_strict
+  }
+)
+```
+
+### `FitDTVARMxID`
+
+```{r, message = FALSE, warning = FALSE}
+fit <- FitDTVARMxID(
+  data = data,
+  observed = c("y1", "y2"),
+  id = "id",
+  center = TRUE,
+  mu_eta_values = mu_eta_values,
+  beta_values = beta_values,
+  psi_d_values = psi_d_values,
+  psi_l_values = psi_l_values,
+  theta_d_values = theta_d_values,
+  mu0_values = mu0_values,
+  sigma0_d_values = sigma0_d_values,
+  sigma0_l_values = sigma0_l_values,
+  ncores = parallel::detectCores()
+)
+```
+
+#### Parameter estimates
+
+```{r}
+head(summary(fit))
+```
+
+#### Proportion of converged cases
+
+```{r}
+converged(
+  fit,
+  theta_tol = 0.01,
+  prop = TRUE
+)
+```
+
+#### Fixed-Effect Meta-Analysis of Measurement Error
+
+When fitting DT-VAR models per person, separating process noise ($\boldsymbol{\Psi}$) from measurement error ($\boldsymbol{\Theta}$) can be unstable for some individuals. To stabilize inference, we first pool the person-level $\boldsymbol{\Theta}_{i}$ estimates from only the converged fits using a fixed-effect meta-analysis. This yields a high-precision estimate of the common measurement-error covariance that we will then hold fixed in a second pass of model fitting.
+
+What the code does:
+- Selects individuals that converged and whose $\boldsymbol{\Theta}_i$ diagonals exceed a small threshold (`theta_tol`), filtering out near-zero or ill-conditioned solutions.
+- Extracts each person's LDL' diagonal parameters for $\boldsymbol{\Theta}_i$ and their sampling covariance matrices.
+- Computes the inverse-variance-weighted pooled estimate (fixed effect), returning it on the same LDL' parameterization used by `FitDTVARMxID()`.
+
+```{r include=FALSE}
+Sys.setenv(
+  OMP_NUM_THREADS = paste0(parallel::detectCores()),
+  MKL_NUM_THREADS = paste0(parallel::detectCores()),
+  OPENBLAS_NUM_THREADS = paste0(parallel::detectCores())
+)
+```
+
+```{r, message = FALSE, warning = FALSE}
+library(metaDyn)
+fixed_theta <- MetaVARMx(
+  fit,
+  random = FALSE, # TRUE by default
+  effects = FALSE, # TRUE by default
+  cov_meas = TRUE, # FALSE by default
+  theta_tol = 0.01,
+  ncores = parallel::detectCores()
+)
+```
+
+```{r include=FALSE}
+Sys.setenv(
+  OMP_NUM_THREADS = "1",
+  MKL_NUM_THREADS = "1",
+  OPENBLAS_NUM_THREADS = "1"
+)
+```
+
+```{r, echo = FALSE}
+rm(fit)
+```
+
+You can read `summary(fixed_theta)` as providing the pooled (fixed) measurement-error scale that is common across persons. If individual instruments truly share the same reliability structure, fixing $\boldsymbol{\Theta}$ to this pooled value improves stability and often reduces bias in the dynamic parameters.
+
+> **Note:** Fixed-effect pooling assumes a common $\boldsymbol{\Theta}$ across individuals.
+
+```{r}
+coef(fixed_theta)
+summary(fixed_theta)
+```
+
+```{r}
+theta_d_values <- coef(fixed_theta)
+```
+
+#### Refit the model with fixed measurement error covariance matrix
+
+We refit the individual models using the pooled $\boldsymbol{\Theta}$ as a fixed measurement-error covariance matrix.
+
+```{r, message = FALSE, warning = FALSE}
+fit <- FitDTVARMxID(
+  data = data,
+  observed = c("y1", "y2"),
+  id = "id",
+  center = TRUE,
+  mu_eta_values = mu_eta_values,
+  beta_values = beta_values,
+  psi_d_values = psi_d_values,
+  psi_l_values = psi_l_values,
+  theta_fixed = TRUE,
+  theta_d_values = theta_d_values,
+  mu0_values = mu0_values,
+  sigma0_d_values = sigma0_d_values,
+  sigma0_l_values = sigma0_l_values,
+  ncores = parallel::detectCores()
+)
+```
+
+With $\boldsymbol{\Theta}$ fixed, the re-estimation focuses on the dynamic structure ($\boldsymbol{\mu}$, $\boldsymbol{\beta}$, $\boldsymbol{\Psi}$). In practice, this often increases the proportion of converged fits and yields more stable cross-lag estimates.
+
+#### Proportion of converged cases
+
+```{r}
+converged(
+  fit,
+  prop = TRUE
+)
+```
+
+## Random-Effects Meta-Analysis of Person-Specific Dynamics and Means
+
+Having stabilized $\boldsymbol{\Theta}$, we synthesize the person-specific estimates to recover population-level effects and their between-person variability. We use a random-effects model so the pooled mean reflects both within-person estimation uncertainty and between-person heterogeneity.
+
+```{r include=FALSE}
+Sys.setenv(
+  OMP_NUM_THREADS = paste0(parallel::detectCores()),
+  MKL_NUM_THREADS = paste0(parallel::detectCores()),
+  OPENBLAS_NUM_THREADS = paste0(parallel::detectCores())
+)
+```
+
+```{r, message = FALSE, warning = FALSE}
+random <- MetaVARMx(
+  fit,
+  effects = TRUE,
+  set_point = TRUE,
+  robust_v = FALSE,
+  robust = TRUE,
+  ncores = parallel::detectCores()
+)
+```
+
+```{r include=FALSE}
+Sys.setenv(
+  OMP_NUM_THREADS = "1",
+  MKL_NUM_THREADS = "1",
+  OPENBLAS_NUM_THREADS = "1"
+)
+```
+
+```{r, echo = FALSE}
+rm(fit)
+```
+
+```{r}
+summary(random)
+```
+
+### Normal Theory Confidence Intervals
+
+```{r, message = FALSE, warning = FALSE}
+confint(random, level = 0.95, lb = FALSE)
+```
+
+```{r, message = FALSE, warning = FALSE}
+confint(random, level = 0.99, lb = FALSE)
+```
+
+### Robust Confidence Intervals
+
+```{r, message = FALSE, warning = FALSE}
+confint(random, level = 0.95, lb = FALSE, robust = TRUE)
+```
+
+```{r, message = FALSE, warning = FALSE}
+confint(random, level = 0.99, lb = FALSE, robust = TRUE)
+```
+
+### Profile-Likelihood Confidence Intervals
+
+```{r, message = FALSE, warning = FALSE}
+confint(random, level = 0.95, lb = TRUE)
+```
+
+```{r, message = FALSE, warning = FALSE}
+confint(random, level = 0.99, lb = TRUE)
+```
+
+- The fixed part of the random-effects model gives pooled means $\boldsymbol{\alpha} = \mathbb{E} \left[ \mathrm{Vec} \left( \boldsymbol{\mu}, \boldsymbol{\beta} \right)  \right]$.
+- The random part yields between-person covariances ($\boldsymbol{\tau}^{2}$) quantifying heterogeneity in set-point ($\boldsymbol{\mu}$) and dynamics ($\boldsymbol{\beta}$) across individuals.
+
+```{r}
+means <- extract(random, what = "alpha")
+means
+covariances <- extract(random, what = "tau_sqr")
+covariances
+```
+
+Finally, we compare the meta-analytic population estimates to the known generating values.
+
+```{r}
+pop_mean
+pop_cov
+```
+
+## Summary
+
+This vignette demonstrates a two-stage hierarchical estimation approach for dynamic systems:
+1. individual-level DT-VAR estimation with stabilized measurement error, and  
+2. population-level meta-analysis of person-specific dynamics and means.
+
+## References
+
+```{r}
+#| include = FALSE
+rm(list = ls())
+```
