@@ -1,0 +1,44 @@
+# metaDyn
+
+Ivan Jacob Agaloos Pesigan 2026-02-03
+
+## Description
+
+Fits fixed-, random-, or mixed-effects multivariate meta-analysis models
+using vector autoregressive model estimates from each individual.
+
+## Installation
+
+You can install the development version of `metaDyn` from
+[GitHub](https://github.com/jeksterslab/metaDyn) with:
+
+``` r
+
+if (!require("remotes")) install.packages("remotes")
+remotes::install_github("jeksterslab/metaDyn")
+```
+
+## Documentation
+
+See [GitHub Pages](https://jeksterslab.github.io/metaDyn/index.html) for
+package documentation.
+
+## References
+
+Cheung, M. W.-L. (2015). *Meta-analysis: A structural equation modeling
+approach*. Wiley. <https://doi.org/10.1002/9781118957813>
+
+Hunter, M. D. (2017). State space modeling in an open source, modular,
+structural equation modeling environment. *Structural Equation Modeling:
+A Multidisciplinary Journal*, *25*(2), 307–324.
+<https://doi.org/10.1080/10705511.2017.1369354>
+
+Neale, M. C., Hunter, M. D., Pritikin, J. N., Zahery, M., Brick, T. R.,
+Kirkpatrick, R. M., Estabrook, R., Bates, T. C., Maes, H. H., & Boker,
+S. M. (2015). OpenMx 2.0: Extended structural equation and statistical
+modeling. *Psychometrika*, *81*(2), 535–549.
+<https://doi.org/10.1007/s11336-014-9435-8>
+
+R Core Team. (2025). *R: A language and environment for statistical
+computing*. R Foundation for Statistical Computing.
+<https://www.R-project.org/>

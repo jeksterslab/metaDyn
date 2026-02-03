@@ -1,0 +1,15 @@
+pandoc: 3.8.3
+pkgdown: 2.2.0
+pkgdown_sha: ~
+articles:
+  adaptive-recovery-1000: adaptive-recovery-1000.html
+  covariate-1000: covariate-1000.html
+  covariate-distal-1000: covariate-distal-1000.html
+  escalating-co-activation-1000: escalating-co-activation-1000.html
+  metaDyn: metaDyn.html
+  session: session.html
+  stable-reciprocal-regulation-1000: stable-reciprocal-regulation-1000.html
+last_built: 2026-02-03T16:21Z
+urls:
+  reference: https://github.com/jeksterslab/metaDyn/reference
+  article: https://github.com/jeksterslab/metaDyn/articles

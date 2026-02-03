@@ -1,0 +1,106 @@
+# metaDyn
+
+Ivan Jacob Agaloos Pesigan 2026-02-03
+
+## Description
+
+Fits fixed-, random-, or mixed-effects multivariate meta-analysis models
+using vector autoregressive model estimates from each individual.
+
+## Installation
+
+You can install the development version of `metaDyn` from
+[GitHub](https://github.com/jeksterslab/metaDyn) with:
+
+``` r
+
+if (!require("remotes")) install.packages("remotes")
+remotes::install_github("jeksterslab/metaDyn")
+```
+
+## Documentation
+
+See [GitHub Pages](https://jeksterslab.github.io/metaDyn/index.html) for
+package documentation.
+
+## References
+
+Cheung, M. W.-L. (2015). *Meta-analysis: A structural equation modeling
+approach*. Wiley. <https://doi.org/10.1002/9781118957813>
+
+Hunter, M. D. (2017). State space modeling in an open source, modular,
+structural equation modeling environment. *Structural Equation Modeling:
+A Multidisciplinary Journal*, *25*(2), 307–324.
+<https://doi.org/10.1080/10705511.2017.1369354>
+
+Neale, M. C., Hunter, M. D., Pritikin, J. N., Zahery, M., Brick, T. R.,
+Kirkpatrick, R. M., Estabrook, R., Bates, T. C., Maes, H. H., & Boker,
+S. M. (2015). OpenMx 2.0: Extended structural equation and statistical
+modeling. *Psychometrika*, *81*(2), 535–549.
+<https://doi.org/10.1007/s11336-014-9435-8>
+
+R Core Team. (2025). *R: A language and environment for statistical
+computing*. R Foundation for Statistical Computing.
+<https://www.R-project.org/>
+
+# Package index
+
+## Functions
+
+- [`Meta()`](https://github.com/jeksterslab/metaDyn/reference/Meta.md) :
+  Fit Multivariate Meta-Analysis
+- [`MetaVARMx()`](https://github.com/jeksterslab/metaDyn/reference/MetaVARMx.md)
+  : Fit Multivariate Meta-Analysis (metaVAR via OpenMx)
+
+## Methods
+
+- [`coef(`*`<metadynmeta>`*`)`](https://github.com/jeksterslab/metaDyn/reference/coef.metadynmeta.md)
+  :
+
+  Estimated Parameter Method for an Object of Class `metadynmeta`
+
+- [`confint(`*`<metadynmeta>`*`)`](https://github.com/jeksterslab/metaDyn/reference/confint.metadynmeta.md)
+  : Confidence Intervals for the Parameter Estimates
+
+- [`extract()`](https://github.com/jeksterslab/metaDyn/reference/extract.md)
+  : Extract Generic Function
+
+- [`extract(`*`<metadynmeta>`*`)`](https://github.com/jeksterslab/metaDyn/reference/extract.metadynmeta.md)
+  :
+
+  Extract Method for an Object of Class `metadynmeta`
+
+- [`print(`*`<metadynmeta>`*`)`](https://github.com/jeksterslab/metaDyn/reference/print.metadynmeta.md)
+  :
+
+  Print Method for Object of Class `metadynmeta`
+
+- [`summary(`*`<metadynmeta>`*`)`](https://github.com/jeksterslab/metaDyn/reference/summary.metadynmeta.md)
+  :
+
+  Summary Method for Object of Class `metadynmeta`
+
+- [`vcov(`*`<metadynmeta>`*`)`](https://github.com/jeksterslab/metaDyn/reference/vcov.metadynmeta.md)
+  :
+
+  Variance-Covariance Matrix Method for an Object of Class `metadynmeta`
+
+# Articles
+
+### Examples
+
+- [Fit the Discrete-Time Vector Autoregressive Model By ID (Stable
+  Reciprocal
+  Regulation)](https://github.com/jeksterslab/metaDyn/articles/stable-reciprocal-regulation-1000.md):
+- [Fit the Discrete-Time Vector Autoregressive Model By ID (Escalating
+  Co-Activation)](https://github.com/jeksterslab/metaDyn/articles/escalating-co-activation-1000.md):
+- [Fit the Discrete-Time Vector Autoregressive Model By ID (Adaptive
+  Recovery)](https://github.com/jeksterslab/metaDyn/articles/adaptive-recovery-1000.md):
+- [Meta-Regression](https://github.com/jeksterslab/metaDyn/articles/covariate-1000.md):
+- [Meta-Regression with Distal
+  Outcome](https://github.com/jeksterslab/metaDyn/articles/covariate-distal-1000.md):
+
+### Session Information
+
+- [metaDyn:
+  Session](https://github.com/jeksterslab/metaDyn/articles/session.md):
