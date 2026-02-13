@@ -3,7 +3,8 @@
                        kappa_free,
                        kappa_values,
                        kappa_lbound,
-                       kappa_ubound) {
+                       kappa_ubound,
+                       alpha) {
   c(
     .MxHelperFullMxMatrix(
       m = r,
@@ -20,7 +21,7 @@
     list(
       OpenMx::mxCI(
         reference = "kappa",
-        interval = 0.95
+        interval = 1 - alpha
       )
     )
   )

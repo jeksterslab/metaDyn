@@ -1,7 +1,7 @@
 metaDyn
 ================
 Ivan Jacob Agaloos Pesigan
-2026-02-03
+2026-02-13
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
@@ -35,8 +35,8 @@ You can install the development version of `metaDyn` from
 [GitHub](https://github.com/jeksterslab/metaDyn) with:
 
 ``` r
-if (!require("remotes")) install.packages("remotes")
-remotes::install_github("jeksterslab/metaDyn")
+if (!require("pak")) install.packages("pak")
+pak::pkg_install("jeksterslab/metaDyn")
 ```
 
 ## Documentation

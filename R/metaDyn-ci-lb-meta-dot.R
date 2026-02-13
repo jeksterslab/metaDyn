@@ -38,6 +38,31 @@
     replacement = "",
     x = coef_names
   )
+  coef_names <- gsub(
+    pattern = "^i_sqr_vec\\[(\\d+),(\\d+)\\]$",
+    replacement = "i_sqr[\\1,\\2]",
+    x = coef_names
+  )
+  coef_names <- gsub(
+    pattern = "^direct\\[(\\d+),(\\d+)\\]$",
+    replacement = "de[\\1,\\2]",
+    x = coef_names
+  )
+  coef_names <- gsub(
+    pattern = "^indirect\\[(\\d+),(\\d+)\\]$",
+    replacement = "ie[\\1,\\2]",
+    x = coef_names
+  )
+  coef_names <- gsub(
+    pattern = "^total\\[(\\d+),(\\d+)\\]$",
+    replacement = "te[\\1,\\2]",
+    x = coef_names
+  )
+  coef_names <- gsub(
+    pattern = "^ie_x(\\d+)_y(\\d+)_z(\\d+)\\[\\d+,\\d+\\]$",
+    replacement = "ie_x\\1_y\\2_z\\3",
+    x = coef_names
+  )
   names(est) <- coef_names
   out <- do.call(
     what = "cbind",
@@ -102,28 +127,11 @@
     out
   )
   rownames(out) <- coef_names
-  patterns <- c(
-    "^alpha[\\d+,\\d+]",
-    "^beta[\\d+,\\d+]",
-    "gamma[\\d+,\\d+]",
-    "kappa[\\d+,\\d+]",
-    "phi[\\d+,\\d+]",
-    "omega[\\d+,\\d+]",
-    "psi[\\d+,\\d+]",
-    "tau_sqr[\\d+,\\d+]",
-    "i_sqr[\\d+,\\d+]"
-  )
-  pat_id <- rep(NA_integer_, nrow(out))
-  for (i in seq_along(patterns)) {
-    hits <- grepl(patterns[i], rownames(out), perl = TRUE) & is.na(pat_id)
-    pat_id[hits] <- i
-  }
   out[
-    order(
-      replace(
-        x = pat_id,
-        list = is.na(pat_id),
-        values = length(patterns) + 1L
+    rownames(
+      .CIWaldMeta(
+        object = object,
+        alpha = alpha
       )
     ), ,
     drop = FALSE

@@ -7,7 +7,8 @@
                      psi_l_free,
                      psi_l_values,
                      psi_l_lbound,
-                     psi_l_ubound) {
+                     psi_l_ubound,
+                     alpha) {
   idx <- seq_len(r)
   if (psi_diag) {
     out <- .MetaPsiDiag(
@@ -17,7 +18,8 @@
       psi_d_values = psi_d_values,
       psi_d_lbound = psi_d_lbound,
       psi_d_ubound = psi_d_ubound,
-      psi_d_equal = FALSE
+      psi_d_equal = FALSE,
+      alpha = alpha
     )
   } else {
     out <- .MetaPsiSym(
@@ -31,7 +33,8 @@
       psi_l_values = psi_l_values,
       psi_l_lbound = psi_l_lbound,
       psi_l_ubound = psi_l_ubound,
-      psi_d_equal = FALSE
+      psi_d_equal = FALSE,
+      alpha = alpha
     )
   }
   out

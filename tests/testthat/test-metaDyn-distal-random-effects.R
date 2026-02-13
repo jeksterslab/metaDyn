@@ -19,12 +19,12 @@ lapply(
     }
     if (identical(Sys.getenv("GITHUB_TEST"), "true")) {
       ci <- TRUE
-      n <- 500
+      n <- 1000
       tol <- 0.10
       plus <- 0
     } else {
       ci <- FALSE
-      n <- 100
+      n <- 500
       tol <- 0.50
       plus <- 2
     }
@@ -148,6 +148,7 @@ lapply(
           psi_l_lbound = psi_l_values - 10,
           psi_l_ubound = psi_l_values + 10,
           robust = TRUE,
+          lb = TRUE,
           seed = 42
         )
         if (ci) {

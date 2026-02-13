@@ -4,7 +4,8 @@
                             tau_sqr_d_values,
                             tau_sqr_d_lbound,
                             tau_sqr_d_ubound,
-                            tau_sqr_d_equal) {
+                            tau_sqr_d_equal,
+                            alpha) {
   name <- "tau_sqr"
   tau_sqr_d <- paste0(
     name,
@@ -26,7 +27,7 @@
     list(
       OpenMx::mxCI(
         reference = name,
-        interval = 0.95
+        interval = 1 - alpha
       )
     )
   )

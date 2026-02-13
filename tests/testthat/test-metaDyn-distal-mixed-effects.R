@@ -21,12 +21,12 @@ lapply(
     }
     if (identical(Sys.getenv("GITHUB_TEST"), "true")) {
       ci <- TRUE
-      n <- 500
+      n <- 1000
       tol <- 0.10
       plus <- 0
     } else {
       ci <- FALSE
-      n <- 100
+      n <- 500
       tol <- 0.50
       plus <- 2
     }
@@ -147,6 +147,7 @@ lapply(
           psi_d_lbound = psi_d_values - 10,
           psi_d_ubound = psi_d_values + 10,
           robust = TRUE,
+          lb = TRUE,
           seed = 42
         )
         if (ci) {
@@ -271,6 +272,36 @@ lapply(
                 x = mxEval(psi, fit$output),
                 digits = 1
               ) - psi
+            ) <= tol
+          )
+        )
+        testthat::expect_true(
+          all(
+            abs(
+              round(
+                x = mxEval(direct, fit$output),
+                digits = 2
+              ) - omega
+            ) <= tol
+          )
+        )
+        testthat::expect_true(
+          all(
+            abs(
+              round(
+                x = mxEval(indirect, fit$output),
+                digits = 2
+              ) - phi %*% gamma
+            ) <= tol
+          )
+        )
+        testthat::expect_true(
+          all(
+            abs(
+              round(
+                x = mxEval(total, fit$output),
+                digits = 2
+              ) - phi %*% gamma + omega
             ) <= tol
           )
         )

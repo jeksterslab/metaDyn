@@ -5,7 +5,8 @@
                        gamma_values,
                        gamma_free,
                        gamma_lbound,
-                       gamma_ubound) {
+                       gamma_ubound,
+                       alpha) {
   c(
     .MxHelperFullMxMatrix(
       m = p,
@@ -22,7 +23,7 @@
     list(
       OpenMx::mxCI(
         reference = "gamma",
-        interval = 0.95
+        interval = 1 - alpha
       )
     )
   )

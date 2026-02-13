@@ -4,13 +4,19 @@
 #' @param object an object of class `metadynmeta`.
 #' @param alpha Numeric vector.
 #'   Significance level \eqn{\alpha}.
+#'   If `NULL`, the function will check `object`
+#'   for `alpha` used in model fitting.
 #' @param digits Integer indicating the number of decimal places to display.
 #' @param lb Logical.
 #'   If `TRUE`, returns profile likelihood-based confidence intervals.
 #'   If `FALSE`, returns Wald confidence intervals.
+#'   If `NULL`, the function will check `object`
+#'   if likelihood-based confidence intervals are available.
 #' @param robust Logical.
 #'   If `TRUE`, use robust (sandwich) sampling variance-covariance matrix.
 #'   If `FALSE`, use normal theory sampling variance-covariance matrix.
+#'   If `NULL`, the function will check `object`
+#'   if robust standard errors are available.
 #' @param ... further arguments.
 #'
 #' @return Returns a matrix of
@@ -26,18 +32,48 @@
 #' @keywords methods
 #' @export
 summary.metadynmeta <- function(object,
-                                alpha = 0.05,
-                                lb = FALSE,
-                                robust = FALSE,
+                                alpha = NULL,
+                                lb = NULL,
+                                robust = NULL,
                                 digits = 4,
                                 ...) {
+  code <- .CheckStatusCode(
+    model = object$output
+  )
+  if (is.null(alpha)) {
+    alpha <- object$args$alpha
+  }
+  if (is.null(lb)) {
+    if (is.null(object$lb)) {
+      lb <- FALSE
+    } else {
+      lb <- TRUE
+    }
+  }
   if (lb) {
-    ci <- .CILBMeta(
-      object = object,
-      alpha = alpha
-    )
+    if (is.null(object$lb)) {
+      utils::capture.output(
+        suppressMessages(
+          suppressWarnings(
+            ci <- .CILBMeta(
+              object = object,
+              alpha = alpha
+            )
+          )
+        )
+      )
+    } else {
+      ci <- object$lb
+    }
     type <- "lb"
   } else {
+    if (is.null(robust)) {
+      if (is.null(object$robust)) {
+        robust <- FALSE
+      } else {
+        robust <- TRUE
+      }
+    }
     if (robust) {
       if (is.null(object$robust)) {
         utils::capture.output(
@@ -76,6 +112,7 @@ summary.metadynmeta <- function(object,
   attr(ci, "alpha") <- alpha
   attr(ci, "digits") <- digits
   attr(ci, "type") <- type
+  attr(ci, "code") <- code
   attr(ci, "print_summary") <- print_summary
   ci
 }
@@ -97,13 +134,20 @@ print.summary.metadynmeta <- function(x,
     x = x,
     which = "type"
   )
-  print(
-    .CheckStatusCode(
-      model = object$output
-    )
+  code <- attr(
+    x = x,
+    which = "code"
   )
   cat("Call:\n")
   base::print(object$call)
+  cat(
+    paste0(
+      "\n",
+      "Status code = ",
+      code,
+      "\n"
+    )
+  )
   cat(
     paste0(
       "\n",
@@ -131,9 +175,9 @@ print.summary.metadynmeta <- function(x,
 #' @keywords methods
 #' @export
 print.metadynmeta <- function(x,
-                              alpha = 0.05,
-                              lb = FALSE,
-                              robust = FALSE,
+                              alpha = NULL,
+                              lb = NULL,
+                              robust = NULL,
                               digits = 4,
                               ...) {
   print.summary.metadynmeta(
@@ -178,8 +222,15 @@ coef.metadynmeta <- function(object,
 #' @keywords methods
 #' @export
 vcov.metadynmeta <- function(object,
-                             robust = FALSE,
+                             robust = NULL,
                              ...) {
+  if (is.null(robust)) {
+    if (is.null(object$robust)) {
+      robust <- FALSE
+    } else {
+      robust <- TRUE
+    }
+  }
   if (robust) {
     if (is.null(object$robust)) {
       utils::capture.output(
@@ -219,12 +270,19 @@ vcov.metadynmeta <- function(object,
 confint.metadynmeta <- function(object,
                                 parm = NULL,
                                 level = 0.95,
-                                lb = TRUE,
-                                robust = FALSE,
+                                lb = NULL,
+                                robust = NULL,
                                 ...) {
   stopifnot(
     length(level) == 1
   )
+  if (is.null(robust)) {
+    if (is.null(object$robust)) {
+      robust <- FALSE
+    } else {
+      robust <- TRUE
+    }
+  }
   if (robust) {
     if (is.null(object$robust)) {
       utils::capture.output(
@@ -247,11 +305,31 @@ confint.metadynmeta <- function(object,
     object = object,
     alpha = 1 - level
   )[, 5:6, drop = FALSE]
+  if (is.null(lb)) {
+    if (is.null(object$lb)) {
+      lb <- FALSE
+    } else {
+      lb <- TRUE
+    }
+  }
   if (lb) {
-    ci <- .CILBMeta(
-      object = object,
-      alpha = 1 - level
-    )[, 2:3, drop = FALSE]
+    if (is.null(object$lb) || object$args$alpha != 1 - level) {
+      utils::capture.output(
+        suppressMessages(
+          suppressWarnings(
+            ci <- .CILBMeta(
+              object = object,
+              alpha = 1 - level
+            )
+          )
+        )
+      )
+    } else {
+      ci <- object$lb
+    }
+  }
+  if (lb) {
+    ci[, 2:3, drop = FALSE]
     ci <- ci[
       rownames(wald), ,
       drop = FALSE
@@ -320,10 +398,14 @@ extract.metadynmeta <- function(object,
         "beta",
         "gamma",
         "tau_sqr",
+        "tau_sqr_l",
+        "tau_sqr_d",
         "i_sqr",
         "kappa",
         "phi",
         "psi",
+        "psi_l",
+        "psi_d",
         "omega"
       )
     )

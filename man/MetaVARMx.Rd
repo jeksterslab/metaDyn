@@ -55,11 +55,14 @@ MetaVARMx(
   int_dyn = FALSE,
   cov_meas = FALSE,
   cov_dyn = FALSE,
+  diag_cov = "var",
   converged = TRUE,
   vanishing_theta = TRUE,
   theta_tol = 0.001,
   robust_v = FALSE,
   robust = FALSE,
+  lb = FALSE,
+  alpha = 0.05,
   tries_explore = 100,
   tries_local = 100,
   max_attempts = 10,
@@ -75,7 +78,7 @@ MetaVARMx(
 )
 }
 \arguments{
-\item{object}{Output of the \code{\link[fitDTVARMxID:FitDTVARMxID]{fitDTVARMxID::FitDTVARMxID()}} function.}
+\item{object}{Output of the \code{\link[fitVARMxID:FitVARMxID]{fitVARMxID::FitVARMxID()}} function.}
 
 \item{x}{An optional list.
 Each element of the list is a numeric vector of covariates.}
@@ -274,6 +277,21 @@ include estimates of the process noise covariance matrix, if available.
 If \code{cov_dyn = FALSE},
 exclude estimates of the process noise covariance matrix.}
 
+\item{diag_cov}{Character string.
+If \code{diag_cov = "var"},
+\code{cov_dyn} and \code{cov_meas}
+are in the original metric variance/covariance metric.
+If \code{diag_cov = "logvar"},
+the diagonal elements of \code{cov_dyn} and \code{cov_meas}
+are the log of the variances
+and the off-diagonal elements are the elements in \code{L}
+in the \verb{LDL'} decomposition.
+If \code{diag_cov = "softplusvar"},
+the diagonal elements of \code{cov_dyn} and \code{cov_meas}
+are the softplus of the variances
+and the off-diagonal elements are the elements in \code{L}
+in the \verb{LDL'} decomposition.}
+
 \item{converged}{Logical.
 Only include converged cases.}
 
@@ -295,11 +313,16 @@ in stage 1.}
 
 \item{robust}{Logical.
 If \code{TRUE},
-use robust (sandwich) sampling variance-covariance matrix
-in stage 2.
-If \code{FALSE},
-use normal theory sampling variance-covariance matrix
+calculate robust (sandwich) sampling variance-covariance matrix
 in stage 2.}
+
+\item{lb}{Logical.
+If \code{TRUE},
+calculate likelihood based confidence intervals
+in stage 2.}
+
+\item{alpha}{NUmeric.
+Alpha for test of significance and confidence intervals.}
 
 \item{tries_explore}{Integer.
 Number of extra tries for the wide exploration
@@ -357,7 +380,7 @@ between-person covariates and the meta-analyzed parameters/effect sizes.
 This function uses the estimated coefficients and
 sampling variance-covariance matrix
 from each individual fitted using the
-\code{\link[fitDTVARMxID:FitDTVARMxID]{fitDTVARMxID::FitDTVARMxID()}} function.
+\code{\link[fitVARMxID:FitVARMxID]{fitVARMxID::FitVARMxID()}} function.
 }
 \references{
 Cheung, M. W.-L. (2015).

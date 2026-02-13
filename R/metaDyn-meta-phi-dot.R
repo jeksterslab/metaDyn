@@ -5,7 +5,8 @@
                      phi_values,
                      phi_free,
                      phi_lbound,
-                     phi_ubound) {
+                     phi_ubound,
+                     alpha) {
   c(
     .MxHelperFullMxMatrix(
       m = r,
@@ -22,7 +23,7 @@
     list(
       OpenMx::mxCI(
         reference = "phi",
-        interval = 0.95
+        interval = 1 - alpha
       )
     )
   )

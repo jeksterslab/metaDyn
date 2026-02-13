@@ -45,17 +45,19 @@
                                       psi_l_free,
                                       psi_l_values,
                                       psi_l_lbound,
-                                      psi_l_ubound) {
-  alpha <- .MetaAlpha(
+                                      psi_l_ubound,
+                                      alpha) {
+  mat_alpha <- .MetaAlpha(
     p = p,
     ynames = ynames,
     alpha_free = alpha_free,
     alpha_values = alpha_values,
     alpha_lbound = alpha_lbound,
-    alpha_ubound = alpha_ubound
+    alpha_ubound = alpha_ubound,
+    alpha = alpha
   )
   if (random) {
-    tau_sqr <- .MetaTauSqr(
+    mat_tau_sqr <- .MetaTauSqr(
       p = p,
       tau_sqr_diag = tau_sqr_diag,
       tau_sqr_d_free = tau_sqr_d_free,
@@ -65,17 +67,20 @@
       tau_sqr_l_free = tau_sqr_l_free,
       tau_sqr_l_values = tau_sqr_l_values,
       tau_sqr_l_lbound = tau_sqr_l_lbound,
-      tau_sqr_l_ubound = tau_sqr_l_ubound
+      tau_sqr_l_ubound = tau_sqr_l_ubound,
+      alpha = alpha
     )
-    i_sqr <- .MetaISqr(
-      univariate = i_sqr_univariate
+    mat_i_sqr <- .MetaISqr(
+      univariate = i_sqr_univariate,
+      p = p,
+      alpha = alpha
     )
   } else {
-    tau_sqr <- NULL
-    i_sqr <- NULL
+    mat_tau_sqr <- NULL
+    mat_i_sqr <- NULL
   }
   if (covariate) {
-    gamma <- .MetaGamma(
+    mat_gamma <- .MetaGamma(
       p = p,
       m = m,
       ynames = ynames,
@@ -83,21 +88,23 @@
       gamma_values = gamma_values,
       gamma_free = gamma_free,
       gamma_lbound = gamma_lbound,
-      gamma_ubound = gamma_ubound
+      gamma_ubound = gamma_ubound,
+      alpha = alpha
     )
   } else {
-    gamma <- NULL
+    mat_gamma <- NULL
   }
   if (distal) {
-    kappa <- .MetaKappa(
+    mat_kappa <- .MetaKappa(
       r = r,
       znames = znames,
       kappa_free = kappa_free,
       kappa_values = kappa_values,
       kappa_lbound = kappa_lbound,
-      kappa_ubound = kappa_ubound
+      kappa_ubound = kappa_ubound,
+      alpha = alpha
     )
-    phi <- .MetaPhi(
+    mat_phi <- .MetaPhi(
       p = p,
       r = r,
       ynames = ynames,
@@ -105,9 +112,10 @@
       phi_values = phi_values,
       phi_free = phi_free,
       phi_lbound = phi_lbound,
-      phi_ubound = phi_ubound
+      phi_ubound = phi_ubound,
+      alpha = alpha
     )
-    psi <- .MetaPsi(
+    mat_psi <- .MetaPsi(
       r = r,
       psi_diag = psi_diag,
       psi_d_free = psi_d_free,
@@ -117,10 +125,11 @@
       psi_l_free = psi_l_free,
       psi_l_values = psi_l_values,
       psi_l_lbound = psi_l_lbound,
-      psi_l_ubound = psi_l_ubound
+      psi_l_ubound = psi_l_ubound,
+      alpha = alpha
     )
     if (covariate) {
-      omega <- .MetaOmega(
+      mat_omega <- .MetaOmega(
         m = m,
         r = r,
         xnames = xnames,
@@ -128,26 +137,38 @@
         omega_values = omega_values,
         omega_free = omega_free,
         omega_lbound = omega_lbound,
-        omega_ubound = omega_ubound
+        omega_ubound = omega_ubound,
+        alpha = alpha
       )
     } else {
-      omega <- NULL
+      mat_omega <- NULL
     }
   } else {
-    kappa <- NULL
-    phi <- NULL
-    psi <- NULL
-    omega <- NULL
+    mat_kappa <- NULL
+    mat_phi <- NULL
+    mat_psi <- NULL
+    mat_omega <- NULL
+  }
+  if (covariate && distal) {
+    mat_indirect <- .MetaIndirect(
+      ynames = ynames,
+      xnames = xnames,
+      znames = znames,
+      alpha = alpha
+    )
+  } else {
+    mat_indirect <- NULL
   }
   out <- c(
-    alpha,
-    tau_sqr,
-    i_sqr,
-    gamma,
-    kappa,
-    phi,
-    psi,
-    omega
+    mat_alpha,
+    mat_tau_sqr,
+    mat_i_sqr,
+    mat_gamma,
+    mat_kappa,
+    mat_phi,
+    mat_psi,
+    mat_omega,
+    mat_indirect
   )
   out[
     !sapply(

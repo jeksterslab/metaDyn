@@ -7,7 +7,8 @@
                         tau_sqr_l_free,
                         tau_sqr_l_values,
                         tau_sqr_l_lbound,
-                        tau_sqr_l_ubound) {
+                        tau_sqr_l_ubound,
+                        alpha) {
   idx <- seq_len(p)
   if (tau_sqr_diag) {
     out <- .MetaTauSqrDiag(
@@ -17,7 +18,8 @@
       tau_sqr_d_values = tau_sqr_d_values,
       tau_sqr_d_lbound = tau_sqr_d_lbound,
       tau_sqr_d_ubound = tau_sqr_d_ubound,
-      tau_sqr_d_equal = FALSE
+      tau_sqr_d_equal = FALSE,
+      alpha = alpha
     )
   } else {
     out <- .MetaTauSqrSym(
@@ -31,7 +33,8 @@
       tau_sqr_l_values = tau_sqr_l_values,
       tau_sqr_l_lbound = tau_sqr_l_lbound,
       tau_sqr_l_ubound = tau_sqr_l_ubound,
-      tau_sqr_d_equal = FALSE
+      tau_sqr_d_equal = FALSE,
+      alpha = alpha
     )
   }
   out

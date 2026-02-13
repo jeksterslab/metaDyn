@@ -5,14 +5,16 @@
 \title{Variance-Covariance Matrix Method for an Object of Class
 \code{metadynmeta}}
 \usage{
-\method{vcov}{metadynmeta}(object, robust = FALSE, ...)
+\method{vcov}{metadynmeta}(object, robust = NULL, ...)
 }
 \arguments{
 \item{object}{an object of class \code{metadynmeta}.}
 
 \item{robust}{Logical.
 If \code{TRUE}, use robust (sandwich) sampling variance-covariance matrix.
-If \code{FALSE}, use normal theory sampling variance-covariance matrix.}
+If \code{FALSE}, use normal theory sampling variance-covariance matrix.
+If \code{NULL}, the function will check \code{object}
+if robust standard errors are available.}
 
 \item{...}{further arguments.}
 }
