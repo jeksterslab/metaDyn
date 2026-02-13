@@ -56,6 +56,8 @@ Meta(
   psi_l_ubound = NULL,
   check_estimates = TRUE,
   robust = FALSE,
+  lb = FALSE,
+  alpha = 0.05,
   tries_explore = 100,
   tries_local = 100,
   max_attempts = 10,
@@ -287,9 +289,17 @@ Meta(
 
 - robust:
 
-  Logical. If `TRUE`, use robust (sandwich) sampling variance-covariance
-  matrix in stage 2. If `FALSE`, use normal theory sampling
+  Logical. If `TRUE`, calculate robust (sandwich) sampling
   variance-covariance matrix in stage 2.
+
+- lb:
+
+  Logical. If `TRUE`, calculate likelihood based confidence intervals in
+  stage 2.
+
+- alpha:
+
+  NUmeric. Alpha for test of significance and confidence intervals.
 
 - tries_explore:
 
@@ -378,7 +388,11 @@ following elements:
 
   Output from
   [`OpenMx::imxRobustSE()`](https://rdrr.io/pkg/OpenMx/man/imxRobustSE.html)
-  with argument `details = TRUE`.
+  with argument `details = TRUE` if `robust = TRUE`.
+
+- lb:
+
+  Likelhood-based confidence intervals if `lb = TRUE`.
 
 ## References
 

@@ -1,6 +1,6 @@
 # metaDyn
 
-Ivan Jacob Agaloos Pesigan 2026-02-03
+Ivan Jacob Agaloos Pesigan 2026-02-13
 
 ## Description
 
@@ -14,8 +14,8 @@ You can install the development version of `metaDyn` from
 
 ``` r
 
-if (!require("remotes")) install.packages("remotes")
-remotes::install_github("jeksterslab/metaDyn")
+if (!require("pak")) install.packages("pak")
+pak::pkg_install("jeksterslab/metaDyn")
 ```
 
 ## Documentation

@@ -7,7 +7,7 @@ in which between-person outcomes are regressed on between-person
 covariates and the meta-analyzed parameters/effect sizes. This function
 uses the estimated coefficients and sampling variance-covariance matrix
 from each individual fitted using the
-[`fitDTVARMxID::FitDTVARMxID()`](https://github.com/jeksterslab/fitDTVARMxID/reference/FitDTVARMxID.html)
+[`fitVARMxID::FitVARMxID()`](https://github.com/jeksterslab/fitVARMxID/reference/FitVARMxID.html)
 function.
 
 ## Usage
@@ -64,11 +64,14 @@ MetaVARMx(
   int_dyn = FALSE,
   cov_meas = FALSE,
   cov_dyn = FALSE,
+  diag_cov = "var",
   converged = TRUE,
   vanishing_theta = TRUE,
   theta_tol = 0.001,
   robust_v = FALSE,
   robust = FALSE,
+  lb = FALSE,
+  alpha = 0.05,
   tries_explore = 100,
   tries_local = 100,
   max_attempts = 10,
@@ -89,7 +92,7 @@ MetaVARMx(
 - object:
 
   Output of the
-  [`fitDTVARMxID::FitDTVARMxID()`](https://github.com/jeksterslab/fitDTVARMxID/reference/FitDTVARMxID.html)
+  [`fitVARMxID::FitVARMxID()`](https://github.com/jeksterslab/fitVARMxID/reference/FitVARMxID.html)
   function.
 
 - x:
@@ -330,6 +333,17 @@ MetaVARMx(
   covariance matrix, if available. If `cov_dyn = FALSE`, exclude
   estimates of the process noise covariance matrix.
 
+- diag_cov:
+
+  Character string. If `diag_cov = "var"`, `cov_dyn` and `cov_meas` are
+  in the original metric variance/covariance metric. If
+  `diag_cov = "logvar"`, the diagonal elements of `cov_dyn` and
+  `cov_meas` are the log of the variances and the off-diagonal elements
+  are the elements in `L` in the `LDL'` decomposition. If
+  `diag_cov = "softplusvar"`, the diagonal elements of `cov_dyn` and
+  `cov_meas` are the softplus of the variances and the off-diagonal
+  elements are the elements in `L` in the `LDL'` decomposition.
+
 - converged:
 
   Logical. Only include converged cases.
@@ -352,9 +366,17 @@ MetaVARMx(
 
 - robust:
 
-  Logical. If `TRUE`, use robust (sandwich) sampling variance-covariance
-  matrix in stage 2. If `FALSE`, use normal theory sampling
+  Logical. If `TRUE`, calculate robust (sandwich) sampling
   variance-covariance matrix in stage 2.
+
+- lb:
+
+  Logical. If `TRUE`, calculate likelihood based confidence intervals in
+  stage 2.
+
+- alpha:
+
+  NUmeric. Alpha for test of significance and confidence intervals.
 
 - tries_explore:
 

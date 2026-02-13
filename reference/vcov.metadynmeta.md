@@ -6,7 +6,7 @@ Variance-Covariance Matrix Method for an Object of Class `metadynmeta`
 
 ``` r
 # S3 method for class 'metadynmeta'
-vcov(object, robust = FALSE, ...)
+vcov(object, robust = NULL, ...)
 ```
 
 ## Arguments
@@ -19,7 +19,8 @@ vcov(object, robust = FALSE, ...)
 
   Logical. If `TRUE`, use robust (sandwich) sampling variance-covariance
   matrix. If `FALSE`, use normal theory sampling variance-covariance
-  matrix.
+  matrix. If `NULL`, the function will check `object` if robust standard
+  errors are available.
 
 - ...:
 

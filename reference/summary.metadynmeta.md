@@ -6,7 +6,7 @@ Summary Method for Object of Class `metadynmeta`
 
 ``` r
 # S3 method for class 'metadynmeta'
-summary(object, alpha = 0.05, lb = FALSE, robust = FALSE, digits = 4, ...)
+summary(object, alpha = NULL, lb = NULL, robust = NULL, digits = 4, ...)
 ```
 
 ## Arguments
@@ -17,18 +17,22 @@ summary(object, alpha = 0.05, lb = FALSE, robust = FALSE, digits = 4, ...)
 
 - alpha:
 
-  Numeric vector. Significance level \\\alpha\\.
+  Numeric vector. Significance level \\\alpha\\. If `NULL`, the function
+  will check `object` for `alpha` used in model fitting.
 
 - lb:
 
   Logical. If `TRUE`, returns profile likelihood-based confidence
-  intervals. If `FALSE`, returns Wald confidence intervals.
+  intervals. If `FALSE`, returns Wald confidence intervals. If `NULL`,
+  the function will check `object` if likelihood-based confidence
+  intervals are available.
 
 - robust:
 
   Logical. If `TRUE`, use robust (sandwich) sampling variance-covariance
   matrix. If `FALSE`, use normal theory sampling variance-covariance
-  matrix.
+  matrix. If `NULL`, the function will check `object` if robust standard
+  errors are available.
 
 - digits:
 

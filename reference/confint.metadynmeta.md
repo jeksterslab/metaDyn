@@ -6,7 +6,7 @@ Confidence Intervals for the Parameter Estimates
 
 ``` r
 # S3 method for class 'metadynmeta'
-confint(object, parm = NULL, level = 0.95, lb = TRUE, robust = FALSE, ...)
+confint(object, parm = NULL, level = 0.95, lb = NULL, robust = NULL, ...)
 ```
 
 ## Arguments
@@ -28,13 +28,16 @@ confint(object, parm = NULL, level = 0.95, lb = TRUE, robust = FALSE, ...)
 - lb:
 
   Logical. If `TRUE`, returns profile likelihood-based confidence
-  intervals. If `FALSE`, returns Wald confidence intervals.
+  intervals. If `FALSE`, returns Wald confidence intervals. If `NULL`,
+  the function will check `object` if likelihood-based confidence
+  intervals are available.
 
 - robust:
 
   Logical. If `TRUE`, use robust (sandwich) sampling variance-covariance
   matrix. If `FALSE`, use normal theory sampling variance-covariance
-  matrix.
+  matrix. If `NULL`, the function will check `object` if robust standard
+  errors are available.
 
 - ...:
 

@@ -11,12 +11,12 @@ Source:
 [`inst/CITATION`](https://github.com/jeksterslab/metaDyn/blob/main/inst/CITATION)
 
 Pesigan, I. J. A. (2026). metaDyn: Multivariate Meta-Analysis of Dynamic
-Model Estimates. R package version 0.0.0.9004.
+Model Estimates. R package version 0.0.0.9005.
 https://github.com/jeksterslab/metaDyn
 
     @Manual{,
       author = {Ivan Jacob Agaloos Pesigan},
       title = {metaDyn: Multivariate Meta-Analysis of Dynamic Model Estimates},
       year = {2026},
-      note = {R package version 0.0.0.9004},
+      note = {R package version 0.0.0.9005},
     }

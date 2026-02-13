@@ -58,21 +58,11 @@ to be minimal and symmetric across indicators.
 The measurement model is given by
 ``` math
 \begin{equation}
-  \mathbf{y}_{i, t} = \boldsymbol{\Lambda} \boldsymbol{\eta}_{i, t} + \boldsymbol{\varepsilon}_{i, t}, \quad \mathrm{with} \quad \boldsymbol{\varepsilon}_{i, t} \sim \mathcal{N} \left( \mathbf{0}, \boldsymbol{\Theta} \right)
+  \mathbf{y}_{i, t} = \boldsymbol{\eta}_{i, t}
 \end{equation}
 ```
-where $`\mathbf{y}_{i, t}`$, $`\boldsymbol{\eta}_{i, t}`$, and
-$`\boldsymbol{\varepsilon}_{i, t}`$ are random variables and
-$`\boldsymbol{\Lambda}`$, and $`\boldsymbol{\Theta}`$ are model
-parameters. $`\mathbf{y}_{i, t}`$ represents a vector of observed random
-variables, $`\boldsymbol{\eta}_{i, t}`$ a vector of latent random
-variables, and $`\boldsymbol{\varepsilon}_{i, t}`$ a vector of random
-measurement errors, at time $`t`$ and individual $`i`$.
-$`\boldsymbol{\Lambda}`$ denotes a matrix of factor loadings, and
-$`\boldsymbol{\Theta}`$ the covariance matrix of
-$`\boldsymbol{\varepsilon}`$ that is invariant across individuals. In
-this model, $`\boldsymbol{\Lambda}`$ is an identity matrix and
-$`\boldsymbol{\Theta}`$ is a symmetric matrix.
+where $`\mathbf{y}_{i, t}`$ and $`\boldsymbol{\eta}_{i, t}`$ are random
+variables.
 
 The dynamic structure is given by
 ``` math
@@ -140,39 +130,11 @@ so $`\mathbf{w}_i`$ has length $`p^2 + p`$ (here $`4 + 2 = 6`$).
 
 ### Notation
 
-Let $`t = 1000`$ be the number of time points and $`n = 1000`$ be the
-number of individuals. We simulate a total of time $`= 11000`$ points
-per individual, discarding the first $`10000`$ as burn-in. The analysis
-uses the final $`1000`$ measurement occasions.
-
-Let the factor loadings matrix $`\boldsymbol{\Lambda}`$ be given by
-``` math
-\begin{equation}
-  \boldsymbol{\Lambda}
-  =
-  \left(
-    \begin{array}{cc}
-      1 & 0 \\
-      0 & 1 \\
-    \end{array}
-  \right) .
-\end{equation}
-```
-
-Let the measurement error covariance matrix $`\boldsymbol{\Theta}`$ be
-given by
-``` math
-\begin{equation}
-  \boldsymbol{\Theta}
-  =
-  \left(
-  \begin{array}{cc}
-    0.5 & 0 \\
-    0 & 0.5 \\
-  \end{array}
-  \right) .
-\end{equation}
-```
+Let $`t = 100`$ be the number of time points and $`n = 1000`$ be the
+number of individuals. We simulate a total of time \$= 1.01 &times;
+10\<sup\>4\</sup\>\$ points per individual, discarding the first
+$`10<sup>4</sup>`$ as burn-in. The analysis uses the final $`100`$
+measurement occasions.
 
 Let the initial condition $`\boldsymbol{\eta}_{0}`$ be given by
 ``` math
@@ -284,30 +246,30 @@ Let the dynamic process noise $`\boldsymbol{\Psi}`$ be given by
 n
 #> [1] 1000
 time
-#> [1] 11000
+#> [1] 10100
 burnin
 #> [1] 10000
 # first mu0 in the list of length n
 mu0[[1]]
-#> [1]  0.7520376 -0.5127468
+#> [1]  1.4001203 -0.4648662
 # first sigma0 in the list of length n
 sigma0[[1]]
 #>            [,1]       [,2]
-#> [1,]  0.2787159 -0.1023574
-#> [2,] -0.1023574  0.2538853
+#> [1,]  0.2518659 -0.0466736
+#> [2,] -0.0466736  0.2516021
 # first sigma0_l in the list of length n
 sigma0_l[[1]] # sigma0_l <- t(chol(sigma0))
-#>            [,1]      [,2]
-#> [1,]  0.5279355 0.0000000
-#> [2,] -0.1938823 0.4650752
+#>             [,1]      [,2]
+#> [1,]  0.50186241 0.0000000
+#> [2,] -0.09300079 0.4929026
 # first alpha in the list of length n
 alpha[[1]]
-#> [1]  0.3319244 -0.1910529
+#> [1]  0.7602558 -0.4388544
 # first beta in the list of length n
 beta[[1]]
-#>             [,1]       [,2]
-#> [1,]  0.47646139 -0.1205201
-#> [2,] -0.08920883  0.4965522
+#>           [,1]        [,2]
+#> [1,] 0.4479308 -0.02733575
+#> [2,] 0.1605012  0.53936547
 # first psi in the list of length n
 psi[[1]]
 #>       [,1]  [,2]
@@ -317,27 +279,9 @@ psi_l[[1]] # psi_l <- t(chol(psi))
 #>            [,1]      [,2]
 #> [1,]  0.4472136 0.0000000
 #> [2,] -0.1118034 0.4092676
-nu
-#> [[1]]
-#> [1] 0 0
-lambda
-#> [[1]]
-#>      [,1] [,2]
-#> [1,]    1    0
-#> [2,]    0    1
-theta
-#> [[1]]
-#>      [,1] [,2]
-#> [1,]  0.5  0.0
-#> [2,]  0.0  0.5
-theta_l # theta_l <- t(chol(theta))
-#> [[1]]
-#>           [,1]      [,2]
-#> [1,] 0.7071068 0.0000000
-#> [2,] 0.0000000 0.7071068
-# first mu_eta (set-point) in the list of length n
-mu_eta[[1]]
-#> [1]  0.7520376 -0.5127468
+# first mu (set-point) in the list of length n
+mu[[1]]
+#> [1]  1.4001203 -0.4648662
 # distal outcome parameters
 kappa_z
 #> [1] 10
@@ -365,27 +309,24 @@ psi_z
 ``` r
 
 library(simStateSpace)
-sim <- SimSSMIVary(
+sim <- SimSSMVARIVary(
   n = n,
   time = time,
   mu0 = mu0,
   sigma0_l = sigma0_l,
   alpha = alpha,
   beta = beta,
-  psi_l = psi_l,
-  nu = nu,
-  lambda = lambda,
-  theta_l = theta_l
+  psi_l = psi_l
 )
 data <- as.data.frame(sim, burnin = burnin)
 head(data)
-#>   id time         y1         y2
-#> 1  1    0 -0.2039857 -0.5271213
-#> 2  1    1  2.3635709 -0.8225477
-#> 3  1    2  1.0336287 -1.3055546
-#> 4  1    3  0.3748494 -0.1758500
-#> 5  1    4 -0.6424827 -1.8117723
-#> 6  1    5  1.0244405 -0.1976583
+#>   id time       y1          y2
+#> 1  1    0 2.348797 -0.36133130
+#> 2  1    1 2.203791 -0.06306478
+#> 3  1    2 1.763803 -0.11966576
+#> 4  1    3 1.608552 -0.88481869
+#> 5  1    4 1.116157 -0.36118972
+#> 6  1    5 2.254971 -0.37188289
 plot(sim, burnin = burnin)
 ```
 
@@ -396,58 +337,36 @@ plot(sim, burnin = burnin)
 ``` r
 
 library(OpenMx)
-library(fitDTVARMxID)
+library(fitVARMxID)
 ```
 
-The `FitDTVARMxID` function fits a DT-VAR model on each individual
-$`i`$. To set up the estimation, we first provide **starting values**
-for each parameter matrix.
-
-### Set-Point (`mu_eta`)
-
-The set-point vector $`\boldsymbol{\mu}`$ is initialized with starting
-values.
-
-``` r
-
-mu_eta_values <- mu_eta
-```
-
-### Autoregressive Parameters (`beta`)
-
-We initialize the autoregressive coefficient matrix
-$`\boldsymbol{\beta}`$ with the true values used in simulation.
-
-``` r
-
-beta_values <- beta
-```
+The `FitVARMxID` function fits a VAR model on each individual $`i`$.
 
 ### LDL’-parameterized covariance matrices
 
 Covariances such as `psi` and `theta` are estimated using the LDL’
 decomposition of a positive definite covariance matrix. The
-decomposition expresses a covariance matrix $`\Sigma`$ as  
+decomposition expresses a covariance matrix $`\Sigma`$ as\
 ``` math
 \begin{equation}
   \boldsymbol{\Sigma} = \left( \mathbf{L} + \mathbf{I} \right) \mathrm{diag} \left( \mathrm{Softplus} \left( \mathbf{d}_{uc} \right) \right) \left( \mathbf{L} + \mathbf{I} \right)^{\prime},
 \end{equation}
 ```
 where: - $`\mathbf{L}`$ is a strictly lower-triangular matrix of free
-parameters (`l_mat_strict`),  
-- $`\mathbf{I}`$ is the identity matrix,  
-- $`\mathbf{d}_{uc}`$ is an unconstrained vector,  
+parameters (`l_mat_strict`),\
+- $`\mathbf{I}`$ is the identity matrix,\
+- $`\mathbf{d}_{uc}`$ is an unconstrained vector,\
 -
 $`\mathrm{Softplus} \left(\mathbf{d}_{uc} \right) = \log \left(1 + \exp \left( \mathbf{d}_{uc} \right) \right)`$
 ensures strictly positive diagonal entries.
 
 The
-[`LDL()`](https://github.com/jeksterslab/fitDTVARMxID/reference/LDL.html)
+[`LDL()`](https://github.com/jeksterslab/fitVARMxID/reference/LDL.html)
 function extracts this decomposition from a positive definite covariance
-matrix. It returns:  
+matrix. It returns:\
 - `d_uc`: unconstrained diagonal parameters, equal to
-`InvSoftplus(d_vec)`,  
-- `d_vec`: diagonal entries, equal to `Softplus(d_uc)`,  
+`InvSoftplus(d_vec)`,\
+- `d_vec`: diagonal entries, equal to `Softplus(d_uc)`,\
 - `l_mat_strict`: the strictly lower-triangular factor.
 
 ``` r
@@ -468,109 +387,18 @@ sigma_reconstructed
 #> [2,]  0.5  1.0
 ```
 
-#### Process Noise Covariance Matrix (`psi`)
-
-Starting values for the process noise covariance matrix
-$`\boldsymbol{\Psi}`$ are given below, with corresponding LDL’
-parameters.
+### `FitVARMxID`
 
 ``` r
 
-psi_values <- psi[[1]]
-ldl_psi_values <- LDL(psi_values)
-psi_d_values <- ldl_psi_values$d_uc
-psi_l_values <- ldl_psi_values$l_mat_strict
-```
-
-``` r
-
-psi_d_values
-#> [1] -1.507772 -1.701853
-```
-
-``` r
-
-psi_l_values
-#>       [,1] [,2]
-#> [1,]  0.00    0
-#> [2,] -0.25    0
-```
-
-#### Measurement Error Covariance Matrix (`theta`)
-
-Starting values for the measurement error covariance matrix
-$`\boldsymbol{\Theta}`$ are given below, with corresponding LDL’
-parameters.
-
-``` r
-
-theta_values <- theta[[1]]
-ldl_theta_values <- LDL(theta_values)
-theta_d_values <- ldl_theta_values$d_uc
-theta_l_values <- ldl_theta_values$l_mat_strict
-```
-
-``` r
-
-theta_d_values
-#> [1] -0.4327521 -0.4327521
-```
-
-``` r
-
-theta_l_values
-#>      [,1] [,2]
-#> [1,]    0    0
-#> [2,]    0    0
-```
-
-### Initial mean vector (`mu_0`) and covariance matrix (`sigma_0`)
-
-The initial mean vector $`\boldsymbol{\mu_0}`$ and covariance matrix
-$`\boldsymbol{\Sigma_0}`$ are fixed using `mu0` and `sigma0`.
-
-``` r
-
-mu0_values <- mu0
-```
-
-``` r
-
-sigma0_values <- lapply(
-  X = sigma0,
-  FUN = LDL
-)
-sigma0_d_values <- lapply(
-  X = sigma0_values,
-  FUN = function(i) {
-    i$d_uc
-  }
-)
-sigma0_l_values <- lapply(
-  X = sigma0_values,
-  FUN = function(i) {
-    i$l_mat_strict
-  }
-)
-```
-
-### `FitDTVARMxID`
-
-``` r
-
-fit <- FitDTVARMxID(
+fit <- FitVARMxID(
   data = data,
   observed = c("y1", "y2"),
   id = "id",
   center = TRUE,
-  mu_eta_values = mu_eta_values,
-  beta_values = beta_values,
-  psi_d_values = psi_d_values,
-  psi_l_values = psi_l_values,
-  theta_d_values = theta_d_values,
-  mu0_values = mu0_values,
-  sigma0_d_values = sigma0_d_values,
-  sigma0_l_values = sigma0_l_values,
+  tries_explore = 1000,
+  tries_local = 100,
+  max_attempts = 100,
   ncores = parallel::detectCores()
 )
 ```
@@ -580,133 +408,21 @@ fit <- FitDTVARMxID(
 ``` r
 
 head(summary(fit))
-#>                             beta_1_1    beta_2_1     beta_1_2  beta_2_2
-#> FitDTVARMxID_DTVAR_ID1.Rds 0.7356647 -0.03709508  0.124911294 0.6075660
-#> FitDTVARMxID_DTVAR_ID2.Rds 0.3932550  0.33128856  0.070209848 0.6452306
-#> FitDTVARMxID_DTVAR_ID3.Rds 0.3667931  0.17275648  0.005867861 0.6412371
-#> FitDTVARMxID_DTVAR_ID4.Rds 0.4814453 -0.20665773 -0.083737394 0.1282792
-#> FitDTVARMxID_DTVAR_ID5.Rds 0.3894912 -0.09250685  0.029823476 0.5788790
-#> FitDTVARMxID_DTVAR_ID6.Rds 0.1466637 -0.04662990  0.044473537 0.3646829
-#>                            mu_eta_1_1    mu_eta_2_1   psi_l_2_1   psi_d_1_1
-#> FitDTVARMxID_DTVAR_ID1.Rds  0.7429922 -0.5422434386 -0.64137358 -2.09263860
-#> FitDTVARMxID_DTVAR_ID2.Rds  2.1089697 -0.9809131058 -0.37478408 -1.74439266
-#> FitDTVARMxID_DTVAR_ID3.Rds  0.9790736 -1.7645485016 -0.26088418 -1.21125563
-#> FitDTVARMxID_DTVAR_ID4.Rds  1.5471235 -0.7583743612 -0.05025920 -1.63597326
-#> FitDTVARMxID_DTVAR_ID5.Rds  0.8140559 -0.0001548687 -0.11296257 -0.87220954
-#> FitDTVARMxID_DTVAR_ID6.Rds  0.6719574 -1.2148346783 -0.09648513  0.02601587
-#>                              psi_d_2_1 theta_d_1_1 theta_d_2_1
-#> FitDTVARMxID_DTVAR_ID1.Rds -2.44661974  -0.3062973  -0.2501242
-#> FitDTVARMxID_DTVAR_ID2.Rds -2.01994760  -0.2184480  -0.3630670
-#> FitDTVARMxID_DTVAR_ID3.Rds -1.83009313  -0.7312709  -0.5093707
-#> FitDTVARMxID_DTVAR_ID4.Rds  0.08626565  -0.3614859 -14.3344963
-#> FitDTVARMxID_DTVAR_ID5.Rds -1.77703664  -0.7189124  -0.6065102
-#> FitDTVARMxID_DTVAR_ID6.Rds -0.80564615 -17.1757445  -0.8495140
+#>                             mu[1,1]    mu[2,1] beta[1,1]   beta[2,1]
+#> FitVARMxID_VAR_ID2.Rds  1.407599105 -1.2262153 0.3426362 -0.07490765
+#> FitVARMxID_VAR_ID3.Rds  1.161832741 -0.5943131 0.6944379  0.16943979
+#> FitVARMxID_VAR_ID6.Rds -0.007943754 -0.4146876 0.6130186 -0.11631136
+#> FitVARMxID_VAR_ID7.Rds  0.864125313 -1.3682443 0.4743549  0.12117985
+#> FitVARMxID_VAR_ID8.Rds  0.852183715 -0.5435902 0.2504997  0.04589647
+#> FitVARMxID_VAR_ID9.Rds  0.121285199 -1.0360446 0.2252233 -0.13774792
+#>                           beta[1,2] beta[2,2]  psi[1,1]    psi[2,1]  psi[2,2]
+#> FitVARMxID_VAR_ID2.Rds -0.196767193 0.1484852 0.1719178 -0.04113312 0.1634751
+#> FitVARMxID_VAR_ID3.Rds -0.177433928 0.4524657 0.1661177 -0.02661664 0.1652608
+#> FitVARMxID_VAR_ID6.Rds  0.138201917 0.4031971 0.2180944 -0.07445802 0.1747459
+#> FitVARMxID_VAR_ID7.Rds -0.099089770 0.5860792 0.1705958 -0.03591918 0.1728006
+#> FitVARMxID_VAR_ID8.Rds -0.276412398 0.5026694 0.1861992 -0.07785679 0.2023670
+#> FitVARMxID_VAR_ID9.Rds  0.008944095 0.5838015 0.1380682 -0.04122232 0.1754657
 ```
-
-#### Proportion of converged cases
-
-``` r
-
-converged(
-  fit,
-  theta_tol = 0.01,
-  prop = TRUE
-)
-#> [1] 0.903
-```
-
-#### Fixed-Effect Meta-Analysis of Measurement Error
-
-When fitting DT-VAR models per person, separating process noise
-($`\boldsymbol{\Psi}`$) from measurement error ($`\boldsymbol{\Theta}`$)
-can be unstable for some individuals. To stabilize inference, we first
-pool the person-level $`\boldsymbol{\Theta}_{i}`$ estimates from only
-the converged fits using a fixed-effect meta-analysis. This yields a
-high-precision estimate of the common measurement-error covariance that
-we will then hold fixed in a second pass of model fitting.
-
-What the code does: - Selects individuals that converged and whose
-$`\boldsymbol{\Theta}_i`$ diagonals exceed a small threshold
-(`theta_tol`), filtering out near-zero or ill-conditioned solutions. -
-Extracts each person’s LDL’ diagonal parameters for
-$`\boldsymbol{\Theta}_i`$ and their sampling covariance matrices. -
-Computes the inverse-variance-weighted pooled estimate (fixed effect),
-returning it on the same LDL’ parameterization used by
-[`FitDTVARMxID()`](https://github.com/jeksterslab/fitDTVARMxID/reference/FitDTVARMxID.html).
-
-``` r
-
-library(metaDyn)
-fixed_theta <- MetaVARMx(
-  fit,
-  random = FALSE, # TRUE by default
-  effects = FALSE, # TRUE by default
-  cov_meas = TRUE, # FALSE by default
-  theta_tol = 0.01,
-  ncores = parallel::detectCores()
-)
-```
-
-You can read `summary(fixed_theta)` as providing the pooled (fixed)
-measurement-error scale that is common across persons. If individual
-instruments truly share the same reliability structure, fixing
-$`\boldsymbol{\Theta}`$ to this pooled value improves stability and
-often reduces bias in the dynamic parameters.
-
-> **Note:** Fixed-effect pooling assumes a common
-> $`\boldsymbol{\Theta}`$ across individuals.
-
-``` r
-
-coef(fixed_theta)
-#>  alpha_1_1  alpha_2_1 
-#> -0.3799746 -0.3850024
-summary(fixed_theta)
-#> [1] 0
-#> Call:
-#> MetaVARMx(object = fit, random = FALSE, effects = FALSE, cov_meas = TRUE, 
-#>     theta_tol = 0.01, ncores = parallel::detectCores())
-#> 
-#> CI type = "normal"
-#>               est     se        z p    2.5%   97.5%
-#> alpha[1,1] -0.380 0.0045 -84.0864 0 -0.3888 -0.3711
-#> alpha[2,1] -0.385 0.0043 -88.7342 0 -0.3935 -0.3765
-```
-
-``` r
-
-theta_d_values <- coef(fixed_theta)
-```
-
-#### Refit the model with fixed measurement error covariance matrix
-
-We refit the individual models using the pooled $`\boldsymbol{\Theta}`$
-as a fixed measurement-error covariance matrix.
-
-``` r
-
-fit <- FitDTVARMxID(
-  data = data,
-  observed = c("y1", "y2"),
-  id = "id",
-  center = TRUE,
-  mu_eta_values = mu_eta_values,
-  beta_values = beta_values,
-  psi_d_values = psi_d_values,
-  psi_l_values = psi_l_values,
-  theta_fixed = TRUE,
-  theta_d_values = theta_d_values,
-  mu0_values = mu0_values,
-  sigma0_d_values = sigma0_d_values,
-  sigma0_l_values = sigma0_l_values,
-  ncores = parallel::detectCores()
-)
-```
-
-With $`\boldsymbol{\Theta}`$ fixed, the re-estimation focuses on the
-dynamic structure ($`\boldsymbol{\mu}`$, $`\boldsymbol{\beta}`$,
-$`\boldsymbol{\Psi}`$). In practice, this often increases the proportion
-of converged fits and yields more stable cross-lag estimates.
 
 #### Proportion of converged cases
 
@@ -716,14 +432,16 @@ converged(
   fit,
   prop = TRUE
 )
-#> [1] 1
+#> [1] 0.501
 ```
 
 ## Mixed-Effects Meta-Analysis with Distal Outcome of Person-Specific Dynamics and Means
 
-Having stabilized $`\boldsymbol{\Theta}`$, we synthesize the
-person-specific estimates to recover population-level effects,
-between-person variability, and systematic covariate-related
+    #> Warning in mapply(FUN = function(x, y) {: longer argument not a multiple of
+    #> length of shorter
+
+We synthesize the person-specific estimates to recover population-level
+effects, between-person variability, and systematic covariate-related
 differences. We fit a mixed-effects meta-analytic model in which each
 individual’s estimate is weighted by its within-person sampling
 uncertainty, random effects capture residual heterogeneity across
@@ -733,6 +451,7 @@ effects on a distal outcome.
 
 ``` r
 
+library(metaDyn)
 random <- MetaVARMx(
   fit,
   x = x,
@@ -741,6 +460,7 @@ random <- MetaVARMx(
   set_point = TRUE,
   robust_v = FALSE,
   robust = TRUE,
+  lb = TRUE,
   ncores = parallel::detectCores()
 )
 ```
@@ -748,61 +468,71 @@ random <- MetaVARMx(
 ``` r
 
 summary(random)
-#> [1] 0
 #> Call:
 #> MetaVARMx(object = fit, x = x, z = z, effects = TRUE, set_point = TRUE, 
-#>     robust_v = FALSE, robust = TRUE, ncores = parallel::detectCores())
+#>     robust_v = FALSE, robust = TRUE, lb = TRUE, ncores = parallel::detectCores())
 #> 
-#> CI type = "normal"
-#>                  est     se           z      p    2.5%   97.5%
-#> alpha[1,1]    1.0304 0.1203      8.5661 0.0000  0.7947  1.2662
-#> alpha[2,1]   -1.0166 0.1187     -8.5671 0.0000 -1.2492 -0.7841
-#> alpha[3,1]    0.5512 0.0061     89.8970 0.0000  0.5392  0.5633
-#> alpha[4,1]    0.0204 0.0059      3.4430 0.0006  0.0088  0.0321
-#> alpha[5,1]    0.0208 0.0055      3.7539 0.0002  0.0099  0.0316
-#> alpha[6,1]    0.5548 0.0058     95.0284 0.0000  0.5434  0.5662
-#> gamma[1,1]    2.2504 0.1702     13.2254 0.0000  1.9169  2.5839
-#> gamma[2,1]   -2.4506 0.1679    -14.5969 0.0000 -2.7797 -2.1216
-#> gamma[3,1]    0.1982 0.0081     24.5164 0.0000  0.1824  0.2141
-#> gamma[4,1]   -0.0394 0.0078     -5.0169 0.0000 -0.0547 -0.0240
-#> gamma[5,1]   -0.0140 0.0071     -1.9702 0.0488 -0.0278 -0.0001
-#> gamma[6,1]    0.2054 0.0075     27.2734 0.0000  0.1906  0.2202
-#> kappa[1,1]    9.8547 0.1296     76.0346 0.0000  9.6006 10.1087
-#> phi[1,1]      4.9958 0.0095    528.1960 0.0000  4.9773  5.0144
-#> phi[1,2]      5.0136 0.0096    524.6785 0.0000  4.9949  5.0324
-#> phi[1,3]      5.1450 0.1712     30.0444 0.0000  4.8093  5.4806
-#> phi[1,4]      4.8677 0.1714     28.4060 0.0000  4.5318  5.2035
-#> phi[1,5]      4.8221 0.1856     25.9876 0.0000  4.4584  5.1858
-#> phi[1,6]      5.1816 0.1747     29.6553 0.0000  4.8391  5.5240
-#> omega[1,1]    0.1571 0.0714      2.2009 0.0277  0.0172  0.2970
-#> psi[1,1]      0.4670 0.0209     22.3583 0.0000  0.4261  0.5080
-#> tau_sqr[1,1]  7.2471 0.3255     22.2614 0.0000  6.6091  7.8852
-#> tau_sqr[2,1]  2.1395 0.2368      9.0359 0.0000  1.6754  2.6036
-#> tau_sqr[3,1]  0.1274 0.0106     11.9767 0.0000  0.1066  0.1483
-#> tau_sqr[4,1]  0.0747 0.0098      7.5956 0.0000  0.0554  0.0939
-#> tau_sqr[5,1] -0.1148 0.0092    -12.4251 0.0000 -0.1329 -0.0967
-#> tau_sqr[6,1] -0.0644 0.0094     -6.8529 0.0000 -0.0829 -0.0460
-#> tau_sqr[2,2]  7.0474 0.3162     22.2897 0.0000  6.4278  7.6671
-#> tau_sqr[3,2]  0.0632 0.0101      6.2641 0.0000  0.0434  0.0829
-#> tau_sqr[4,2]  0.1344 0.0105     12.8141 0.0000  0.1138  0.1549
-#> tau_sqr[5,2] -0.0516 0.0083     -6.2242 0.0000 -0.0679 -0.0354
-#> tau_sqr[6,2] -0.1101 0.0095    -11.6039 0.0000 -0.1287 -0.0915
-#> tau_sqr[3,3]  0.0123 0.0007     16.9726 0.0000  0.0109  0.0137
-#> tau_sqr[4,3]  0.0061 0.0005     11.4198 0.0000  0.0051  0.0072
-#> tau_sqr[5,3] -0.0016 0.0004     -3.6236 0.0003 -0.0024 -0.0007
-#> tau_sqr[6,3] -0.0007 0.0005     -1.5101 0.1310 -0.0016  0.0002
-#> tau_sqr[4,4]  0.0116 0.0007     16.8124 0.0000  0.0103  0.0130
-#> tau_sqr[5,4] -0.0026 0.0004     -6.3546 0.0000 -0.0034 -0.0018
-#> tau_sqr[6,4] -0.0017 0.0004     -3.8649 0.0001 -0.0026 -0.0009
-#> tau_sqr[5,5]  0.0083 0.0005     15.6871 0.0000  0.0073  0.0093
-#> tau_sqr[6,5]  0.0032 0.0004      7.7167 0.0000  0.0024  0.0040
-#> tau_sqr[6,6]  0.0100 0.0006     16.1503 0.0000  0.0088  0.0112
-#> i_sqr[1,1]    0.9998 0.0000  97223.5559 0.0000  0.9998  0.9998
-#> i_sqr[2,1]    0.9998 0.0000 105463.0328 0.0000  0.9998  0.9998
-#> i_sqr[3,1]    0.9131 0.0047    195.3185 0.0000  0.9039  0.9222
-#> i_sqr[4,1]    0.9279 0.0038    241.1741 0.0000  0.9204  0.9354
-#> i_sqr[5,1]    0.8770 0.0068    129.3072 0.0000  0.8637  0.8903
-#> i_sqr[6,1]    0.9093 0.0050    181.2682 0.0000  0.8994  0.9191
+#> Status code = 0
+#> 
+#> CI type = "lb"
+#>                   est     2.5%    97.5%
+#> alpha[1,1]     1.0818   0.7067   1.4570
+#> alpha[2,1]    -1.0558  -1.3767  -0.7351
+#> alpha[3,1]     0.4750   0.4542   0.4955
+#> alpha[4,1]     0.0103  -0.0101   0.0307
+#> alpha[5,1]     0.0110  -0.0079   0.0298
+#> alpha[6,1]     0.4795   0.4601   0.4988
+#> gamma[1,1]     2.4741   1.9415   3.0063
+#> gamma[2,1]    -2.3765  -2.8327  -1.9204
+#> gamma[3,1]     0.1939   0.1652   0.2227
+#> gamma[4,1]    -0.0268  -0.0552   0.0015
+#> gamma[5,1]     0.0184  -0.0075   0.0444
+#> gamma[6,1]     0.1889   0.1621   0.2157
+#> kappa[1,1]     7.4447  -2.4622  17.3484
+#> phi[1,1]      -0.6447  -1.3531   0.0632
+#> phi[1,2]      -0.3938  -1.3157   0.5266
+#> phi[1,3]      13.0693  -0.1037  26.2471
+#> phi[1,4]      -2.3996 -16.6561  11.8625
+#> phi[1,5]       1.5057 -10.5707  13.5627
+#> phi[1,6]       4.8729  -9.0007  18.7368
+#> omega[1,1]    -0.5046  -7.1296   6.1413
+#> psi[1,1]     562.0242 497.7609 638.2382
+#> tau_sqr[1,1]   9.0875   8.0299  10.3323
+#> tau_sqr[2,1]   1.7432   1.0609   2.4800
+#> tau_sqr[3,1]   0.0065  -0.0357   0.0487
+#> tau_sqr[4,1]   0.1289   0.0900   0.1730
+#> tau_sqr[5,1]   0.0313  -0.0123   0.0759
+#> tau_sqr[6,1]  -0.0761  -0.1182  -0.0365
+#> tau_sqr[2,2]   6.6441   5.8753   7.5515
+#> tau_sqr[3,2]   0.0688   0.0327   0.1072
+#> tau_sqr[4,2]   0.1860   0.1456   0.2316
+#> tau_sqr[5,2]  -0.0425  -0.0736  -0.0119
+#> tau_sqr[6,2]   0.0284  -0.0051   0.0628
+#> tau_sqr[3,3]   0.0200   0.0170   0.0235
+#> tau_sqr[4,3]   0.0067   0.0044   0.0091
+#> tau_sqr[5,3]   0.0007  -0.0015   0.0028
+#> tau_sqr[6,3]   0.0016  -0.0006   0.0038
+#> tau_sqr[4,4]   0.0199   0.0168   0.0236
+#> tau_sqr[5,4]  -0.0004  -0.0024   0.0016
+#> tau_sqr[6,4]   0.0014  -0.0007   0.0037
+#> tau_sqr[5,5]   0.0146   0.0119   0.0178
+#> tau_sqr[6,5]   0.0007  -0.0013   0.0027
+#> tau_sqr[6,6]   0.0168   0.0142   0.0199
+#> i_sqr[1,1]     0.9992   0.9991   0.9993
+#> i_sqr[2,1]     0.9991   0.9990   0.9992
+#> i_sqr[3,1]     0.7924   0.7648   0.8178
+#> i_sqr[4,1]     0.8411   0.8180   0.8619
+#> i_sqr[5,1]     0.7894   0.7572   0.8181
+#> i_sqr[6,1]     0.8044   0.7780   0.8285
+#> de[1,1]       -0.5046  -7.1464   6.1261
+#> ie[1,1]        2.8880  -2.3428   8.1545
+#> te[1,1]        2.3834  -1.8312   6.6037
+#> ie_x1_y1_z1   -1.5949  -3.4892   0.1742
+#> ie_x1_y2_z1    0.9358  -1.2739   3.2069
+#> ie_x1_y3_z1    2.5345  -0.0141   5.1905
+#> ie_x1_y4_z1    0.0643  -0.0040   0.5999
+#> ie_x1_y5_z1    0.0277  -0.0118   0.3743
+#> ie_x1_y6_z1    0.9206  -1.6994   3.5803
 ```
 
 ### Normal Theory Confidence Intervals
@@ -810,109 +540,127 @@ summary(random)
 ``` r
 
 confint(random, level = 0.95, lb = FALSE)
-#>                     2.5 %        97.5 %
-#> alpha[1,1]    0.794653461  1.266180e+00
-#> alpha[2,1]   -1.249233807 -7.840622e-01
-#> alpha[3,1]    0.539215888  5.632523e-01
-#> alpha[4,1]    0.008798324  3.205394e-02
-#> alpha[5,1]    0.009918117  3.158959e-02
-#> alpha[6,1]    0.543357305  5.662429e-01
-#> gamma[1,1]    1.916909586  2.583920e+00
-#> gamma[2,1]   -2.779692578 -2.121586e+00
-#> gamma[3,1]    0.182393535  2.140905e-01
-#> gamma[4,1]   -0.054730821 -2.398060e-02
-#> gamma[5,1]   -0.027845568 -7.228428e-05
-#> gamma[6,1]    0.190637948  2.201593e-01
-#> kappa[1,1]    9.600634345  1.010869e+01
-#> phi[1,1]      4.977307339  5.014383e+00
-#> phi[1,2]      4.994921207  5.032379e+00
-#> phi[1,3]      4.809346101  5.480618e+00
-#> phi[1,4]      4.531796314  5.203517e+00
-#> phi[1,5]      4.458398341  5.185753e+00
-#> phi[1,6]      4.839105476  5.524020e+00
-#> omega[1,1]    0.017194402  2.969600e-01
-#> psi[1,1]      0.426086101  5.079668e-01
-#> tau_sqr[1,1]  6.609056306  7.885173e+00
-#> tau_sqr[2,1]  1.675447161  2.603614e+00
-#> tau_sqr[3,1]  0.106561936  1.482636e-01
-#> tau_sqr[4,1]  0.055400485  9.393499e-02
-#> tau_sqr[5,1] -0.132882306 -9.667178e-02
-#> tau_sqr[6,1] -0.082871993 -4.601097e-02
-#> tau_sqr[2,2]  6.427755543  7.667138e+00
-#> tau_sqr[3,2]  0.043410224  8.294499e-02
-#> tau_sqr[4,2]  0.113833075  1.549432e-01
-#> tau_sqr[5,2] -0.067856242 -3.535541e-02
-#> tau_sqr[6,2] -0.128699525 -9.150555e-02
-#> tau_sqr[3,3]  0.010897632  1.374310e-02
-#> tau_sqr[4,3]  0.005064895  7.163656e-03
-#> tau_sqr[5,3] -0.002427322 -7.232387e-04
-#> tau_sqr[6,3] -0.001612093  2.089944e-04
-#> tau_sqr[4,4]  0.010253963  1.296024e-02
-#> tau_sqr[5,4] -0.003406650 -1.800565e-03
-#> tau_sqr[6,4] -0.002615428 -8.553284e-04
-#> tau_sqr[5,5]  0.007265673  9.340461e-03
-#> tau_sqr[6,5]  0.002401384  4.036557e-03
-#> tau_sqr[6,6]  0.008751158  1.116856e-02
-#> i_sqr[1,1]    0.999750866  9.997912e-01
-#> i_sqr[2,1]    0.999770119  9.998073e-01
-#> i_sqr[3,1]    0.903893892  9.222184e-01
-#> i_sqr[4,1]    0.920350982  9.354325e-01
-#> i_sqr[5,1]    0.863719394  8.903059e-01
-#> i_sqr[6,1]    0.899439670  9.191027e-01
+#>                      2.5 %        97.5 %
+#> alpha[1,1]    9.700915e-01   1.193427585
+#> alpha[2,1]   -1.163916e+00  -0.947668438
+#> alpha[3,1]    4.546528e-01   0.495289704
+#> alpha[4,1]   -7.927398e-03   0.028565775
+#> alpha[5,1]   -5.960224e-03   0.027916217
+#> alpha[6,1]    4.601321e-01   0.498908542
+#> gamma[1,1]    1.939081e+00   3.009109762
+#> gamma[2,1]   -2.832510e+00  -1.920585315
+#> gamma[3,1]    1.654210e-01   0.222438060
+#> gamma[4,1]   -5.558845e-02   0.002018128
+#> gamma[5,1]   -9.588412e-03   0.046365754
+#> gamma[6,1]    1.618797e-01   0.215975800
+#> kappa[1,1]   -3.339640e+00  18.229121156
+#> phi[1,1]     -1.234585e+00  -0.054720182
+#> phi[1,2]     -1.238770e+00   0.451199635
+#> phi[1,3]     -2.792959e+00  28.931614882
+#> phi[1,4]     -1.840198e+01  13.602733477
+#> phi[1,5]     -8.207718e+00  11.219113246
+#> phi[1,6]     -7.207134e+00  16.952865423
+#> omega[1,1]   -5.204542e+00   4.195366539
+#> psi[1,1]      3.758772e+02 748.171309766
+#> tau_sqr[1,1]  5.580831e+00  12.594071759
+#> tau_sqr[2,1]  2.547561e-01   3.231616178
+#> tau_sqr[3,1] -6.591038e-02   0.078850759
+#> tau_sqr[4,1]  8.240730e-02   0.175365384
+#> tau_sqr[5,1] -9.323166e-02   0.155793319
+#> tau_sqr[6,1] -1.352432e-01  -0.016872503
+#> tau_sqr[2,2]  4.278499e+00   9.009720886
+#> tau_sqr[3,2]  2.624223e-02   0.111354780
+#> tau_sqr[4,2]  9.426518e-02   0.277683354
+#> tau_sqr[5,2] -7.778177e-02  -0.007188342
+#> tau_sqr[6,2] -3.508641e-02   0.091968285
+#> tau_sqr[3,3]  1.673409e-02   0.023274434
+#> tau_sqr[4,3]  3.968255e-03   0.009390780
+#> tau_sqr[5,3] -1.930455e-03   0.003240588
+#> tau_sqr[6,3] -5.812971e-04   0.003750405
+#> tau_sqr[4,4]  1.506734e-02   0.024810393
+#> tau_sqr[5,4] -2.254637e-03   0.001438248
+#> tau_sqr[6,4] -1.272134e-03   0.004125527
+#> tau_sqr[5,5]  1.009784e-02   0.019116457
+#> tau_sqr[6,5] -1.985538e-03   0.003455258
+#> tau_sqr[6,6]  1.347765e-02   0.020110922
+#> i_sqr[1,1]    9.988770e-01   0.999501977
+#> i_sqr[2,1]    9.987995e-01   0.999424324
+#> i_sqr[3,1]    7.624357e-01   0.822376461
+#> i_sqr[4,1]    8.137347e-01   0.868510583
+#> i_sqr[5,1]    7.163636e-01   0.862461533
+#> i_sqr[6,1]    7.715696e-01   0.837202172
+#> de[1,1]      -5.204542e+00   4.195366539
+#> ie[1,1]      -2.190923e+00   7.966976786
+#> te[1,1]      -1.465726e+00   6.232604376
+#> ie_x1_y1_z1  -3.084049e+00  -0.105815148
+#> ie_x1_y2_z1  -1.098139e+00   2.969836654
+#> ie_x1_y3_z1  -5.834859e-01   5.652543368
+#> ie_x1_y4_z1  -3.806942e-01   0.509242834
+#> ie_x1_y5_z1  -1.563675e-01   0.211743089
+#> ie_x1_y6_z1  -1.368764e+00   3.210002936
 ```
 
 ``` r
 
 confint(random, level = 0.99, lb = FALSE)
-#>                     0.5 %        99.5 %
-#> alpha[1,1]    0.720571231  1.3402624980
-#> alpha[2,1]   -1.322317562 -0.7109784506
-#> alpha[3,1]    0.535439500  0.5670286504
-#> alpha[4,1]    0.005144601  0.0357076653
-#> alpha[5,1]    0.006513282  0.0349944230
-#> alpha[6,1]    0.539761725  0.5698384335
-#> gamma[1,1]    1.812114722  2.6887144369
-#> gamma[2,1]   -2.883088644 -2.0181897489
-#> gamma[3,1]    0.177413585  0.2190704212
-#> gamma[4,1]   -0.059562031 -0.0191493892
-#> gamma[5,1]   -0.032209067  0.0042912148
-#> gamma[6,1]    0.185999804  0.2247974692
-#> kappa[1,1]    9.520813513 10.1885076763
-#> phi[1,1]      4.971482290  5.0202083094
-#> phi[1,2]      4.989036207  5.0382637099
-#> phi[1,3]      4.703881571  5.5860829782
-#> phi[1,4]      4.426261380  5.3090517148
-#> phi[1,5]      4.344122719  5.3000281280
-#> phi[1,6]      4.731497684  5.6316272938
-#> omega[1,1]   -0.026759958  0.3409143557
-#> psi[1,1]      0.413221707  0.5208312237
-#> tau_sqr[1,1]  6.408563796  8.0856658075
-#> tau_sqr[2,1]  1.529621651  2.7494390719
-#> tau_sqr[3,1]  0.100010123  0.1548154569
-#> tau_sqr[4,1]  0.049346275  0.0999891984
-#> tau_sqr[5,1] -0.138571392 -0.0909826932
-#> tau_sqr[6,1] -0.088663280 -0.0402196778
-#> tau_sqr[2,2]  6.233034460  7.8618589977
-#> tau_sqr[3,2]  0.037198863  0.0891563499
-#> tau_sqr[4,2]  0.107374198  0.1614021248
-#> tau_sqr[5,2] -0.072962493 -0.0302491547
-#> tau_sqr[6,2] -0.134543122 -0.0856619531
-#> tau_sqr[3,3]  0.010450578  0.0141901505
-#> tau_sqr[4,3]  0.004735156  0.0074933957
-#> tau_sqr[5,3] -0.002695053 -0.0004555077
-#> tau_sqr[6,3] -0.001898206  0.0004951080
-#> tau_sqr[4,4]  0.009828776  0.0133854275
-#> tau_sqr[5,4] -0.003658984 -0.0015482304
-#> tau_sqr[6,4] -0.002891960 -0.0005787967
-#> tau_sqr[5,5]  0.006939701  0.0096664334
-#> tau_sqr[6,5]  0.002144479  0.0042934613
-#> tau_sqr[6,6]  0.008371356  0.0115483650
-#> i_sqr[1,1]    0.999744533  0.9997975088
-#> i_sqr[2,1]    0.999764280  0.9998131180
-#> i_sqr[3,1]    0.901014905  0.9250973791
-#> i_sqr[4,1]    0.917981506  0.9378019635
-#> i_sqr[5,1]    0.859542352  0.8944829411
-#> i_sqr[6,1]    0.896350388  0.9221919553
+#>                      0.5 %        99.5 %
+#> alpha[1,1]     0.935002814   1.228516234
+#> alpha[2,1]    -1.197890983  -0.913693480
+#> alpha[3,1]     0.448268289   0.501674224
+#> alpha[4,1]    -0.013660891   0.034299268
+#> alpha[5,1]    -0.011282598   0.033238591
+#> alpha[6,1]     0.454039900   0.505000760
+#> gamma[1,1]     1.770967775   3.177223399
+#> gamma[2,1]    -2.975783621  -1.777311581
+#> gamma[3,1]     0.156462989   0.231396087
+#> gamma[4,1]    -0.064639099   0.011068777
+#> gamma[5,1]    -0.018379448   0.055156791
+#> gamma[6,1]     0.153380599   0.224474911
+#> kappa[1,1]    -6.728337697  21.617819093
+#> phi[1,1]      -1.419955377   0.130650040
+#> phi[1,2]      -1.504283148   0.716713064
+#> phi[1,3]      -7.777250942  33.915906697
+#> phi[1,4]     -23.430286711  18.631038636
+#> phi[1,5]     -11.259893873  14.271289571
+#> phi[1,6]     -11.002944581  20.748676376
+#> omega[1,1]    -6.681375052   5.672199256
+#> psi[1,1]     317.385537678 806.662956122
+#> tau_sqr[1,1]   4.478970573  13.695931801
+#> tau_sqr[2,1]  -0.212942553   3.699314798
+#> tau_sqr[3,1]  -0.088654004   0.101594382
+#> tau_sqr[4,1]   0.067802523   0.189970157
+#> tau_sqr[5,1]  -0.132356320   0.194917979
+#> tau_sqr[6,1]  -0.153840567   0.001724880
+#> tau_sqr[2,2]   3.535170720   9.753049643
+#> tau_sqr[3,2]   0.012870080   0.124726931
+#> tau_sqr[4,2]   0.065448092   0.306500438
+#> tau_sqr[5,2]  -0.088872796   0.003902689
+#> tau_sqr[6,2]  -0.055048150   0.111930025
+#> tau_sqr[3,3]   0.015706529   0.024301996
+#> tau_sqr[4,3]   0.003116315   0.010242720
+#> tau_sqr[5,3]  -0.002742885   0.004053017
+#> tau_sqr[6,3]  -0.001261857   0.004430965
+#> tau_sqr[4,4]   0.013536599   0.026341137
+#> tau_sqr[5,4]  -0.002834832   0.002018442
+#> tau_sqr[6,4]  -0.002120168   0.004973561
+#> tau_sqr[5,5]   0.008680911   0.020533385
+#> tau_sqr[6,5]  -0.002840349   0.004310069
+#> tau_sqr[6,6]   0.012435484   0.021153085
+#> i_sqr[1,1]     0.998778795   0.999600170
+#> i_sqr[2,1]     0.998701296   0.999522496
+#> i_sqr[3,1]     0.753018284   0.831793842
+#> i_sqr[4,1]     0.805128754   0.877116503
+#> i_sqr[5,1]     0.693409963   0.885415180
+#> i_sqr[6,1]     0.761257973   0.847513796
+#> de[1,1]       -6.681375052   5.672199256
+#> ie[1,1]       -3.786844471   9.562898474
+#> te[1,1]       -2.675221556   7.442099763
+#> ie_x1_y1_z1   -3.551964024   0.362099380
+#> ie_x1_y2_z1   -1.737264135   3.608961928
+#> ie_x1_y3_z1   -1.563237151   6.632294580
+#> ie_x1_y4_z1   -0.520513445   0.649062075
+#> ie_x1_y5_z1   -0.214201892   0.269577458
+#> ie_x1_y6_z1   -2.088140083   3.929379313
 ```
 
 ### Robust Confidence Intervals
@@ -920,109 +668,127 @@ confint(random, level = 0.99, lb = FALSE)
 ``` r
 
 confint(random, level = 0.95, lb = FALSE, robust = TRUE)
-#>                     2.5 %        97.5 %
-#> alpha[1,1]    0.953425643  1.1074080860
-#> alpha[2,1]   -1.093396425 -0.9398995874
-#> alpha[3,1]    0.538442780  0.5640253702
-#> alpha[4,1]    0.008413730  0.0324385360
-#> alpha[5,1]    0.009662120  0.0318455849
-#> alpha[6,1]    0.542474411  0.5671257467
-#> gamma[1,1]    1.915960339  2.5848688196
-#> gamma[2,1]   -2.780316719 -2.1209616735
-#> gamma[3,1]    0.182060020  0.2144239861
-#> gamma[4,1]   -0.054980835 -0.0237305850
-#> gamma[5,1]   -0.028209414  0.0002915618
-#> gamma[6,1]    0.190197198  0.2206000754
-#> kappa[1,1]    9.611646034 10.0976751555
-#> phi[1,1]      4.978260754  5.0134298452
-#> phi[1,2]      4.996829230  5.0304706860
-#> phi[1,3]      4.815119167  5.4748453819
-#> phi[1,4]      4.531853263  5.2034598314
-#> phi[1,5]      4.461931537  5.1822193100
-#> phi[1,6]      4.851228838  5.5118961400
-#> omega[1,1]    0.019405509  0.2947488892
-#> psi[1,1]      0.426074216  0.5079787149
-#> tau_sqr[1,1]  5.386158885  9.1080707184
-#> tau_sqr[2,1]  0.944240352  3.3348203705
-#> tau_sqr[3,1]  0.100884302  0.1539412777
-#> tau_sqr[4,1]  0.053777574  0.0955578996
-#> tau_sqr[5,1] -0.138085216 -0.0914688684
-#> tau_sqr[6,1] -0.085067112 -0.0438158464
-#> tau_sqr[2,2]  5.455383410  8.6395100476
-#> tau_sqr[3,2]  0.036186450  0.0901687631
-#> tau_sqr[4,2]  0.104966260  0.1638100629
-#> tau_sqr[5,2] -0.070738292 -0.0324733560
-#> tau_sqr[6,2] -0.130798838 -0.0894062370
-#> tau_sqr[3,3]  0.010887396  0.0137533326
-#> tau_sqr[4,3]  0.004985214  0.0072433374
-#> tau_sqr[5,3] -0.002448367 -0.0007021936
-#> tau_sqr[6,3] -0.001610069  0.0002069709
-#> tau_sqr[4,4]  0.010176565  0.0130376382
-#> tau_sqr[5,4] -0.003434046 -0.0017731693
-#> tau_sqr[6,4] -0.002583464 -0.0008872930
-#> tau_sqr[5,5]  0.007327345  0.0092787890
-#> tau_sqr[6,5]  0.002324928  0.0041130128
-#> tau_sqr[6,6]  0.008600421  0.0113192994
-#> i_sqr[1,1]    0.999712238  0.9998298041
-#> i_sqr[2,1]    0.999739003  0.9998383952
-#> i_sqr[3,1]    0.903826025  0.9222862590
-#> i_sqr[4,1]    0.919808364  0.9359751059
-#> i_sqr[5,1]    0.864407577  0.8896177156
-#> i_sqr[6,1]    0.898003554  0.9205387895
+#>                      2.5 %        97.5 %
+#> alpha[1,1]    9.700915e-01   1.193427585
+#> alpha[2,1]   -1.163916e+00  -0.947668438
+#> alpha[3,1]    4.546528e-01   0.495289704
+#> alpha[4,1]   -7.927398e-03   0.028565775
+#> alpha[5,1]   -5.960224e-03   0.027916217
+#> alpha[6,1]    4.601321e-01   0.498908542
+#> gamma[1,1]    1.939081e+00   3.009109762
+#> gamma[2,1]   -2.832510e+00  -1.920585315
+#> gamma[3,1]    1.654210e-01   0.222438060
+#> gamma[4,1]   -5.558845e-02   0.002018128
+#> gamma[5,1]   -9.588412e-03   0.046365754
+#> gamma[6,1]    1.618797e-01   0.215975800
+#> kappa[1,1]   -3.339640e+00  18.229121156
+#> phi[1,1]     -1.234585e+00  -0.054720182
+#> phi[1,2]     -1.238770e+00   0.451199635
+#> phi[1,3]     -2.792959e+00  28.931614882
+#> phi[1,4]     -1.840198e+01  13.602733477
+#> phi[1,5]     -8.207718e+00  11.219113246
+#> phi[1,6]     -7.207134e+00  16.952865423
+#> omega[1,1]   -5.204542e+00   4.195366539
+#> psi[1,1]      3.758772e+02 748.171309766
+#> tau_sqr[1,1]  5.580831e+00  12.594071759
+#> tau_sqr[2,1]  2.547561e-01   3.231616178
+#> tau_sqr[3,1] -6.591038e-02   0.078850759
+#> tau_sqr[4,1]  8.240730e-02   0.175365384
+#> tau_sqr[5,1] -9.323166e-02   0.155793319
+#> tau_sqr[6,1] -1.352432e-01  -0.016872503
+#> tau_sqr[2,2]  4.278499e+00   9.009720886
+#> tau_sqr[3,2]  2.624223e-02   0.111354780
+#> tau_sqr[4,2]  9.426518e-02   0.277683354
+#> tau_sqr[5,2] -7.778177e-02  -0.007188342
+#> tau_sqr[6,2] -3.508641e-02   0.091968285
+#> tau_sqr[3,3]  1.673409e-02   0.023274434
+#> tau_sqr[4,3]  3.968255e-03   0.009390780
+#> tau_sqr[5,3] -1.930455e-03   0.003240588
+#> tau_sqr[6,3] -5.812971e-04   0.003750405
+#> tau_sqr[4,4]  1.506734e-02   0.024810393
+#> tau_sqr[5,4] -2.254637e-03   0.001438248
+#> tau_sqr[6,4] -1.272134e-03   0.004125527
+#> tau_sqr[5,5]  1.009784e-02   0.019116457
+#> tau_sqr[6,5] -1.985538e-03   0.003455258
+#> tau_sqr[6,6]  1.347765e-02   0.020110922
+#> i_sqr[1,1]    9.988770e-01   0.999501977
+#> i_sqr[2,1]    9.987995e-01   0.999424324
+#> i_sqr[3,1]    7.624357e-01   0.822376461
+#> i_sqr[4,1]    8.137347e-01   0.868510583
+#> i_sqr[5,1]    7.163636e-01   0.862461533
+#> i_sqr[6,1]    7.715696e-01   0.837202172
+#> de[1,1]      -5.204542e+00   4.195366539
+#> ie[1,1]      -2.190923e+00   7.966976786
+#> te[1,1]      -1.465726e+00   6.232604376
+#> ie_x1_y1_z1  -3.084049e+00  -0.105815148
+#> ie_x1_y2_z1  -1.098139e+00   2.969836654
+#> ie_x1_y3_z1  -5.834859e-01   5.652543368
+#> ie_x1_y4_z1  -3.806942e-01   0.509242834
+#> ie_x1_y5_z1  -1.563675e-01   0.211743089
+#> ie_x1_y6_z1  -1.368764e+00   3.210002936
 ```
 
 ``` r
 
 confint(random, level = 0.99, lb = FALSE, robust = TRUE)
-#>                     0.5 %        99.5 %
-#> alpha[1,1]    0.929233247  1.1316004812
-#> alpha[2,1]   -1.117512526 -0.9157834863
-#> alpha[3,1]    0.534423464  0.5680446864
-#> alpha[4,1]    0.004639160  0.0362131066
-#> alpha[5,1]    0.006176846  0.0353308598
-#> alpha[6,1]    0.538601406  0.5709987521
-#> gamma[1,1]    1.810867200  2.6899619585
-#> gamma[2,1]   -2.883908905 -2.0173694880
-#> gamma[3,1]    0.176975272  0.2195087337
-#> gamma[4,1]   -0.059890606 -0.0188208148
-#> gamma[5,1]   -0.032687242  0.0047693897
-#> gamma[6,1]    0.185420559  0.2253767137
-#> kappa[1,1]    9.535285324 10.1740358649
-#> phi[1,1]      4.972735289  5.0189553099
-#> phi[1,2]      4.991543775  5.0357561418
-#> phi[1,3]      4.711468667  5.5784958823
-#> phi[1,4]      4.426336224  5.3089768707
-#> phi[1,5]      4.348766126  5.2953847208
-#> phi[1,6]      4.747430482  5.6156944960
-#> omega[1,1]   -0.023854072  0.3380084696
-#> psi[1,1]      0.413206086  0.5208468443
-#> tau_sqr[1,1]  4.801404156  9.6928254477
-#> tau_sqr[2,1]  0.568653010  3.7104077122
-#> tau_sqr[3,1]  0.092548447  0.1622771328
-#> tau_sqr[4,1]  0.047213409  0.1021220644
-#> tau_sqr[5,1] -0.145409176 -0.0841449093
-#> tau_sqr[6,1] -0.091548155 -0.0373348029
-#> tau_sqr[2,2]  4.955120859  9.1397725991
-#> tau_sqr[3,2]  0.027705213  0.0986499992
-#> tau_sqr[4,2]  0.095721229  0.1730550944
-#> tau_sqr[5,2] -0.076750149 -0.0264614989
-#> tau_sqr[6,2] -0.137302087 -0.0829029880
-#> tau_sqr[3,3]  0.010437124  0.0142036039
-#> tau_sqr[4,3]  0.004630437  0.0075981143
-#> tau_sqr[5,3] -0.002722711 -0.0004278498
-#> tau_sqr[6,3] -0.001895547  0.0004924486
-#> tau_sqr[4,4]  0.009727058  0.0134871454
-#> tau_sqr[5,4] -0.003694988 -0.0015122267
-#> tau_sqr[6,4] -0.002849951 -0.0006208052
-#> tau_sqr[5,5]  0.007020751  0.0095853831
-#> tau_sqr[6,5]  0.002043999  0.0043939413
-#> tau_sqr[6,6]  0.008173255  0.0117464661
-#> i_sqr[1,1]    0.999693767  0.9998482751
-#> i_sqr[2,1]    0.999723387  0.9998540109
-#> i_sqr[3,1]    0.900925712  0.9251865720
-#> i_sqr[4,1]    0.917268384  0.9385150851
-#> i_sqr[5,1]    0.860446777  0.8935785154
-#> i_sqr[6,1]    0.894463012  0.9240793317
+#>                      0.5 %        99.5 %
+#> alpha[1,1]     0.935002814   1.228516234
+#> alpha[2,1]    -1.197890983  -0.913693480
+#> alpha[3,1]     0.448268289   0.501674224
+#> alpha[4,1]    -0.013660891   0.034299268
+#> alpha[5,1]    -0.011282598   0.033238591
+#> alpha[6,1]     0.454039900   0.505000760
+#> gamma[1,1]     1.770967775   3.177223399
+#> gamma[2,1]    -2.975783621  -1.777311581
+#> gamma[3,1]     0.156462989   0.231396087
+#> gamma[4,1]    -0.064639099   0.011068777
+#> gamma[5,1]    -0.018379448   0.055156791
+#> gamma[6,1]     0.153380599   0.224474911
+#> kappa[1,1]    -6.728337697  21.617819093
+#> phi[1,1]      -1.419955377   0.130650040
+#> phi[1,2]      -1.504283148   0.716713064
+#> phi[1,3]      -7.777250942  33.915906697
+#> phi[1,4]     -23.430286711  18.631038636
+#> phi[1,5]     -11.259893873  14.271289571
+#> phi[1,6]     -11.002944581  20.748676376
+#> omega[1,1]    -6.681375052   5.672199256
+#> psi[1,1]     317.385537678 806.662956122
+#> tau_sqr[1,1]   4.478970573  13.695931801
+#> tau_sqr[2,1]  -0.212942553   3.699314798
+#> tau_sqr[3,1]  -0.088654004   0.101594382
+#> tau_sqr[4,1]   0.067802523   0.189970157
+#> tau_sqr[5,1]  -0.132356320   0.194917979
+#> tau_sqr[6,1]  -0.153840567   0.001724880
+#> tau_sqr[2,2]   3.535170720   9.753049643
+#> tau_sqr[3,2]   0.012870080   0.124726931
+#> tau_sqr[4,2]   0.065448092   0.306500438
+#> tau_sqr[5,2]  -0.088872796   0.003902689
+#> tau_sqr[6,2]  -0.055048150   0.111930025
+#> tau_sqr[3,3]   0.015706529   0.024301996
+#> tau_sqr[4,3]   0.003116315   0.010242720
+#> tau_sqr[5,3]  -0.002742885   0.004053017
+#> tau_sqr[6,3]  -0.001261857   0.004430965
+#> tau_sqr[4,4]   0.013536599   0.026341137
+#> tau_sqr[5,4]  -0.002834832   0.002018442
+#> tau_sqr[6,4]  -0.002120168   0.004973561
+#> tau_sqr[5,5]   0.008680911   0.020533385
+#> tau_sqr[6,5]  -0.002840349   0.004310069
+#> tau_sqr[6,6]   0.012435484   0.021153085
+#> i_sqr[1,1]     0.998778795   0.999600170
+#> i_sqr[2,1]     0.998701296   0.999522496
+#> i_sqr[3,1]     0.753018284   0.831793842
+#> i_sqr[4,1]     0.805128754   0.877116503
+#> i_sqr[5,1]     0.693409963   0.885415180
+#> i_sqr[6,1]     0.761257973   0.847513796
+#> de[1,1]       -6.681375052   5.672199256
+#> ie[1,1]       -3.786844471   9.562898474
+#> te[1,1]       -2.675221556   7.442099763
+#> ie_x1_y1_z1   -3.551964024   0.362099380
+#> ie_x1_y2_z1   -1.737264135   3.608961928
+#> ie_x1_y3_z1   -1.563237151   6.632294580
+#> ie_x1_y4_z1   -0.520513445   0.649062075
+#> ie_x1_y5_z1   -0.214201892   0.269577458
+#> ie_x1_y6_z1   -2.088140083   3.929379313
 ```
 
 ### Profile-Likelihood Confidence Intervals
@@ -1030,15 +796,127 @@ confint(random, level = 0.99, lb = FALSE, robust = TRUE)
 ``` r
 
 confint(random, level = 0.95, lb = TRUE)
-#> Error in `[.data.frame`:
-#> ! undefined columns selected
+#>                        est         2.5 %        97.5 %
+#> alpha[1,1]    1.081760e+00  7.066558e-01   1.456990821
+#> alpha[2,1]   -1.055792e+00 -1.376730e+00  -0.735147058
+#> alpha[3,1]    4.749713e-01  4.542274e-01   0.495547390
+#> alpha[4,1]    1.031919e-02 -1.007115e-02   0.030689533
+#> alpha[5,1]    1.097800e-02 -7.865030e-03   0.029764558
+#> alpha[6,1]    4.795203e-01  4.601307e-01   0.498825496
+#> gamma[1,1]    2.474096e+00  1.941540e+00   3.006307438
+#> gamma[2,1]   -2.376548e+00 -2.832687e+00  -1.920436231
+#> gamma[3,1]    1.939295e-01  1.651738e-01   0.222672512
+#> gamma[4,1]   -2.678516e-02 -5.518713e-02   0.001472753
+#> gamma[5,1]    1.838867e-02 -7.544510e-03   0.044412616
+#> gamma[6,1]    1.889278e-01  1.621186e-01   0.215705224
+#> kappa[1,1]    7.444741e+00 -2.462176e+00  17.348435605
+#> phi[1,1]     -6.446527e-01 -1.353062e+00   0.063201181
+#> phi[1,2]     -3.937850e-01 -1.315733e+00   0.526619917
+#> phi[1,3]      1.306933e+01 -1.037073e-01  26.247137418
+#> phi[1,4]     -2.399624e+00 -1.665607e+01  11.862510839
+#> phi[1,5]      1.505698e+00 -1.057066e+01  13.562741632
+#> phi[1,6]      4.872866e+00 -9.000693e+00  18.736815416
+#> omega[1,1]   -5.045879e-01 -7.129622e+00   6.141337426
+#> psi[1,1]      5.620242e+02  4.977609e+02 638.238236041
+#> tau_sqr[1,1]  9.087451e+00  8.029903e+00  10.332251877
+#> tau_sqr[2,1]  1.743186e+00  1.060880e+00   2.480032106
+#> tau_sqr[3,1]  6.470189e-03 -3.571822e-02   0.048663151
+#> tau_sqr[4,1]  1.288863e-01  9.004398e-02   0.172993163
+#> tau_sqr[5,1]  3.128083e-02 -1.225096e-02   0.075912046
+#> tau_sqr[6,1] -7.605784e-02 -1.182374e-01  -0.036518264
+#> tau_sqr[2,2]  6.644110e+00  5.875310e+00   7.551526062
+#> tau_sqr[3,2]  6.879851e-02  3.267941e-02   0.107157384
+#> tau_sqr[4,2]  1.859743e-01  1.456025e-01   0.231562142
+#> tau_sqr[5,2] -4.248505e-02 -7.359876e-02  -0.011858028
+#> tau_sqr[6,2]  2.844094e-02 -5.119334e-03   0.062792195
+#> tau_sqr[3,3]  2.000426e-02  1.702432e-02   0.023535987
+#> tau_sqr[4,3]  6.679518e-03  4.407683e-03   0.009112409
+#> tau_sqr[5,3]  6.550663e-04 -1.466960e-03   0.002849838
+#> tau_sqr[6,3]  1.584554e-03 -6.177520e-04   0.003806763
+#> tau_sqr[4,4]  1.993887e-02  1.684122e-02   0.023608406
+#> tau_sqr[5,4] -4.081948e-04 -2.386302e-03   0.001551867
+#> tau_sqr[6,4]  1.426696e-03 -7.057251e-04   0.003652012
+#> tau_sqr[5,5]  1.460715e-02  1.192935e-02   0.017826639
+#> tau_sqr[6,5]  7.348600e-04 -1.295963e-03   0.002711700
+#> tau_sqr[6,6]  1.679428e-02  1.420256e-02   0.019852518
+#> i_sqr[1,1]    9.991895e-01  9.990832e-01   0.999287285
+#> i_sqr[2,1]    9.991119e-01  9.989972e-01   0.999174915
+#> i_sqr[3,1]    7.924061e-01  7.648116e-01   0.817821001
+#> i_sqr[4,1]    8.411226e-01  8.179531e-01   0.861930995
+#> i_sqr[5,1]    7.894126e-01  7.572071e-01   0.818064523
+#> i_sqr[6,1]    8.043859e-01  7.779651e-01   0.828511706
+#> de[1,1]      -5.045879e-01 -7.146359e+00   6.126106689
+#> ie[1,1]       2.888027e+00 -2.342768e+00   8.154487843
+#> te[1,1]       2.383439e+00 -1.831159e+00   6.603681828
+#> ie_x1_y1_z1  -1.594932e+00 -3.489236e+00   0.174193655
+#> ie_x1_y2_z1   9.358489e-01 -1.273854e+00   3.206925768
+#> ie_x1_y3_z1   2.534529e+00 -1.411206e-02   5.190507033
+#> ie_x1_y4_z1   6.427432e-02 -4.011508e-03   0.599929860
+#> ie_x1_y5_z1   2.768778e-02 -1.180243e-02   0.374320801
+#> ie_x1_y6_z1   9.206196e-01 -1.699380e+00   3.580259563
 ```
 
 ``` r
 
 confint(random, level = 0.99, lb = TRUE)
-#> Error in `[.data.frame`:
-#> ! undefined columns selected
+#>                        est         0.5 %        99.5 %
+#> alpha[1,1]    1.081760e+00   0.589216175   1.574175540
+#> alpha[2,1]   -1.055792e+00  -1.476899464  -0.634464458
+#> alpha[3,1]    4.749713e-01   0.447654491   0.502050134
+#> alpha[4,1]    1.031919e-02  -0.016507992   0.037038886
+#> alpha[5,1]    1.097800e-02  -0.013761455   0.035645765
+#> alpha[6,1]    4.795203e-01   0.454025468   0.504898420
+#> gamma[1,1]    2.474096e+00   1.775479988   3.173354386
+#> gamma[2,1]   -2.376548e+00  -2.975253242  -1.777910725
+#> gamma[3,1]    1.939295e-01   0.156199367   0.231662907
+#> gamma[4,1]   -2.678516e-02  -0.064132609   0.010416272
+#> gamma[5,1]    1.838867e-02  -0.015757163   0.052672773
+#> gamma[6,1]    1.889278e-01   0.153716991   0.224154566
+#> kappa[1,1]    7.444741e+00  -5.541703147  20.423720807
+#> phi[1,1]     -6.446527e-01  -1.571238919   0.283410074
+#> phi[1,2]     -3.937850e-01  -1.605371737   0.817579671
+#> phi[1,3]      1.306933e+01  -4.224315742  30.340555521
+#> phi[1,4]     -2.399624e+00 -21.113555863  16.158321099
+#> phi[1,5]      1.505698e+00 -14.336359636  17.347311483
+#> phi[1,6]      4.872866e+00 -13.290707350  23.040957691
+#> omega[1,1]   -5.045879e-01  -9.217522677   8.209891053
+#> psi[1,1]      5.620242e+02 479.457870067 664.365168044
+#> tau_sqr[1,1]  9.087451e+00   7.733625322  10.765403856
+#> tau_sqr[2,1]  1.743186e+00   0.851910853   2.724349874
+#> tau_sqr[3,1]  6.470189e-03  -0.048932122   0.062080537
+#> tau_sqr[4,1]  1.288863e-01   0.076586587   0.188070518
+#> tau_sqr[5,1]  3.128083e-02  -0.025973041   0.090528471
+#> tau_sqr[6,1] -7.605784e-02  -0.128602436  -0.024172522
+#> tau_sqr[2,2]  6.644110e+00   5.660160921   7.866604345
+#> tau_sqr[3,2]  6.879851e-02   0.021209738   0.119919829
+#> tau_sqr[4,2]  1.859743e-01   0.133832789   0.247143316
+#> tau_sqr[5,2] -4.248505e-02  -0.085381806  -0.002377318
+#> tau_sqr[6,2]  2.844094e-02  -0.015714707   0.074001602
+#> tau_sqr[3,3]  2.000426e-02   0.016182528   0.024761379
+#> tau_sqr[4,3]  6.679518e-03   0.003718460   0.009924995
+#> tau_sqr[5,3]  6.550663e-04  -0.002128264   0.003572530
+#> tau_sqr[6,3]  1.584554e-03  -0.001321754   0.004535081
+#> tau_sqr[4,4]  1.993887e-02   0.015969002   0.024891901
+#> tau_sqr[5,4] -4.081948e-04  -0.003031965   0.002177018
+#> tau_sqr[6,4]  1.426696e-03  -0.001377099   0.004389726
+#> tau_sqr[5,5]  1.460715e-02   0.011179708   0.018938211
+#> tau_sqr[6,5]  7.348600e-04  -0.001968372   0.003337700
+#> tau_sqr[6,6]  1.679428e-02   0.013476244   0.020939151
+#> i_sqr[1,1]    9.991895e-01   0.999047837   0.999315706
+#> i_sqr[2,1]    9.991119e-01   0.999034108   0.999194630
+#> i_sqr[3,1]    7.924061e-01   0.755658908   0.825289425
+#> i_sqr[4,1]    8.411226e-01   0.810154960   0.868117340
+#> i_sqr[5,1]    7.894126e-01   0.746067884   0.826748597
+#> i_sqr[6,1]    8.043859e-01   0.769326917   0.835552004
+#> de[1,1]      -5.045879e-01  -9.223785194   8.207157450
+#> ie[1,1]       2.888027e+00  -3.984532993   9.811202052
+#> te[1,1]       2.383439e+00  -3.144734390   7.900562791
+#> ie_x1_y1_z1  -1.594932e+00  -4.191722717   0.797546757
+#> ie_x1_y2_z1   9.358489e-01  -1.986526505   3.963264217
+#> ie_x1_y3_z1   2.534529e+00  -0.812201211   6.049394198
+#> ie_x1_y4_z1   6.427432e-02  -0.072195936   0.838003161
+#> ie_x1_y5_z1   2.768778e-02  -0.104582517   0.545666573
+#> ie_x1_y6_z1   9.206196e-01  -2.520010960   4.439638154
 ```
 
 - The fixed part of the random-effects model gives pooled means for the
@@ -1058,23 +936,29 @@ confint(random, level = 0.99, lb = TRUE)
 
 means <- extract(random, what = "alpha")
 means
-#> [1]  1.03041686 -1.01664801  0.55123408  0.02042613  0.02075385  0.55480008
+#>          alpha
+#> y1  1.08175952
+#> y2 -1.05579223
+#> y3  0.47497126
+#> y4  0.01031919
+#> y5  0.01097800
+#> y6  0.47952033
 covariances <- extract(random, what = "tau_sqr")
 covariances
-#>             [,1]        [,2]          [,3]         [,4]         [,5]
-#> [1,]  7.24711480  2.13953036  0.1274127898  0.074667737 -0.114777042
-#> [2,]  2.13953036  7.04744673  0.0631776064  0.134388162 -0.051605824
-#> [3,]  0.12741279  0.06317761  0.0123203641  0.006114276 -0.001575280
-#> [4,]  0.07466774  0.13438816  0.0061142756  0.011607102 -0.002603607
-#> [5,] -0.11477704 -0.05160582 -0.0015752805 -0.002603607  0.008303067
-#> [6,] -0.06444148 -0.11010254 -0.0007015493 -0.001735378  0.003218970
-#>               [,6]
-#> [1,] -0.0644414791
-#> [2,] -0.1101025376
-#> [3,] -0.0007015493
-#> [4,] -0.0017353783
-#> [5,]  0.0032189703
-#> [6,]  0.0099598603
+#>              y1          y2           y3            y4            y5
+#> y1  9.087451187  1.74318612 0.0064701890  0.1288863403  0.0312808293
+#> y2  1.743186123  6.64411018 0.0687985052  0.1859742649 -0.0424850535
+#> y3  0.006470189  0.06879851 0.0200042627  0.0066795176  0.0006550663
+#> y4  0.128886340  0.18597426 0.0066795176  0.0199388676 -0.0004081948
+#> y5  0.031280829 -0.04248505 0.0006550663 -0.0004081948  0.0146071479
+#> y6 -0.076057844  0.02844094 0.0015845541  0.0014266964  0.0007348600
+#>              y6
+#> y1 -0.076057844
+#> y2  0.028440937
+#> y3  0.001584554
+#> y4  0.001426696
+#> y5  0.000734860
+#> y6  0.016794284
 ```
 
 Finally, we compare the meta-analytic population estimates to the known
@@ -1083,33 +967,34 @@ generating values.
 ``` r
 
 pop_mean
-#> [1]  2.25717566 -2.11275830  0.61362799 -0.00661199 -0.00502123  0.61560881
+#> [1]  2.225402237 -2.150926350  0.613120730 -0.008650001 -0.004652319
+#> [6]  0.617315267
 pop_cov
 #>             [,1]        [,2]         [,3]          [,4]          [,5]
-#> [1,]  7.87336834  0.88804821  0.273086594  0.0638425889 -0.0915731218
-#> [2,]  0.88804821  8.36786378 -0.036344806  0.1331000366 -0.0374675414
-#> [3,]  0.27308659 -0.03634481  0.030143625  0.0079252730 -0.0011555838
-#> [4,]  0.06384259  0.13310004  0.007925273  0.0139995106 -0.0006635365
-#> [5,] -0.09157312 -0.03746754 -0.001155584 -0.0006635365  0.0097715146
-#> [6,]  0.09000510 -0.23694437  0.012738301 -0.0012966040  0.0040795653
+#> [1,]  8.14262645  0.86433780  0.267330532  0.0622197590 -0.0946237191
+#> [2,]  0.86433780  9.23200499 -0.042748641  0.1354952004 -0.0377962010
+#> [3,]  0.26733053 -0.04274864  0.030048825  0.0078692525 -0.0010470459
+#> [4,]  0.06221976  0.13549520  0.007869252  0.0139002330 -0.0006657224
+#> [5,] -0.09462372 -0.03779620 -0.001047046 -0.0006657224  0.0096798022
+#> [6,]  0.08444775 -0.24227808  0.012450141 -0.0011007600  0.0037814441
 #>              [,6]
-#> [1,]  0.090005095
-#> [2,] -0.236944365
-#> [3,]  0.012738301
-#> [4,] -0.001296604
-#> [5,]  0.004079565
-#> [6,]  0.027041975
+#> [1,]  0.084447745
+#> [2,] -0.242278079
+#> [3,]  0.012450141
+#> [4,] -0.001100760
+#> [5,]  0.003781444
+#> [6,]  0.026568250
 ```
 
 ## Summary
 
 This vignette demonstrates a two-stage hierarchical estimation approach
-for dynamic systems: 1. Individual-level DT-VAR estimation with
-stabilized measurement error. 2. Population-level meta-analysis of
-person-specific dynamics and means. 3. Estimation and interpretation of
-covariate effects, where $`X`$ predicts systematic between-person
-differences in dynamics and baseline levels. 4. A distal outcome model
-linking $`z_i`$ to person-specific dynamic/mean features and to $`X`$.
+for dynamic systems: 1. Individual-level DT-VAR estimation. 2.
+Population-level meta-analysis of person-specific dynamics and means. 3.
+Estimation and interpretation of covariate effects, where $`X`$ predicts
+systematic between-person differences in dynamics and baseline levels.
+4. A distal outcome model linking $`z_i`$ to person-specific
+dynamic/mean features and to $`X`$.
 
 ## References
 

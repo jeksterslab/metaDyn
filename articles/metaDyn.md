@@ -28,8 +28,8 @@ You can install the development version of `metaDyn` from
 
 ``` r
 
-if (!require("remotes")) install.packages("remotes")
-remotes::install_github("jeksterslab/metaDyn")
+if (!require("pak")) install.packages("pak")
+pak::pkg_install("jeksterslab/metaDyn")
 ```
 
 ## Documentation

@@ -26,21 +26,11 @@ influences.
 The measurement model is given by
 ``` math
 \begin{equation}
-  \mathbf{y}_{i, t} = \boldsymbol{\Lambda} \boldsymbol{\eta}_{i, t} + \boldsymbol{\varepsilon}_{i, t}, \quad \mathrm{with} \quad \boldsymbol{\varepsilon}_{i, t} \sim \mathcal{N} \left( \mathbf{0}, \boldsymbol{\Theta} \right)
+  \mathbf{y}_{i, t} = \boldsymbol{\eta}_{i, t}
 \end{equation}
 ```
-where $`\mathbf{y}_{i, t}`$, $`\boldsymbol{\eta}_{i, t}`$, and
-$`\boldsymbol{\varepsilon}_{i, t}`$ are random variables and
-$`\boldsymbol{\Lambda}`$, and $`\boldsymbol{\Theta}`$ are model
-parameters. $`\mathbf{y}_{i, t}`$ represents a vector of observed random
-variables, $`\boldsymbol{\eta}_{i, t}`$ a vector of latent random
-variables, and $`\boldsymbol{\varepsilon}_{i, t}`$ a vector of random
-measurement errors, at time $`t`$ and individual $`i`$.
-$`\boldsymbol{\Lambda}`$ denotes a matrix of factor loadings, and
-$`\boldsymbol{\Theta}`$ the covariance matrix of
-$`\boldsymbol{\varepsilon}`$ that is invariant across individuals. In
-this model, $`\boldsymbol{\Lambda}`$ is an identity matrix and
-$`\boldsymbol{\Theta}`$ is a symmetric matrix.
+where $`\mathbf{y}_{i, t}`$ and $`\boldsymbol{\eta}_{i, t}`$ are random
+variables.
 
 The dynamic structure is given by
 ``` math
@@ -86,39 +76,10 @@ $`\boldsymbol{\mu}_{i} - \boldsymbol{\beta}_{i} \boldsymbol{\mu}_{i}`$.
 
 ### Notation
 
-Let $`t = 1000`$ be the number of time points and $`n = 1000`$ be the
-number of individuals. We simulate a total of time $`= 11000`$ points
+Let $`t = 100`$ be the number of time points and $`n = 1000`$ be the
+number of individuals. We simulate a total of time $`= 10100`$ points
 per individual, discarding the first $`10000`$ as burn-in. The analysis
-uses the final $`1000`$ measurement occasions.
-
-Let the factor loadings matrix $`\boldsymbol{\Lambda}`$ be given by
-``` math
-\begin{equation}
-  \boldsymbol{\Lambda}
-  =
-  \left(
-    \begin{array}{cc}
-      1 & 0 \\
-      0 & 1 \\
-    \end{array}
-  \right) .
-\end{equation}
-```
-
-Let the measurement error covariance matrix $`\boldsymbol{\Theta}`$ be
-given by
-``` math
-\begin{equation}
-  \boldsymbol{\Theta}
-  =
-  \left(
-  \begin{array}{cc}
-    0.5 & 0 \\
-    0 & 0.5 \\
-  \end{array}
-  \right) .
-\end{equation}
-```
+uses the final $`100`$ measurement occasions.
 
 Let the initial condition $`\boldsymbol{\eta}_{0}`$ be given by
 ``` math
@@ -195,8 +156,8 @@ Let the dynamic process noise $`\boldsymbol{\Psi}`$ be given by
   =
   \left(
     \begin{array}{cc}
-      0.25 & -0.1 \\
-      -0.1 & 0.22 \\
+      0.2 & -0.05 \\
+      -0.05 & 0.18 \\
     \end{array}
   \right) .
 \end{equation}
@@ -209,7 +170,7 @@ Let the dynamic process noise $`\boldsymbol{\Psi}`$ be given by
 n
 #> [1] 1000
 time
-#> [1] 11000
+#> [1] 10100
 burnin
 #> [1] 10000
 # first mu0 in the list of length n
@@ -218,13 +179,13 @@ mu0[[1]]
 # first sigma0 in the list of length n
 sigma0[[1]]
 #>            [,1]       [,2]
-#> [1,]  0.6803744 -0.2369735
-#> [2,] -0.2369735  0.3548975
+#> [1,]  0.5239639 -0.1565338
+#> [2,] -0.1565338  0.3028668
 # first sigma0_l in the list of length n
 sigma0_l[[1]] # sigma0_l <- t(chol(sigma0))
 #>            [,1]      [,2]
-#> [1,]  0.8248481 0.0000000
-#> [2,] -0.2872935 0.5218811
+#> [1,]  0.7238535 0.0000000
+#> [2,] -0.2162507 0.5060656
 # first alpha in the list of length n
 alpha[[1]]
 #> [1] 0.5941503 0.6684587
@@ -236,32 +197,14 @@ beta[[1]]
 # first psi in the list of length n
 psi[[1]]
 #>       [,1]  [,2]
-#> [1,]  0.25 -0.10
-#> [2,] -0.10  0.22
+#> [1,]  0.20 -0.05
+#> [2,] -0.05  0.18
 psi_l[[1]] # psi_l <- t(chol(psi))
-#>      [,1]      [,2]
-#> [1,]  0.5 0.0000000
-#> [2,] -0.2 0.4242641
-nu
-#> [[1]]
-#> [1] 0 0
-lambda
-#> [[1]]
-#>      [,1] [,2]
-#> [1,]    1    0
-#> [2,]    0    1
-theta
-#> [[1]]
-#>      [,1] [,2]
-#> [1,]  0.5  0.0
-#> [2,]  0.0  0.5
-theta_l # theta_l <- t(chol(theta))
-#> [[1]]
-#>           [,1]      [,2]
-#> [1,] 0.7071068 0.0000000
-#> [2,] 0.0000000 0.7071068
-# first mu_eta (set-point) in the list of length n
-mu_eta[[1]]
+#>            [,1]      [,2]
+#> [1,]  0.4472136 0.0000000
+#> [2,] -0.1118034 0.4092676
+# first mu (set-point) in the list of length n
+mu[[1]]
 #> [1] -0.6409103  1.8437611
 ```
 
@@ -269,32 +212,29 @@ mu_eta[[1]]
 
 ![](fig-vignettes-adaptive-recovery-no-error-1.png)![](fig-vignettes-adaptive-recovery-no-error-2.png)
 
-### Using the `SimSSMIVary` Function from the `simStateSpace` Package to Simulate Data
+### Using the `SimSSMVARIVary` Function from the `simStateSpace` Package to Simulate Data
 
 ``` r
 
 library(simStateSpace)
-sim <- SimSSMIVary(
+sim <- SimSSMVARIVary(
   n = n,
   time = time,
   mu0 = mu0,
   sigma0_l = sigma0_l,
   alpha = alpha,
   beta = beta,
-  psi_l = psi_l,
-  nu = nu,
-  lambda = lambda,
-  theta_l = theta_l
+  psi_l = psi_l
 )
 data <- as.data.frame(sim, burnin = burnin)
 head(data)
-#>   id time         y1        y2
-#> 1  1    0 -1.3784256 3.4783987
-#> 2  1    1 -1.7787675 2.2002487
-#> 3  1    2  0.1032886 1.2379348
-#> 4  1    3 -0.2237299 0.8511623
-#> 5  1    4 -1.1157617 2.0194513
-#> 6  1    5 -0.1886396 1.5396721
+#>   id time         y1       y2
+#> 1  1    0 -1.0626814 2.338735
+#> 2  1    1 -1.1388221 2.089555
+#> 3  1    2 -0.8999979 1.657819
+#> 4  1    3 -0.7744948 1.551659
+#> 5  1    4 -0.3374218 1.184071
+#> 6  1    5 -0.1178177 1.087228
 plot(sim, burnin = burnin)
 ```
 
@@ -305,58 +245,36 @@ plot(sim, burnin = burnin)
 ``` r
 
 library(OpenMx)
-library(fitDTVARMxID)
+library(fitVARMxID)
 ```
 
-The `FitDTVARMxID` function fits a DT-VAR model on each individual
-$`i`$. To set up the estimation, we first provide **starting values**
-for each parameter matrix.
-
-### Set-Point (`mu_eta`)
-
-The set-point vector $`\boldsymbol{\mu}`$ is initialized with starting
-values.
-
-``` r
-
-mu_eta_values <- mu_eta
-```
-
-### Autoregressive Parameters (`beta`)
-
-We initialize the autoregressive coefficient matrix
-$`\boldsymbol{\beta}`$ with the true values used in simulation.
-
-``` r
-
-beta_values <- beta
-```
+The `FitVARMxID` function fits a VAR model on each individual $`i`$.
 
 ### LDL’-parameterized covariance matrices
 
 Covariances such as `psi` and `theta` are estimated using the LDL’
 decomposition of a positive definite covariance matrix. The
-decomposition expresses a covariance matrix $`\Sigma`$ as  
+decomposition expresses a covariance matrix $`\Sigma`$ as\
 ``` math
 \begin{equation}
   \boldsymbol{\Sigma} = \left( \mathbf{L} + \mathbf{I} \right) \mathrm{diag} \left( \mathrm{Softplus} \left( \mathbf{d}_{uc} \right) \right) \left( \mathbf{L} + \mathbf{I} \right)^{\prime},
 \end{equation}
 ```
 where: - $`\mathbf{L}`$ is a strictly lower-triangular matrix of free
-parameters (`l_mat_strict`),  
-- $`\mathbf{I}`$ is the identity matrix,  
-- $`\mathbf{d}_{uc}`$ is an unconstrained vector,  
+parameters (`l_mat_strict`),\
+- $`\mathbf{I}`$ is the identity matrix,\
+- $`\mathbf{d}_{uc}`$ is an unconstrained vector,\
 -
 $`\mathrm{Softplus} \left(\mathbf{d}_{uc} \right) = \log \left(1 + \exp \left( \mathbf{d}_{uc} \right) \right)`$
 ensures strictly positive diagonal entries.
 
 The
-[`LDL()`](https://github.com/jeksterslab/fitDTVARMxID/reference/LDL.html)
+[`LDL()`](https://github.com/jeksterslab/fitVARMxID/reference/LDL.html)
 function extracts this decomposition from a positive definite covariance
-matrix. It returns:  
+matrix. It returns:\
 - `d_uc`: unconstrained diagonal parameters, equal to
-`InvSoftplus(d_vec)`,  
-- `d_vec`: diagonal entries, equal to `Softplus(d_uc)`,  
+`InvSoftplus(d_vec)`,\
+- `d_vec`: diagonal entries, equal to `Softplus(d_uc)`,\
 - `l_mat_strict`: the strictly lower-triangular factor.
 
 ``` r
@@ -377,109 +295,18 @@ sigma_reconstructed
 #> [2,]  0.5  1.0
 ```
 
-#### Process Noise Covariance Matrix (`psi`)
-
-Starting values for the process noise covariance matrix
-$`\boldsymbol{\Psi}`$ are given below, with corresponding LDL’
-parameters.
+### `FitVARMxID`
 
 ``` r
 
-psi_values <- psi[[1]]
-ldl_psi_values <- LDL(psi_values)
-psi_d_values <- ldl_psi_values$d_uc
-psi_l_values <- ldl_psi_values$l_mat_strict
-```
-
-``` r
-
-psi_d_values
-#> [1] -1.258692 -1.623449
-```
-
-``` r
-
-psi_l_values
-#>      [,1] [,2]
-#> [1,]  0.0    0
-#> [2,] -0.4    0
-```
-
-#### Measurement Error Covariance Matrix (`theta`)
-
-Starting values for the measurement error covariance matrix
-$`\boldsymbol{\Theta}`$ are given below, with corresponding LDL’
-parameters.
-
-``` r
-
-theta_values <- theta[[1]]
-ldl_theta_values <- LDL(theta_values)
-theta_d_values <- ldl_theta_values$d_uc
-theta_l_values <- ldl_theta_values$l_mat_strict
-```
-
-``` r
-
-theta_d_values
-#> [1] -0.4327521 -0.4327521
-```
-
-``` r
-
-theta_l_values
-#>      [,1] [,2]
-#> [1,]    0    0
-#> [2,]    0    0
-```
-
-### Initial mean vector (`mu_0`) and covariance matrix (`sigma_0`)
-
-The initial mean vector $`\boldsymbol{\mu_0}`$ and covariance matrix
-$`\boldsymbol{\Sigma_0}`$ are fixed using `mu0` and `sigma0`.
-
-``` r
-
-mu0_values <- mu0
-```
-
-``` r
-
-sigma0_values <- lapply(
-  X = sigma0,
-  FUN = LDL
-)
-sigma0_d_values <- lapply(
-  X = sigma0_values,
-  FUN = function(i) {
-    i$d_uc
-  }
-)
-sigma0_l_values <- lapply(
-  X = sigma0_values,
-  FUN = function(i) {
-    i$l_mat_strict
-  }
-)
-```
-
-### `FitDTVARMxID`
-
-``` r
-
-fit <- FitDTVARMxID(
+fit <- FitVARMxID(
   data = data,
   observed = c("y1", "y2"),
   id = "id",
   center = TRUE,
-  mu_eta_values = mu_eta_values,
-  beta_values = beta_values,
-  psi_d_values = psi_d_values,
-  psi_l_values = psi_l_values,
-  theta_d_values = theta_d_values,
-  mu0_values = mu0_values,
-  sigma0_d_values = sigma0_d_values,
-  sigma0_l_values = sigma0_l_values,
+  tries_explore = 1000,
+  tries_local = 100,
+  max_attempts = 100,
   ncores = parallel::detectCores()
 )
 ```
@@ -489,133 +316,21 @@ fit <- FitDTVARMxID(
 ``` r
 
 head(summary(fit))
-#>                             beta_1_1   beta_2_1   beta_1_2  beta_2_2 mu_eta_1_1
-#> FitDTVARMxID_DTVAR_ID1.Rds 0.4354550 0.17318034 -0.8617860 0.7654212 -0.5891073
-#> FitDTVARMxID_DTVAR_ID2.Rds 0.3723701 0.60873921 -0.3355289 0.9928778  0.1821793
-#> FitDTVARMxID_DTVAR_ID3.Rds 0.5090962 0.43699533 -0.1897852 0.8883645  0.3937449
-#> FitDTVARMxID_DTVAR_ID4.Rds 0.6211980 0.17807858 -0.1433649 0.5820667  1.0160762
-#> FitDTVARMxID_DTVAR_ID5.Rds 0.6419239 0.22464598 -0.2416318 0.7745309 -0.8752583
-#> FitDTVARMxID_DTVAR_ID6.Rds 0.4912871 0.02894239 -0.2063216 0.6044975  0.9047161
-#>                            mu_eta_2_1  psi_l_2_1 psi_d_1_1 psi_d_2_1
-#> FitDTVARMxID_DTVAR_ID1.Rds   1.785867 -0.3603330 -1.838030 -1.802444
-#> FitDTVARMxID_DTVAR_ID2.Rds   6.061074 -0.4465356 -1.254230 -2.289462
-#> FitDTVARMxID_DTVAR_ID3.Rds   4.190544 -0.3889435 -1.583936 -1.441315
-#> FitDTVARMxID_DTVAR_ID4.Rds   4.097153 -0.6286424 -1.208268 -1.613658
-#> FitDTVARMxID_DTVAR_ID5.Rds   3.992908 -0.4504113 -1.163153 -1.758080
-#> FitDTVARMxID_DTVAR_ID6.Rds   2.626440 -0.1484303 -1.025647 -1.244879
-#>                            theta_d_1_1 theta_d_2_1
-#> FitDTVARMxID_DTVAR_ID1.Rds  -0.4881215  -0.2447964
-#> FitDTVARMxID_DTVAR_ID2.Rds  -0.3589143  -0.2971942
-#> FitDTVARMxID_DTVAR_ID3.Rds  -0.3636831  -0.5559566
-#> FitDTVARMxID_DTVAR_ID4.Rds  -0.2978613  -0.4055079
-#> FitDTVARMxID_DTVAR_ID5.Rds  -0.4315600  -0.5602322
-#> FitDTVARMxID_DTVAR_ID6.Rds  -0.7717579  -0.4389711
+#>                           mu[1,1]  mu[2,1] beta[1,1] beta[2,1]  beta[1,2]
+#> FitVARMxID_VAR_ID1.Rds -0.4470799 1.775598 0.5531484 0.1821890 -0.4865766
+#> FitVARMxID_VAR_ID2.Rds  0.2016137 6.128403 0.4856044 0.4324578 -0.2342551
+#> FitVARMxID_VAR_ID3.Rds  0.4187040 4.140062 0.6349004 0.3955089 -0.2571511
+#> FitVARMxID_VAR_ID4.Rds  1.1066122 4.011878 0.4412302 0.1876689 -0.2929560
+#> FitVARMxID_VAR_ID5.Rds -0.8929959 4.187346 0.5637802 0.3594945 -0.2552496
+#> FitVARMxID_VAR_ID6.Rds  1.1913094 2.506287 0.3311835 0.2771638 -0.1528641
+#>                        beta[2,2]  psi[1,1]      psi[2,1]  psi[2,2]
+#> FitVARMxID_VAR_ID1.Rds 0.6941608 0.1270865  0.0002465969 0.1630955
+#> FitVARMxID_VAR_ID2.Rds 0.7618022 0.1637371 -0.0555609201 0.2065563
+#> FitVARMxID_VAR_ID3.Rds 0.8874509 0.1847909 -0.0623623962 0.1554686
+#> FitVARMxID_VAR_ID4.Rds 0.5109005 0.1610160 -0.0251828176 0.1635754
+#> FitVARMxID_VAR_ID5.Rds 0.8031242 0.2677661 -0.0539249860 0.1732290
+#> FitVARMxID_VAR_ID6.Rds 0.6627695 0.1738240 -0.0146232277 0.2070505
 ```
-
-#### Proportion of converged cases
-
-``` r
-
-converged(
-  fit,
-  theta_tol = 0.01,
-  prop = TRUE
-)
-#> [1] 0.975
-```
-
-#### Fixed-Effect Meta-Analysis of Measurement Error
-
-When fitting DT-VAR models per person, separating process noise
-($`\boldsymbol{\Psi}`$) from measurement error ($`\boldsymbol{\Theta}`$)
-can be unstable for some individuals. To stabilize inference, we first
-pool the person-level $`\boldsymbol{\Theta}_{i}`$ estimates from only
-the converged fits using a fixed-effect meta-analysis. This yields a
-high-precision estimate of the common measurement-error covariance that
-we will then hold fixed in a second pass of model fitting.
-
-What the code does: - Selects individuals that converged and whose
-$`\boldsymbol{\Theta}_i`$ diagonals exceed a small threshold
-(`theta_tol`), filtering out near-zero or ill-conditioned solutions. -
-Extracts each person’s LDL’ diagonal parameters for
-$`\boldsymbol{\Theta}_i`$ and their sampling covariance matrices. -
-Computes the inverse-variance-weighted pooled estimate (fixed effect),
-returning it on the same LDL’ parameterization used by
-[`FitDTVARMxID()`](https://github.com/jeksterslab/fitDTVARMxID/reference/FitDTVARMxID.html).
-
-``` r
-
-library(metaDyn)
-fixed_theta <- MetaVARMx(
-  fit,
-  random = FALSE, # TRUE by default
-  effects = FALSE, # TRUE by default
-  cov_meas = TRUE, # FALSE by default
-  theta_tol = 0.01,
-  ncores = parallel::detectCores()
-)
-```
-
-You can read `summary(fixed_theta)` as providing the pooled (fixed)
-measurement-error scale that is common across persons. If individual
-instruments truly share the same reliability structure, fixing
-$`\boldsymbol{\Theta}`$ to this pooled value improves stability and
-often reduces bias in the dynamic parameters.
-
-> **Note:** Fixed-effect pooling assumes a common
-> $`\boldsymbol{\Theta}`$ across individuals.
-
-``` r
-
-coef(fixed_theta)
-#>  alpha_1_1  alpha_2_1 
-#> -0.3925476 -0.4087855
-summary(fixed_theta)
-#> [1] 0
-#> Call:
-#> MetaVARMx(object = fit, random = FALSE, effects = FALSE, cov_meas = TRUE, 
-#>     theta_tol = 0.01, ncores = parallel::detectCores())
-#> 
-#> CI type = "normal"
-#>                est     se        z p    2.5%   97.5%
-#> alpha[1,1] -0.3925 0.0041 -94.8609 0 -0.4007 -0.3844
-#> alpha[2,1] -0.4088 0.0041 -98.5881 0 -0.4169 -0.4007
-```
-
-``` r
-
-theta_d_values <- coef(fixed_theta)
-```
-
-#### Refit the model with fixed measurement error covariance matrix
-
-We refit the individual models using the pooled $`\boldsymbol{\Theta}`$
-as a fixed measurement-error covariance matrix.
-
-``` r
-
-fit <- FitDTVARMxID(
-  data = data,
-  observed = c("y1", "y2"),
-  id = "id",
-  center = TRUE,
-  mu_eta_values = mu_eta_values,
-  beta_values = beta_values,
-  psi_d_values = psi_d_values,
-  psi_l_values = psi_l_values,
-  theta_fixed = TRUE,
-  theta_d_values = theta_d_values,
-  mu0_values = mu0_values,
-  sigma0_d_values = sigma0_d_values,
-  sigma0_l_values = sigma0_l_values,
-  ncores = parallel::detectCores()
-)
-```
-
-With $`\boldsymbol{\Theta}`$ fixed, the re-estimation focuses on the
-dynamic structure ($`\boldsymbol{\mu}`$, $`\boldsymbol{\beta}`$,
-$`\boldsymbol{\Psi}`$). In practice, this often increases the proportion
-of converged fits and yields more stable cross-lag estimates.
 
 #### Proportion of converged cases
 
@@ -625,30 +340,30 @@ converged(
   fit,
   prop = TRUE
 )
-#> Error in `x$output`:
-#> ! $ operator is invalid for atomic vectors
+#> [1] 0.998
 ```
 
 ## Random-Effects Meta-Analysis of Person-Specific Dynamics and Means
 
-Having stabilized $`\boldsymbol{\Theta}`$, we synthesize the
-person-specific estimates to recover population-level effects and their
-between-person variability. We use a random-effects model so the pooled
-mean reflects both within-person estimation uncertainty and
-between-person heterogeneity.
+We synthesize the person-specific estimates to recover population-level
+effects and their between-person variability. We use a random-effects
+model so the pooled mean reflects both within-person estimation
+uncertainty and between-person heterogeneity.
 
 ``` r
 
+library(metaDyn)
 random <- MetaVARMx(
   fit,
   effects = TRUE,
   set_point = TRUE,
   robust_v = FALSE,
   robust = TRUE,
+  lb = TRUE,
   ncores = parallel::detectCores()
 )
-#> Error in `x$output`:
-#> ! $ operator is invalid for atomic vectors
+#> Error in `[.data.frame`:
+#> ! undefined columns selected
 ```
 
 ``` r
@@ -756,8 +471,7 @@ pop_cov
 ## Summary
 
 This vignette demonstrates a two-stage hierarchical estimation approach
-for dynamic systems: 1. individual-level DT-VAR estimation with
-stabilized measurement error, and  
+for dynamic systems: 1. individual-level DT-VAR estimation, and\
 2. population-level meta-analysis of person-specific dynamics and means.
 
 ## References

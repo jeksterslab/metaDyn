@@ -24,7 +24,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">metaDyn</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.9004</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.9005</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -60,7 +60,7 @@
                         <h4 data-toc-skip class="author">Ivan Jacob
 Agaloos Pesigan</h4>
             
-            <h4 data-toc-skip class="date">2026-02-01</h4>
+            <h4 data-toc-skip class="date">2026-02-13</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/jeksterslab/metaDyn/blob/main/vignettes/escalating-co-activation-1000.Rmd"><code>vignettes/escalating-co-activation-1000.Rmd</code></a></small>
       <div class="d-none name"><code>escalating-co-activation-1000.Rmd</code></div>
@@ -95,95 +95,71 @@ exacerbate dysregulation over time.</p>
 <h2 id="model">Model<a class="anchor" aria-label="anchor" href="#model"></a>
 </h2>
 <p>The measurement model is given by
-<math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>𝐲</mi><mrow><mi>i</mi><mo>,</mo><mi>t</mi></mrow></msub><mo>=</mo><mi>𝚲</mi><msub><mi>𝛈</mi><mrow><mi>i</mi><mo>,</mo><mi>t</mi></mrow></msub><mo>+</mo><msub><mi>𝛆</mi><mrow><mi>i</mi><mo>,</mo><mi>t</mi></mrow></msub><mo>,</mo><mspace width="1.0em"></mspace><mrow><mi mathvariant="normal">w</mi><mi mathvariant="normal">i</mi><mi mathvariant="normal">t</mi><mi mathvariant="normal">h</mi></mrow><mspace width="1.0em"></mspace><msub><mi>𝛆</mi><mrow><mi>i</mi><mo>,</mo><mi>t</mi></mrow></msub><mo>∼</mo><mi>𝒩</mi><mrow><mo stretchy="true" form="prefix">(</mo><mn>𝟎</mn><mo>,</mo><mi>𝚯</mi><mo stretchy="true" form="postfix">)</mo></mrow></mrow><annotation encoding="application/x-tex">\begin{equation}
-  \mathbf{y}_{i, t} = \boldsymbol{\Lambda} \boldsymbol{\eta}_{i, t} + \boldsymbol{\varepsilon}_{i, t}, \quad \mathrm{with} \quad \boldsymbol{\varepsilon}_{i, t} \sim \mathcal{N} \left( \mathbf{0}, \boldsymbol{\Theta} \right)
+<math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi mathvariant="bold-italic">𝒚</mi><mrow><mi>i</mi><mo>,</mo><mi>t</mi></mrow></msub><mo>=</mo><msub><mi mathvariant="bold-italic">𝜼</mi><mrow><mi>i</mi><mo>,</mo><mi>t</mi></mrow></msub></mrow><annotation encoding="application/x-tex">\begin{equation}
+  \mathbf{y}_{i, t} = \boldsymbol{\eta}_{i, t}
 \end{equation}</annotation></semantics></math> where
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>𝐲</mi><mrow><mi>i</mi><mo>,</mo><mi>t</mi></mrow></msub><annotation encoding="application/x-tex">\mathbf{y}_{i, t}</annotation></semantics></math>,
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>𝛈</mi><mrow><mi>i</mi><mo>,</mo><mi>t</mi></mrow></msub><annotation encoding="application/x-tex">\boldsymbol{\eta}_{i, t}</annotation></semantics></math>,
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi mathvariant="bold-italic">𝒚</mi><mrow><mi>i</mi><mo>,</mo><mi>t</mi></mrow></msub><annotation encoding="application/x-tex">\mathbf{y}_{i, t}</annotation></semantics></math>
 and
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>𝛆</mi><mrow><mi>i</mi><mo>,</mo><mi>t</mi></mrow></msub><annotation encoding="application/x-tex">\boldsymbol{\varepsilon}_{i, t}</annotation></semantics></math>
-are random variables and
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>𝚲</mi><annotation encoding="application/x-tex">\boldsymbol{\Lambda}</annotation></semantics></math>,
-and
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>𝚯</mi><annotation encoding="application/x-tex">\boldsymbol{\Theta}</annotation></semantics></math>
-are model parameters.
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>𝐲</mi><mrow><mi>i</mi><mo>,</mo><mi>t</mi></mrow></msub><annotation encoding="application/x-tex">\mathbf{y}_{i, t}</annotation></semantics></math>
-represents a vector of observed random variables,
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>𝛈</mi><mrow><mi>i</mi><mo>,</mo><mi>t</mi></mrow></msub><annotation encoding="application/x-tex">\boldsymbol{\eta}_{i, t}</annotation></semantics></math>
-a vector of latent random variables, and
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>𝛆</mi><mrow><mi>i</mi><mo>,</mo><mi>t</mi></mrow></msub><annotation encoding="application/x-tex">\boldsymbol{\varepsilon}_{i, t}</annotation></semantics></math>
-a vector of random measurement errors, at time
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>t</mi><annotation encoding="application/x-tex">t</annotation></semantics></math>
-and individual
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>i</mi><annotation encoding="application/x-tex">i</annotation></semantics></math>.
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>𝚲</mi><annotation encoding="application/x-tex">\boldsymbol{\Lambda}</annotation></semantics></math>
-denotes a matrix of factor loadings, and
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>𝚯</mi><annotation encoding="application/x-tex">\boldsymbol{\Theta}</annotation></semantics></math>
-the covariance matrix of
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>𝛆</mi><annotation encoding="application/x-tex">\boldsymbol{\varepsilon}</annotation></semantics></math>
-that is invariant across individuals. In this model,
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>𝚲</mi><annotation encoding="application/x-tex">\boldsymbol{\Lambda}</annotation></semantics></math>
-is an identity matrix and
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>𝚯</mi><annotation encoding="application/x-tex">\boldsymbol{\Theta}</annotation></semantics></math>
-is a symmetric matrix.</p>
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi mathvariant="bold-italic">𝜼</mi><mrow><mi>i</mi><mo>,</mo><mi>t</mi></mrow></msub><annotation encoding="application/x-tex">\boldsymbol{\eta}_{i, t}</annotation></semantics></math>
+are random variables.</p>
 <p>The dynamic structure is given by
-<math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>𝛈</mi><mrow><mi>i</mi><mo>,</mo><mi>t</mi></mrow></msub><mo>=</mo><msub><mi>𝛂</mi><mi>i</mi></msub><mo>+</mo><msub><mi>𝛃</mi><mi>i</mi></msub><msub><mi>𝛈</mi><mrow><mi>i</mi><mo>,</mo><mi>t</mi><mo>−</mo><mn>1</mn></mrow></msub><mo>+</mo><msub><mi>𝛇</mi><mrow><mi>i</mi><mo>,</mo><mi>t</mi></mrow></msub><mo>,</mo><mspace width="1.0em"></mspace><mrow><mi mathvariant="normal">w</mi><mi mathvariant="normal">i</mi><mi mathvariant="normal">t</mi><mi mathvariant="normal">h</mi></mrow><mspace width="1.0em"></mspace><msub><mi>𝛇</mi><mrow><mi>i</mi><mo>,</mo><mi>t</mi></mrow></msub><mo>∼</mo><mi>𝒩</mi><mrow><mo stretchy="true" form="prefix">(</mo><mn>𝟎</mn><mo>,</mo><mi>𝚿</mi><mo stretchy="true" form="postfix">)</mo></mrow></mrow><annotation encoding="application/x-tex">\begin{equation}
+<math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi mathvariant="bold-italic">𝜼</mi><mrow><mi>i</mi><mo>,</mo><mi>t</mi></mrow></msub><mo>=</mo><msub><mi mathvariant="bold-italic">𝜶</mi><mi>i</mi></msub><mo>+</mo><msub><mi mathvariant="bold-italic">𝜷</mi><mi>i</mi></msub><msub><mi mathvariant="bold-italic">𝜼</mi><mrow><mi>i</mi><mo>,</mo><mi>t</mi><mo>−</mo><mn>1</mn></mrow></msub><mo>+</mo><msub><mi mathvariant="bold-italic">𝜻</mi><mrow><mi>i</mi><mo>,</mo><mi>t</mi></mrow></msub><mo>,</mo><mspace width="1.0em"></mspace><mrow><mi mathvariant="normal">w</mi><mi mathvariant="normal">i</mi><mi mathvariant="normal">t</mi><mi mathvariant="normal">h</mi></mrow><mspace width="1.0em"></mspace><msub><mi mathvariant="bold-italic">𝜻</mi><mrow><mi>i</mi><mo>,</mo><mi>t</mi></mrow></msub><mo>∼</mo><mi mathvariant="script">𝒩</mi><mrow><mo stretchy="true" form="prefix">(</mo><mn mathvariant="bold">𝟎</mn><mo>,</mo><mi mathvariant="bold">𝚿</mi><mo stretchy="true" form="postfix">)</mo></mrow></mrow><annotation encoding="application/x-tex">\begin{equation}
   \boldsymbol{\eta}_{i, t} = \boldsymbol{\alpha}_{i} + \boldsymbol{\beta}_{i} \boldsymbol{\eta}_{i, t - 1} + \boldsymbol{\zeta}_{i, t}, \quad \mathrm{with} \quad \boldsymbol{\zeta}_{i, t} \sim \mathcal{N}   \left( \mathbf{0}, \boldsymbol{\Psi} \right)
 \end{equation}</annotation></semantics></math> where
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>𝛈</mi><mrow><mi>i</mi><mo>,</mo><mi>t</mi></mrow></msub><annotation encoding="application/x-tex">\boldsymbol{\eta}_{i, t}</annotation></semantics></math>,
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>𝛈</mi><mrow><mi>i</mi><mo>,</mo><mi>t</mi><mo>−</mo><mn>1</mn></mrow></msub><annotation encoding="application/x-tex">\boldsymbol{\eta}_{i, t - 1}</annotation></semantics></math>,
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi mathvariant="bold-italic">𝜼</mi><mrow><mi>i</mi><mo>,</mo><mi>t</mi></mrow></msub><annotation encoding="application/x-tex">\boldsymbol{\eta}_{i, t}</annotation></semantics></math>,
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi mathvariant="bold-italic">𝜼</mi><mrow><mi>i</mi><mo>,</mo><mi>t</mi><mo>−</mo><mn>1</mn></mrow></msub><annotation encoding="application/x-tex">\boldsymbol{\eta}_{i, t - 1}</annotation></semantics></math>,
 and
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>𝛇</mi><mrow><mi>i</mi><mo>,</mo><mi>t</mi></mrow></msub><annotation encoding="application/x-tex">\boldsymbol{\zeta}_{i, t}</annotation></semantics></math>
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi mathvariant="bold-italic">𝜻</mi><mrow><mi>i</mi><mo>,</mo><mi>t</mi></mrow></msub><annotation encoding="application/x-tex">\boldsymbol{\zeta}_{i, t}</annotation></semantics></math>
 are random variables, and
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>𝛃</mi><mi>i</mi></msub><annotation encoding="application/x-tex">\boldsymbol{\beta}_{i}</annotation></semantics></math>,
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi mathvariant="bold-italic">𝜷</mi><mi>i</mi></msub><annotation encoding="application/x-tex">\boldsymbol{\beta}_{i}</annotation></semantics></math>,
 and
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>𝚿</mi><annotation encoding="application/x-tex">\boldsymbol{\Psi}</annotation></semantics></math>
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi mathvariant="bold">𝚿</mi><annotation encoding="application/x-tex">\boldsymbol{\Psi}</annotation></semantics></math>
 are model parameters. Here,
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>𝛈</mi><mrow><mi>i</mi><mo>,</mo><mi>t</mi></mrow></msub><annotation encoding="application/x-tex">\boldsymbol{\eta}_{i, t}</annotation></semantics></math>
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi mathvariant="bold-italic">𝜼</mi><mrow><mi>i</mi><mo>,</mo><mi>t</mi></mrow></msub><annotation encoding="application/x-tex">\boldsymbol{\eta}_{i, t}</annotation></semantics></math>
 is a vector of latent variables at time
 <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>t</mi><annotation encoding="application/x-tex">t</annotation></semantics></math>
 and individual
 <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>i</mi><annotation encoding="application/x-tex">i</annotation></semantics></math>,
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>𝛈</mi><mrow><mi>i</mi><mo>,</mo><mi>t</mi><mo>−</mo><mn>1</mn></mrow></msub><annotation encoding="application/x-tex">\boldsymbol{\eta}_{i, t - 1}</annotation></semantics></math>
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi mathvariant="bold-italic">𝜼</mi><mrow><mi>i</mi><mo>,</mo><mi>t</mi><mo>−</mo><mn>1</mn></mrow></msub><annotation encoding="application/x-tex">\boldsymbol{\eta}_{i, t - 1}</annotation></semantics></math>
 represents a vector of latent variables at time
 <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>t</mi><mo>−</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">t - 1</annotation></semantics></math>
 and individual
 <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>i</mi><annotation encoding="application/x-tex">i</annotation></semantics></math>,
 and
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>𝛇</mi><mrow><mi>i</mi><mo>,</mo><mi>t</mi></mrow></msub><annotation encoding="application/x-tex">\boldsymbol{\zeta}_{i, t}</annotation></semantics></math>
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi mathvariant="bold-italic">𝜻</mi><mrow><mi>i</mi><mo>,</mo><mi>t</mi></mrow></msub><annotation encoding="application/x-tex">\boldsymbol{\zeta}_{i, t}</annotation></semantics></math>
 represents a vector of dynamic noise at time
 <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>t</mi><annotation encoding="application/x-tex">t</annotation></semantics></math>
 and individual
 <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>i</mi><annotation encoding="application/x-tex">i</annotation></semantics></math>.
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>𝛃</mi><mi>i</mi></msub><annotation encoding="application/x-tex">\boldsymbol{\beta}_{i}</annotation></semantics></math>
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi mathvariant="bold-italic">𝜷</mi><mi>i</mi></msub><annotation encoding="application/x-tex">\boldsymbol{\beta}_{i}</annotation></semantics></math>
 is a matrix of autoregression and cross regression coefficients for
 individual
 <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>i</mi><annotation encoding="application/x-tex">i</annotation></semantics></math>,
 and
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>𝚿</mi><annotation encoding="application/x-tex">\boldsymbol{\Psi}</annotation></semantics></math>
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi mathvariant="bold">𝚿</mi><annotation encoding="application/x-tex">\boldsymbol{\Psi}</annotation></semantics></math>
 the covariance matrix of
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>𝛇</mi><mrow><mi>i</mi><mo>,</mo><mi>t</mi></mrow></msub><annotation encoding="application/x-tex">\boldsymbol{\zeta}_{i, t}</annotation></semantics></math>
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi mathvariant="bold-italic">𝜻</mi><mrow><mi>i</mi><mo>,</mo><mi>t</mi></mrow></msub><annotation encoding="application/x-tex">\boldsymbol{\zeta}_{i, t}</annotation></semantics></math>
 that is invariant across all individuals. In this model,
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>𝚿</mi><annotation encoding="application/x-tex">\boldsymbol{\Psi}</annotation></semantics></math>
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi mathvariant="bold">𝚿</mi><annotation encoding="application/x-tex">\boldsymbol{\Psi}</annotation></semantics></math>
 is a symmetric matrix.</p>
 <div class="section level3">
 <h3 id="alternative-parameterization">Alternative Parameterization<a class="anchor" aria-label="anchor" href="#alternative-parameterization"></a>
 </h3>
 <p>An alternative parameterization of the dynamic structure that
 directly estimates the set-point vector
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>𝛍</mi><mi>i</mi></msub><annotation encoding="application/x-tex">\boldsymbol{\mu}_{i}</annotation></semantics></math>
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi mathvariant="bold-italic">𝝁</mi><mi>i</mi></msub><annotation encoding="application/x-tex">\boldsymbol{\mu}_{i}</annotation></semantics></math>
 is given by
-<math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>𝛈</mi><mrow><mi>i</mi><mo>,</mo><mi>t</mi></mrow></msub><mo>=</mo><msub><mi>𝛍</mi><mi>i</mi></msub><mo>+</mo><msub><mi>𝛃</mi><mi>i</mi></msub><mrow><mo stretchy="true" form="prefix">(</mo><msub><mi>𝛈</mi><mrow><mi>i</mi><mo>,</mo><mi>t</mi><mo>−</mo><mn>1</mn></mrow></msub><mo>−</mo><msub><mi>𝛍</mi><mi>i</mi></msub><mo stretchy="true" form="postfix">)</mo></mrow><mo>+</mo><msub><mi>𝛇</mi><mrow><mi>i</mi><mo>,</mo><mi>t</mi></mrow></msub><mi>.</mi></mrow><annotation encoding="application/x-tex">\begin{equation}
+<math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi mathvariant="bold-italic">𝜼</mi><mrow><mi>i</mi><mo>,</mo><mi>t</mi></mrow></msub><mo>=</mo><msub><mi mathvariant="bold-italic">𝝁</mi><mi>i</mi></msub><mo>+</mo><msub><mi mathvariant="bold-italic">𝜷</mi><mi>i</mi></msub><mrow><mo stretchy="true" form="prefix">(</mo><msub><mi mathvariant="bold-italic">𝜼</mi><mrow><mi>i</mi><mo>,</mo><mi>t</mi><mo>−</mo><mn>1</mn></mrow></msub><mo>−</mo><msub><mi mathvariant="bold-italic">𝝁</mi><mi>i</mi></msub><mo stretchy="true" form="postfix">)</mo></mrow><mo>+</mo><msub><mi mathvariant="bold-italic">𝜻</mi><mrow><mi>i</mi><mo>,</mo><mi>t</mi></mrow></msub><mi>.</mi></mrow><annotation encoding="application/x-tex">\begin{equation}
   \boldsymbol{\eta}_{i, t} = \boldsymbol{\mu}_{i} + \boldsymbol{\beta}_{i} \left( \boldsymbol{\eta}_{i, t - 1} - \boldsymbol{\mu}_{i} \right) + \boldsymbol{\zeta}_{i, t} .
 \end{equation}</annotation></semantics></math></p>
 <p>Algebraic manipulation of the equation results in the following
-<math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>𝛈</mi><mrow><mi>i</mi><mo>,</mo><mi>t</mi></mrow></msub><mo>=</mo><msub><mi>𝛍</mi><mi>i</mi></msub><mo>−</mo><msub><mi>𝛃</mi><mi>i</mi></msub><msub><mi>𝛍</mi><mi>i</mi></msub><mo>+</mo><msub><mi>𝛃</mi><mi>i</mi></msub><msub><mi>𝛈</mi><mrow><mi>i</mi><mo>,</mo><mi>t</mi><mo>−</mo><mn>1</mn></mrow></msub><mo>+</mo><msub><mi>𝛇</mi><mrow><mi>i</mi><mo>,</mo><mi>t</mi></mrow></msub><mo>,</mo></mrow><annotation encoding="application/x-tex">\begin{equation}
+<math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi mathvariant="bold-italic">𝜼</mi><mrow><mi>i</mi><mo>,</mo><mi>t</mi></mrow></msub><mo>=</mo><msub><mi mathvariant="bold-italic">𝝁</mi><mi>i</mi></msub><mo>−</mo><msub><mi mathvariant="bold-italic">𝜷</mi><mi>i</mi></msub><msub><mi mathvariant="bold-italic">𝝁</mi><mi>i</mi></msub><mo>+</mo><msub><mi mathvariant="bold-italic">𝜷</mi><mi>i</mi></msub><msub><mi mathvariant="bold-italic">𝜼</mi><mrow><mi>i</mi><mo>,</mo><mi>t</mi><mo>−</mo><mn>1</mn></mrow></msub><mo>+</mo><msub><mi mathvariant="bold-italic">𝜻</mi><mrow><mi>i</mi><mo>,</mo><mi>t</mi></mrow></msub><mo>,</mo></mrow><annotation encoding="application/x-tex">\begin{equation}
   \boldsymbol{\eta}_{i, t} = \boldsymbol{\mu}_{i} - \boldsymbol{\beta}_{i} \boldsymbol{\mu}_{i} + \boldsymbol{\beta}_{i} \boldsymbol{\eta}_{i, t - 1} + \boldsymbol{\zeta}_{i, t} ,
 \end{equation}</annotation></semantics></math> where we can see that the
 intercept vector
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>𝛂</mi><mi>i</mi></msub><annotation encoding="application/x-tex">\boldsymbol{\alpha}_{i}</annotation></semantics></math>
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi mathvariant="bold-italic">𝜶</mi><mi>i</mi></msub><annotation encoding="application/x-tex">\boldsymbol{\alpha}_{i}</annotation></semantics></math>
 is implied by
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>𝛍</mi><mi>i</mi></msub><mo>−</mo><msub><mi>𝛃</mi><mi>i</mi></msub><msub><mi>𝛍</mi><mi>i</mi></msub></mrow><annotation encoding="application/x-tex">\boldsymbol{\mu}_{i} - \boldsymbol{\beta}_{i} \boldsymbol{\mu}_{i}</annotation></semantics></math>.</p>
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi mathvariant="bold-italic">𝝁</mi><mi>i</mi></msub><mo>−</mo><msub><mi mathvariant="bold-italic">𝜷</mi><mi>i</mi></msub><msub><mi mathvariant="bold-italic">𝝁</mi><mi>i</mi></msub></mrow><annotation encoding="application/x-tex">\boldsymbol{\mu}_{i} - \boldsymbol{\beta}_{i} \boldsymbol{\mu}_{i}</annotation></semantics></math>.</p>
 </div>
 </div>
 <div class="section level2">
@@ -193,56 +169,30 @@ is implied by
 <h3 id="notation">Notation<a class="anchor" aria-label="anchor" href="#notation"></a>
 </h3>
 <p>Let
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>t</mi><mo>=</mo><mn>1000</mn></mrow><annotation encoding="application/x-tex">t = 1000</annotation></semantics></math>
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>t</mi><mo>=</mo><mn>100</mn></mrow><annotation encoding="application/x-tex">t = 100</annotation></semantics></math>
 be the number of time points and
 <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi><mo>=</mo><mn>1000</mn></mrow><annotation encoding="application/x-tex">n = 1000</annotation></semantics></math>
 be the number of individuals. We simulate a total of time
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>=</mo><mn>11000</mn></mrow><annotation encoding="application/x-tex">= 11000</annotation></semantics></math>
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>=</mo><mn>10100</mn></mrow><annotation encoding="application/x-tex">= 10100</annotation></semantics></math>
 points per individual, discarding the first
 <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mn>10000</mn><annotation encoding="application/x-tex">10000</annotation></semantics></math>
 as burn-in. The analysis uses the final
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mn>1000</mn><annotation encoding="application/x-tex">1000</annotation></semantics></math>
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mn>100</mn><annotation encoding="application/x-tex">100</annotation></semantics></math>
 measurement occasions.</p>
-<p>Let the factor loadings matrix
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>𝚲</mi><annotation encoding="application/x-tex">\boldsymbol{\Lambda}</annotation></semantics></math>
-be given by
-<math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>𝚲</mi><mo>=</mo><mrow><mo stretchy="true" form="prefix">(</mo><mtable><mtr><mtd columnalign="center" style="text-align: center"><mn>1</mn></mtd><mtd columnalign="center" style="text-align: center"><mn>0</mn></mtd></mtr><mtr><mtd columnalign="center" style="text-align: center"><mn>0</mn></mtd><mtd columnalign="center" style="text-align: center"><mn>1</mn></mtd></mtr><mtr><mtd columnalign="center" style="text-align: center"></mtd></mtr></mtable><mo stretchy="true" form="postfix">)</mo></mrow><mi>.</mi></mrow><annotation encoding="application/x-tex">\begin{equation}
-  \boldsymbol{\Lambda}
-  =
-  \left(
-    \begin{array}{cc}
-      1 &amp; 0 \\
-      0 &amp; 1 \\
-    \end{array}
-  \right) .
-\end{equation}</annotation></semantics></math></p>
-<p>Let the measurement error covariance matrix
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>𝚯</mi><annotation encoding="application/x-tex">\boldsymbol{\Theta}</annotation></semantics></math>
-be given by
-<math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>𝚯</mi><mo>=</mo><mrow><mo stretchy="true" form="prefix">(</mo><mtable><mtr><mtd columnalign="center" style="text-align: center"><mn>0.5</mn></mtd><mtd columnalign="center" style="text-align: center"><mn>0</mn></mtd></mtr><mtr><mtd columnalign="center" style="text-align: center"><mn>0</mn></mtd><mtd columnalign="center" style="text-align: center"><mn>0.5</mn></mtd></mtr><mtr><mtd columnalign="center" style="text-align: center"></mtd></mtr></mtable><mo stretchy="true" form="postfix">)</mo></mrow><mi>.</mi></mrow><annotation encoding="application/x-tex">\begin{equation}
-  \boldsymbol{\Theta}
-  =
-  \left(
-  \begin{array}{cc}
-    0.5 &amp; 0 \\
-    0 &amp; 0.5 \\
-  \end{array}
-  \right) .
-\end{equation}</annotation></semantics></math></p>
 <p>Let the initial condition
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>𝛈</mi><mn>0</mn></msub><annotation encoding="application/x-tex">\boldsymbol{\eta}_{0}</annotation></semantics></math>
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi mathvariant="bold-italic">𝜼</mi><mn>0</mn></msub><annotation encoding="application/x-tex">\boldsymbol{\eta}_{0}</annotation></semantics></math>
 be given by
-<math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>𝛈</mi><mn>0</mn></msub><mo>∼</mo><mi>𝒩</mi><mrow><mo stretchy="true" form="prefix">(</mo><msub><mi>𝛍</mi><mrow><mi>𝛈</mi><mo>∣</mo><mn>0</mn></mrow></msub><mo>,</mo><msub><mi>𝚺</mi><mrow><mi>𝛈</mi><mo>∣</mo><mn>0</mn></mrow></msub><mo stretchy="true" form="postfix">)</mo></mrow><mi>.</mi></mrow><annotation encoding="application/x-tex">\begin{equation}
+<math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi mathvariant="bold-italic">𝜼</mi><mn>0</mn></msub><mo>∼</mo><mi mathvariant="script">𝒩</mi><mrow><mo stretchy="true" form="prefix">(</mo><msub><mi mathvariant="bold-italic">𝝁</mi><mrow><mi mathvariant="bold-italic">𝜼</mi><mo>∣</mo><mn>0</mn></mrow></msub><mo>,</mo><msub><mi mathvariant="bold">𝚺</mi><mrow><mi mathvariant="bold-italic">𝜼</mi><mo>∣</mo><mn>0</mn></mrow></msub><mo stretchy="true" form="postfix">)</mo></mrow><mi>.</mi></mrow><annotation encoding="application/x-tex">\begin{equation}
   \boldsymbol{\eta}_{0} \sim \mathcal{N} \left( \boldsymbol{\mu}_{\boldsymbol{\eta} \mid 0}, \boldsymbol{\Sigma}_{\boldsymbol{\eta} \mid 0} \right) .
-\end{equation}</annotation></semantics></math><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>𝛍</mi><mrow><mi>𝛈</mi><mo>∣</mo><mn>0</mn></mrow></msub><annotation encoding="application/x-tex">\boldsymbol{\mu}_{\boldsymbol{\eta} \mid 0}</annotation></semantics></math>
+\end{equation}</annotation></semantics></math><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi mathvariant="bold-italic">𝝁</mi><mrow><mi mathvariant="bold-italic">𝜼</mi><mo>∣</mo><mn>0</mn></mrow></msub><annotation encoding="application/x-tex">\boldsymbol{\mu}_{\boldsymbol{\eta} \mid 0}</annotation></semantics></math>
 and
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>𝚺</mi><mrow><mi>𝛈</mi><mo>∣</mo><mn>0</mn></mrow></msub><annotation encoding="application/x-tex">\boldsymbol{\Sigma}_{\boldsymbol{\eta} \mid 0}</annotation></semantics></math>
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi mathvariant="bold">𝚺</mi><mrow><mi mathvariant="bold-italic">𝜼</mi><mo>∣</mo><mn>0</mn></mrow></msub><annotation encoding="application/x-tex">\boldsymbol{\Sigma}_{\boldsymbol{\eta} \mid 0}</annotation></semantics></math>
 are functions of
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>𝛂</mi><annotation encoding="application/x-tex">\boldsymbol{\alpha}</annotation></semantics></math>
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi mathvariant="bold-italic">𝜶</mi><annotation encoding="application/x-tex">\boldsymbol{\alpha}</annotation></semantics></math>
 and
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>𝛃</mi><annotation encoding="application/x-tex">\boldsymbol{\beta}</annotation></semantics></math>.</p>
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi mathvariant="bold-italic">𝜷</mi><annotation encoding="application/x-tex">\boldsymbol{\beta}</annotation></semantics></math>.</p>
 <p>Let the intercept vector
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>𝛂</mi><annotation encoding="application/x-tex">\boldsymbol{\alpha}</annotation></semantics></math>
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi mathvariant="bold-italic">𝜶</mi><annotation encoding="application/x-tex">\boldsymbol{\alpha}</annotation></semantics></math>
 be normally distributed with the following means
 <math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="true" form="prefix">(</mo><mtable><mtr><mtd columnalign="center" style="text-align: center"><mn>1</mn></mtd></mtr><mtr><mtd columnalign="center" style="text-align: center"><mn>1</mn></mtd></mtr><mtr><mtd columnalign="center" style="text-align: center"></mtd></mtr></mtable><mo stretchy="true" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">\begin{equation}
   \left(
@@ -261,7 +211,7 @@ be normally distributed with the following means
   \right) .
 \end{equation}</annotation></semantics></math></p>
 <p>Let the transition matrix
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>𝛃</mi><annotation encoding="application/x-tex">\boldsymbol{\beta}</annotation></semantics></math>
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi mathvariant="bold-italic">𝜷</mi><annotation encoding="application/x-tex">\boldsymbol{\beta}</annotation></semantics></math>
 be normally distributed with the following means
 <math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="true" form="prefix">(</mo><mtable><mtr><mtd columnalign="center" style="text-align: center"><mn>0.8</mn></mtd><mtd columnalign="center" style="text-align: center"><mn>0.25</mn></mtd></mtr><mtr><mtd columnalign="center" style="text-align: center"><mn>0.2</mn></mtd><mtd columnalign="center" style="text-align: center"><mn>0.85</mn></mtd></mtr><mtr><mtd columnalign="center" style="text-align: center"></mtd></mtr></mtable><mo stretchy="true" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">\begin{equation}
   \left(
@@ -287,21 +237,21 @@ and transition matrices from the multivariate normal distribution. Note
 that the <code>SimBetaN</code> function generates transition matrices
 that are weakly stationary with an option to set lower and upper bounds.
 The person-specific set-point vector
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>𝛍</mi><mi>i</mi></msub><annotation encoding="application/x-tex">\boldsymbol{\mu}_{i}</annotation></semantics></math>
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi mathvariant="bold-italic">𝝁</mi><mi>i</mi></msub><annotation encoding="application/x-tex">\boldsymbol{\mu}_{i}</annotation></semantics></math>
 was derived from the generated
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>𝛂</mi><mi>i</mi></msub><annotation encoding="application/x-tex">\boldsymbol{\alpha}_{i}</annotation></semantics></math>
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi mathvariant="bold-italic">𝜶</mi><mi>i</mi></msub><annotation encoding="application/x-tex">\boldsymbol{\alpha}_{i}</annotation></semantics></math>
 and
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>𝛃</mi><mi>i</mi></msub><annotation encoding="application/x-tex">\boldsymbol{\beta}_{i}</annotation></semantics></math>.</p>
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi mathvariant="bold-italic">𝜷</mi><mi>i</mi></msub><annotation encoding="application/x-tex">\boldsymbol{\beta}_{i}</annotation></semantics></math>.</p>
 <p>Let the dynamic process noise
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>𝚿</mi><annotation encoding="application/x-tex">\boldsymbol{\Psi}</annotation></semantics></math>
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi mathvariant="bold">𝚿</mi><annotation encoding="application/x-tex">\boldsymbol{\Psi}</annotation></semantics></math>
 be given by
-<math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>𝚿</mi><mo>=</mo><mrow><mo stretchy="true" form="prefix">(</mo><mtable><mtr><mtd columnalign="center" style="text-align: center"><mn>0.35</mn></mtd><mtd columnalign="center" style="text-align: center"><mn>0.2</mn></mtd></mtr><mtr><mtd columnalign="center" style="text-align: center"><mn>0.2</mn></mtd><mtd columnalign="center" style="text-align: center"><mn>0.4</mn></mtd></mtr><mtr><mtd columnalign="center" style="text-align: center"></mtd></mtr></mtable><mo stretchy="true" form="postfix">)</mo></mrow><mi>.</mi></mrow><annotation encoding="application/x-tex">\begin{equation}
+<math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="bold">𝚿</mi><mo>=</mo><mrow><mo stretchy="true" form="prefix">(</mo><mtable><mtr><mtd columnalign="center" style="text-align: center"><mn>0.2</mn></mtd><mtd columnalign="center" style="text-align: center"><mi>−</mi><mn>0.05</mn></mtd></mtr><mtr><mtd columnalign="center" style="text-align: center"><mi>−</mi><mn>0.05</mn></mtd><mtd columnalign="center" style="text-align: center"><mn>0.18</mn></mtd></mtr><mtr><mtd columnalign="center" style="text-align: center"></mtd></mtr></mtable><mo stretchy="true" form="postfix">)</mo></mrow><mi>.</mi></mrow><annotation encoding="application/x-tex">\begin{equation}
   \boldsymbol{\Psi}
   =
   \left(
     \begin{array}{cc}
-      0.35 &amp; 0.2 \\
-      0.2 &amp; 0.4 \\
+      0.2 &amp; -0.05 \\
+      -0.05 &amp; 0.18 \\
     \end{array}
   \right) .
 \end{equation}</annotation></semantics></math></p>
@@ -313,7 +263,7 @@ be given by
 <code class="sourceCode R"><span><span class="va">n</span></span>
 <span><span class="co">#&gt; [1] 1000</span></span>
 <span><span class="va">time</span></span>
-<span><span class="co">#&gt; [1] 11000</span></span>
+<span><span class="co">#&gt; [1] 10100</span></span>
 <span><span class="va">burnin</span></span>
 <span><span class="co">#&gt; [1] 10000</span></span>
 <span><span class="co"># first mu0 in the list of length n</span></span>
@@ -321,14 +271,14 @@ be given by
 <span><span class="co">#&gt; [1] 3.979101 5.261786</span></span>
 <span><span class="co"># first sigma0 in the list of length n</span></span>
 <span><span class="va">sigma0</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span></span>
-<span><span class="co">#&gt;           [,1]      [,2]</span></span>
-<span><span class="co">#&gt; [1,] 0.9444850 0.6684182</span></span>
-<span><span class="co">#&gt; [2,] 0.6684182 1.0861736</span></span>
+<span><span class="co">#&gt;             [,1]        [,2]</span></span>
+<span><span class="co">#&gt; [1,]  0.48290247 -0.02695157</span></span>
+<span><span class="co">#&gt; [2,] -0.02695157  0.40742550</span></span>
 <span><span class="co"># first sigma0_l in the list of length n</span></span>
 <span><span class="va">sigma0_l</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span> <span class="co"># sigma0_l &lt;- t(chol(sigma0))</span></span>
-<span><span class="co">#&gt;           [,1]     [,2]</span></span>
-<span><span class="co">#&gt; [1,] 0.9718462 0.000000</span></span>
-<span><span class="co">#&gt; [2,] 0.6877819 0.783026</span></span>
+<span><span class="co">#&gt;             [,1]      [,2]</span></span>
+<span><span class="co">#&gt; [1,]  0.69491184 0.0000000</span></span>
+<span><span class="co">#&gt; [2,] -0.03878416 0.6371195</span></span>
 <span><span class="co"># first alpha in the list of length n</span></span>
 <span><span class="va">alpha</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span></span>
 <span><span class="co">#&gt; [1] 0.7342491 1.0337751</span></span>
@@ -339,33 +289,15 @@ be given by
 <span><span class="co">#&gt; [2,] 0.07383966 0.7476920</span></span>
 <span><span class="co"># first psi in the list of length n</span></span>
 <span><span class="va">psi</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span></span>
-<span><span class="co">#&gt;      [,1] [,2]</span></span>
-<span><span class="co">#&gt; [1,] 0.35  0.2</span></span>
-<span><span class="co">#&gt; [2,] 0.20  0.4</span></span>
+<span><span class="co">#&gt;       [,1]  [,2]</span></span>
+<span><span class="co">#&gt; [1,]  0.20 -0.05</span></span>
+<span><span class="co">#&gt; [2,] -0.05  0.18</span></span>
 <span><span class="va">psi_l</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span> <span class="co"># psi_l &lt;- t(chol(psi))</span></span>
-<span><span class="co">#&gt;           [,1]      [,2]</span></span>
-<span><span class="co">#&gt; [1,] 0.5916080 0.0000000</span></span>
-<span><span class="co">#&gt; [2,] 0.3380617 0.5345225</span></span>
-<span><span class="va">nu</span></span>
-<span><span class="co">#&gt; [[1]]</span></span>
-<span><span class="co">#&gt; [1] 0 0</span></span>
-<span><span class="va">lambda</span></span>
-<span><span class="co">#&gt; [[1]]</span></span>
-<span><span class="co">#&gt;      [,1] [,2]</span></span>
-<span><span class="co">#&gt; [1,]    1    0</span></span>
-<span><span class="co">#&gt; [2,]    0    1</span></span>
-<span><span class="va">theta</span></span>
-<span><span class="co">#&gt; [[1]]</span></span>
-<span><span class="co">#&gt;      [,1] [,2]</span></span>
-<span><span class="co">#&gt; [1,]  0.5  0.0</span></span>
-<span><span class="co">#&gt; [2,]  0.0  0.5</span></span>
-<span><span class="va">theta_l</span> <span class="co"># theta_l &lt;- t(chol(theta))</span></span>
-<span><span class="co">#&gt; [[1]]</span></span>
-<span><span class="co">#&gt;           [,1]      [,2]</span></span>
-<span><span class="co">#&gt; [1,] 0.7071068 0.0000000</span></span>
-<span><span class="co">#&gt; [2,] 0.0000000 0.7071068</span></span>
-<span><span class="co"># first mu_eta (set-point) in the list of length n</span></span>
-<span><span class="va">mu_eta</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span></span>
+<span><span class="co">#&gt;            [,1]      [,2]</span></span>
+<span><span class="co">#&gt; [1,]  0.4472136 0.0000000</span></span>
+<span><span class="co">#&gt; [2,] -0.1118034 0.4092676</span></span>
+<span><span class="co"># first mu (set-point) in the list of length n</span></span>
+<span><span class="va">mu</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span></span>
 <span><span class="co">#&gt; [1] 3.979101 5.261786</span></span></code></pre></div>
 </div>
 <div class="section level3">
@@ -375,32 +307,29 @@ be given by
 <p><img src="fig-vignettes-escalating-co-activation-no-error-1.png" alt="" width="3300"><img src="fig-vignettes-escalating-co-activation-no-error-2.png" alt="" width="3300"></p>
 </div>
 <div class="section level3">
-<h3 id="using-the-simssmivary-function-from-the-simstatespace-package-to-simulate-data">Using the <code>SimSSMIVary</code> Function from the
-<code>simStateSpace</code> Package to Simulate Data<a class="anchor" aria-label="anchor" href="#using-the-simssmivary-function-from-the-simstatespace-package-to-simulate-data"></a>
+<h3 id="using-the-simssmvarivary-function-from-the-simstatespace-package-to-simulate-data">Using the <code>SimSSMVARIVary</code> Function from the
+<code>simStateSpace</code> Package to Simulate Data<a class="anchor" aria-label="anchor" href="#using-the-simssmvarivary-function-from-the-simstatespace-package-to-simulate-data"></a>
 </h3>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/jeksterslab/simStateSpace" class="external-link">simStateSpace</a></span><span class="op">)</span></span>
-<span><span class="va">sim</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://github.com/jeksterslab/simStateSpace/reference/SimSSMIVary.html" class="external-link">SimSSMIVary</a></span><span class="op">(</span></span>
+<span><span class="va">sim</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://github.com/jeksterslab/simStateSpace/reference/SimSSMVARIVary.html" class="external-link">SimSSMVARIVary</a></span><span class="op">(</span></span>
 <span>  n <span class="op">=</span> <span class="va">n</span>,</span>
 <span>  time <span class="op">=</span> <span class="va">time</span>,</span>
 <span>  mu0 <span class="op">=</span> <span class="va">mu0</span>,</span>
 <span>  sigma0_l <span class="op">=</span> <span class="va">sigma0_l</span>,</span>
 <span>  alpha <span class="op">=</span> <span class="va">alpha</span>,</span>
 <span>  beta <span class="op">=</span> <span class="va">beta</span>,</span>
-<span>  psi_l <span class="op">=</span> <span class="va">psi_l</span>,</span>
-<span>  nu <span class="op">=</span> <span class="va">nu</span>,</span>
-<span>  lambda <span class="op">=</span> <span class="va">lambda</span>,</span>
-<span>  theta_l <span class="op">=</span> <span class="va">theta_l</span></span>
+<span>  psi_l <span class="op">=</span> <span class="va">psi_l</span></span>
 <span><span class="op">)</span></span>
 <span><span class="va">data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/as.data.frame.html" class="external-link">as.data.frame</a></span><span class="op">(</span><span class="va">sim</span>, burnin <span class="op">=</span> <span class="va">burnin</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">data</span><span class="op">)</span></span>
 <span><span class="co">#&gt;   id time       y1       y2</span></span>
-<span><span class="co">#&gt; 1  1    0 4.697993 6.174017</span></span>
-<span><span class="co">#&gt; 2  1    1 6.122606 5.793871</span></span>
-<span><span class="co">#&gt; 3  1    2 5.539980 5.582454</span></span>
-<span><span class="co">#&gt; 4  1    3 5.022958 6.170438</span></span>
-<span><span class="co">#&gt; 5  1    4 5.907917 6.090866</span></span>
-<span><span class="co">#&gt; 6  1    5 5.464929 3.791365</span></span>
+<span><span class="co">#&gt; 1  1    0 3.667029 5.556667</span></span>
+<span><span class="co">#&gt; 2  1    1 3.670262 5.573278</span></span>
+<span><span class="co">#&gt; 3  1    2 3.419001 5.461678</span></span>
+<span><span class="co">#&gt; 4  1    3 3.925028 5.892973</span></span>
+<span><span class="co">#&gt; 5  1    4 3.667664 6.224834</span></span>
+<span><span class="co">#&gt; 6  1    5 4.155827 5.631088</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">sim</span>, burnin <span class="op">=</span> <span class="va">burnin</span><span class="op">)</span></span></code></pre></div>
 <p><img src="fig-vignettes-escalating-co-activation-error-1.png" alt="" width="3300"><img src="fig-vignettes-escalating-co-activation-error-2.png" alt="" width="3300"></p>
 </div>
@@ -410,30 +339,10 @@ be given by
 </h2>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://openmx.ssri.psu.edu/" class="external-link">OpenMx</a></span><span class="op">)</span></span>
-<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/jeksterslab/fitDTVARMxID" class="external-link">fitDTVARMxID</a></span><span class="op">)</span></span></code></pre></div>
-<p>The <code>FitDTVARMxID</code> function fits a DT-VAR model on each
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/jeksterslab/fitVARMxID" class="external-link">fitVARMxID</a></span><span class="op">)</span></span></code></pre></div>
+<p>The <code>FitVARMxID</code> function fits a VAR model on each
 individual
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>i</mi><annotation encoding="application/x-tex">i</annotation></semantics></math>.
-To set up the estimation, we first provide <strong>starting
-values</strong> for each parameter matrix.</p>
-<div class="section level3">
-<h3 id="set-point-mu_eta">Set-Point (<code>mu_eta</code>)<a class="anchor" aria-label="anchor" href="#set-point-mu_eta"></a>
-</h3>
-<p>The set-point vector
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>𝛍</mi><annotation encoding="application/x-tex">\boldsymbol{\mu}</annotation></semantics></math>
-is initialized with starting values.</p>
-<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">mu_eta_values</span> <span class="op">&lt;-</span> <span class="va">mu_eta</span></span></code></pre></div>
-</div>
-<div class="section level3">
-<h3 id="autoregressive-parameters-beta">Autoregressive Parameters (<code>beta</code>)<a class="anchor" aria-label="anchor" href="#autoregressive-parameters-beta"></a>
-</h3>
-<p>We initialize the autoregressive coefficient matrix
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>𝛃</mi><annotation encoding="application/x-tex">\boldsymbol{\beta}</annotation></semantics></math>
-with the true values used in simulation.</p>
-<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">beta_values</span> <span class="op">&lt;-</span> <span class="va">beta</span></span></code></pre></div>
-</div>
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>i</mi><annotation encoding="application/x-tex">i</annotation></semantics></math>.</p>
 <div class="section level3">
 <h3 id="ldl-parameterized-covariance-matrices">LDL’-parameterized covariance matrices<a class="anchor" aria-label="anchor" href="#ldl-parameterized-covariance-matrices"></a>
 </h3>
@@ -441,35 +350,35 @@ with the true values used in simulation.</p>
 estimated using the LDL’ decomposition of a positive definite covariance
 matrix. The decomposition expresses a covariance matrix
 <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi mathvariant="normal">Σ</mi><annotation encoding="application/x-tex">\Sigma</annotation></semantics></math>
-as<br><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>𝚺</mi><mo>=</mo><mrow><mo stretchy="true" form="prefix">(</mo><mi>𝐋</mi><mo>+</mo><mi>𝐈</mi><mo stretchy="true" form="postfix">)</mo></mrow><mrow><mi mathvariant="normal">d</mi><mi mathvariant="normal">i</mi><mi mathvariant="normal">a</mi><mi mathvariant="normal">g</mi></mrow><mrow><mo stretchy="true" form="prefix">(</mo><mrow><mi mathvariant="normal">S</mi><mi mathvariant="normal">o</mi><mi mathvariant="normal">f</mi><mi mathvariant="normal">t</mi><mi mathvariant="normal">p</mi><mi mathvariant="normal">l</mi><mi mathvariant="normal">u</mi><mi mathvariant="normal">s</mi></mrow><mrow><mo stretchy="true" form="prefix">(</mo><msub><mi>𝐝</mi><mrow><mi>u</mi><mi>c</mi></mrow></msub><mo stretchy="true" form="postfix">)</mo></mrow><mo stretchy="true" form="postfix">)</mo></mrow><msup><mrow><mo stretchy="true" form="prefix">(</mo><mi>𝐋</mi><mo>+</mo><mi>𝐈</mi><mo stretchy="true" form="postfix">)</mo></mrow><mi>′</mi></msup><mo>,</mo></mrow><annotation encoding="application/x-tex">\begin{equation}
+as<br><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="bold">𝚺</mi><mo>=</mo><mrow><mo stretchy="true" form="prefix">(</mo><mi mathvariant="bold-italic">𝑳</mi><mo>+</mo><mi mathvariant="bold-italic">𝑰</mi><mo stretchy="true" form="postfix">)</mo></mrow><mrow><mi mathvariant="normal">d</mi><mi mathvariant="normal">i</mi><mi mathvariant="normal">a</mi><mi mathvariant="normal">g</mi></mrow><mrow><mo stretchy="true" form="prefix">(</mo><mrow><mi mathvariant="normal">S</mi><mi mathvariant="normal">o</mi><mi mathvariant="normal">f</mi><mi mathvariant="normal">t</mi><mi mathvariant="normal">p</mi><mi mathvariant="normal">l</mi><mi mathvariant="normal">u</mi><mi mathvariant="normal">s</mi></mrow><mrow><mo stretchy="true" form="prefix">(</mo><msub><mi mathvariant="bold-italic">𝒅</mi><mrow><mi>u</mi><mi>c</mi></mrow></msub><mo stretchy="true" form="postfix">)</mo></mrow><mo stretchy="true" form="postfix">)</mo></mrow><msup><mrow><mo stretchy="true" form="prefix">(</mo><mi mathvariant="bold-italic">𝑳</mi><mo>+</mo><mi mathvariant="bold-italic">𝑰</mi><mo stretchy="true" form="postfix">)</mo></mrow><mi>′</mi></msup><mo>,</mo></mrow><annotation encoding="application/x-tex">\begin{equation}
   \boldsymbol{\Sigma} = \left( \mathbf{L} + \mathbf{I} \right) \mathrm{diag} \left( \mathrm{Softplus} \left( \mathbf{d}_{uc} \right) \right) \left( \mathbf{L} + \mathbf{I} \right)^{\prime},
 \end{equation}</annotation></semantics></math> where: -
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>𝐋</mi><annotation encoding="application/x-tex">\mathbf{L}</annotation></semantics></math>
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi mathvariant="bold-italic">𝑳</mi><annotation encoding="application/x-tex">\mathbf{L}</annotation></semantics></math>
 is a strictly lower-triangular matrix of free parameters
 (<code>l_mat_strict</code>),<br>
 -
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>𝐈</mi><annotation encoding="application/x-tex">\mathbf{I}</annotation></semantics></math>
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi mathvariant="bold-italic">𝑰</mi><annotation encoding="application/x-tex">\mathbf{I}</annotation></semantics></math>
 is the identity matrix,<br>
 -
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>𝐝</mi><mrow><mi>u</mi><mi>c</mi></mrow></msub><annotation encoding="application/x-tex">\mathbf{d}_{uc}</annotation></semantics></math>
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi mathvariant="bold-italic">𝒅</mi><mrow><mi>u</mi><mi>c</mi></mrow></msub><annotation encoding="application/x-tex">\mathbf{d}_{uc}</annotation></semantics></math>
 is an unconstrained vector,<br>
 -
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mrow><mi mathvariant="normal">S</mi><mi mathvariant="normal">o</mi><mi mathvariant="normal">f</mi><mi mathvariant="normal">t</mi><mi mathvariant="normal">p</mi><mi mathvariant="normal">l</mi><mi mathvariant="normal">u</mi><mi mathvariant="normal">s</mi></mrow><mrow><mo stretchy="true" form="prefix">(</mo><msub><mi>𝐝</mi><mrow><mi>u</mi><mi>c</mi></mrow></msub><mo stretchy="true" form="postfix">)</mo></mrow><mo>=</mo><mrow><mi mathvariant="normal">log</mi><mo>⁡</mo></mrow><mrow><mo stretchy="true" form="prefix">(</mo><mn>1</mn><mo>+</mo><mi mathvariant="normal">exp</mi><mrow><mo stretchy="true" form="prefix">(</mo><msub><mi>𝐝</mi><mrow><mi>u</mi><mi>c</mi></mrow></msub><mo stretchy="true" form="postfix">)</mo></mrow><mo stretchy="true" form="postfix">)</mo></mrow></mrow><annotation encoding="application/x-tex">\mathrm{Softplus} \left(\mathbf{d}_{uc} \right) = \log \left(1 + \exp \left( \mathbf{d}_{uc} \right) \right)</annotation></semantics></math>
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mrow><mi mathvariant="normal">S</mi><mi mathvariant="normal">o</mi><mi mathvariant="normal">f</mi><mi mathvariant="normal">t</mi><mi mathvariant="normal">p</mi><mi mathvariant="normal">l</mi><mi mathvariant="normal">u</mi><mi mathvariant="normal">s</mi></mrow><mrow><mo stretchy="true" form="prefix">(</mo><msub><mi mathvariant="bold-italic">𝒅</mi><mrow><mi>u</mi><mi>c</mi></mrow></msub><mo stretchy="true" form="postfix">)</mo></mrow><mo>=</mo><mrow><mi mathvariant="normal">log</mi><mo>⁡</mo></mrow><mrow><mo stretchy="true" form="prefix">(</mo><mn>1</mn><mo>+</mo><mi mathvariant="normal">exp</mi><mrow><mo stretchy="true" form="prefix">(</mo><msub><mi mathvariant="bold-italic">𝒅</mi><mrow><mi>u</mi><mi>c</mi></mrow></msub><mo stretchy="true" form="postfix">)</mo></mrow><mo stretchy="true" form="postfix">)</mo></mrow></mrow><annotation encoding="application/x-tex">\mathrm{Softplus} \left(\mathbf{d}_{uc} \right) = \log \left(1 + \exp \left( \mathbf{d}_{uc} \right) \right)</annotation></semantics></math>
 ensures strictly positive diagonal entries.</p>
-<p>The <code><a href="https://github.com/jeksterslab/fitDTVARMxID/reference/LDL.html" class="external-link">LDL()</a></code> function extracts this decomposition from a
+<p>The <code><a href="https://github.com/jeksterslab/fitVARMxID/reference/LDL.html" class="external-link">LDL()</a></code> function extracts this decomposition from a
 positive definite covariance matrix. It returns:<br>
 - <code>d_uc</code>: unconstrained diagonal parameters, equal to
 <code>InvSoftplus(d_vec)</code>,<br>
 - <code>d_vec</code>: diagonal entries, equal to
 <code>Softplus(d_uc)</code>,<br>
 - <code>l_mat_strict</code>: the strictly lower-triangular factor.</p>
-<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">sigma</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html" class="external-link">matrix</a></span><span class="op">(</span></span>
 <span>  data <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1.0</span>, <span class="fl">0.5</span>, <span class="fl">0.5</span>, <span class="fl">1.0</span><span class="op">)</span>,</span>
 <span>  nrow <span class="op">=</span> <span class="fl">2</span>,</span>
 <span>  ncol <span class="op">=</span> <span class="fl">2</span></span>
 <span><span class="op">)</span></span>
-<span><span class="va">ldl_sigma</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://github.com/jeksterslab/fitDTVARMxID/reference/LDL.html" class="external-link">LDL</a></span><span class="op">(</span><span class="va">sigma</span><span class="op">)</span></span>
+<span><span class="va">ldl_sigma</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://github.com/jeksterslab/fitVARMxID/reference/LDL.html" class="external-link">LDL</a></span><span class="op">(</span><span class="va">sigma</span><span class="op">)</span></span>
 <span><span class="va">d_uc</span> <span class="op">&lt;-</span> <span class="va">ldl_sigma</span><span class="op">$</span><span class="va">d_uc</span></span>
 <span><span class="va">l_mat_strict</span> <span class="op">&lt;-</span> <span class="va">ldl_sigma</span><span class="op">$</span><span class="va">l_mat_strict</span></span>
 <span><span class="va">I</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/diag.html" class="external-link">diag</a></span><span class="op">(</span><span class="fl">2</span><span class="op">)</span></span>
@@ -478,238 +387,51 @@ positive definite covariance matrix. It returns:<br>
 <span><span class="co">#&gt;      [,1] [,2]</span></span>
 <span><span class="co">#&gt; [1,]  1.0  0.5</span></span>
 <span><span class="co">#&gt; [2,]  0.5  1.0</span></span></code></pre></div>
-<div class="section level4">
-<h4 id="process-noise-covariance-matrix-psi">Process Noise Covariance Matrix (<code>psi</code>)<a class="anchor" aria-label="anchor" href="#process-noise-covariance-matrix-psi"></a>
-</h4>
-<p>Starting values for the process noise covariance matrix
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>𝚿</mi><annotation encoding="application/x-tex">\boldsymbol{\Psi}</annotation></semantics></math>
-are given below, with corresponding LDL’ parameters.</p>
-<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">psi_values</span> <span class="op">&lt;-</span> <span class="va">psi</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span></span>
-<span><span class="va">ldl_psi_values</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://github.com/jeksterslab/fitDTVARMxID/reference/LDL.html" class="external-link">LDL</a></span><span class="op">(</span><span class="va">psi_values</span><span class="op">)</span></span>
-<span><span class="va">psi_d_values</span> <span class="op">&lt;-</span> <span class="va">ldl_psi_values</span><span class="op">$</span><span class="va">d_uc</span></span>
-<span><span class="va">psi_l_values</span> <span class="op">&lt;-</span> <span class="va">ldl_psi_values</span><span class="op">$</span><span class="va">l_mat_strict</span></span></code></pre></div>
-<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">psi_d_values</span></span>
-<span><span class="co">#&gt; [1] -0.8697232 -1.1065068</span></span></code></pre></div>
-<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">psi_l_values</span></span>
-<span><span class="co">#&gt;           [,1] [,2]</span></span>
-<span><span class="co">#&gt; [1,] 0.0000000    0</span></span>
-<span><span class="co">#&gt; [2,] 0.5714286    0</span></span></code></pre></div>
-</div>
-<div class="section level4">
-<h4 id="measurement-error-covariance-matrix-theta">Measurement Error Covariance Matrix (<code>theta</code>)<a class="anchor" aria-label="anchor" href="#measurement-error-covariance-matrix-theta"></a>
-</h4>
-<p>Starting values for the measurement error covariance matrix
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>𝚯</mi><annotation encoding="application/x-tex">\boldsymbol{\Theta}</annotation></semantics></math>
-are given below, with corresponding LDL’ parameters.</p>
-<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">theta_values</span> <span class="op">&lt;-</span> <span class="va">theta</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span></span>
-<span><span class="va">ldl_theta_values</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://github.com/jeksterslab/fitDTVARMxID/reference/LDL.html" class="external-link">LDL</a></span><span class="op">(</span><span class="va">theta_values</span><span class="op">)</span></span>
-<span><span class="va">theta_d_values</span> <span class="op">&lt;-</span> <span class="va">ldl_theta_values</span><span class="op">$</span><span class="va">d_uc</span></span>
-<span><span class="va">theta_l_values</span> <span class="op">&lt;-</span> <span class="va">ldl_theta_values</span><span class="op">$</span><span class="va">l_mat_strict</span></span></code></pre></div>
-<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">theta_d_values</span></span>
-<span><span class="co">#&gt; [1] -0.4327521 -0.4327521</span></span></code></pre></div>
-<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">theta_l_values</span></span>
-<span><span class="co">#&gt;      [,1] [,2]</span></span>
-<span><span class="co">#&gt; [1,]    0    0</span></span>
-<span><span class="co">#&gt; [2,]    0    0</span></span></code></pre></div>
-</div>
 </div>
 <div class="section level3">
-<h3 id="initial-mean-vector-mu_0-and-covariance-matrix-sigma_0">Initial mean vector (<code>mu_0</code>) and covariance matrix
-(<code>sigma_0</code>)<a class="anchor" aria-label="anchor" href="#initial-mean-vector-mu_0-and-covariance-matrix-sigma_0"></a>
+<h3 id="fitvarmxid">
+<code>FitVARMxID</code><a class="anchor" aria-label="anchor" href="#fitvarmxid"></a>
 </h3>
-<p>The initial mean vector
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>𝛍</mi><mn>𝟎</mn></msub><annotation encoding="application/x-tex">\boldsymbol{\mu_0}</annotation></semantics></math>
-and covariance matrix
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>𝚺</mi><mn>𝟎</mn></msub><annotation encoding="application/x-tex">\boldsymbol{\Sigma_0}</annotation></semantics></math>
-are fixed using <code>mu0</code> and <code>sigma0</code>.</p>
-<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">mu0_values</span> <span class="op">&lt;-</span> <span class="va">mu0</span></span></code></pre></div>
-<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">sigma0_values</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/lapply.html" class="external-link">lapply</a></span><span class="op">(</span></span>
-<span>  X <span class="op">=</span> <span class="va">sigma0</span>,</span>
-<span>  FUN <span class="op">=</span> <span class="va">LDL</span></span>
-<span><span class="op">)</span></span>
-<span><span class="va">sigma0_d_values</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/lapply.html" class="external-link">lapply</a></span><span class="op">(</span></span>
-<span>  X <span class="op">=</span> <span class="va">sigma0_values</span>,</span>
-<span>  FUN <span class="op">=</span> <span class="kw">function</span><span class="op">(</span><span class="va">i</span><span class="op">)</span> <span class="op">{</span></span>
-<span>    <span class="va">i</span><span class="op">$</span><span class="va">d_uc</span></span>
-<span>  <span class="op">}</span></span>
-<span><span class="op">)</span></span>
-<span><span class="va">sigma0_l_values</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/lapply.html" class="external-link">lapply</a></span><span class="op">(</span></span>
-<span>  X <span class="op">=</span> <span class="va">sigma0_values</span>,</span>
-<span>  FUN <span class="op">=</span> <span class="kw">function</span><span class="op">(</span><span class="va">i</span><span class="op">)</span> <span class="op">{</span></span>
-<span>    <span class="va">i</span><span class="op">$</span><span class="va">l_mat_strict</span></span>
-<span>  <span class="op">}</span></span>
-<span><span class="op">)</span></span></code></pre></div>
-</div>
-<div class="section level3">
-<h3 id="fitdtvarmxid">
-<code>FitDTVARMxID</code><a class="anchor" aria-label="anchor" href="#fitdtvarmxid"></a>
-</h3>
-<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">fit</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://github.com/jeksterslab/fitDTVARMxID/reference/FitDTVARMxID.html" class="external-link">FitDTVARMxID</a></span><span class="op">(</span></span>
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">fit</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://github.com/jeksterslab/fitVARMxID/reference/FitVARMxID.html" class="external-link">FitVARMxID</a></span><span class="op">(</span></span>
 <span>  data <span class="op">=</span> <span class="va">data</span>,</span>
 <span>  observed <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"y1"</span>, <span class="st">"y2"</span><span class="op">)</span>,</span>
 <span>  id <span class="op">=</span> <span class="st">"id"</span>,</span>
 <span>  center <span class="op">=</span> <span class="cn">TRUE</span>,</span>
-<span>  mu_eta_values <span class="op">=</span> <span class="va">mu_eta_values</span>,</span>
-<span>  beta_values <span class="op">=</span> <span class="va">beta_values</span>,</span>
-<span>  psi_d_values <span class="op">=</span> <span class="va">psi_d_values</span>,</span>
-<span>  psi_l_values <span class="op">=</span> <span class="va">psi_l_values</span>,</span>
-<span>  theta_d_values <span class="op">=</span> <span class="va">theta_d_values</span>,</span>
-<span>  mu0_values <span class="op">=</span> <span class="va">mu0_values</span>,</span>
-<span>  sigma0_d_values <span class="op">=</span> <span class="va">sigma0_d_values</span>,</span>
-<span>  sigma0_l_values <span class="op">=</span> <span class="va">sigma0_l_values</span>,</span>
+<span>  tries_explore <span class="op">=</span> <span class="fl">1000</span>,</span>
+<span>  tries_local <span class="op">=</span> <span class="fl">100</span>,</span>
+<span>  max_attempts <span class="op">=</span> <span class="fl">100</span>,</span>
 <span>  ncores <span class="op">=</span> <span class="fu">parallel</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/r/parallel/detectCores.html" class="external-link">detectCores</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="op">)</span></span></code></pre></div>
 <div class="section level4">
 <h4 id="parameter-estimates">Parameter estimates<a class="anchor" aria-label="anchor" href="#parameter-estimates"></a>
 </h4>
-<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">fit</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="co">#&gt;                             beta_1_1    beta_2_1    beta_1_2  beta_2_2</span></span>
-<span><span class="co">#&gt; FitDTVARMxID_DTVAR_ID1.Rds 0.8758739  0.06980566 -0.04782908 0.7607040</span></span>
-<span><span class="co">#&gt; FitDTVARMxID_DTVAR_ID2.Rds 0.6441904 -0.22484340  0.09571917 0.9399838</span></span>
-<span><span class="co">#&gt; FitDTVARMxID_DTVAR_ID3.Rds 0.7946076  0.10527667  0.33387178 0.6895026</span></span>
-<span><span class="co">#&gt; FitDTVARMxID_DTVAR_ID4.Rds 0.8381163  0.20027095  0.07653694 0.5060161</span></span>
-<span><span class="co">#&gt; FitDTVARMxID_DTVAR_ID5.Rds 0.8214917  0.11109383  0.08229443 0.8553835</span></span>
-<span><span class="co">#&gt; FitDTVARMxID_DTVAR_ID6.Rds 0.5267410 -0.11081204  0.20395749 0.6069352</span></span>
-<span><span class="co">#&gt;                            mu_eta_1_1 mu_eta_2_1 psi_l_2_1  psi_d_1_1</span></span>
-<span><span class="co">#&gt; FitDTVARMxID_DTVAR_ID1.Rds   4.075797   5.325837 0.6867072 -1.3318704</span></span>
-<span><span class="co">#&gt; FitDTVARMxID_DTVAR_ID2.Rds   7.583295   6.301787 0.6215924 -0.8054012</span></span>
-<span><span class="co">#&gt; FitDTVARMxID_DTVAR_ID3.Rds  24.442146  11.337333 0.5936404 -0.8989028</span></span>
-<span><span class="co">#&gt; FitDTVARMxID_DTVAR_ID4.Rds  16.728504  11.594649 0.6589971 -1.0581211</span></span>
-<span><span class="co">#&gt; FitDTVARMxID_DTVAR_ID5.Rds  14.877025  23.754310 0.6950561 -1.0394769</span></span>
-<span><span class="co">#&gt; FitDTVARMxID_DTVAR_ID6.Rds   3.114842   1.722967 0.6260117 -0.8201061</span></span>
-<span><span class="co">#&gt;                             psi_d_2_1 theta_d_1_1 theta_d_2_1</span></span>
-<span><span class="co">#&gt; FitDTVARMxID_DTVAR_ID1.Rds -1.5159321  -0.2852040  -0.4999119</span></span>
-<span><span class="co">#&gt; FitDTVARMxID_DTVAR_ID2.Rds -1.7101736  -0.4796943  -0.2688015</span></span>
-<span><span class="co">#&gt; FitDTVARMxID_DTVAR_ID3.Rds -0.8905995  -0.5724221  -0.6011569</span></span>
-<span><span class="co">#&gt; FitDTVARMxID_DTVAR_ID4.Rds -1.1689994  -0.3153879  -0.4663390</span></span>
-<span><span class="co">#&gt; FitDTVARMxID_DTVAR_ID5.Rds -1.2347727  -0.4597019  -0.5121433</span></span>
-<span><span class="co">#&gt; FitDTVARMxID_DTVAR_ID6.Rds -0.4541105  -0.4560209  -0.9659768</span></span></code></pre></div>
+<span><span class="co">#&gt;                          mu[1,1]   mu[2,1] beta[1,1]   beta[2,1]   beta[1,2]</span></span>
+<span><span class="co">#&gt; FitVARMxID_VAR_ID1.Rds  4.069632  5.257517 0.7766154 -0.01231025  0.20562310</span></span>
+<span><span class="co">#&gt; FitVARMxID_VAR_ID2.Rds  7.672821  6.094505 0.2223178 -0.30914569 -0.23843803</span></span>
+<span><span class="co">#&gt; FitVARMxID_VAR_ID3.Rds 24.827945 11.528841 0.1101953 -0.20886863  0.33146719</span></span>
+<span><span class="co">#&gt; FitVARMxID_VAR_ID4.Rds 16.400665 11.302763 0.2534439 -0.12971130 -0.26910588</span></span>
+<span><span class="co">#&gt; FitVARMxID_VAR_ID5.Rds 14.558106 23.101649 0.1623998 -0.33939156  0.02788429</span></span>
+<span><span class="co">#&gt; FitVARMxID_VAR_ID6.Rds  3.055194  1.761810 0.4038128 -0.11991150  0.13141247</span></span>
+<span><span class="co">#&gt;                        beta[2,2]  psi[1,1]    psi[2,1]  psi[2,2]</span></span>
+<span><span class="co">#&gt; FitVARMxID_VAR_ID1.Rds 0.5601123 0.1706596 -0.03935187 0.1674326</span></span>
+<span><span class="co">#&gt; FitVARMxID_VAR_ID2.Rds 0.7579324 0.2378378 -0.01623838 0.1471512</span></span>
+<span><span class="co">#&gt; FitVARMxID_VAR_ID3.Rds 0.8158781 0.9765994  0.27592708 0.2964318</span></span>
+<span><span class="co">#&gt; FitVARMxID_VAR_ID4.Rds 0.1832713 0.3773208  0.06154313 0.2442620</span></span>
+<span><span class="co">#&gt; FitVARMxID_VAR_ID5.Rds 0.4186573 0.4718741  0.41396161 0.9861358</span></span>
+<span><span class="co">#&gt; FitVARMxID_VAR_ID6.Rds 0.6583966 0.2005669 -0.03980509 0.1539064</span></span></code></pre></div>
 </div>
 <div class="section level4">
 <h4 id="proportion-of-converged-cases">Proportion of converged cases<a class="anchor" aria-label="anchor" href="#proportion-of-converged-cases"></a>
 </h4>
-<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="https://github.com/jeksterslab/fitDTVARMxID/reference/converged.html" class="external-link">converged</a></span><span class="op">(</span></span>
-<span>  <span class="va">fit</span>,</span>
-<span>  theta_tol <span class="op">=</span> <span class="fl">0.01</span>,</span>
-<span>  prop <span class="op">=</span> <span class="cn">TRUE</span></span>
-<span><span class="op">)</span></span>
-<span><span class="co">#&gt; [1] 0.949</span></span></code></pre></div>
-</div>
-<div class="section level4">
-<h4 id="fixed-effect-meta-analysis-of-measurement-error">Fixed-Effect Meta-Analysis of Measurement Error<a class="anchor" aria-label="anchor" href="#fixed-effect-meta-analysis-of-measurement-error"></a>
-</h4>
-<p>When fitting DT-VAR models per person, separating process noise
-(<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>𝚿</mi><annotation encoding="application/x-tex">\boldsymbol{\Psi}</annotation></semantics></math>)
-from measurement error
-(<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>𝚯</mi><annotation encoding="application/x-tex">\boldsymbol{\Theta}</annotation></semantics></math>)
-can be unstable for some individuals. To stabilize inference, we first
-pool the person-level
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>𝚯</mi><mi>i</mi></msub><annotation encoding="application/x-tex">\boldsymbol{\Theta}_{i}</annotation></semantics></math>
-estimates from only the converged fits using a fixed-effect
-meta-analysis. This yields a high-precision estimate of the common
-measurement-error covariance that we will then hold fixed in a second
-pass of model fitting.</p>
-<p>What the code does: - Selects individuals that converged and whose
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>𝚯</mi><mi>i</mi></msub><annotation encoding="application/x-tex">\boldsymbol{\Theta}_i</annotation></semantics></math>
-diagonals exceed a small threshold (<code>theta_tol</code>), filtering
-out near-zero or ill-conditioned solutions. - Extracts each person’s
-LDL’ diagonal parameters for
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>𝚯</mi><mi>i</mi></msub><annotation encoding="application/x-tex">\boldsymbol{\Theta}_i</annotation></semantics></math>
-and their sampling covariance matrices. - Computes the
-inverse-variance-weighted pooled estimate (fixed effect), returning it
-on the same LDL’ parameterization used by
-<code><a href="https://github.com/jeksterslab/fitDTVARMxID/reference/FitDTVARMxID.html" class="external-link">FitDTVARMxID()</a></code>.</p>
-<div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/jeksterslab/metaDyn">metaDyn</a></span><span class="op">)</span></span>
-<span><span class="va">fixed_theta</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/MetaVARMx.html">MetaVARMx</a></span><span class="op">(</span></span>
-<span>  <span class="va">fit</span>,</span>
-<span>  random <span class="op">=</span> <span class="cn">FALSE</span>, <span class="co"># TRUE by default</span></span>
-<span>  effects <span class="op">=</span> <span class="cn">FALSE</span>, <span class="co"># TRUE by default</span></span>
-<span>  cov_meas <span class="op">=</span> <span class="cn">TRUE</span>, <span class="co"># FALSE by default</span></span>
-<span>  theta_tol <span class="op">=</span> <span class="fl">0.01</span>,</span>
-<span>  ncores <span class="op">=</span> <span class="fu">parallel</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/r/parallel/detectCores.html" class="external-link">detectCores</a></span><span class="op">(</span><span class="op">)</span></span>
-<span><span class="op">)</span></span></code></pre></div>
-<p>You can read <code>summary(fixed_theta)</code> as providing the
-pooled (fixed) measurement-error scale that is common across persons. If
-individual instruments truly share the same reliability structure,
-fixing
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>𝚯</mi><annotation encoding="application/x-tex">\boldsymbol{\Theta}</annotation></semantics></math>
-to this pooled value improves stability and often reduces bias in the
-dynamic parameters.</p>
-<blockquote>
-<p><strong>Note:</strong> Fixed-effect pooling assumes a common
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>𝚯</mi><annotation encoding="application/x-tex">\boldsymbol{\Theta}</annotation></semantics></math>
-across individuals.</p>
-</blockquote>
-<div class="sourceCode" id="cb19"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/stats/coef.html" class="external-link">coef</a></span><span class="op">(</span><span class="va">fixed_theta</span><span class="op">)</span></span>
-<span><span class="co">#&gt;  alpha_1_1  alpha_2_1 </span></span>
-<span><span class="co">#&gt; -0.3897896 -0.3833341</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">fixed_theta</span><span class="op">)</span></span>
-<span><span class="co">#&gt; [1] 0</span></span>
-<span><span class="co">#&gt; Call:</span></span>
-<span><span class="co">#&gt; MetaVARMx(object = fit, random = FALSE, effects = FALSE, cov_meas = TRUE, </span></span>
-<span><span class="co">#&gt;     theta_tol = 0.01, ncores = parallel::detectCores())</span></span>
-<span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; CI type = "normal"</span></span>
-<span><span class="co">#&gt;                est     se        z p    2.5%   97.5%</span></span>
-<span><span class="co">#&gt; alpha[1,1] -0.3898 0.0047 -82.1074 0 -0.3991 -0.3805</span></span>
-<span><span class="co">#&gt; alpha[2,1] -0.3833 0.0051 -75.1412 0 -0.3933 -0.3733</span></span></code></pre></div>
-<div class="sourceCode" id="cb20"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">theta_d_values</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/coef.html" class="external-link">coef</a></span><span class="op">(</span><span class="va">fixed_theta</span><span class="op">)</span></span></code></pre></div>
-</div>
-<div class="section level4">
-<h4 id="refit-the-model-with-fixed-measurement-error-covariance-matrix">Refit the model with fixed measurement error covariance matrix<a class="anchor" aria-label="anchor" href="#refit-the-model-with-fixed-measurement-error-covariance-matrix"></a>
-</h4>
-<p>We refit the individual models using the pooled
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>𝚯</mi><annotation encoding="application/x-tex">\boldsymbol{\Theta}</annotation></semantics></math>
-as a fixed measurement-error covariance matrix.</p>
-<div class="sourceCode" id="cb21"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">fit</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://github.com/jeksterslab/fitDTVARMxID/reference/FitDTVARMxID.html" class="external-link">FitDTVARMxID</a></span><span class="op">(</span></span>
-<span>  data <span class="op">=</span> <span class="va">data</span>,</span>
-<span>  observed <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"y1"</span>, <span class="st">"y2"</span><span class="op">)</span>,</span>
-<span>  id <span class="op">=</span> <span class="st">"id"</span>,</span>
-<span>  center <span class="op">=</span> <span class="cn">TRUE</span>,</span>
-<span>  mu_eta_values <span class="op">=</span> <span class="va">mu_eta_values</span>,</span>
-<span>  beta_values <span class="op">=</span> <span class="va">beta_values</span>,</span>
-<span>  psi_d_values <span class="op">=</span> <span class="va">psi_d_values</span>,</span>
-<span>  psi_l_values <span class="op">=</span> <span class="va">psi_l_values</span>,</span>
-<span>  theta_fixed <span class="op">=</span> <span class="cn">TRUE</span>,</span>
-<span>  theta_d_values <span class="op">=</span> <span class="va">theta_d_values</span>,</span>
-<span>  mu0_values <span class="op">=</span> <span class="va">mu0_values</span>,</span>
-<span>  sigma0_d_values <span class="op">=</span> <span class="va">sigma0_d_values</span>,</span>
-<span>  sigma0_l_values <span class="op">=</span> <span class="va">sigma0_l_values</span>,</span>
-<span>  ncores <span class="op">=</span> <span class="fu">parallel</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/r/parallel/detectCores.html" class="external-link">detectCores</a></span><span class="op">(</span><span class="op">)</span></span>
-<span><span class="op">)</span></span></code></pre></div>
-<p>With
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>𝚯</mi><annotation encoding="application/x-tex">\boldsymbol{\Theta}</annotation></semantics></math>
-fixed, the re-estimation focuses on the dynamic structure
-(<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>𝛍</mi><annotation encoding="application/x-tex">\boldsymbol{\mu}</annotation></semantics></math>,
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>𝛃</mi><annotation encoding="application/x-tex">\boldsymbol{\beta}</annotation></semantics></math>,
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>𝚿</mi><annotation encoding="application/x-tex">\boldsymbol{\Psi}</annotation></semantics></math>).
-In practice, this often increases the proportion of converged fits and
-yields more stable cross-lag estimates.</p>
-</div>
-<div class="section level4">
-<h4 id="proportion-of-converged-cases-1">Proportion of converged cases<a class="anchor" aria-label="anchor" href="#proportion-of-converged-cases-1"></a>
-</h4>
-<div class="sourceCode" id="cb22"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="https://github.com/jeksterslab/fitDTVARMxID/reference/converged.html" class="external-link">converged</a></span><span class="op">(</span></span>
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://github.com/jeksterslab/fitVARMxID/reference/converged.html" class="external-link">converged</a></span><span class="op">(</span></span>
 <span>  <span class="va">fit</span>,</span>
 <span>  prop <span class="op">=</span> <span class="cn">TRUE</span></span>
 <span><span class="op">)</span></span>
-<span><span class="co">#&gt; [1] 1</span></span></code></pre></div>
+<span><span class="co">#&gt; [1] 0.986</span></span></code></pre></div>
 </div>
 </div>
 </div>
@@ -717,260 +439,89 @@ yields more stable cross-lag estimates.</p>
 <h2 id="random-effects-meta-analysis-of-person-specific-dynamics-and-means">Random-Effects Meta-Analysis of Person-Specific Dynamics and
 Means<a class="anchor" aria-label="anchor" href="#random-effects-meta-analysis-of-person-specific-dynamics-and-means"></a>
 </h2>
-<p>Having stabilized
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>𝚯</mi><annotation encoding="application/x-tex">\boldsymbol{\Theta}</annotation></semantics></math>,
-we synthesize the person-specific estimates to recover population-level
-effects and their between-person variability. We use a random-effects
-model so the pooled mean reflects both within-person estimation
-uncertainty and between-person heterogeneity.</p>
-<div class="sourceCode" id="cb23"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">random</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/MetaVARMx.html">MetaVARMx</a></span><span class="op">(</span></span>
+<p>We synthesize the person-specific estimates to recover
+population-level effects and their between-person variability. We use a
+random-effects model so the pooled mean reflects both within-person
+estimation uncertainty and between-person heterogeneity.</p>
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/jeksterslab/metaDyn">metaDyn</a></span><span class="op">)</span></span>
+<span><span class="va">random</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/MetaVARMx.html">MetaVARMx</a></span><span class="op">(</span></span>
 <span>  <span class="va">fit</span>,</span>
 <span>  effects <span class="op">=</span> <span class="cn">TRUE</span>,</span>
 <span>  set_point <span class="op">=</span> <span class="cn">TRUE</span>,</span>
 <span>  robust_v <span class="op">=</span> <span class="cn">FALSE</span>,</span>
 <span>  robust <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>  lb <span class="op">=</span> <span class="cn">TRUE</span>,</span>
 <span>  ncores <span class="op">=</span> <span class="fu">parallel</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/r/parallel/detectCores.html" class="external-link">detectCores</a></span><span class="op">(</span><span class="op">)</span></span>
-<span><span class="op">)</span></span></code></pre></div>
-<div class="sourceCode" id="cb24"><pre class="downlit sourceCode r">
+<span><span class="op">)</span></span>
+<span><span class="co">#&gt; Error in `[.data.frame`:</span></span>
+<span><span class="co">#&gt; ! undefined columns selected</span></span></code></pre></div>
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">random</span><span class="op">)</span></span>
-<span><span class="co">#&gt; [1] 0</span></span>
-<span><span class="co">#&gt; Call:</span></span>
-<span><span class="co">#&gt; MetaVARMx(object = fit, effects = TRUE, set_point = TRUE, robust_v = FALSE, </span></span>
-<span><span class="co">#&gt;     robust = TRUE, ncores = parallel::detectCores())</span></span>
-<span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; CI type = "normal"</span></span>
-<span><span class="co">#&gt;                  est     se           z      p    2.5%   97.5%</span></span>
-<span><span class="co">#&gt; alpha[1,1]    6.3755 0.1971     32.3483 0.0000  5.9893  6.7618</span></span>
-<span><span class="co">#&gt; alpha[2,1]    5.9803 0.1926     31.0528 0.0000  5.6028  6.3577</span></span>
-<span><span class="co">#&gt; alpha[3,1]    0.6758 0.0048    141.0167 0.0000  0.6664  0.6852</span></span>
-<span><span class="co">#&gt; alpha[4,1]    0.0504 0.0046     11.0059 0.0000  0.0414  0.0594</span></span>
-<span><span class="co">#&gt; alpha[5,1]    0.1116 0.0050     22.3277 0.0000  0.1018  0.1214</span></span>
-<span><span class="co">#&gt; alpha[6,1]    0.7084 0.0045    155.8597 0.0000  0.6995  0.7173</span></span>
-<span><span class="co">#&gt; tau_sqr[1,1] 38.8258 1.7417     22.2913 0.0000 35.4121 42.2396</span></span>
-<span><span class="co">#&gt; tau_sqr[2,1] 21.2984 1.3780     15.4555 0.0000 18.5975 23.9993</span></span>
-<span><span class="co">#&gt; tau_sqr[3,1]  0.3431 0.0309     11.0924 0.0000  0.2825  0.4038</span></span>
-<span><span class="co">#&gt; tau_sqr[4,1]  0.0862 0.0277      3.1112 0.0019  0.0319  0.1405</span></span>
-<span><span class="co">#&gt; tau_sqr[5,1]  0.4483 0.0340     13.1937 0.0000  0.3817  0.5148</span></span>
-<span><span class="co">#&gt; tau_sqr[6,1]  0.1528 0.0283      5.3955 0.0000  0.0973  0.2084</span></span>
-<span><span class="co">#&gt; tau_sqr[2,2] 37.0694 1.6614     22.3118 0.0000 33.8131 40.3258</span></span>
-<span><span class="co">#&gt; tau_sqr[3,2]  0.0470 0.0292      1.6080 0.1078 -0.0103  0.1044</span></span>
-<span><span class="co">#&gt; tau_sqr[4,2]  0.3740 0.0303     12.3333 0.0000  0.3146  0.4334</span></span>
-<span><span class="co">#&gt; tau_sqr[5,2]  0.0649 0.0299      2.1700 0.0300  0.0063  0.1236</span></span>
-<span><span class="co">#&gt; tau_sqr[6,2]  0.3366 0.0290     11.6234 0.0000  0.2799  0.3934</span></span>
-<span><span class="co">#&gt; tau_sqr[3,3]  0.0194 0.0010     18.6354 0.0000  0.0174  0.0215</span></span>
-<span><span class="co">#&gt; tau_sqr[4,3]  0.0055 0.0007      7.4754 0.0000  0.0041  0.0069</span></span>
-<span><span class="co">#&gt; tau_sqr[5,3]  0.0020 0.0007      2.6967 0.0070  0.0005  0.0035</span></span>
-<span><span class="co">#&gt; tau_sqr[6,3] -0.0011 0.0007     -1.5952 0.1107 -0.0024  0.0002</span></span>
-<span><span class="co">#&gt; tau_sqr[4,4]  0.0173 0.0009     18.4145 0.0000  0.0155  0.0192</span></span>
-<span><span class="co">#&gt; tau_sqr[5,4] -0.0056 0.0007     -7.8065 0.0000 -0.0071 -0.0042</span></span>
-<span><span class="co">#&gt; tau_sqr[6,4]  0.0005 0.0007      0.8116 0.4170 -0.0008  0.0018</span></span>
-<span><span class="co">#&gt; tau_sqr[5,5]  0.0220 0.0011     19.9406 0.0000  0.0198  0.0241</span></span>
-<span><span class="co">#&gt; tau_sqr[6,5]  0.0065 0.0008      8.5921 0.0000  0.0050  0.0080</span></span>
-<span><span class="co">#&gt; tau_sqr[6,6]  0.0174 0.0009     18.5296 0.0000  0.0155  0.0192</span></span>
-<span><span class="co">#&gt; i_sqr[1,1]    0.9999 0.0000 255261.2495 0.0000  0.9999  0.9999</span></span>
-<span><span class="co">#&gt; i_sqr[2,1]    0.9999 0.0000 246788.6126 0.0000  0.9999  0.9999</span></span>
-<span><span class="co">#&gt; i_sqr[3,1]    0.9607 0.0020    473.9396 0.0000  0.9567  0.9647</span></span>
-<span><span class="co">#&gt; i_sqr[4,1]    0.9571 0.0022    438.7215 0.0000  0.9529  0.9614</span></span>
-<span><span class="co">#&gt; i_sqr[5,1]    0.9872 0.0006   1661.7430 0.0000  0.9860  0.9884</span></span>
-<span><span class="co">#&gt; i_sqr[6,1]    0.9861 0.0007   1515.8741 0.0000  0.9848  0.9874</span></span></code></pre></div>
+<span><span class="co">#&gt; Error:</span></span>
+<span><span class="co">#&gt; ! object 'random' not found</span></span></code></pre></div>
 <div class="section level3">
 <h3 id="normal-theory-confidence-intervals">Normal Theory Confidence Intervals<a class="anchor" aria-label="anchor" href="#normal-theory-confidence-intervals"></a>
 </h3>
-<div class="sourceCode" id="cb25"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/stats/confint.html" class="external-link">confint</a></span><span class="op">(</span><span class="va">random</span>, level <span class="op">=</span> <span class="fl">0.95</span>, lb <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
-<span><span class="co">#&gt;                      2.5 %        97.5 %</span></span>
-<span><span class="co">#&gt; alpha[1,1]    5.9892576098  6.7618378021</span></span>
-<span><span class="co">#&gt; alpha[2,1]    5.6028056698  6.3577188620</span></span>
-<span><span class="co">#&gt; alpha[3,1]    0.6664360056  0.6852224473</span></span>
-<span><span class="co">#&gt; alpha[4,1]    0.0414374820  0.0593939047</span></span>
-<span><span class="co">#&gt; alpha[5,1]    0.1018300454  0.1214280508</span></span>
-<span><span class="co">#&gt; alpha[6,1]    0.6995296013  0.7173470861</span></span>
-<span><span class="co">#&gt; tau_sqr[1,1] 35.4120750640 42.2395971685</span></span>
-<span><span class="co">#&gt; tau_sqr[2,1] 18.5974999675 23.9993416021</span></span>
-<span><span class="co">#&gt; tau_sqr[3,1]  0.2825075854  0.4037681572</span></span>
-<span><span class="co">#&gt; tau_sqr[4,1]  0.0318989311  0.1405127986</span></span>
-<span><span class="co">#&gt; tau_sqr[5,1]  0.3816666406  0.5148465601</span></span>
-<span><span class="co">#&gt; tau_sqr[6,1]  0.0973237405  0.2083701132</span></span>
-<span><span class="co">#&gt; tau_sqr[2,2] 33.8130875906 40.3257528507</span></span>
-<span><span class="co">#&gt; tau_sqr[3,2] -0.0102931352  0.1043557966</span></span>
-<span><span class="co">#&gt; tau_sqr[4,2]  0.3145551423  0.4334202739</span></span>
-<span><span class="co">#&gt; tau_sqr[5,2]  0.0062871509  0.1236012294</span></span>
-<span><span class="co">#&gt; tau_sqr[6,2]  0.2798682087  0.3933950738</span></span>
-<span><span class="co">#&gt; tau_sqr[3,3]  0.0173722048  0.0214559195</span></span>
-<span><span class="co">#&gt; tau_sqr[4,3]  0.0040594949  0.0069446781</span></span>
-<span><span class="co">#&gt; tau_sqr[5,3]  0.0005472225  0.0034589584</span></span>
-<span><span class="co">#&gt; tau_sqr[6,3] -0.0024046498  0.0002467261</span></span>
-<span><span class="co">#&gt; tau_sqr[4,4]  0.0154763347  0.0191632367</span></span>
-<span><span class="co">#&gt; tau_sqr[5,4] -0.0070610283 -0.0042269759</span></span>
-<span><span class="co">#&gt; tau_sqr[6,4] -0.0007523962  0.0018158224</span></span>
-<span><span class="co">#&gt; tau_sqr[5,5]  0.0198137372  0.0241333048</span></span>
-<span><span class="co">#&gt; tau_sqr[6,5]  0.0050204617  0.0079878013</span></span>
-<span><span class="co">#&gt; tau_sqr[6,6]  0.0155193817  0.0191908515</span></span>
-<span><span class="co">#&gt; i_sqr[1,1]    0.9999049920  0.9999203472</span></span>
-<span><span class="co">#&gt; i_sqr[2,1]    0.9999016324  0.9999175147</span></span>
-<span><span class="co">#&gt; i_sqr[3,1]    0.9567476579  0.9646937249</span></span>
-<span><span class="co">#&gt; i_sqr[4,1]    0.9528563144  0.9614081846</span></span>
-<span><span class="co">#&gt; i_sqr[5,1]    0.9860441804  0.9883729318</span></span>
-<span><span class="co">#&gt; i_sqr[6,1]    0.9848245188  0.9873744924</span></span></code></pre></div>
-<div class="sourceCode" id="cb26"><pre class="downlit sourceCode r">
+<span><span class="co">#&gt; Error:</span></span>
+<span><span class="co">#&gt; ! object 'random' not found</span></span></code></pre></div>
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/stats/confint.html" class="external-link">confint</a></span><span class="op">(</span><span class="va">random</span>, level <span class="op">=</span> <span class="fl">0.99</span>, lb <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
-<span><span class="co">#&gt;                      0.5 %        99.5 %</span></span>
-<span><span class="co">#&gt; alpha[1,1]    5.867876e+00  6.8832189475</span></span>
-<span><span class="co">#&gt; alpha[2,1]    5.484200e+00  6.4763243205</span></span>
-<span><span class="co">#&gt; alpha[3,1]    6.634844e-01  0.6881740112</span></span>
-<span><span class="co">#&gt; alpha[4,1]    3.861632e-02  0.0622150632</span></span>
-<span><span class="co">#&gt; alpha[5,1]    9.875098e-02  0.1245071206</span></span>
-<span><span class="co">#&gt; alpha[6,1]    6.967303e-01  0.7201464158</span></span>
-<span><span class="co">#&gt; tau_sqr[1,1]  3.433939e+01 43.3122786341</span></span>
-<span><span class="co">#&gt; tau_sqr[2,1]  1.774881e+01 24.8480324321</span></span>
-<span><span class="co">#&gt; tau_sqr[3,1]  2.634562e-01  0.4228195738</span></span>
-<span><span class="co">#&gt; tau_sqr[4,1]  1.483446e-02  0.1575772739</span></span>
-<span><span class="co">#&gt; tau_sqr[5,1]  3.607426e-01  0.5357706419</span></span>
-<span><span class="co">#&gt; tau_sqr[6,1]  7.987709e-02  0.2258167628</span></span>
-<span><span class="co">#&gt; tau_sqr[2,2]  3.278987e+01 41.3489667208</span></span>
-<span><span class="co">#&gt; tau_sqr[3,2] -2.830579e-02  0.1223684493</span></span>
-<span><span class="co">#&gt; tau_sqr[4,2]  2.958801e-01  0.4520953396</span></span>
-<span><span class="co">#&gt; tau_sqr[5,2] -1.214423e-02  0.1420326069</span></span>
-<span><span class="co">#&gt; tau_sqr[6,2]  2.620318e-01  0.4112314370</span></span>
-<span><span class="co">#&gt; tau_sqr[3,3]  1.673061e-02  0.0220975175</span></span>
-<span><span class="co">#&gt; tau_sqr[4,3]  3.606200e-03  0.0073979733</span></span>
-<span><span class="co">#&gt; tau_sqr[5,3]  8.975566e-05  0.0039164253</span></span>
-<span><span class="co">#&gt; tau_sqr[6,3] -2.821211e-03  0.0006632875</span></span>
-<span><span class="co">#&gt; tau_sqr[4,4]  1.489708e-02  0.0197424910</span></span>
-<span><span class="co">#&gt; tau_sqr[5,4] -7.506290e-03 -0.0037817140</span></span>
-<span><span class="co">#&gt; tau_sqr[6,4] -1.155893e-03  0.0022193188</span></span>
-<span><span class="co">#&gt; tau_sqr[5,5]  1.913508e-02  0.0248119580</span></span>
-<span><span class="co">#&gt; tau_sqr[6,5]  4.554259e-03  0.0084540041</span></span>
-<span><span class="co">#&gt; tau_sqr[6,6]  1.494255e-02  0.0197676812</span></span>
-<span><span class="co">#&gt; i_sqr[1,1]    9.999026e-01  0.9999227597</span></span>
-<span><span class="co">#&gt; i_sqr[2,1]    9.998991e-01  0.9999200100</span></span>
-<span><span class="co">#&gt; i_sqr[3,1]    9.554992e-01  0.9659421426</span></span>
-<span><span class="co">#&gt; i_sqr[4,1]    9.515127e-01  0.9627517808</span></span>
-<span><span class="co">#&gt; i_sqr[5,1]    9.856783e-01  0.9887388052</span></span>
-<span><span class="co">#&gt; i_sqr[6,1]    9.844239e-01  0.9877751223</span></span></code></pre></div>
+<span><span class="co">#&gt; Error:</span></span>
+<span><span class="co">#&gt; ! object 'random' not found</span></span></code></pre></div>
 </div>
 <div class="section level3">
 <h3 id="robust-confidence-intervals">Robust Confidence Intervals<a class="anchor" aria-label="anchor" href="#robust-confidence-intervals"></a>
 </h3>
-<div class="sourceCode" id="cb27"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/stats/confint.html" class="external-link">confint</a></span><span class="op">(</span><span class="va">random</span>, level <span class="op">=</span> <span class="fl">0.95</span>, lb <span class="op">=</span> <span class="cn">FALSE</span>, robust <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
-<span><span class="co">#&gt;                      2.5 %       97.5 %</span></span>
-<span><span class="co">#&gt; alpha[1,1]    5.9877509633  6.763344449</span></span>
-<span><span class="co">#&gt; alpha[2,1]    5.6016341840  6.358890348</span></span>
-<span><span class="co">#&gt; alpha[3,1]    0.6659894710  0.685668982</span></span>
-<span><span class="co">#&gt; alpha[4,1]    0.0412731461  0.059558241</span></span>
-<span><span class="co">#&gt; alpha[5,1]    0.1017712352  0.121486861</span></span>
-<span><span class="co">#&gt; alpha[6,1]    0.6991210127  0.717755675</span></span>
-<span><span class="co">#&gt; tau_sqr[1,1] 31.7884605624 45.863211670</span></span>
-<span><span class="co">#&gt; tau_sqr[2,1] 16.7517210277 25.845120542</span></span>
-<span><span class="co">#&gt; tau_sqr[3,1]  0.2843972579  0.401878485</span></span>
-<span><span class="co">#&gt; tau_sqr[4,1]  0.0376020434  0.134809686</span></span>
-<span><span class="co">#&gt; tau_sqr[5,1]  0.3715495612  0.524963640</span></span>
-<span><span class="co">#&gt; tau_sqr[6,1]  0.0914715382  0.214222316</span></span>
-<span><span class="co">#&gt; tau_sqr[2,2] 29.6110302896 44.527810152</span></span>
-<span><span class="co">#&gt; tau_sqr[3,2] -0.0051303711  0.099193033</span></span>
-<span><span class="co">#&gt; tau_sqr[4,2]  0.3071073962  0.440868020</span></span>
-<span><span class="co">#&gt; tau_sqr[5,2]  0.0156328271  0.114255553</span></span>
-<span><span class="co">#&gt; tau_sqr[6,2]  0.2816447153  0.391618567</span></span>
-<span><span class="co">#&gt; tau_sqr[3,3]  0.0172526668  0.021575457</span></span>
-<span><span class="co">#&gt; tau_sqr[4,3]  0.0038894871  0.007114686</span></span>
-<span><span class="co">#&gt; tau_sqr[5,3]  0.0003713106  0.003634870</span></span>
-<span><span class="co">#&gt; tau_sqr[6,3] -0.0024598717  0.000301948</span></span>
-<span><span class="co">#&gt; tau_sqr[4,4]  0.0153897596  0.019249812</span></span>
-<span><span class="co">#&gt; tau_sqr[5,4] -0.0070369423 -0.004251062</span></span>
-<span><span class="co">#&gt; tau_sqr[6,4] -0.0008662858  0.001929712</span></span>
-<span><span class="co">#&gt; tau_sqr[5,5]  0.0197826328  0.024164409</span></span>
-<span><span class="co">#&gt; tau_sqr[6,5]  0.0048996366  0.008108626</span></span>
-<span><span class="co">#&gt; tau_sqr[6,6]  0.0154132629  0.019296970</span></span>
-<span><span class="co">#&gt; i_sqr[1,1]    0.9998968425  0.999928497</span></span>
-<span><span class="co">#&gt; i_sqr[2,1]    0.9998914457  0.999927701</span></span>
-<span><span class="co">#&gt; i_sqr[3,1]    0.9565123460  0.964929037</span></span>
-<span><span class="co">#&gt; i_sqr[4,1]    0.9528686747  0.961395824</span></span>
-<span><span class="co">#&gt; i_sqr[5,1]    0.9858217677  0.988595345</span></span>
-<span><span class="co">#&gt; i_sqr[6,1]    0.9846943236  0.987504688</span></span></code></pre></div>
-<div class="sourceCode" id="cb28"><pre class="downlit sourceCode r">
+<span><span class="co">#&gt; Error:</span></span>
+<span><span class="co">#&gt; ! object 'random' not found</span></span></code></pre></div>
+<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/stats/confint.html" class="external-link">confint</a></span><span class="op">(</span><span class="va">random</span>, level <span class="op">=</span> <span class="fl">0.99</span>, lb <span class="op">=</span> <span class="cn">FALSE</span>, robust <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
-<span><span class="co">#&gt;                      0.5 %        99.5 %</span></span>
-<span><span class="co">#&gt; alpha[1,1]    5.8658963954  6.8851990165</span></span>
-<span><span class="co">#&gt; alpha[2,1]    5.4826606180  6.4778639138</span></span>
-<span><span class="co">#&gt; alpha[3,1]    0.6628975957  0.6887608571</span></span>
-<span><span class="co">#&gt; alpha[4,1]    0.0384003495  0.0624310372</span></span>
-<span><span class="co">#&gt; alpha[5,1]    0.0986736859  0.1245844102</span></span>
-<span><span class="co">#&gt; alpha[6,1]    0.6961932951  0.7206833922</span></span>
-<span><span class="co">#&gt; tau_sqr[1,1] 29.5771568983 48.0745153342</span></span>
-<span><span class="co">#&gt; tau_sqr[2,1] 15.3230444202 27.2737971495</span></span>
-<span><span class="co">#&gt; tau_sqr[3,1]  0.2659396194  0.4203361232</span></span>
-<span><span class="co">#&gt; tau_sqr[4,1]  0.0223296158  0.1500821139</span></span>
-<span><span class="co">#&gt; tau_sqr[5,1]  0.3474464626  0.5490667381</span></span>
-<span><span class="co">#&gt; tau_sqr[6,1]  0.0721859934  0.2335078604</span></span>
-<span><span class="co">#&gt; tau_sqr[2,2] 27.2674343203 46.8714061210</span></span>
-<span><span class="co">#&gt; tau_sqr[3,2] -0.0215207657  0.1155834271</span></span>
-<span><span class="co">#&gt; tau_sqr[4,2]  0.2860920791  0.4618833371</span></span>
-<span><span class="co">#&gt; tau_sqr[5,2]  0.0001380738  0.1297503065</span></span>
-<span><span class="co">#&gt; tau_sqr[6,2]  0.2643665710  0.4088967116</span></span>
-<span><span class="co">#&gt; tau_sqr[3,3]  0.0165735072  0.0222546171</span></span>
-<span><span class="co">#&gt; tau_sqr[4,3]  0.0033827717  0.0076214013</span></span>
-<span><span class="co">#&gt; tau_sqr[5,3] -0.0001414319  0.0041476128</span></span>
-<span><span class="co">#&gt; tau_sqr[6,3] -0.0028937850  0.0007358613</span></span>
-<span><span class="co">#&gt; tau_sqr[4,4]  0.0147833014  0.0198562700</span></span>
-<span><span class="co">#&gt; tau_sqr[5,4] -0.0074746359 -0.0038133684</span></span>
-<span><span class="co">#&gt; tau_sqr[6,4] -0.0013055689  0.0023689951</span></span>
-<span><span class="co">#&gt; tau_sqr[5,5]  0.0190942058  0.0248528361</span></span>
-<span><span class="co">#&gt; tau_sqr[6,5]  0.0043954678  0.0086127951</span></span>
-<span><span class="co">#&gt; tau_sqr[6,6]  0.0148030883  0.0199071450</span></span>
-<span><span class="co">#&gt; i_sqr[1,1]    0.9998918692  0.9999334700</span></span>
-<span><span class="co">#&gt; i_sqr[2,1]    0.9998857496  0.9999333974</span></span>
-<span><span class="co">#&gt; i_sqr[3,1]    0.9551899880  0.9662513948</span></span>
-<span><span class="co">#&gt; i_sqr[4,1]    0.9515289624  0.9627355367</span></span>
-<span><span class="co">#&gt; i_sqr[5,1]    0.9853860072  0.9890311051</span></span>
-<span><span class="co">#&gt; i_sqr[6,1]    0.9842527834  0.9879462279</span></span></code></pre></div>
+<span><span class="co">#&gt; Error:</span></span>
+<span><span class="co">#&gt; ! object 'random' not found</span></span></code></pre></div>
 </div>
 <div class="section level3">
 <h3 id="profile-likelihood-confidence-intervals">Profile-Likelihood Confidence Intervals<a class="anchor" aria-label="anchor" href="#profile-likelihood-confidence-intervals"></a>
 </h3>
-<div class="sourceCode" id="cb29"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/stats/confint.html" class="external-link">confint</a></span><span class="op">(</span><span class="va">random</span>, level <span class="op">=</span> <span class="fl">0.95</span>, lb <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
-<span><span class="co">#&gt; Error in `[.data.frame`:</span></span>
-<span><span class="co">#&gt; ! undefined columns selected</span></span></code></pre></div>
-<div class="sourceCode" id="cb30"><pre class="downlit sourceCode r">
+<span><span class="co">#&gt; Error:</span></span>
+<span><span class="co">#&gt; ! object 'random' not found</span></span></code></pre></div>
+<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/stats/confint.html" class="external-link">confint</a></span><span class="op">(</span><span class="va">random</span>, level <span class="op">=</span> <span class="fl">0.99</span>, lb <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
-<span><span class="co">#&gt; Error in `[.data.frame`:</span></span>
-<span><span class="co">#&gt; ! undefined columns selected</span></span></code></pre></div>
+<span><span class="co">#&gt; Error:</span></span>
+<span><span class="co">#&gt; ! object 'random' not found</span></span></code></pre></div>
 <ul>
 <li>The fixed part of the random-effects model gives pooled means
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>𝛂</mi><mo>=</mo><mi>𝔼</mi><mrow><mo stretchy="true" form="prefix">[</mo><mrow><mi mathvariant="normal">V</mi><mi mathvariant="normal">e</mi><mi mathvariant="normal">c</mi></mrow><mrow><mo stretchy="true" form="prefix">(</mo><mi>𝛍</mi><mo>,</mo><mi>𝛃</mi><mo stretchy="true" form="postfix">)</mo></mrow><mo stretchy="true" form="postfix">]</mo></mrow></mrow><annotation encoding="application/x-tex">\boldsymbol{\alpha} = \mathbb{E} \left[ \mathrm{Vec} \left( \boldsymbol{\mu}, \boldsymbol{\beta} \right)  \right]</annotation></semantics></math>.</li>
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="bold-italic">𝜶</mi><mo>=</mo><mi mathvariant="double-struck">𝔼</mi><mrow><mo stretchy="true" form="prefix">[</mo><mrow><mi mathvariant="normal">V</mi><mi mathvariant="normal">e</mi><mi mathvariant="normal">c</mi></mrow><mrow><mo stretchy="true" form="prefix">(</mo><mi mathvariant="bold-italic">𝝁</mi><mo>,</mo><mi mathvariant="bold-italic">𝜷</mi><mo stretchy="true" form="postfix">)</mo></mrow><mo stretchy="true" form="postfix">]</mo></mrow></mrow><annotation encoding="application/x-tex">\boldsymbol{\alpha} = \mathbb{E} \left[ \mathrm{Vec} \left( \boldsymbol{\mu}, \boldsymbol{\beta} \right)  \right]</annotation></semantics></math>.</li>
 <li>The random part yields between-person covariances
-(<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msup><mi>𝛕</mi><mn>2</mn></msup><annotation encoding="application/x-tex">\boldsymbol{\tau}^{2}</annotation></semantics></math>)
+(<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msup><mi mathvariant="bold-italic">𝝉</mi><mn>2</mn></msup><annotation encoding="application/x-tex">\boldsymbol{\tau}^{2}</annotation></semantics></math>)
 quantifying heterogeneity in set-point
-(<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>𝛍</mi><annotation encoding="application/x-tex">\boldsymbol{\mu}</annotation></semantics></math>)
+(<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi mathvariant="bold-italic">𝝁</mi><annotation encoding="application/x-tex">\boldsymbol{\mu}</annotation></semantics></math>)
 and dynamics
-(<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>𝛃</mi><annotation encoding="application/x-tex">\boldsymbol{\beta}</annotation></semantics></math>)
+(<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi mathvariant="bold-italic">𝜷</mi><annotation encoding="application/x-tex">\boldsymbol{\beta}</annotation></semantics></math>)
 across individuals.</li>
 </ul>
-<div class="sourceCode" id="cb31"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">means</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/extract.html">extract</a></span><span class="op">(</span><span class="va">random</span>, what <span class="op">=</span> <span class="st">"alpha"</span><span class="op">)</span></span>
+<span><span class="co">#&gt; Error:</span></span>
+<span><span class="co">#&gt; ! object 'random' not found</span></span>
 <span><span class="va">means</span></span>
-<span><span class="co">#&gt; [1] 6.37554771 5.98026227 0.67582923 0.05041569 0.11162905 0.70843834</span></span>
+<span><span class="co">#&gt; Error:</span></span>
+<span><span class="co">#&gt; ! object 'means' not found</span></span>
 <span><span class="va">covariances</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/extract.html">extract</a></span><span class="op">(</span><span class="va">random</span>, what <span class="op">=</span> <span class="st">"tau_sqr"</span><span class="op">)</span></span>
+<span><span class="co">#&gt; Error:</span></span>
+<span><span class="co">#&gt; ! object 'random' not found</span></span>
 <span><span class="va">covariances</span></span>
-<span><span class="co">#&gt;             [,1]        [,2]         [,3]          [,4]         [,5]</span></span>
-<span><span class="co">#&gt; [1,] 38.82583612 21.29842078  0.343137871  0.0862058649  0.448256600</span></span>
-<span><span class="co">#&gt; [2,] 21.29842078 37.06942022  0.047031331  0.3739877081  0.064944190</span></span>
-<span><span class="co">#&gt; [3,]  0.34313787  0.04703133  0.019414062  0.0055020865  0.002003090</span></span>
-<span><span class="co">#&gt; [4,]  0.08620586  0.37398771  0.005502086  0.0173197857 -0.005644002</span></span>
-<span><span class="co">#&gt; [5,]  0.44825660  0.06494419  0.002003090 -0.0056440021  0.021973521</span></span>
-<span><span class="co">#&gt; [6,]  0.15284693  0.33663164 -0.001078962  0.0005317131  0.006504131</span></span>
-<span><span class="co">#&gt;               [,6]</span></span>
-<span><span class="co">#&gt; [1,]  0.1528469269</span></span>
-<span><span class="co">#&gt; [2,]  0.3366316413</span></span>
-<span><span class="co">#&gt; [3,] -0.0010789618</span></span>
-<span><span class="co">#&gt; [4,]  0.0005317131</span></span>
-<span><span class="co">#&gt; [5,]  0.0065041315</span></span>
-<span><span class="co">#&gt; [6,]  0.0173551166</span></span></code></pre></div>
+<span><span class="co">#&gt; Error:</span></span>
+<span><span class="co">#&gt; ! object 'covariances' not found</span></span></code></pre></div>
 <p>Finally, we compare the meta-analytic population estimates to the
 known generating values.</p>
-<div class="sourceCode" id="cb32"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">pop_mean</span></span>
 <span><span class="co">#&gt; [1] 6.28825913 5.98495580 0.65102637 0.06119726 0.11709416 0.69102888</span></span>
 <span><span class="va">pop_cov</span></span>
@@ -987,8 +538,8 @@ known generating values.</p>
 <h2 id="summary">Summary<a class="anchor" aria-label="anchor" href="#summary"></a>
 </h2>
 <p>This vignette demonstrates a two-stage hierarchical estimation
-approach for dynamic systems: 1. individual-level DT-VAR estimation with
-stabilized measurement error, and<br>
+approach for dynamic systems: 1. individual-level DT-VAR estimation,
+and<br>
 2. population-level meta-analysis of person-specific dynamics and
 means.</p>
 </div>

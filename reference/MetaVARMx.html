@@ -8,7 +8,7 @@ between-person covariates and the meta-analyzed parameters/effect sizes.
 This function uses the estimated coefficients and
 sampling variance-covariance matrix
 from each individual fitted using the
-fitDTVARMxID::FitDTVARMxID() function."><meta property="og:description" content="This function estimates fixed-, random-, or mixed-effects
+fitVARMxID::FitVARMxID() function."><meta property="og:description" content="This function estimates fixed-, random-, or mixed-effects
 meta-analytic parameters using per-individual coefficient estimates
 and their sampling variance-covariance matrices.
 Optionally, it fits distal-outcome models
@@ -17,7 +17,7 @@ between-person covariates and the meta-analyzed parameters/effect sizes.
 This function uses the estimated coefficients and
 sampling variance-covariance matrix
 from each individual fitted using the
-fitDTVARMxID::FitDTVARMxID() function."><script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script></head><body>
+fitVARMxID::FitVARMxID() function."><script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script></head><body>
     <a href="#main" class="visually-hidden-focusable">Skip to contents</a>
 
 
@@ -25,7 +25,7 @@ fitDTVARMxID::FitDTVARMxID() function."><script id="MathJax-script" async src="h
 
     <a class="navbar-brand me-2" href="../index.html">metaDyn</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.9004</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.9005</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -63,7 +63,7 @@ between-person covariates and the meta-analyzed parameters/effect sizes.
 This function uses the estimated coefficients and
 sampling variance-covariance matrix
 from each individual fitted using the
-<code><a href="https://github.com/jeksterslab/fitDTVARMxID/reference/FitDTVARMxID.html" class="external-link">fitDTVARMxID::FitDTVARMxID()</a></code> function.</p>
+<code><a href="https://github.com/jeksterslab/fitVARMxID/reference/FitVARMxID.html" class="external-link">fitVARMxID::FitVARMxID()</a></code> function.</p>
     </div>
 
     <div class="section level2">
@@ -119,11 +119,14 @@ from each individual fitted using the
 <span>  int_dyn <span class="op">=</span> <span class="cn">FALSE</span>,</span>
 <span>  cov_meas <span class="op">=</span> <span class="cn">FALSE</span>,</span>
 <span>  cov_dyn <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>  diag_cov <span class="op">=</span> <span class="st">"var"</span>,</span>
 <span>  converged <span class="op">=</span> <span class="cn">TRUE</span>,</span>
 <span>  vanishing_theta <span class="op">=</span> <span class="cn">TRUE</span>,</span>
 <span>  theta_tol <span class="op">=</span> <span class="fl">0.001</span>,</span>
 <span>  robust_v <span class="op">=</span> <span class="cn">FALSE</span>,</span>
 <span>  robust <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>  lb <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>  alpha <span class="op">=</span> <span class="fl">0.05</span>,</span>
 <span>  tries_explore <span class="op">=</span> <span class="fl">100</span>,</span>
 <span>  tries_local <span class="op">=</span> <span class="fl">100</span>,</span>
 <span>  max_attempts <span class="op">=</span> <span class="fl">10</span>,</span>
@@ -144,7 +147,7 @@ from each individual fitted using the
 
 
 <dl><dt id="arg-object">object<a class="anchor" aria-label="anchor" href="#arg-object"></a></dt>
-<dd><p>Output of the <code><a href="https://github.com/jeksterslab/fitDTVARMxID/reference/FitDTVARMxID.html" class="external-link">fitDTVARMxID::FitDTVARMxID()</a></code> function.</p></dd>
+<dd><p>Output of the <code><a href="https://github.com/jeksterslab/fitVARMxID/reference/FitVARMxID.html" class="external-link">fitVARMxID::FitVARMxID()</a></code> function.</p></dd>
 
 
 <dt id="arg-x">x<a class="anchor" aria-label="anchor" href="#arg-x"></a></dt>
@@ -442,6 +445,23 @@ If <code>cov_dyn = FALSE</code>,
 exclude estimates of the process noise covariance matrix.</p></dd>
 
 
+<dt id="arg-diag-cov">diag_cov<a class="anchor" aria-label="anchor" href="#arg-diag-cov"></a></dt>
+<dd><p>Character string.
+If <code>diag_cov = "var"</code>,
+<code>cov_dyn</code> and <code>cov_meas</code>
+are in the original metric variance/covariance metric.
+If <code>diag_cov = "logvar"</code>,
+the diagonal elements of <code>cov_dyn</code> and <code>cov_meas</code>
+are the log of the variances
+and the off-diagonal elements are the elements in <code>L</code>
+in the <code>LDL'</code> decomposition.
+If <code>diag_cov = "softplusvar"</code>,
+the diagonal elements of <code>cov_dyn</code> and <code>cov_meas</code>
+are the softplus of the variances
+and the off-diagonal elements are the elements in <code>L</code>
+in the <code>LDL'</code> decomposition.</p></dd>
+
+
 <dt id="arg-converged">converged<a class="anchor" aria-label="anchor" href="#arg-converged"></a></dt>
 <dd><p>Logical.
 Only include converged cases.</p></dd>
@@ -472,11 +492,20 @@ in stage 1.</p></dd>
 <dt id="arg-robust">robust<a class="anchor" aria-label="anchor" href="#arg-robust"></a></dt>
 <dd><p>Logical.
 If <code>TRUE</code>,
-use robust (sandwich) sampling variance-covariance matrix
-in stage 2.
-If <code>FALSE</code>,
-use normal theory sampling variance-covariance matrix
+calculate robust (sandwich) sampling variance-covariance matrix
 in stage 2.</p></dd>
+
+
+<dt id="arg-lb">lb<a class="anchor" aria-label="anchor" href="#arg-lb"></a></dt>
+<dd><p>Logical.
+If <code>TRUE</code>,
+calculate likelihood based confidence intervals
+in stage 2.</p></dd>
+
+
+<dt id="arg-alpha">alpha<a class="anchor" aria-label="anchor" href="#arg-alpha"></a></dt>
+<dd><p>NUmeric.
+Alpha for test of significance and confidence intervals.</p></dd>
 
 
 <dt id="arg-tries-explore">tries_explore<a class="anchor" aria-label="anchor" href="#arg-tries-explore"></a></dt>
