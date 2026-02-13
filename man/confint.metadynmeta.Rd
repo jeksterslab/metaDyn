@@ -4,7 +4,7 @@
 \alias{confint.metadynmeta}
 \title{Confidence Intervals for the Parameter Estimates}
 \usage{
-\method{confint}{metadynmeta}(object, parm = NULL, level = 0.95, lb = TRUE, robust = FALSE, ...)
+\method{confint}{metadynmeta}(object, parm = NULL, level = 0.95, lb = NULL, robust = NULL, ...)
 }
 \arguments{
 \item{object}{an object of class \code{metadynmeta}.}
@@ -18,11 +18,15 @@ If missing, all parameters are considered.}
 
 \item{lb}{Logical.
 If \code{TRUE}, returns profile likelihood-based confidence intervals.
-If \code{FALSE}, returns Wald confidence intervals.}
+If \code{FALSE}, returns Wald confidence intervals.
+If \code{NULL}, the function will check \code{object}
+if likelihood-based confidence intervals are available.}
 
 \item{robust}{Logical.
 If \code{TRUE}, use robust (sandwich) sampling variance-covariance matrix.
-If \code{FALSE}, use normal theory sampling variance-covariance matrix.}
+If \code{FALSE}, use normal theory sampling variance-covariance matrix.
+If \code{NULL}, the function will check \code{object}
+if robust standard errors are available.}
 
 \item{...}{further arguments.}
 }

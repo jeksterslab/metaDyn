@@ -9,11 +9,11 @@
 #' This function uses the estimated coefficients and
 #' sampling variance-covariance matrix
 #' from each individual fitted using the
-#' [fitDTVARMxID::FitDTVARMxID()] function.
+#' [fitVARMxID::FitVARMxID()] function.
 #'
 #' @author Ivan Jacob Agaloos Pesigan
 #'
-#' @param object Output of the [fitDTVARMxID::FitDTVARMxID()] function.
+#' @param object Output of the [fitVARMxID::FitVARMxID()] function.
 #' @param effects Logical.
 #'   If `effects = TRUE`,
 #'   include estimates of the dynamic effects matrix, if available.
@@ -44,6 +44,20 @@
 #'   include estimates of the process noise covariance matrix, if available.
 #'   If `cov_dyn = FALSE`,
 #'   exclude estimates of the process noise covariance matrix.
+#' @param diag_cov Character string.
+#'   If `diag_cov = "var"`,
+#'   `cov_dyn` and `cov_meas`
+#'   are in the original metric variance/covariance metric.
+#'   If `diag_cov = "logvar"`,
+#'   the diagonal elements of `cov_dyn` and `cov_meas`
+#'   are the log of the variances
+#'   and the off-diagonal elements are the elements in `L`
+#'   in the `LDL'` decomposition.
+#'   If `diag_cov = "softplusvar"`,
+#'   the diagonal elements of `cov_dyn` and `cov_meas`
+#'   are the softplus of the variances
+#'   and the off-diagonal elements are the elements in `L`
+#'   in the `LDL'` decomposition.
 #' @param converged Logical.
 #'   Only include converged cases.
 #' @param vanishing_theta Logical.
@@ -128,11 +142,14 @@ MetaVARMx <- function(object,
                       int_dyn = FALSE,
                       cov_meas = FALSE,
                       cov_dyn = FALSE,
+                      diag_cov = "var",
                       converged = TRUE,
                       vanishing_theta = TRUE,
                       theta_tol = 0.001,
                       robust_v = FALSE,
                       robust = FALSE,
+                      lb = FALSE,
+                      alpha = 0.05,
                       tries_explore = 100,
                       tries_local = 100,
                       max_attempts = 10,
@@ -148,68 +165,56 @@ MetaVARMx <- function(object,
   stopifnot(
     inherits(
       object,
-      "dtvarmxid"
+      "varmxid"
     )
   )
-  if (
-    inherits(
-      object,
-      "dtvarmxid"
-    )
-  ) {
-    y <- fitDTVARMxID:::coef.dtvarmxid(
+  if (converged) {
+    fit_converged <- fitVARMxID:::converged.varmxid(
       object = object,
-      mu_eta = set_point,
-      alpha = int_dyn,
-      beta = effects,
-      nu = int_meas,
-      psi = cov_dyn,
-      theta = cov_meas,
-      converged = converged,
-      grad_tol = grad_tol,
-      hess_tol = hess_tol,
-      vanishing_theta = vanishing_theta,
-      theta_tol = theta_tol
-    )
-    v <- fitDTVARMxID:::vcov.dtvarmxid(
-      object = object,
-      mu_eta = set_point,
-      alpha = int_dyn,
-      beta = effects,
-      nu = int_meas,
-      psi = cov_dyn,
-      theta = cov_meas,
-      converged = converged,
       grad_tol = grad_tol,
       hess_tol = hess_tol,
       vanishing_theta = vanishing_theta,
       theta_tol = theta_tol,
-      robust = robust_v
+      prop = FALSE
     )
-    if (!is.null(x) && converged) {
-      x <- x[
-        fitDTVARMxID:::converged.dtvarmxid(
-          object = object,
-          grad_tol = grad_tol,
-          hess_tol = hess_tol,
-          vanishing_theta = vanishing_theta,
-          theta_tol = theta_tol,
-          prop = FALSE
-        )
-      ]
-    }
-    if (!is.null(z) && converged) {
-      z <- z[
-        fitDTVARMxID:::converged.dtvarmxid(
-          object = object,
-          grad_tol = grad_tol,
-          hess_tol = hess_tol,
-          vanishing_theta = vanishing_theta,
-          theta_tol = theta_tol,
-          prop = FALSE
-        )
-      ]
-    }
+    object$output <- object$output[
+      which(
+        fit_converged
+      )
+    ]
+  }
+  y <- fitVARMxID:::coef.varmxid(
+    object = object,
+    mu = set_point,
+    alpha = int_dyn,
+    beta = effects,
+    nu = int_meas,
+    psi = cov_dyn,
+    theta = cov_meas,
+    diag_cov = diag_cov,
+    converged = FALSE
+  )
+  v <- fitVARMxID:::vcov.varmxid(
+    object = object,
+    mu = set_point,
+    alpha = int_dyn,
+    beta = effects,
+    nu = int_meas,
+    psi = cov_dyn,
+    theta = cov_meas,
+    diag_cov = diag_cov,
+    converged = FALSE,
+    robust = robust_v
+  )
+  if (!is.null(x) && converged) {
+    x <- x[
+      fit_converged
+    ]
+  }
+  if (!is.null(z) && converged) {
+    z <- z[
+      fit_converged
+    ]
   }
   out <- Meta(
     y = y,
@@ -258,6 +263,8 @@ MetaVARMx <- function(object,
     psi_l_ubound = psi_l_ubound,
     check_estimates = check_estimates,
     robust = robust,
+    lb = lb,
+    alpha = alpha,
     tries_explore = tries_explore,
     tries_local = tries_local,
     max_attempts = max_attempts,

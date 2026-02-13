@@ -51,6 +51,8 @@ Meta(
   psi_l_ubound = NULL,
   check_estimates = TRUE,
   robust = FALSE,
+  lb = FALSE,
+  alpha = 0.05,
   tries_explore = 100,
   tries_local = 100,
   max_attempts = 10,
@@ -237,11 +239,16 @@ to replace the original using \code{\link[Matrix:nearPD]{Matrix::nearPD()}}.}
 
 \item{robust}{Logical.
 If \code{TRUE},
-use robust (sandwich) sampling variance-covariance matrix
-in stage 2.
-If \code{FALSE},
-use normal theory sampling variance-covariance matrix
+calculate robust (sandwich) sampling variance-covariance matrix
 in stage 2.}
+
+\item{lb}{Logical.
+If \code{TRUE},
+calculate likelihood based confidence intervals
+in stage 2.}
+
+\item{alpha}{NUmeric.
+Alpha for test of significance and confidence intervals.}
 
 \item{tries_explore}{Integer.
 Number of extra tries for the wide exploration
@@ -298,7 +305,9 @@ a list with the following elements:
 \item{fun}{Function used ("Meta").}
 \item{output}{A fitted OpenMx model.}
 \item{robust}{Output from \code{\link[OpenMx:imxRobustSE]{OpenMx::imxRobustSE()}}
-with argument \code{details = TRUE}.}
+with argument \code{details = TRUE} if \code{robust = TRUE}.}
+\item{lb}{Likelhood-based confidence intervals
+if \code{lb = TRUE}.}
 }
 }
 \description{

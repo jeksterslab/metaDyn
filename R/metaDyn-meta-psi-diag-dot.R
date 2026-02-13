@@ -4,7 +4,8 @@
                          psi_d_values,
                          psi_d_lbound,
                          psi_d_ubound,
-                         psi_d_equal) {
+                         psi_d_equal,
+                         alpha) {
   name <- "psi"
   psi_d <- paste0(
     name,
@@ -26,7 +27,7 @@
     list(
       OpenMx::mxCI(
         reference = name,
-        interval = 0.95
+        interval = 1 - alpha
       )
     )
   )

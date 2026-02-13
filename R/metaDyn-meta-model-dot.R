@@ -47,7 +47,8 @@
                        psi_l_free,
                        psi_l_values,
                        psi_l_lbound,
-                       psi_l_ubound) {
+                       psi_l_ubound,
+                       alpha) {
   if (distal) {
     znames <- paste0(
       "z",
@@ -151,7 +152,8 @@
       psi_l_free = psi_l_free,
       psi_l_values = psi_l_values,
       psi_l_lbound = psi_l_lbound,
-      psi_l_ubound = psi_l_ubound
+      psi_l_ubound = psi_l_ubound,
+      alpha = alpha
     ),
     .MetaExpectedMeans(
       covariate = covariate,

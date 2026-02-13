@@ -148,6 +148,64 @@
       )
     )
   )
+  sigma_log_diag <- OpenMx::mxAlgebraFromString(
+    algString = paste0(
+      name,
+      " - ",
+      "vec2diag(diag2vec(",
+      name,
+      "))",
+      " + ",
+      "vec2diag(log(diag2vec(",
+      name,
+      ")))"
+    ),
+    name = paste0(
+      name,
+      "_",
+      "log_diag"
+    )
+  )
+  out <- c(
+    out,
+    stats::setNames(
+      list(sigma_log_diag),
+      paste0(
+        name,
+        "_",
+        "log_diag"
+      )
+    )
+  )
+  sigma_softplus_diag <- OpenMx::mxAlgebraFromString(
+    algString = paste0(
+      name,
+      " - ",
+      "vec2diag(diag2vec(",
+      name,
+      "))",
+      " + ",
+      "vec2diag(",
+      column_name,
+      ")"
+    ),
+    name = paste0(
+      name,
+      "_",
+      "softplus_diag"
+    )
+  )
+  out <- c(
+    out,
+    stats::setNames(
+      list(sigma_softplus_diag),
+      paste0(
+        name,
+        "_",
+        "softplus_diag"
+      )
+    )
+  )
   free <- matrix(
     data = FALSE,
     nrow = p,
@@ -156,7 +214,7 @@
   diag(free) <- c(
     column[[1]]@free
   )
-  vec <- matrix(
+  vec <- vec_log_diag <- vec_softplus_diag <- matrix(
     data = NA_character_,
     nrow = p,
     ncol = p
@@ -172,12 +230,54 @@
           j,
           "]"
         )
+        vec_log_diag[i, j] <- paste0(
+          name,
+          "_",
+          "log_diag",
+          "[",
+          i,
+          ",",
+          j,
+          "]"
+        )
+        vec_softplus_diag[i, j] <- paste0(
+          name,
+          "_",
+          "softplus_diag",
+          "[",
+          i,
+          ",",
+          j,
+          "]"
+        )
       }
     }
   }
   vec <- unique(
-    stats::na.omit(
-      c(vec)
+    c(
+      stats::na.omit(
+        c(
+          vec
+        )
+      )
+    )
+  )
+  vec_log_diag <- unique(
+    c(
+      stats::na.omit(
+        c(
+          vec_log_diag
+        )
+      )
+    )
+  )
+  vec_softplus_diag <- unique(
+    c(
+      stats::na.omit(
+        c(
+          vec_softplus_diag
+        )
+      )
     )
   )
   q <- length(vec)
@@ -205,6 +305,72 @@
         list(vec_free),
         paste0(
           name,
+          "_vec"
+        )
+      )
+    )
+    vec_log_diag_free <- OpenMx::mxMatrix(
+      type = "Full",
+      nrow = q,
+      ncol = 1,
+      labels = vec_log_diag,
+      dimnames = list(
+        vec_log_diag,
+        paste0(
+          name,
+          "_",
+          "log_diag",
+          "_vec"
+        )
+      ),
+      name = paste0(
+        name,
+        "_",
+        "log_diag",
+        "_vec"
+      )
+    )
+    out <- c(
+      out,
+      stats::setNames(
+        list(vec_log_diag_free),
+        paste0(
+          name,
+          "_",
+          "log_diag",
+          "_vec"
+        )
+      )
+    )
+    vec_softplus_diag_free <- OpenMx::mxMatrix(
+      type = "Full",
+      nrow = q,
+      ncol = 1,
+      labels = vec_softplus_diag,
+      dimnames = list(
+        vec_softplus_diag,
+        paste0(
+          name,
+          "_",
+          "softplus_diag",
+          "_vec"
+        )
+      ),
+      name = paste0(
+        name,
+        "_",
+        "softplus_diag",
+        "_vec"
+      )
+    )
+    out <- c(
+      out,
+      stats::setNames(
+        list(vec_softplus_diag_free),
+        paste0(
+          name,
+          "_",
+          "softplus_diag",
           "_vec"
         )
       )

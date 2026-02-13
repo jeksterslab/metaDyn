@@ -4,21 +4,27 @@
 \alias{print.metadynmeta}
 \title{Print Method for Object of Class \code{metadynmeta}}
 \usage{
-\method{print}{metadynmeta}(x, alpha = 0.05, lb = FALSE, robust = FALSE, digits = 4, ...)
+\method{print}{metadynmeta}(x, alpha = NULL, lb = NULL, robust = NULL, digits = 4, ...)
 }
 \arguments{
 \item{x}{an object of class \code{metadynmeta}.}
 
 \item{alpha}{Numeric vector.
-Significance level \eqn{\alpha}.}
+Significance level \eqn{\alpha}.
+If \code{NULL}, the function will check \code{object}
+for \code{alpha} used in model fitting.}
 
 \item{lb}{Logical.
 If \code{TRUE}, returns profile likelihood-based confidence intervals.
-If \code{FALSE}, returns Wald confidence intervals.}
+If \code{FALSE}, returns Wald confidence intervals.
+If \code{NULL}, the function will check \code{object}
+if likelihood-based confidence intervals are available.}
 
 \item{robust}{Logical.
 If \code{TRUE}, use robust (sandwich) sampling variance-covariance matrix.
-If \code{FALSE}, use normal theory sampling variance-covariance matrix.}
+If \code{FALSE}, use normal theory sampling variance-covariance matrix.
+If \code{NULL}, the function will check \code{object}
+if robust standard errors are available.}
 
 \item{digits}{Integer indicating the number of decimal places to display.}
 

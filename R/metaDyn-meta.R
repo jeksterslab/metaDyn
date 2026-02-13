@@ -135,11 +135,14 @@
 #'   to replace the original using [Matrix::nearPD()].
 #' @param robust Logical.
 #'   If `TRUE`,
-#'   use robust (sandwich) sampling variance-covariance matrix
+#'   calculate robust (sandwich) sampling variance-covariance matrix
 #'   in stage 2.
-#'   If `FALSE`,
-#'   use normal theory sampling variance-covariance matrix
+#' @param lb Logical.
+#'   If `TRUE`,
+#'   calculate likelihood based confidence intervals
 #'   in stage 2.
+#' @param alpha NUmeric.
+#'   Alpha for test of significance and confidence intervals.
 #' @param tries_explore Integer.
 #'   Number of extra tries for the wide exploration
 #'   phase using `OpenMx::mxTryHardWideSearch()` with `checkHess = FALSE`.
@@ -183,7 +186,9 @@
 #'     \item{fun}{Function used ("Meta").}
 #'     \item{output}{A fitted OpenMx model.}
 #'     \item{robust}{Output from [OpenMx::imxRobustSE()]
-#'         with argument `details = TRUE`.}
+#'         with argument `details = TRUE` if `robust = TRUE`.}
+#'     \item{lb}{Likelhood-based confidence intervals
+#'         if `lb = TRUE`.}
 #'   }
 #'
 #' @references
@@ -251,6 +256,8 @@ Meta <- function(y,
                  psi_l_ubound = NULL,
                  check_estimates = TRUE,
                  robust = FALSE,
+                 lb = FALSE,
+                 alpha = 0.05,
                  tries_explore = 100,
                  tries_local = 100,
                  max_attempts = 10,
@@ -352,6 +359,8 @@ Meta <- function(y,
     psi_l_ubound = psi_l_ubound,
     check_estimates = check_estimates,
     robust = robust,
+    lb = lb,
+    alpha = alpha,
     tries_explore = tries_explore,
     tries_local = tries_local,
     max_attempts = max_attempts,
@@ -416,6 +425,7 @@ Meta <- function(y,
     psi_l_values = psi_l_values,
     psi_l_lbound = psi_l_lbound,
     psi_l_ubound = psi_l_ubound,
+    alpha = alpha,
     intervals = TRUE,
     tries_explore = tries_explore,
     tries_local = tries_local,
@@ -450,6 +460,26 @@ Meta <- function(y,
     fun = "Meta",
     output = output,
     robust = sandwich
+  )
+  if (lb) {
+    utils::capture.output(
+      suppressMessages(
+        suppressWarnings(
+          ci <- .CILBMeta(
+            object = out,
+            alpha = alpha
+          )
+        )
+      )
+    )
+  } else {
+    ci <- NULL
+  }
+  out <- c(
+    out,
+    list(
+      lb = ci
+    )
   )
   class(out) <- c(
     "metadynmeta",

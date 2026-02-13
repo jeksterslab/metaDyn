@@ -17,11 +17,11 @@ lapply(
     }
     if (identical(Sys.getenv("GITHUB_TEST"), "true")) {
       ci <- TRUE
-      n <- 500
+      n <- 1000
       tol <- 0.10
     } else {
       ci <- FALSE
-      n <- 100
+      n <- 500
       tol <- 0.50
     }
     testthat::test_that(

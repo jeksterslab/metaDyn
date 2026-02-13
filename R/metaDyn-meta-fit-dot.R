@@ -48,6 +48,7 @@
                      psi_l_values,
                      psi_l_lbound,
                      psi_l_ubound,
+                     alpha,
                      intervals,
                      tries_explore,
                      tries_local,
@@ -135,7 +136,8 @@
     psi_l_free = psi_l_free,
     psi_l_values = psi_l_values,
     psi_l_lbound = psi_l_lbound,
-    psi_l_ubound = psi_l_ubound
+    psi_l_ubound = psi_l_ubound,
+    alpha = alpha
   )
   model <- OpenMx::mxTryHard(
     model = model,

@@ -8,7 +8,8 @@
                            tau_sqr_l_free,
                            tau_sqr_l_values,
                            tau_sqr_l_lbound,
-                           tau_sqr_l_ubound) {
+                           tau_sqr_l_ubound,
+                           alpha) {
   name <- "tau_sqr"
   tau_sqr_d <- paste0(
     name,
@@ -46,7 +47,7 @@
     list(
       OpenMx::mxCI(
         reference = name,
-        interval = 0.95
+        interval = 1 - alpha
       )
     )
   )

@@ -3,7 +3,8 @@
                        alpha_free,
                        alpha_values,
                        alpha_lbound,
-                       alpha_ubound) {
+                       alpha_ubound,
+                       alpha) {
   c(
     .MxHelperFullMxMatrix(
       m = p,
@@ -20,7 +21,7 @@
     list(
       OpenMx::mxCI(
         reference = "alpha",
-        interval = 0.95
+        interval = 1 - alpha
       )
     )
   )

@@ -1,213 +1,101 @@
 .MetaExtract <- function(object) {
-  p <- object$args$p
-  m <- object$args$m
-  r <- object$args$r
-  coefs <- summary(object)
-  parnames <- rownames(
-    coefs
+  mat_names <- c(
+    names(object$output$algebras),
+    names(object$output$matrices)
   )
-  coefs <- coefs[, 1]
-  names(coefs) <- parnames
-  out <- list()
-  alpha_names <- parnames[
-    grep(
-      pattern = "^alpha",
-      x = parnames
+  if ("alpha" %in% mat_names) {
+    alpha <- OpenMx::mxEvalByName(
+      name = "alpha",
+      model = object$output,
+      compute = TRUE
     )
-  ]
-  if (length(alpha_names) > 0) {
-    out <- c(
-      out,
-      alpha = list(unname(coefs[alpha_names]))
-    )
+  } else {
+    alpha <- NULL
   }
-  beta_names <- parnames[
-    grep(
-      pattern = "^beta",
-      x = parnames
+  if ("beta" %in% mat_names) {
+    beta <- OpenMx::mxEvalByName(
+      name = "beta",
+      model = object$output,
+      compute = TRUE
     )
-  ]
-  if (length(beta_names) > 0) {
-    beta <- matrix(
-      data = 0,
-      nrow = p,
-      ncol = m
-    )
-    for (j in seq_len(m)) {
-      for (i in seq_len(p)) {
-        beta_ij <- paste0("beta[", i, ",", j, "]")
-        if (
-          paste0("beta[", i, ",", j, "]") %in% beta_names
-        ) {
-          beta[i, j] <- coefs[beta_ij]
-        }
-      }
-    }
-    out <- c(
-      out,
-      beta = list(beta)
-    )
+  } else {
+    beta <- NULL
   }
-  gamma_names <- parnames[
-    grep(
-      pattern = "^gamma",
-      x = parnames
+  if ("gamma" %in% mat_names) {
+    gamma <- OpenMx::mxEvalByName(
+      name = "gamma",
+      model = object$output,
+      compute = TRUE
     )
-  ]
-  if (length(gamma_names) > 0) {
-    gamma <- matrix(
-      data = 0,
-      nrow = p,
-      ncol = m
-    )
-    for (j in seq_len(m)) {
-      for (i in seq_len(p)) {
-        gamma_ij <- paste0("gamma[", i, ",", j, "]")
-        if (
-          paste0("gamma[", i, ",", j, "]") %in% gamma_names
-        ) {
-          gamma[i, j] <- coefs[gamma_ij]
-        }
-      }
-    }
-    out <- c(
-      out,
-      gamma = list(gamma)
-    )
+  } else {
+    gamma <- NULL
   }
-  tau_sqr_names <- parnames[
-    grep(
-      pattern = "^tau_sqr",
-      x = parnames
+  if ("kappa" %in% mat_names) {
+    kappa <- OpenMx::mxEvalByName(
+      name = "kappa",
+      model = object$output,
+      compute = TRUE
     )
-  ]
-  if (length(tau_sqr_names) > 0) {
-    tau_sqr <- matrix(
-      data = 0,
-      nrow = p,
-      ncol = p
-    )
-    for (j in seq_len(p)) {
-      for (i in seq_len(p)) {
-        tau_sqr_ij <- paste0("tau_sqr[", i, ",", j, "]")
-        if (
-          paste0("tau_sqr[", i, ",", j, "]") %in% tau_sqr_names
-        ) {
-          tau_sqr[i, j] <- coefs[tau_sqr_ij]
-          tau_sqr[j, i] <- tau_sqr[i, j]
-        }
-      }
-    }
-    out <- c(
-      out,
-      tau_sqr = list(tau_sqr)
-    )
+  } else {
+    kappa <- NULL
   }
-  i_sqr_names <- parnames[
-    grep(
-      pattern = "^i_sqr",
-      x = parnames
+  if ("phi" %in% mat_names) {
+    phi <- OpenMx::mxEvalByName(
+      name = "phi",
+      model = object$output,
+      compute = TRUE
     )
-  ]
-  if (length(i_sqr_names) > 0) {
-    out <- c(
-      out,
-      i_sqr = list(unname(coefs[i_sqr_names]))
-    )
+  } else {
+    phi <- NULL
   }
-  kappa_names <- parnames[
-    grep(
-      pattern = "^kappa",
-      x = parnames
+  if ("omega" %in% mat_names) {
+    omega <- OpenMx::mxEvalByName(
+      name = "omega",
+      model = object$output,
+      compute = TRUE
     )
-  ]
-  if (length(kappa_names) > 0) {
-    out <- c(
-      out,
-      kappa = list(unname(coefs[kappa_names]))
-    )
+  } else {
+    omega <- NULL
   }
-  phi_names <- parnames[
-    grep(
-      pattern = "^phi",
-      x = parnames
+  if ("psi" %in% mat_names) {
+    psi <- OpenMx::mxEvalByName(
+      name = "psi",
+      model = object$output,
+      compute = TRUE
     )
-  ]
-  if (length(phi_names) > 0) {
-    phi <- matrix(
-      data = 0,
-      nrow = r,
-      ncol = p
-    )
-    for (j in seq_len(p)) {
-      for (i in seq_len(r)) {
-        phi_ij <- paste0("phi[", i, ",", j, "]")
-        if (
-          paste0("phi[", i, ",", j, "]") %in% phi_names
-        ) {
-          phi[i, j] <- coefs[phi_ij]
-        }
-      }
-    }
-    out <- c(
-      out,
-      phi = list(phi)
-    )
+    colnames(psi) <- rownames(psi) <- rownames(phi)
+  } else {
+    psi <- NULL
   }
-  psi_names <- parnames[
-    grep(
-      pattern = "^psi",
-      x = parnames
+  if ("tau_sqr" %in% mat_names) {
+    tau_sqr <- OpenMx::mxEvalByName(
+      name = "tau_sqr",
+      model = object$output,
+      compute = TRUE
     )
-  ]
-  if (length(psi_names) > 0) {
-    psi <- matrix(
-      data = 0,
-      nrow = r,
-      ncol = r
-    )
-    for (j in seq_len(r)) {
-      for (i in seq_len(r)) {
-        psi_ij <- paste0("psi[", i, ",", j, "]")
-        if (
-          paste0("psi[", i, ",", j, "]") %in% psi_names
-        ) {
-          psi[i, j] <- coefs[psi_ij]
-          psi[j, i] <- psi[i, j]
-        }
-      }
-    }
-    out <- c(
-      out,
-      psi = list(psi)
-    )
+    colnames(tau_sqr) <- rownames(tau_sqr) <- rownames(alpha)
+  } else {
+    tau_sqr <- NULL
   }
-  omega_names <- parnames[
-    grep(
-      pattern = "^omega",
-      x = parnames
+  if ("i_sqr" %in% mat_names) {
+    i_sqr <- OpenMx::mxEvalByName(
+      name = "i_sqr",
+      model = object$output,
+      compute = TRUE
     )
-  ]
-  if (length(omega_names) > 0) {
-    omega <- matrix(
-      data = 0,
-      nrow = r,
-      ncol = m
-    )
-    for (j in seq_len(m)) {
-      for (i in seq_len(r)) {
-        omega_ij <- paste0("omega[", i, ",", j, "]")
-        if (
-          paste0("omega[", i, ",", j, "]") %in% omega_names
-        ) {
-          omega[i, j] <- coefs[omega_ij]
-        }
-      }
-    }
-    out <- c(
-      out,
-      omega = list(omega)
-    )
+    rownames(i_sqr) <- rownames(alpha)
+  } else {
+    i_sqr <- NULL
   }
-  out
+  list(
+    alpha = alpha,
+    beta = beta,
+    gamma = gamma,
+    kappa = kappa,
+    phi = phi,
+    omega = omega,
+    psi = psi,
+    tau_sqr = tau_sqr,
+    i_sqr = i_sqr
+  )
 }

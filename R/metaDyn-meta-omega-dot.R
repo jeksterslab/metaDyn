@@ -5,7 +5,8 @@
                        omega_values,
                        omega_free,
                        omega_lbound,
-                       omega_ubound) {
+                       omega_ubound,
+                       alpha) {
   c(
     .MxHelperFullMxMatrix(
       m = r,
@@ -22,7 +23,7 @@
     list(
       OpenMx::mxCI(
         reference = "omega",
-        interval = 0.95
+        interval = 1 - alpha
       )
     )
   )
