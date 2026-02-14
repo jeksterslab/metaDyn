@@ -60,7 +60,7 @@
                         <h4 data-toc-skip class="author">Ivan Jacob
 Agaloos Pesigan</h4>
             
-            <h4 data-toc-skip class="date">2026-02-13</h4>
+            <h4 data-toc-skip class="date">2026-02-14</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/jeksterslab/metaDyn/blob/main/vignettes/adaptive-recovery-1000.Rmd"><code>vignettes/adaptive-recovery-1000.Rmd</code></a></small>
       <div class="d-none name"><code>adaptive-recovery-1000.Rmd</code></div>
@@ -406,20 +406,27 @@ positive definite covariance matrix. It returns:<br>
 </h4>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">fit</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="co">#&gt;                           mu[1,1]  mu[2,1] beta[1,1] beta[2,1]  beta[1,2]</span></span>
-<span><span class="co">#&gt; FitVARMxID_VAR_ID1.Rds -0.4470799 1.775598 0.5531484 0.1821890 -0.4865766</span></span>
-<span><span class="co">#&gt; FitVARMxID_VAR_ID2.Rds  0.2016137 6.128403 0.4856044 0.4324578 -0.2342551</span></span>
-<span><span class="co">#&gt; FitVARMxID_VAR_ID3.Rds  0.4187040 4.140062 0.6349004 0.3955089 -0.2571511</span></span>
-<span><span class="co">#&gt; FitVARMxID_VAR_ID4.Rds  1.1066122 4.011878 0.4412302 0.1876689 -0.2929560</span></span>
-<span><span class="co">#&gt; FitVARMxID_VAR_ID5.Rds -0.8929959 4.187346 0.5637802 0.3594945 -0.2552496</span></span>
-<span><span class="co">#&gt; FitVARMxID_VAR_ID6.Rds  1.1913094 2.506287 0.3311835 0.2771638 -0.1528641</span></span>
-<span><span class="co">#&gt;                        beta[2,2]  psi[1,1]      psi[2,1]  psi[2,2]</span></span>
-<span><span class="co">#&gt; FitVARMxID_VAR_ID1.Rds 0.6941608 0.1270865  0.0002465969 0.1630955</span></span>
-<span><span class="co">#&gt; FitVARMxID_VAR_ID2.Rds 0.7618022 0.1637371 -0.0555609201 0.2065563</span></span>
-<span><span class="co">#&gt; FitVARMxID_VAR_ID3.Rds 0.8874509 0.1847909 -0.0623623962 0.1554686</span></span>
-<span><span class="co">#&gt; FitVARMxID_VAR_ID4.Rds 0.5109005 0.1610160 -0.0251828176 0.1635754</span></span>
-<span><span class="co">#&gt; FitVARMxID_VAR_ID5.Rds 0.8031242 0.2677661 -0.0539249860 0.1732290</span></span>
-<span><span class="co">#&gt; FitVARMxID_VAR_ID6.Rds 0.6627695 0.1738240 -0.0146232277 0.2070505</span></span></code></pre></div>
+<span><span class="co">#&gt;                               mu[1,1]    mu[2,1] beta[1,1]    beta[2,1]</span></span>
+<span><span class="co">#&gt; FitVARMxID_DTVAR_ID8.Rds  -10.8725150 13.2753321 0.5999154 -0.021652672</span></span>
+<span><span class="co">#&gt; FitVARMxID_DTVAR_ID13.Rds  -0.4172178  3.4161633 0.3749327 -0.229750765</span></span>
+<span><span class="co">#&gt; FitVARMxID_DTVAR_ID16.Rds   0.1081209  1.5922094 0.4196905  0.246371262</span></span>
+<span><span class="co">#&gt; FitVARMxID_DTVAR_ID22.Rds  -0.2804296  0.8931681 0.6511779  0.167247071</span></span>
+<span><span class="co">#&gt; FitVARMxID_DTVAR_ID40.Rds  -0.3770750  8.4360652 0.5779503  0.007144171</span></span>
+<span><span class="co">#&gt; FitVARMxID_DTVAR_ID45.Rds   0.4386009  2.0355079 0.4963024 -0.004525945</span></span>
+<span><span class="co">#&gt;                             beta[1,2] beta[2,2]  psi[1,1]     psi[2,1]</span></span>
+<span><span class="co">#&gt; FitVARMxID_DTVAR_ID8.Rds  -0.40180114 0.8752754 0.1566801 -0.042909396</span></span>
+<span><span class="co">#&gt; FitVARMxID_DTVAR_ID13.Rds -0.03729081 0.4894958 0.2251528 -0.021639800</span></span>
+<span><span class="co">#&gt; FitVARMxID_DTVAR_ID16.Rds -0.65100984 0.4747552 0.1535084 -0.001637192</span></span>
+<span><span class="co">#&gt; FitVARMxID_DTVAR_ID22.Rds -0.31722382 0.5444635 0.1894774 -0.037840471</span></span>
+<span><span class="co">#&gt; FitVARMxID_DTVAR_ID40.Rds -0.17448884 0.7889346 0.2346052 -0.066415780</span></span>
+<span><span class="co">#&gt; FitVARMxID_DTVAR_ID45.Rds -0.36632376 0.3882658 0.1919536 -0.058959470</span></span>
+<span><span class="co">#&gt;                            psi[2,2]</span></span>
+<span><span class="co">#&gt; FitVARMxID_DTVAR_ID8.Rds  0.1850109</span></span>
+<span><span class="co">#&gt; FitVARMxID_DTVAR_ID13.Rds 0.1640979</span></span>
+<span><span class="co">#&gt; FitVARMxID_DTVAR_ID16.Rds 0.1595873</span></span>
+<span><span class="co">#&gt; FitVARMxID_DTVAR_ID22.Rds 0.1641286</span></span>
+<span><span class="co">#&gt; FitVARMxID_DTVAR_ID40.Rds 0.1897148</span></span>
+<span><span class="co">#&gt; FitVARMxID_DTVAR_ID45.Rds 0.1548035</span></span></code></pre></div>
 </div>
 <div class="section level4">
 <h4 id="proportion-of-converged-cases">Proportion of converged cases<a class="anchor" aria-label="anchor" href="#proportion-of-converged-cases"></a>
@@ -429,7 +436,7 @@ positive definite covariance matrix. It returns:<br>
 <span>  <span class="va">fit</span>,</span>
 <span>  prop <span class="op">=</span> <span class="cn">TRUE</span></span>
 <span><span class="op">)</span></span>
-<span><span class="co">#&gt; [1] 0.998</span></span></code></pre></div>
+<span><span class="co">#&gt; [1] 0.125</span></span></code></pre></div>
 </div>
 </div>
 </div>
@@ -451,48 +458,277 @@ estimation uncertainty and between-person heterogeneity.</p>
 <span>  robust <span class="op">=</span> <span class="cn">TRUE</span>,</span>
 <span>  lb <span class="op">=</span> <span class="cn">TRUE</span>,</span>
 <span>  ncores <span class="op">=</span> <span class="fu">parallel</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/r/parallel/detectCores.html" class="external-link">detectCores</a></span><span class="op">(</span><span class="op">)</span></span>
-<span><span class="op">)</span></span>
-<span><span class="co">#&gt; Error in `[.data.frame`:</span></span>
-<span><span class="co">#&gt; ! undefined columns selected</span></span></code></pre></div>
+<span><span class="op">)</span></span></code></pre></div>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">random</span><span class="op">)</span></span>
-<span><span class="co">#&gt; Error:</span></span>
-<span><span class="co">#&gt; ! object 'random' not found</span></span></code></pre></div>
+<span><span class="co">#&gt; Call:</span></span>
+<span><span class="co">#&gt; MetaVARMx(object = fit, effects = TRUE, set_point = TRUE, robust_v = FALSE, </span></span>
+<span><span class="co">#&gt;     robust = TRUE, lb = TRUE, ncores = parallel::detectCores())</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; Status code = 0</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; CI type = "lb"</span></span>
+<span><span class="co">#&gt;                  est    2.5%   97.5%</span></span>
+<span><span class="co">#&gt; alpha[1,1]    0.4703  0.2184  0.7219</span></span>
+<span><span class="co">#&gt; alpha[2,1]    2.2983  1.9738  2.6231</span></span>
+<span><span class="co">#&gt; alpha[3,1]    0.5925  0.5596  0.6249</span></span>
+<span><span class="co">#&gt; alpha[4,1]    0.2464  0.2186  0.2739</span></span>
+<span><span class="co">#&gt; alpha[5,1]   -0.3395 -0.3680 -0.3113</span></span>
+<span><span class="co">#&gt; alpha[6,1]    0.6622  0.6324  0.6915</span></span>
+<span><span class="co">#&gt; tau_sqr[1,1]  1.9965  1.5524  2.6138</span></span>
+<span><span class="co">#&gt; tau_sqr[2,1] -0.4550 -0.9859  0.0114</span></span>
+<span><span class="co">#&gt; tau_sqr[3,1]  0.0513  0.0066  0.1021</span></span>
+<span><span class="co">#&gt; tau_sqr[4,1]  0.0252 -0.0131  0.0670</span></span>
+<span><span class="co">#&gt; tau_sqr[5,1]  0.0581  0.0198  0.1034</span></span>
+<span><span class="co">#&gt; tau_sqr[6,1] -0.0796 -0.1292 -0.0402</span></span>
+<span><span class="co">#&gt; tau_sqr[2,2]  3.3266  2.6037  4.3297</span></span>
+<span><span class="co">#&gt; tau_sqr[3,2]  0.0206 -0.0402  0.0837</span></span>
+<span><span class="co">#&gt; tau_sqr[4,2]  0.0208 -0.0305  0.0747</span></span>
+<span><span class="co">#&gt; tau_sqr[5,2]  0.1010  0.0519  0.1617</span></span>
+<span><span class="co">#&gt; tau_sqr[6,2]  0.1162  0.0662  0.1809</span></span>
+<span><span class="co">#&gt; tau_sqr[3,3]  0.0288  0.0216  0.0389</span></span>
+<span><span class="co">#&gt; tau_sqr[4,3]  0.0093  0.0044  0.0153</span></span>
+<span><span class="co">#&gt; tau_sqr[5,3] -0.0024 -0.0078  0.0028</span></span>
+<span><span class="co">#&gt; tau_sqr[6,3] -0.0034 -0.0092  0.0018</span></span>
+<span><span class="co">#&gt; tau_sqr[4,4]  0.0196  0.0145  0.0268</span></span>
+<span><span class="co">#&gt; tau_sqr[5,4]  0.0020 -0.0025  0.0066</span></span>
+<span><span class="co">#&gt; tau_sqr[6,4]  0.0040 -0.0004  0.0090</span></span>
+<span><span class="co">#&gt; tau_sqr[5,5]  0.0195  0.0143  0.0267</span></span>
+<span><span class="co">#&gt; tau_sqr[6,5]  0.0059  0.0014  0.0109</span></span>
+<span><span class="co">#&gt; tau_sqr[6,6]  0.0222  0.0164  0.0303</span></span>
+<span><span class="co">#&gt; i_sqr[1,1]    0.9965  0.9955  0.9973</span></span>
+<span><span class="co">#&gt; i_sqr[2,1]    0.9986  0.9982  0.9989</span></span>
+<span><span class="co">#&gt; i_sqr[3,1]    0.8849  0.8521  0.9122</span></span>
+<span><span class="co">#&gt; i_sqr[4,1]    0.8924  0.8619  0.9179</span></span>
+<span><span class="co">#&gt; i_sqr[5,1]    0.8393  0.7946  0.8768</span></span>
+<span><span class="co">#&gt; i_sqr[6,1]    0.8775  0.8428  0.9063</span></span></code></pre></div>
 <div class="section level3">
 <h3 id="normal-theory-confidence-intervals">Normal Theory Confidence Intervals<a class="anchor" aria-label="anchor" href="#normal-theory-confidence-intervals"></a>
 </h3>
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/stats/confint.html" class="external-link">confint</a></span><span class="op">(</span><span class="va">random</span>, level <span class="op">=</span> <span class="fl">0.95</span>, lb <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
-<span><span class="co">#&gt; Error:</span></span>
-<span><span class="co">#&gt; ! object 'random' not found</span></span></code></pre></div>
+<span><span class="co">#&gt;                      2.5 %       97.5 %</span></span>
+<span><span class="co">#&gt; alpha[1,1]    0.2116343793  0.729038073</span></span>
+<span><span class="co">#&gt; alpha[2,1]    1.9676942830  2.628947785</span></span>
+<span><span class="co">#&gt; alpha[3,1]    0.5595410489  0.625538740</span></span>
+<span><span class="co">#&gt; alpha[4,1]    0.2181862720  0.274594860</span></span>
+<span><span class="co">#&gt; alpha[5,1]   -0.3679628778 -0.310950033</span></span>
+<span><span class="co">#&gt; alpha[6,1]    0.6324552527  0.691990403</span></span>
+<span><span class="co">#&gt; tau_sqr[1,1]  0.0755529303  3.917420927</span></span>
+<span><span class="co">#&gt; tau_sqr[2,1] -2.3435318319  1.433575162</span></span>
+<span><span class="co">#&gt; tau_sqr[3,1]  0.0128384852  0.089775227</span></span>
+<span><span class="co">#&gt; tau_sqr[4,1] -0.0233966442  0.073889850</span></span>
+<span><span class="co">#&gt; tau_sqr[5,1]  0.0205164793  0.095685135</span></span>
+<span><span class="co">#&gt; tau_sqr[6,1] -0.1309153598 -0.028343209</span></span>
+<span><span class="co">#&gt; tau_sqr[2,2]  1.2390904391  5.414095869</span></span>
+<span><span class="co">#&gt; tau_sqr[3,2] -0.0310184360  0.072171852</span></span>
+<span><span class="co">#&gt; tau_sqr[4,2] -0.0425485715  0.084110841</span></span>
+<span><span class="co">#&gt; tau_sqr[5,2]  0.0420552084  0.159951186</span></span>
+<span><span class="co">#&gt; tau_sqr[6,2]  0.0582894810  0.174130184</span></span>
+<span><span class="co">#&gt; tau_sqr[3,3]  0.0215145468  0.036005306</span></span>
+<span><span class="co">#&gt; tau_sqr[4,3]  0.0037855813  0.014888127</span></span>
+<span><span class="co">#&gt; tau_sqr[5,3] -0.0076325097  0.002873115</span></span>
+<span><span class="co">#&gt; tau_sqr[6,3] -0.0087652737  0.001904788</span></span>
+<span><span class="co">#&gt; tau_sqr[4,4]  0.0133354892  0.025925473</span></span>
+<span><span class="co">#&gt; tau_sqr[5,4] -0.0024372062  0.006414793</span></span>
+<span><span class="co">#&gt; tau_sqr[6,4] -0.0001646975  0.008169078</span></span>
+<span><span class="co">#&gt; tau_sqr[5,5]  0.0137854730  0.025205253</span></span>
+<span><span class="co">#&gt; tau_sqr[6,5]  0.0018470111  0.009960113</span></span>
+<span><span class="co">#&gt; tau_sqr[6,6]  0.0152260377  0.029183623</span></span>
+<span><span class="co">#&gt; i_sqr[1,1]    0.9931588942  0.999856006</span></span>
+<span><span class="co">#&gt; i_sqr[2,1]    0.9977997007  0.999339888</span></span>
+<span><span class="co">#&gt; i_sqr[3,1]    0.8593227849  0.910557799</span></span>
+<span><span class="co">#&gt; i_sqr[4,1]    0.8619118500  0.922872024</span></span>
+<span><span class="co">#&gt; i_sqr[5,1]    0.7985599532  0.880011949</span></span>
+<span><span class="co">#&gt; i_sqr[6,1]    0.8463968198  0.908524886</span></span></code></pre></div>
 <div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/stats/confint.html" class="external-link">confint</a></span><span class="op">(</span><span class="va">random</span>, level <span class="op">=</span> <span class="fl">0.99</span>, lb <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
-<span><span class="co">#&gt; Error:</span></span>
-<span><span class="co">#&gt; ! object 'random' not found</span></span></code></pre></div>
+<span><span class="co">#&gt;                      0.5 %       99.5 %</span></span>
+<span><span class="co">#&gt; alpha[1,1]    0.1303443675  0.810328085</span></span>
+<span><span class="co">#&gt; alpha[2,1]    1.8638038282  2.732838240</span></span>
+<span><span class="co">#&gt; alpha[3,1]    0.5491720601  0.635907729</span></span>
+<span><span class="co">#&gt; alpha[4,1]    0.2093238405  0.283457291</span></span>
+<span><span class="co">#&gt; alpha[5,1]   -0.3769202448 -0.301992666</span></span>
+<span><span class="co">#&gt; alpha[6,1]    0.6231016026  0.701344053</span></span>
+<span><span class="co">#&gt; tau_sqr[1,1] -0.5280482781  4.521022135</span></span>
+<span><span class="co">#&gt; tau_sqr[2,1] -2.9369583496  2.027001680</span></span>
+<span><span class="co">#&gt; tau_sqr[3,1]  0.0007508470  0.101862865</span></span>
+<span><span class="co">#&gt; tau_sqr[4,1] -0.0386814602  0.089174667</span></span>
+<span><span class="co">#&gt; tau_sqr[5,1]  0.0087066275  0.107494987</span></span>
+<span><span class="co">#&gt; tau_sqr[6,1] -0.1470306127 -0.012227956</span></span>
+<span><span class="co">#&gt; tau_sqr[2,2]  0.5831495466  6.070036761</span></span>
+<span><span class="co">#&gt; tau_sqr[3,2] -0.0472308053  0.088384221</span></span>
+<span><span class="co">#&gt; tau_sqr[4,2] -0.0624482075  0.104010477</span></span>
+<span><span class="co">#&gt; tau_sqr[5,2]  0.0235324079  0.178473987</span></span>
+<span><span class="co">#&gt; tau_sqr[6,2]  0.0400895874  0.192330078</span></span>
+<span><span class="co">#&gt; tau_sqr[3,3]  0.0192378835  0.038281969</span></span>
+<span><span class="co">#&gt; tau_sqr[4,3]  0.0020412449  0.016632464</span></span>
+<span><span class="co">#&gt; tau_sqr[5,3] -0.0092830630  0.004523668</span></span>
+<span><span class="co">#&gt; tau_sqr[6,3] -0.0104416619  0.003581176</span></span>
+<span><span class="co">#&gt; tau_sqr[4,4]  0.0113574594  0.027903503</span></span>
+<span><span class="co">#&gt; tau_sqr[5,4] -0.0038279561  0.007805543</span></span>
+<span><span class="co">#&gt; tau_sqr[6,4] -0.0014740285  0.009478409</span></span>
+<span><span class="co">#&gt; tau_sqr[5,5]  0.0119912955  0.026999431</span></span>
+<span><span class="co">#&gt; tau_sqr[6,5]  0.0005723504  0.011234774</span></span>
+<span><span class="co">#&gt; tau_sqr[6,6]  0.0130331421  0.031376518</span></span>
+<span><span class="co">#&gt; i_sqr[1,1]    0.9921067017  1.000908199</span></span>
+<span><span class="co">#&gt; i_sqr[2,1]    0.9975577197  0.999581869</span></span>
+<span><span class="co">#&gt; i_sqr[3,1]    0.8512731808  0.918607404</span></span>
+<span><span class="co">#&gt; i_sqr[4,1]    0.8523343124  0.932449562</span></span>
+<span><span class="co">#&gt; i_sqr[5,1]    0.7857629172  0.892808985</span></span>
+<span><span class="co">#&gt; i_sqr[6,1]    0.8366357932  0.918285913</span></span></code></pre></div>
 </div>
 <div class="section level3">
 <h3 id="robust-confidence-intervals">Robust Confidence Intervals<a class="anchor" aria-label="anchor" href="#robust-confidence-intervals"></a>
 </h3>
 <div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/stats/confint.html" class="external-link">confint</a></span><span class="op">(</span><span class="va">random</span>, level <span class="op">=</span> <span class="fl">0.95</span>, lb <span class="op">=</span> <span class="cn">FALSE</span>, robust <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
-<span><span class="co">#&gt; Error:</span></span>
-<span><span class="co">#&gt; ! object 'random' not found</span></span></code></pre></div>
+<span><span class="co">#&gt;                      2.5 %       97.5 %</span></span>
+<span><span class="co">#&gt; alpha[1,1]    0.2116343793  0.729038073</span></span>
+<span><span class="co">#&gt; alpha[2,1]    1.9676942830  2.628947785</span></span>
+<span><span class="co">#&gt; alpha[3,1]    0.5595410489  0.625538740</span></span>
+<span><span class="co">#&gt; alpha[4,1]    0.2181862720  0.274594860</span></span>
+<span><span class="co">#&gt; alpha[5,1]   -0.3679628778 -0.310950033</span></span>
+<span><span class="co">#&gt; alpha[6,1]    0.6324552527  0.691990403</span></span>
+<span><span class="co">#&gt; tau_sqr[1,1]  0.0755529303  3.917420927</span></span>
+<span><span class="co">#&gt; tau_sqr[2,1] -2.3435318319  1.433575162</span></span>
+<span><span class="co">#&gt; tau_sqr[3,1]  0.0128384852  0.089775227</span></span>
+<span><span class="co">#&gt; tau_sqr[4,1] -0.0233966442  0.073889850</span></span>
+<span><span class="co">#&gt; tau_sqr[5,1]  0.0205164793  0.095685135</span></span>
+<span><span class="co">#&gt; tau_sqr[6,1] -0.1309153598 -0.028343209</span></span>
+<span><span class="co">#&gt; tau_sqr[2,2]  1.2390904391  5.414095869</span></span>
+<span><span class="co">#&gt; tau_sqr[3,2] -0.0310184360  0.072171852</span></span>
+<span><span class="co">#&gt; tau_sqr[4,2] -0.0425485715  0.084110841</span></span>
+<span><span class="co">#&gt; tau_sqr[5,2]  0.0420552084  0.159951186</span></span>
+<span><span class="co">#&gt; tau_sqr[6,2]  0.0582894810  0.174130184</span></span>
+<span><span class="co">#&gt; tau_sqr[3,3]  0.0215145468  0.036005306</span></span>
+<span><span class="co">#&gt; tau_sqr[4,3]  0.0037855813  0.014888127</span></span>
+<span><span class="co">#&gt; tau_sqr[5,3] -0.0076325097  0.002873115</span></span>
+<span><span class="co">#&gt; tau_sqr[6,3] -0.0087652737  0.001904788</span></span>
+<span><span class="co">#&gt; tau_sqr[4,4]  0.0133354892  0.025925473</span></span>
+<span><span class="co">#&gt; tau_sqr[5,4] -0.0024372062  0.006414793</span></span>
+<span><span class="co">#&gt; tau_sqr[6,4] -0.0001646975  0.008169078</span></span>
+<span><span class="co">#&gt; tau_sqr[5,5]  0.0137854730  0.025205253</span></span>
+<span><span class="co">#&gt; tau_sqr[6,5]  0.0018470111  0.009960113</span></span>
+<span><span class="co">#&gt; tau_sqr[6,6]  0.0152260377  0.029183623</span></span>
+<span><span class="co">#&gt; i_sqr[1,1]    0.9931588942  0.999856006</span></span>
+<span><span class="co">#&gt; i_sqr[2,1]    0.9977997007  0.999339888</span></span>
+<span><span class="co">#&gt; i_sqr[3,1]    0.8593227849  0.910557799</span></span>
+<span><span class="co">#&gt; i_sqr[4,1]    0.8619118500  0.922872024</span></span>
+<span><span class="co">#&gt; i_sqr[5,1]    0.7985599532  0.880011949</span></span>
+<span><span class="co">#&gt; i_sqr[6,1]    0.8463968198  0.908524886</span></span></code></pre></div>
 <div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/stats/confint.html" class="external-link">confint</a></span><span class="op">(</span><span class="va">random</span>, level <span class="op">=</span> <span class="fl">0.99</span>, lb <span class="op">=</span> <span class="cn">FALSE</span>, robust <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
-<span><span class="co">#&gt; Error:</span></span>
-<span><span class="co">#&gt; ! object 'random' not found</span></span></code></pre></div>
+<span><span class="co">#&gt;                      0.5 %       99.5 %</span></span>
+<span><span class="co">#&gt; alpha[1,1]    0.1303443675  0.810328085</span></span>
+<span><span class="co">#&gt; alpha[2,1]    1.8638038282  2.732838240</span></span>
+<span><span class="co">#&gt; alpha[3,1]    0.5491720601  0.635907729</span></span>
+<span><span class="co">#&gt; alpha[4,1]    0.2093238405  0.283457291</span></span>
+<span><span class="co">#&gt; alpha[5,1]   -0.3769202448 -0.301992666</span></span>
+<span><span class="co">#&gt; alpha[6,1]    0.6231016026  0.701344053</span></span>
+<span><span class="co">#&gt; tau_sqr[1,1] -0.5280482781  4.521022135</span></span>
+<span><span class="co">#&gt; tau_sqr[2,1] -2.9369583496  2.027001680</span></span>
+<span><span class="co">#&gt; tau_sqr[3,1]  0.0007508470  0.101862865</span></span>
+<span><span class="co">#&gt; tau_sqr[4,1] -0.0386814602  0.089174667</span></span>
+<span><span class="co">#&gt; tau_sqr[5,1]  0.0087066275  0.107494987</span></span>
+<span><span class="co">#&gt; tau_sqr[6,1] -0.1470306127 -0.012227956</span></span>
+<span><span class="co">#&gt; tau_sqr[2,2]  0.5831495466  6.070036761</span></span>
+<span><span class="co">#&gt; tau_sqr[3,2] -0.0472308053  0.088384221</span></span>
+<span><span class="co">#&gt; tau_sqr[4,2] -0.0624482075  0.104010477</span></span>
+<span><span class="co">#&gt; tau_sqr[5,2]  0.0235324079  0.178473987</span></span>
+<span><span class="co">#&gt; tau_sqr[6,2]  0.0400895874  0.192330078</span></span>
+<span><span class="co">#&gt; tau_sqr[3,3]  0.0192378835  0.038281969</span></span>
+<span><span class="co">#&gt; tau_sqr[4,3]  0.0020412449  0.016632464</span></span>
+<span><span class="co">#&gt; tau_sqr[5,3] -0.0092830630  0.004523668</span></span>
+<span><span class="co">#&gt; tau_sqr[6,3] -0.0104416619  0.003581176</span></span>
+<span><span class="co">#&gt; tau_sqr[4,4]  0.0113574594  0.027903503</span></span>
+<span><span class="co">#&gt; tau_sqr[5,4] -0.0038279561  0.007805543</span></span>
+<span><span class="co">#&gt; tau_sqr[6,4] -0.0014740285  0.009478409</span></span>
+<span><span class="co">#&gt; tau_sqr[5,5]  0.0119912955  0.026999431</span></span>
+<span><span class="co">#&gt; tau_sqr[6,5]  0.0005723504  0.011234774</span></span>
+<span><span class="co">#&gt; tau_sqr[6,6]  0.0130331421  0.031376518</span></span>
+<span><span class="co">#&gt; i_sqr[1,1]    0.9921067017  1.000908199</span></span>
+<span><span class="co">#&gt; i_sqr[2,1]    0.9975577197  0.999581869</span></span>
+<span><span class="co">#&gt; i_sqr[3,1]    0.8512731808  0.918607404</span></span>
+<span><span class="co">#&gt; i_sqr[4,1]    0.8523343124  0.932449562</span></span>
+<span><span class="co">#&gt; i_sqr[5,1]    0.7857629172  0.892808985</span></span>
+<span><span class="co">#&gt; i_sqr[6,1]    0.8366357932  0.918285913</span></span></code></pre></div>
 </div>
 <div class="section level3">
 <h3 id="profile-likelihood-confidence-intervals">Profile-Likelihood Confidence Intervals<a class="anchor" aria-label="anchor" href="#profile-likelihood-confidence-intervals"></a>
 </h3>
 <div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/stats/confint.html" class="external-link">confint</a></span><span class="op">(</span><span class="va">random</span>, level <span class="op">=</span> <span class="fl">0.95</span>, lb <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
-<span><span class="co">#&gt; Error:</span></span>
-<span><span class="co">#&gt; ! object 'random' not found</span></span></code></pre></div>
+<span><span class="co">#&gt;                       est         2.5 %       97.5 %</span></span>
+<span><span class="co">#&gt; alpha[1,1]    0.470336226  0.2184393892  0.721924437</span></span>
+<span><span class="co">#&gt; alpha[2,1]    2.298321034  1.9737761944  2.623102936</span></span>
+<span><span class="co">#&gt; alpha[3,1]    0.592539894  0.5596472990  0.624948818</span></span>
+<span><span class="co">#&gt; alpha[4,1]    0.246390566  0.2185845935  0.273861976</span></span>
+<span><span class="co">#&gt; alpha[5,1]   -0.339456456 -0.3680202054 -0.311300196</span></span>
+<span><span class="co">#&gt; alpha[6,1]    0.662222828  0.6323989871  0.691483492</span></span>
+<span><span class="co">#&gt; tau_sqr[1,1]  1.996486929  1.5523911284  2.613786116</span></span>
+<span><span class="co">#&gt; tau_sqr[2,1] -0.454978335 -0.9859075351  0.011449872</span></span>
+<span><span class="co">#&gt; tau_sqr[3,1]  0.051306856  0.0066094623  0.102081668</span></span>
+<span><span class="co">#&gt; tau_sqr[4,1]  0.025246603 -0.0131259427  0.066955308</span></span>
+<span><span class="co">#&gt; tau_sqr[5,1]  0.058100807  0.0198235606  0.103355014</span></span>
+<span><span class="co">#&gt; tau_sqr[6,1] -0.079629284 -0.1292147339 -0.040157103</span></span>
+<span><span class="co">#&gt; tau_sqr[2,2]  3.326593154  2.6036977075  4.329674821</span></span>
+<span><span class="co">#&gt; tau_sqr[3,2]  0.020576708 -0.0401791212  0.083656568</span></span>
+<span><span class="co">#&gt; tau_sqr[4,2]  0.020781135 -0.0305101354  0.074723460</span></span>
+<span><span class="co">#&gt; tau_sqr[5,2]  0.101003197  0.0518921050  0.161748790</span></span>
+<span><span class="co">#&gt; tau_sqr[6,2]  0.116209833  0.0662162252  0.180899029</span></span>
+<span><span class="co">#&gt; tau_sqr[3,3]  0.028759926  0.0215534051  0.038851603</span></span>
+<span><span class="co">#&gt; tau_sqr[4,3]  0.009336854  0.0043598824  0.015275145</span></span>
+<span><span class="co">#&gt; tau_sqr[5,3] -0.002379697 -0.0077553414  0.002844813</span></span>
+<span><span class="co">#&gt; tau_sqr[6,3] -0.003430243 -0.0091751670  0.001833687</span></span>
+<span><span class="co">#&gt; tau_sqr[4,4]  0.019630481  0.0145138219  0.026802318</span></span>
+<span><span class="co">#&gt; tau_sqr[5,4]  0.001988793 -0.0024586151  0.006641777</span></span>
+<span><span class="co">#&gt; tau_sqr[6,4]  0.004002190 -0.0003932324  0.009021863</span></span>
+<span><span class="co">#&gt; tau_sqr[5,5]  0.019495363  0.0143377381  0.026738641</span></span>
+<span><span class="co">#&gt; tau_sqr[6,5]  0.005903562  0.0013672471  0.010931563</span></span>
+<span><span class="co">#&gt; tau_sqr[6,6]  0.022204830  0.0164300680  0.030292495</span></span>
+<span><span class="co">#&gt; i_sqr[1,1]    0.996507450  0.9955145570  0.997329412</span></span>
+<span><span class="co">#&gt; i_sqr[2,1]    0.998569794  0.9981776103  0.998875329</span></span>
+<span><span class="co">#&gt; i_sqr[3,1]    0.884940292  0.8521176287  0.912163485</span></span>
+<span><span class="co">#&gt; i_sqr[4,1]    0.892391937  0.8618788954  0.917856263</span></span>
+<span><span class="co">#&gt; i_sqr[5,1]    0.839285951  0.7945627070  0.876770685</span></span>
+<span><span class="co">#&gt; i_sqr[6,1]    0.877460853  0.8427581523  0.906279897</span></span></code></pre></div>
 <div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/stats/confint.html" class="external-link">confint</a></span><span class="op">(</span><span class="va">random</span>, level <span class="op">=</span> <span class="fl">0.99</span>, lb <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
-<span><span class="co">#&gt; Error:</span></span>
-<span><span class="co">#&gt; ! object 'random' not found</span></span></code></pre></div>
+<span><span class="co">#&gt;                       est        0.5 %       99.5 %</span></span>
+<span><span class="co">#&gt; alpha[1,1]    0.470336226  0.137521704  0.802140580</span></span>
+<span><span class="co">#&gt; alpha[2,1]    2.298321034  1.871790535  2.725795901</span></span>
+<span><span class="co">#&gt; alpha[3,1]    0.592539894  0.548946224  0.635017406</span></span>
+<span><span class="co">#&gt; alpha[4,1]    0.246390566  0.209655618  0.282724057</span></span>
+<span><span class="co">#&gt; alpha[5,1]   -0.339456456 -0.377064142 -0.302306290</span></span>
+<span><span class="co">#&gt; alpha[6,1]    0.662222828  0.622861894  0.700748436</span></span>
+<span><span class="co">#&gt; tau_sqr[1,1]  1.996486929  1.440209966  2.855715620</span></span>
+<span><span class="co">#&gt; tau_sqr[2,1] -0.454978335 -1.181616528  0.160816035</span></span>
+<span><span class="co">#&gt; tau_sqr[3,1]  0.051306856 -0.007565591  0.120936446</span></span>
+<span><span class="co">#&gt; tau_sqr[4,1]  0.025246603 -0.025653072  0.082106309</span></span>
+<span><span class="co">#&gt; tau_sqr[5,1]  0.058100807  0.007825472  0.120305594</span></span>
+<span><span class="co">#&gt; tau_sqr[6,1] -0.079629284 -0.147882792 -0.027432342</span></span>
+<span><span class="co">#&gt; tau_sqr[2,2]  3.326593154  2.421649133  4.723821885</span></span>
+<span><span class="co">#&gt; tau_sqr[3,2]  0.020576708 -0.060788034  0.105962295</span></span>
+<span><span class="co">#&gt; tau_sqr[4,2]  0.020781135 -0.047419768  0.093867543</span></span>
+<span><span class="co">#&gt; tau_sqr[5,2]  0.101003197  0.037151893  0.184788519</span></span>
+<span><span class="co">#&gt; tau_sqr[6,2]  0.116209833  0.050954641  0.205793380</span></span>
+<span><span class="co">#&gt; tau_sqr[3,3]  0.028759926  0.019726781  0.042784737</span></span>
+<span><span class="co">#&gt; tau_sqr[4,3]  0.009336854  0.002834039  0.017499168</span></span>
+<span><span class="co">#&gt; tau_sqr[5,3] -0.002379697 -0.009678574  0.004628993</span></span>
+<span><span class="co">#&gt; tau_sqr[6,3] -0.003430243 -0.011270745  0.003568439</span></span>
+<span><span class="co">#&gt; tau_sqr[4,4]  0.019630481  0.013209903  0.029611551</span></span>
+<span><span class="co">#&gt; tau_sqr[5,4]  0.001988793 -0.003954570  0.008303959</span></span>
+<span><span class="co">#&gt; tau_sqr[6,4]  0.004002190 -0.001814283  0.010886785</span></span>
+<span><span class="co">#&gt; tau_sqr[5,5]  0.019495363  0.013032118  0.029562959</span></span>
+<span><span class="co">#&gt; tau_sqr[6,5]  0.005903562 -0.000100884  0.012877910</span></span>
+<span><span class="co">#&gt; tau_sqr[6,6]  0.022204830  0.014967359  0.033485630</span></span>
+<span><span class="co">#&gt; i_sqr[1,1]    0.996507450  0.995170889  0.997554672</span></span>
+<span><span class="co">#&gt; i_sqr[2,1]    0.998569794  0.998041294  0.998991594</span></span>
+<span><span class="co">#&gt; i_sqr[3,1]    0.884940292  0.840615499  0.919688732</span></span>
+<span><span class="co">#&gt; i_sqr[4,1]    0.892391937  0.851136324  0.924752588</span></span>
+<span><span class="co">#&gt; i_sqr[5,1]    0.839285951  0.778933196  0.887143518</span></span>
+<span><span class="co">#&gt; i_sqr[6,1]    0.877460853  0.830649446  0.914222316</span></span></code></pre></div>
 <ul>
 <li>The fixed part of the random-effects model gives pooled means
 <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="bold-italic">𝜶</mi><mo>=</mo><mi mathvariant="double-struck">𝔼</mi><mrow><mo stretchy="true" form="prefix">[</mo><mrow><mi mathvariant="normal">V</mi><mi mathvariant="normal">e</mi><mi mathvariant="normal">c</mi></mrow><mrow><mo stretchy="true" form="prefix">(</mo><mi mathvariant="bold-italic">𝝁</mi><mo>,</mo><mi mathvariant="bold-italic">𝜷</mi><mo stretchy="true" form="postfix">)</mo></mrow><mo stretchy="true" form="postfix">]</mo></mrow></mrow><annotation encoding="application/x-tex">\boldsymbol{\alpha} = \mathbb{E} \left[ \mathrm{Vec} \left( \boldsymbol{\mu}, \boldsymbol{\beta} \right)  \right]</annotation></semantics></math>.</li>
@@ -506,17 +742,23 @@ across individuals.</li>
 </ul>
 <div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">means</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/extract.html">extract</a></span><span class="op">(</span><span class="va">random</span>, what <span class="op">=</span> <span class="st">"alpha"</span><span class="op">)</span></span>
-<span><span class="co">#&gt; Error:</span></span>
-<span><span class="co">#&gt; ! object 'random' not found</span></span>
 <span><span class="va">means</span></span>
-<span><span class="co">#&gt; Error:</span></span>
-<span><span class="co">#&gt; ! object 'means' not found</span></span>
+<span><span class="co">#&gt;         alpha</span></span>
+<span><span class="co">#&gt; y1  0.4703362</span></span>
+<span><span class="co">#&gt; y2  2.2983210</span></span>
+<span><span class="co">#&gt; y3  0.5925399</span></span>
+<span><span class="co">#&gt; y4  0.2463906</span></span>
+<span><span class="co">#&gt; y5 -0.3394565</span></span>
+<span><span class="co">#&gt; y6  0.6622228</span></span>
 <span><span class="va">covariances</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/extract.html">extract</a></span><span class="op">(</span><span class="va">random</span>, what <span class="op">=</span> <span class="st">"tau_sqr"</span><span class="op">)</span></span>
-<span><span class="co">#&gt; Error:</span></span>
-<span><span class="co">#&gt; ! object 'random' not found</span></span>
 <span><span class="va">covariances</span></span>
-<span><span class="co">#&gt; Error:</span></span>
-<span><span class="co">#&gt; ! object 'covariances' not found</span></span></code></pre></div>
+<span><span class="co">#&gt;             y1          y2           y3          y4           y5           y6</span></span>
+<span><span class="co">#&gt; y1  1.99648693 -0.45497833  0.051306856 0.025246603  0.058100807 -0.079629284</span></span>
+<span><span class="co">#&gt; y2 -0.45497833  3.32659315  0.020576708 0.020781135  0.101003197  0.116209833</span></span>
+<span><span class="co">#&gt; y3  0.05130686  0.02057671  0.028759926 0.009336854 -0.002379697 -0.003430243</span></span>
+<span><span class="co">#&gt; y4  0.02524660  0.02078113  0.009336854 0.019630481  0.001988793  0.004002190</span></span>
+<span><span class="co">#&gt; y5  0.05810081  0.10100320 -0.002379697 0.001988793  0.019495363  0.005903562</span></span>
+<span><span class="co">#&gt; y6 -0.07962928  0.11620983 -0.003430243 0.004002190  0.005903562  0.022204830</span></span></code></pre></div>
 <p>Finally, we compare the meta-analytic population estimates to the
 known generating values.</p>
 <div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">

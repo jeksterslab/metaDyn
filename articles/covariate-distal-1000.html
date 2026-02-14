@@ -60,7 +60,7 @@
                         <h4 data-toc-skip class="author">Ivan Jacob
 Agaloos Pesigan</h4>
             
-            <h4 data-toc-skip class="date">2026-02-13</h4>
+            <h4 data-toc-skip class="date">2026-02-14</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/jeksterslab/metaDyn/blob/main/vignettes/covariate-distal-1000.Rmd"><code>vignettes/covariate-distal-1000.Rmd</code></a></small>
       <div class="d-none name"><code>covariate-distal-1000.Rmd</code></div>
@@ -538,20 +538,20 @@ positive definite covariance matrix. It returns:<br>
 </h4>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">fit</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="co">#&gt;                             mu[1,1]    mu[2,1] beta[1,1]   beta[2,1]</span></span>
-<span><span class="co">#&gt; FitVARMxID_VAR_ID2.Rds  1.407599105 -1.2262153 0.3426362 -0.07490765</span></span>
-<span><span class="co">#&gt; FitVARMxID_VAR_ID3.Rds  1.161832741 -0.5943131 0.6944379  0.16943979</span></span>
-<span><span class="co">#&gt; FitVARMxID_VAR_ID6.Rds -0.007943754 -0.4146876 0.6130186 -0.11631136</span></span>
-<span><span class="co">#&gt; FitVARMxID_VAR_ID7.Rds  0.864125313 -1.3682443 0.4743549  0.12117985</span></span>
-<span><span class="co">#&gt; FitVARMxID_VAR_ID8.Rds  0.852183715 -0.5435902 0.2504997  0.04589647</span></span>
-<span><span class="co">#&gt; FitVARMxID_VAR_ID9.Rds  0.121285199 -1.0360446 0.2252233 -0.13774792</span></span>
-<span><span class="co">#&gt;                           beta[1,2] beta[2,2]  psi[1,1]    psi[2,1]  psi[2,2]</span></span>
-<span><span class="co">#&gt; FitVARMxID_VAR_ID2.Rds -0.196767193 0.1484852 0.1719178 -0.04113312 0.1634751</span></span>
-<span><span class="co">#&gt; FitVARMxID_VAR_ID3.Rds -0.177433928 0.4524657 0.1661177 -0.02661664 0.1652608</span></span>
-<span><span class="co">#&gt; FitVARMxID_VAR_ID6.Rds  0.138201917 0.4031971 0.2180944 -0.07445802 0.1747459</span></span>
-<span><span class="co">#&gt; FitVARMxID_VAR_ID7.Rds -0.099089770 0.5860792 0.1705958 -0.03591918 0.1728006</span></span>
-<span><span class="co">#&gt; FitVARMxID_VAR_ID8.Rds -0.276412398 0.5026694 0.1861992 -0.07785679 0.2023670</span></span>
-<span><span class="co">#&gt; FitVARMxID_VAR_ID9.Rds  0.008944095 0.5838015 0.1380682 -0.04122232 0.1754657</span></span></code></pre></div>
+<span><span class="co">#&gt;                               mu[1,1]    mu[2,1] beta[1,1]   beta[2,1]</span></span>
+<span><span class="co">#&gt; FitVARMxID_DTVAR_ID3.Rds  1.153348406 -0.5873101 0.6935418  0.17246835</span></span>
+<span><span class="co">#&gt; FitVARMxID_DTVAR_ID6.Rds  0.001610978 -0.4100247 0.6153076 -0.11361758</span></span>
+<span><span class="co">#&gt; FitVARMxID_DTVAR_ID7.Rds  0.874685699 -1.3716365 0.4763569  0.12629573</span></span>
+<span><span class="co">#&gt; FitVARMxID_DTVAR_ID9.Rds  0.120502387 -1.0458112 0.2191061 -0.14986574</span></span>
+<span><span class="co">#&gt; FitVARMxID_DTVAR_ID10.Rds 1.150417875 -0.4283811 0.6651179  0.08401120</span></span>
+<span><span class="co">#&gt; FitVARMxID_DTVAR_ID11.Rds 3.065915464 -1.5910143 0.8072554 -0.04304906</span></span>
+<span><span class="co">#&gt;                             beta[1,2] beta[2,2]  psi[1,1]    psi[2,1]  psi[2,2]</span></span>
+<span><span class="co">#&gt; FitVARMxID_DTVAR_ID3.Rds  -0.18577947 0.4557184 0.1649165 -0.02709214 0.1662770</span></span>
+<span><span class="co">#&gt; FitVARMxID_DTVAR_ID6.Rds   0.13996673 0.4095755 0.2172841 -0.07375769 0.1743473</span></span>
+<span><span class="co">#&gt; FitVARMxID_DTVAR_ID7.Rds  -0.11021823 0.5943148 0.1707274 -0.03526842 0.1709325</span></span>
+<span><span class="co">#&gt; FitVARMxID_DTVAR_ID9.Rds   0.01075629 0.5836428 0.1388499 -0.04100114 0.1745615</span></span>
+<span><span class="co">#&gt; FitVARMxID_DTVAR_ID10.Rds  0.09156199 0.3895123 0.2505575 -0.07955761 0.2248892</span></span>
+<span><span class="co">#&gt; FitVARMxID_DTVAR_ID11.Rds -0.12771113 0.6032254 0.2243289 -0.04499742 0.2176939</span></span></code></pre></div>
 </div>
 <div class="section level4">
 <h4 id="proportion-of-converged-cases">Proportion of converged cases<a class="anchor" aria-label="anchor" href="#proportion-of-converged-cases"></a>
@@ -561,7 +561,7 @@ positive definite covariance matrix. It returns:<br>
 <span>  <span class="va">fit</span>,</span>
 <span>  prop <span class="op">=</span> <span class="cn">TRUE</span></span>
 <span><span class="op">)</span></span>
-<span><span class="co">#&gt; [1] 0.501</span></span></code></pre></div>
+<span><span class="co">#&gt; [1] 0.468</span></span></code></pre></div>
 </div>
 </div>
 </div>
@@ -593,445 +593,48 @@ distal outcome.</p>
 <span>  robust <span class="op">=</span> <span class="cn">TRUE</span>,</span>
 <span>  lb <span class="op">=</span> <span class="cn">TRUE</span>,</span>
 <span>  ncores <span class="op">=</span> <span class="fu">parallel</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/r/parallel/detectCores.html" class="external-link">detectCores</a></span><span class="op">(</span><span class="op">)</span></span>
-<span><span class="op">)</span></span></code></pre></div>
+<span><span class="op">)</span></span>
+<span><span class="co">#&gt; Error in `[.data.frame`:</span></span>
+<span><span class="co">#&gt; ! undefined columns selected</span></span></code></pre></div>
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">random</span><span class="op">)</span></span>
-<span><span class="co">#&gt; Call:</span></span>
-<span><span class="co">#&gt; MetaVARMx(object = fit, x = x, z = z, effects = TRUE, set_point = TRUE, </span></span>
-<span><span class="co">#&gt;     robust_v = FALSE, robust = TRUE, lb = TRUE, ncores = parallel::detectCores())</span></span>
-<span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; Status code = 0</span></span>
-<span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; CI type = "lb"</span></span>
-<span><span class="co">#&gt;                   est     2.5%    97.5%</span></span>
-<span><span class="co">#&gt; alpha[1,1]     1.0818   0.7067   1.4570</span></span>
-<span><span class="co">#&gt; alpha[2,1]    -1.0558  -1.3767  -0.7351</span></span>
-<span><span class="co">#&gt; alpha[3,1]     0.4750   0.4542   0.4955</span></span>
-<span><span class="co">#&gt; alpha[4,1]     0.0103  -0.0101   0.0307</span></span>
-<span><span class="co">#&gt; alpha[5,1]     0.0110  -0.0079   0.0298</span></span>
-<span><span class="co">#&gt; alpha[6,1]     0.4795   0.4601   0.4988</span></span>
-<span><span class="co">#&gt; gamma[1,1]     2.4741   1.9415   3.0063</span></span>
-<span><span class="co">#&gt; gamma[2,1]    -2.3765  -2.8327  -1.9204</span></span>
-<span><span class="co">#&gt; gamma[3,1]     0.1939   0.1652   0.2227</span></span>
-<span><span class="co">#&gt; gamma[4,1]    -0.0268  -0.0552   0.0015</span></span>
-<span><span class="co">#&gt; gamma[5,1]     0.0184  -0.0075   0.0444</span></span>
-<span><span class="co">#&gt; gamma[6,1]     0.1889   0.1621   0.2157</span></span>
-<span><span class="co">#&gt; kappa[1,1]     7.4447  -2.4622  17.3484</span></span>
-<span><span class="co">#&gt; phi[1,1]      -0.6447  -1.3531   0.0632</span></span>
-<span><span class="co">#&gt; phi[1,2]      -0.3938  -1.3157   0.5266</span></span>
-<span><span class="co">#&gt; phi[1,3]      13.0693  -0.1037  26.2471</span></span>
-<span><span class="co">#&gt; phi[1,4]      -2.3996 -16.6561  11.8625</span></span>
-<span><span class="co">#&gt; phi[1,5]       1.5057 -10.5707  13.5627</span></span>
-<span><span class="co">#&gt; phi[1,6]       4.8729  -9.0007  18.7368</span></span>
-<span><span class="co">#&gt; omega[1,1]    -0.5046  -7.1296   6.1413</span></span>
-<span><span class="co">#&gt; psi[1,1]     562.0242 497.7609 638.2382</span></span>
-<span><span class="co">#&gt; tau_sqr[1,1]   9.0875   8.0299  10.3323</span></span>
-<span><span class="co">#&gt; tau_sqr[2,1]   1.7432   1.0609   2.4800</span></span>
-<span><span class="co">#&gt; tau_sqr[3,1]   0.0065  -0.0357   0.0487</span></span>
-<span><span class="co">#&gt; tau_sqr[4,1]   0.1289   0.0900   0.1730</span></span>
-<span><span class="co">#&gt; tau_sqr[5,1]   0.0313  -0.0123   0.0759</span></span>
-<span><span class="co">#&gt; tau_sqr[6,1]  -0.0761  -0.1182  -0.0365</span></span>
-<span><span class="co">#&gt; tau_sqr[2,2]   6.6441   5.8753   7.5515</span></span>
-<span><span class="co">#&gt; tau_sqr[3,2]   0.0688   0.0327   0.1072</span></span>
-<span><span class="co">#&gt; tau_sqr[4,2]   0.1860   0.1456   0.2316</span></span>
-<span><span class="co">#&gt; tau_sqr[5,2]  -0.0425  -0.0736  -0.0119</span></span>
-<span><span class="co">#&gt; tau_sqr[6,2]   0.0284  -0.0051   0.0628</span></span>
-<span><span class="co">#&gt; tau_sqr[3,3]   0.0200   0.0170   0.0235</span></span>
-<span><span class="co">#&gt; tau_sqr[4,3]   0.0067   0.0044   0.0091</span></span>
-<span><span class="co">#&gt; tau_sqr[5,3]   0.0007  -0.0015   0.0028</span></span>
-<span><span class="co">#&gt; tau_sqr[6,3]   0.0016  -0.0006   0.0038</span></span>
-<span><span class="co">#&gt; tau_sqr[4,4]   0.0199   0.0168   0.0236</span></span>
-<span><span class="co">#&gt; tau_sqr[5,4]  -0.0004  -0.0024   0.0016</span></span>
-<span><span class="co">#&gt; tau_sqr[6,4]   0.0014  -0.0007   0.0037</span></span>
-<span><span class="co">#&gt; tau_sqr[5,5]   0.0146   0.0119   0.0178</span></span>
-<span><span class="co">#&gt; tau_sqr[6,5]   0.0007  -0.0013   0.0027</span></span>
-<span><span class="co">#&gt; tau_sqr[6,6]   0.0168   0.0142   0.0199</span></span>
-<span><span class="co">#&gt; i_sqr[1,1]     0.9992   0.9991   0.9993</span></span>
-<span><span class="co">#&gt; i_sqr[2,1]     0.9991   0.9990   0.9992</span></span>
-<span><span class="co">#&gt; i_sqr[3,1]     0.7924   0.7648   0.8178</span></span>
-<span><span class="co">#&gt; i_sqr[4,1]     0.8411   0.8180   0.8619</span></span>
-<span><span class="co">#&gt; i_sqr[5,1]     0.7894   0.7572   0.8181</span></span>
-<span><span class="co">#&gt; i_sqr[6,1]     0.8044   0.7780   0.8285</span></span>
-<span><span class="co">#&gt; de[1,1]       -0.5046  -7.1464   6.1261</span></span>
-<span><span class="co">#&gt; ie[1,1]        2.8880  -2.3428   8.1545</span></span>
-<span><span class="co">#&gt; te[1,1]        2.3834  -1.8312   6.6037</span></span>
-<span><span class="co">#&gt; ie_x1_y1_z1   -1.5949  -3.4892   0.1742</span></span>
-<span><span class="co">#&gt; ie_x1_y2_z1    0.9358  -1.2739   3.2069</span></span>
-<span><span class="co">#&gt; ie_x1_y3_z1    2.5345  -0.0141   5.1905</span></span>
-<span><span class="co">#&gt; ie_x1_y4_z1    0.0643  -0.0040   0.5999</span></span>
-<span><span class="co">#&gt; ie_x1_y5_z1    0.0277  -0.0118   0.3743</span></span>
-<span><span class="co">#&gt; ie_x1_y6_z1    0.9206  -1.6994   3.5803</span></span></code></pre></div>
+<span><span class="co">#&gt; Error:</span></span>
+<span><span class="co">#&gt; ! object 'random' not found</span></span></code></pre></div>
 <div class="section level3">
 <h3 id="normal-theory-confidence-intervals">Normal Theory Confidence Intervals<a class="anchor" aria-label="anchor" href="#normal-theory-confidence-intervals"></a>
 </h3>
 <div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/stats/confint.html" class="external-link">confint</a></span><span class="op">(</span><span class="va">random</span>, level <span class="op">=</span> <span class="fl">0.95</span>, lb <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
-<span><span class="co">#&gt;                      2.5 %        97.5 %</span></span>
-<span><span class="co">#&gt; alpha[1,1]    9.700915e-01   1.193427585</span></span>
-<span><span class="co">#&gt; alpha[2,1]   -1.163916e+00  -0.947668438</span></span>
-<span><span class="co">#&gt; alpha[3,1]    4.546528e-01   0.495289704</span></span>
-<span><span class="co">#&gt; alpha[4,1]   -7.927398e-03   0.028565775</span></span>
-<span><span class="co">#&gt; alpha[5,1]   -5.960224e-03   0.027916217</span></span>
-<span><span class="co">#&gt; alpha[6,1]    4.601321e-01   0.498908542</span></span>
-<span><span class="co">#&gt; gamma[1,1]    1.939081e+00   3.009109762</span></span>
-<span><span class="co">#&gt; gamma[2,1]   -2.832510e+00  -1.920585315</span></span>
-<span><span class="co">#&gt; gamma[3,1]    1.654210e-01   0.222438060</span></span>
-<span><span class="co">#&gt; gamma[4,1]   -5.558845e-02   0.002018128</span></span>
-<span><span class="co">#&gt; gamma[5,1]   -9.588412e-03   0.046365754</span></span>
-<span><span class="co">#&gt; gamma[6,1]    1.618797e-01   0.215975800</span></span>
-<span><span class="co">#&gt; kappa[1,1]   -3.339640e+00  18.229121156</span></span>
-<span><span class="co">#&gt; phi[1,1]     -1.234585e+00  -0.054720182</span></span>
-<span><span class="co">#&gt; phi[1,2]     -1.238770e+00   0.451199635</span></span>
-<span><span class="co">#&gt; phi[1,3]     -2.792959e+00  28.931614882</span></span>
-<span><span class="co">#&gt; phi[1,4]     -1.840198e+01  13.602733477</span></span>
-<span><span class="co">#&gt; phi[1,5]     -8.207718e+00  11.219113246</span></span>
-<span><span class="co">#&gt; phi[1,6]     -7.207134e+00  16.952865423</span></span>
-<span><span class="co">#&gt; omega[1,1]   -5.204542e+00   4.195366539</span></span>
-<span><span class="co">#&gt; psi[1,1]      3.758772e+02 748.171309766</span></span>
-<span><span class="co">#&gt; tau_sqr[1,1]  5.580831e+00  12.594071759</span></span>
-<span><span class="co">#&gt; tau_sqr[2,1]  2.547561e-01   3.231616178</span></span>
-<span><span class="co">#&gt; tau_sqr[3,1] -6.591038e-02   0.078850759</span></span>
-<span><span class="co">#&gt; tau_sqr[4,1]  8.240730e-02   0.175365384</span></span>
-<span><span class="co">#&gt; tau_sqr[5,1] -9.323166e-02   0.155793319</span></span>
-<span><span class="co">#&gt; tau_sqr[6,1] -1.352432e-01  -0.016872503</span></span>
-<span><span class="co">#&gt; tau_sqr[2,2]  4.278499e+00   9.009720886</span></span>
-<span><span class="co">#&gt; tau_sqr[3,2]  2.624223e-02   0.111354780</span></span>
-<span><span class="co">#&gt; tau_sqr[4,2]  9.426518e-02   0.277683354</span></span>
-<span><span class="co">#&gt; tau_sqr[5,2] -7.778177e-02  -0.007188342</span></span>
-<span><span class="co">#&gt; tau_sqr[6,2] -3.508641e-02   0.091968285</span></span>
-<span><span class="co">#&gt; tau_sqr[3,3]  1.673409e-02   0.023274434</span></span>
-<span><span class="co">#&gt; tau_sqr[4,3]  3.968255e-03   0.009390780</span></span>
-<span><span class="co">#&gt; tau_sqr[5,3] -1.930455e-03   0.003240588</span></span>
-<span><span class="co">#&gt; tau_sqr[6,3] -5.812971e-04   0.003750405</span></span>
-<span><span class="co">#&gt; tau_sqr[4,4]  1.506734e-02   0.024810393</span></span>
-<span><span class="co">#&gt; tau_sqr[5,4] -2.254637e-03   0.001438248</span></span>
-<span><span class="co">#&gt; tau_sqr[6,4] -1.272134e-03   0.004125527</span></span>
-<span><span class="co">#&gt; tau_sqr[5,5]  1.009784e-02   0.019116457</span></span>
-<span><span class="co">#&gt; tau_sqr[6,5] -1.985538e-03   0.003455258</span></span>
-<span><span class="co">#&gt; tau_sqr[6,6]  1.347765e-02   0.020110922</span></span>
-<span><span class="co">#&gt; i_sqr[1,1]    9.988770e-01   0.999501977</span></span>
-<span><span class="co">#&gt; i_sqr[2,1]    9.987995e-01   0.999424324</span></span>
-<span><span class="co">#&gt; i_sqr[3,1]    7.624357e-01   0.822376461</span></span>
-<span><span class="co">#&gt; i_sqr[4,1]    8.137347e-01   0.868510583</span></span>
-<span><span class="co">#&gt; i_sqr[5,1]    7.163636e-01   0.862461533</span></span>
-<span><span class="co">#&gt; i_sqr[6,1]    7.715696e-01   0.837202172</span></span>
-<span><span class="co">#&gt; de[1,1]      -5.204542e+00   4.195366539</span></span>
-<span><span class="co">#&gt; ie[1,1]      -2.190923e+00   7.966976786</span></span>
-<span><span class="co">#&gt; te[1,1]      -1.465726e+00   6.232604376</span></span>
-<span><span class="co">#&gt; ie_x1_y1_z1  -3.084049e+00  -0.105815148</span></span>
-<span><span class="co">#&gt; ie_x1_y2_z1  -1.098139e+00   2.969836654</span></span>
-<span><span class="co">#&gt; ie_x1_y3_z1  -5.834859e-01   5.652543368</span></span>
-<span><span class="co">#&gt; ie_x1_y4_z1  -3.806942e-01   0.509242834</span></span>
-<span><span class="co">#&gt; ie_x1_y5_z1  -1.563675e-01   0.211743089</span></span>
-<span><span class="co">#&gt; ie_x1_y6_z1  -1.368764e+00   3.210002936</span></span></code></pre></div>
+<span><span class="co">#&gt; Error:</span></span>
+<span><span class="co">#&gt; ! object 'random' not found</span></span></code></pre></div>
 <div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/stats/confint.html" class="external-link">confint</a></span><span class="op">(</span><span class="va">random</span>, level <span class="op">=</span> <span class="fl">0.99</span>, lb <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
-<span><span class="co">#&gt;                      0.5 %        99.5 %</span></span>
-<span><span class="co">#&gt; alpha[1,1]     0.935002814   1.228516234</span></span>
-<span><span class="co">#&gt; alpha[2,1]    -1.197890983  -0.913693480</span></span>
-<span><span class="co">#&gt; alpha[3,1]     0.448268289   0.501674224</span></span>
-<span><span class="co">#&gt; alpha[4,1]    -0.013660891   0.034299268</span></span>
-<span><span class="co">#&gt; alpha[5,1]    -0.011282598   0.033238591</span></span>
-<span><span class="co">#&gt; alpha[6,1]     0.454039900   0.505000760</span></span>
-<span><span class="co">#&gt; gamma[1,1]     1.770967775   3.177223399</span></span>
-<span><span class="co">#&gt; gamma[2,1]    -2.975783621  -1.777311581</span></span>
-<span><span class="co">#&gt; gamma[3,1]     0.156462989   0.231396087</span></span>
-<span><span class="co">#&gt; gamma[4,1]    -0.064639099   0.011068777</span></span>
-<span><span class="co">#&gt; gamma[5,1]    -0.018379448   0.055156791</span></span>
-<span><span class="co">#&gt; gamma[6,1]     0.153380599   0.224474911</span></span>
-<span><span class="co">#&gt; kappa[1,1]    -6.728337697  21.617819093</span></span>
-<span><span class="co">#&gt; phi[1,1]      -1.419955377   0.130650040</span></span>
-<span><span class="co">#&gt; phi[1,2]      -1.504283148   0.716713064</span></span>
-<span><span class="co">#&gt; phi[1,3]      -7.777250942  33.915906697</span></span>
-<span><span class="co">#&gt; phi[1,4]     -23.430286711  18.631038636</span></span>
-<span><span class="co">#&gt; phi[1,5]     -11.259893873  14.271289571</span></span>
-<span><span class="co">#&gt; phi[1,6]     -11.002944581  20.748676376</span></span>
-<span><span class="co">#&gt; omega[1,1]    -6.681375052   5.672199256</span></span>
-<span><span class="co">#&gt; psi[1,1]     317.385537678 806.662956122</span></span>
-<span><span class="co">#&gt; tau_sqr[1,1]   4.478970573  13.695931801</span></span>
-<span><span class="co">#&gt; tau_sqr[2,1]  -0.212942553   3.699314798</span></span>
-<span><span class="co">#&gt; tau_sqr[3,1]  -0.088654004   0.101594382</span></span>
-<span><span class="co">#&gt; tau_sqr[4,1]   0.067802523   0.189970157</span></span>
-<span><span class="co">#&gt; tau_sqr[5,1]  -0.132356320   0.194917979</span></span>
-<span><span class="co">#&gt; tau_sqr[6,1]  -0.153840567   0.001724880</span></span>
-<span><span class="co">#&gt; tau_sqr[2,2]   3.535170720   9.753049643</span></span>
-<span><span class="co">#&gt; tau_sqr[3,2]   0.012870080   0.124726931</span></span>
-<span><span class="co">#&gt; tau_sqr[4,2]   0.065448092   0.306500438</span></span>
-<span><span class="co">#&gt; tau_sqr[5,2]  -0.088872796   0.003902689</span></span>
-<span><span class="co">#&gt; tau_sqr[6,2]  -0.055048150   0.111930025</span></span>
-<span><span class="co">#&gt; tau_sqr[3,3]   0.015706529   0.024301996</span></span>
-<span><span class="co">#&gt; tau_sqr[4,3]   0.003116315   0.010242720</span></span>
-<span><span class="co">#&gt; tau_sqr[5,3]  -0.002742885   0.004053017</span></span>
-<span><span class="co">#&gt; tau_sqr[6,3]  -0.001261857   0.004430965</span></span>
-<span><span class="co">#&gt; tau_sqr[4,4]   0.013536599   0.026341137</span></span>
-<span><span class="co">#&gt; tau_sqr[5,4]  -0.002834832   0.002018442</span></span>
-<span><span class="co">#&gt; tau_sqr[6,4]  -0.002120168   0.004973561</span></span>
-<span><span class="co">#&gt; tau_sqr[5,5]   0.008680911   0.020533385</span></span>
-<span><span class="co">#&gt; tau_sqr[6,5]  -0.002840349   0.004310069</span></span>
-<span><span class="co">#&gt; tau_sqr[6,6]   0.012435484   0.021153085</span></span>
-<span><span class="co">#&gt; i_sqr[1,1]     0.998778795   0.999600170</span></span>
-<span><span class="co">#&gt; i_sqr[2,1]     0.998701296   0.999522496</span></span>
-<span><span class="co">#&gt; i_sqr[3,1]     0.753018284   0.831793842</span></span>
-<span><span class="co">#&gt; i_sqr[4,1]     0.805128754   0.877116503</span></span>
-<span><span class="co">#&gt; i_sqr[5,1]     0.693409963   0.885415180</span></span>
-<span><span class="co">#&gt; i_sqr[6,1]     0.761257973   0.847513796</span></span>
-<span><span class="co">#&gt; de[1,1]       -6.681375052   5.672199256</span></span>
-<span><span class="co">#&gt; ie[1,1]       -3.786844471   9.562898474</span></span>
-<span><span class="co">#&gt; te[1,1]       -2.675221556   7.442099763</span></span>
-<span><span class="co">#&gt; ie_x1_y1_z1   -3.551964024   0.362099380</span></span>
-<span><span class="co">#&gt; ie_x1_y2_z1   -1.737264135   3.608961928</span></span>
-<span><span class="co">#&gt; ie_x1_y3_z1   -1.563237151   6.632294580</span></span>
-<span><span class="co">#&gt; ie_x1_y4_z1   -0.520513445   0.649062075</span></span>
-<span><span class="co">#&gt; ie_x1_y5_z1   -0.214201892   0.269577458</span></span>
-<span><span class="co">#&gt; ie_x1_y6_z1   -2.088140083   3.929379313</span></span></code></pre></div>
+<span><span class="co">#&gt; Error:</span></span>
+<span><span class="co">#&gt; ! object 'random' not found</span></span></code></pre></div>
 </div>
 <div class="section level3">
 <h3 id="robust-confidence-intervals">Robust Confidence Intervals<a class="anchor" aria-label="anchor" href="#robust-confidence-intervals"></a>
 </h3>
 <div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/stats/confint.html" class="external-link">confint</a></span><span class="op">(</span><span class="va">random</span>, level <span class="op">=</span> <span class="fl">0.95</span>, lb <span class="op">=</span> <span class="cn">FALSE</span>, robust <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
-<span><span class="co">#&gt;                      2.5 %        97.5 %</span></span>
-<span><span class="co">#&gt; alpha[1,1]    9.700915e-01   1.193427585</span></span>
-<span><span class="co">#&gt; alpha[2,1]   -1.163916e+00  -0.947668438</span></span>
-<span><span class="co">#&gt; alpha[3,1]    4.546528e-01   0.495289704</span></span>
-<span><span class="co">#&gt; alpha[4,1]   -7.927398e-03   0.028565775</span></span>
-<span><span class="co">#&gt; alpha[5,1]   -5.960224e-03   0.027916217</span></span>
-<span><span class="co">#&gt; alpha[6,1]    4.601321e-01   0.498908542</span></span>
-<span><span class="co">#&gt; gamma[1,1]    1.939081e+00   3.009109762</span></span>
-<span><span class="co">#&gt; gamma[2,1]   -2.832510e+00  -1.920585315</span></span>
-<span><span class="co">#&gt; gamma[3,1]    1.654210e-01   0.222438060</span></span>
-<span><span class="co">#&gt; gamma[4,1]   -5.558845e-02   0.002018128</span></span>
-<span><span class="co">#&gt; gamma[5,1]   -9.588412e-03   0.046365754</span></span>
-<span><span class="co">#&gt; gamma[6,1]    1.618797e-01   0.215975800</span></span>
-<span><span class="co">#&gt; kappa[1,1]   -3.339640e+00  18.229121156</span></span>
-<span><span class="co">#&gt; phi[1,1]     -1.234585e+00  -0.054720182</span></span>
-<span><span class="co">#&gt; phi[1,2]     -1.238770e+00   0.451199635</span></span>
-<span><span class="co">#&gt; phi[1,3]     -2.792959e+00  28.931614882</span></span>
-<span><span class="co">#&gt; phi[1,4]     -1.840198e+01  13.602733477</span></span>
-<span><span class="co">#&gt; phi[1,5]     -8.207718e+00  11.219113246</span></span>
-<span><span class="co">#&gt; phi[1,6]     -7.207134e+00  16.952865423</span></span>
-<span><span class="co">#&gt; omega[1,1]   -5.204542e+00   4.195366539</span></span>
-<span><span class="co">#&gt; psi[1,1]      3.758772e+02 748.171309766</span></span>
-<span><span class="co">#&gt; tau_sqr[1,1]  5.580831e+00  12.594071759</span></span>
-<span><span class="co">#&gt; tau_sqr[2,1]  2.547561e-01   3.231616178</span></span>
-<span><span class="co">#&gt; tau_sqr[3,1] -6.591038e-02   0.078850759</span></span>
-<span><span class="co">#&gt; tau_sqr[4,1]  8.240730e-02   0.175365384</span></span>
-<span><span class="co">#&gt; tau_sqr[5,1] -9.323166e-02   0.155793319</span></span>
-<span><span class="co">#&gt; tau_sqr[6,1] -1.352432e-01  -0.016872503</span></span>
-<span><span class="co">#&gt; tau_sqr[2,2]  4.278499e+00   9.009720886</span></span>
-<span><span class="co">#&gt; tau_sqr[3,2]  2.624223e-02   0.111354780</span></span>
-<span><span class="co">#&gt; tau_sqr[4,2]  9.426518e-02   0.277683354</span></span>
-<span><span class="co">#&gt; tau_sqr[5,2] -7.778177e-02  -0.007188342</span></span>
-<span><span class="co">#&gt; tau_sqr[6,2] -3.508641e-02   0.091968285</span></span>
-<span><span class="co">#&gt; tau_sqr[3,3]  1.673409e-02   0.023274434</span></span>
-<span><span class="co">#&gt; tau_sqr[4,3]  3.968255e-03   0.009390780</span></span>
-<span><span class="co">#&gt; tau_sqr[5,3] -1.930455e-03   0.003240588</span></span>
-<span><span class="co">#&gt; tau_sqr[6,3] -5.812971e-04   0.003750405</span></span>
-<span><span class="co">#&gt; tau_sqr[4,4]  1.506734e-02   0.024810393</span></span>
-<span><span class="co">#&gt; tau_sqr[5,4] -2.254637e-03   0.001438248</span></span>
-<span><span class="co">#&gt; tau_sqr[6,4] -1.272134e-03   0.004125527</span></span>
-<span><span class="co">#&gt; tau_sqr[5,5]  1.009784e-02   0.019116457</span></span>
-<span><span class="co">#&gt; tau_sqr[6,5] -1.985538e-03   0.003455258</span></span>
-<span><span class="co">#&gt; tau_sqr[6,6]  1.347765e-02   0.020110922</span></span>
-<span><span class="co">#&gt; i_sqr[1,1]    9.988770e-01   0.999501977</span></span>
-<span><span class="co">#&gt; i_sqr[2,1]    9.987995e-01   0.999424324</span></span>
-<span><span class="co">#&gt; i_sqr[3,1]    7.624357e-01   0.822376461</span></span>
-<span><span class="co">#&gt; i_sqr[4,1]    8.137347e-01   0.868510583</span></span>
-<span><span class="co">#&gt; i_sqr[5,1]    7.163636e-01   0.862461533</span></span>
-<span><span class="co">#&gt; i_sqr[6,1]    7.715696e-01   0.837202172</span></span>
-<span><span class="co">#&gt; de[1,1]      -5.204542e+00   4.195366539</span></span>
-<span><span class="co">#&gt; ie[1,1]      -2.190923e+00   7.966976786</span></span>
-<span><span class="co">#&gt; te[1,1]      -1.465726e+00   6.232604376</span></span>
-<span><span class="co">#&gt; ie_x1_y1_z1  -3.084049e+00  -0.105815148</span></span>
-<span><span class="co">#&gt; ie_x1_y2_z1  -1.098139e+00   2.969836654</span></span>
-<span><span class="co">#&gt; ie_x1_y3_z1  -5.834859e-01   5.652543368</span></span>
-<span><span class="co">#&gt; ie_x1_y4_z1  -3.806942e-01   0.509242834</span></span>
-<span><span class="co">#&gt; ie_x1_y5_z1  -1.563675e-01   0.211743089</span></span>
-<span><span class="co">#&gt; ie_x1_y6_z1  -1.368764e+00   3.210002936</span></span></code></pre></div>
+<span><span class="co">#&gt; Error:</span></span>
+<span><span class="co">#&gt; ! object 'random' not found</span></span></code></pre></div>
 <div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/stats/confint.html" class="external-link">confint</a></span><span class="op">(</span><span class="va">random</span>, level <span class="op">=</span> <span class="fl">0.99</span>, lb <span class="op">=</span> <span class="cn">FALSE</span>, robust <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
-<span><span class="co">#&gt;                      0.5 %        99.5 %</span></span>
-<span><span class="co">#&gt; alpha[1,1]     0.935002814   1.228516234</span></span>
-<span><span class="co">#&gt; alpha[2,1]    -1.197890983  -0.913693480</span></span>
-<span><span class="co">#&gt; alpha[3,1]     0.448268289   0.501674224</span></span>
-<span><span class="co">#&gt; alpha[4,1]    -0.013660891   0.034299268</span></span>
-<span><span class="co">#&gt; alpha[5,1]    -0.011282598   0.033238591</span></span>
-<span><span class="co">#&gt; alpha[6,1]     0.454039900   0.505000760</span></span>
-<span><span class="co">#&gt; gamma[1,1]     1.770967775   3.177223399</span></span>
-<span><span class="co">#&gt; gamma[2,1]    -2.975783621  -1.777311581</span></span>
-<span><span class="co">#&gt; gamma[3,1]     0.156462989   0.231396087</span></span>
-<span><span class="co">#&gt; gamma[4,1]    -0.064639099   0.011068777</span></span>
-<span><span class="co">#&gt; gamma[5,1]    -0.018379448   0.055156791</span></span>
-<span><span class="co">#&gt; gamma[6,1]     0.153380599   0.224474911</span></span>
-<span><span class="co">#&gt; kappa[1,1]    -6.728337697  21.617819093</span></span>
-<span><span class="co">#&gt; phi[1,1]      -1.419955377   0.130650040</span></span>
-<span><span class="co">#&gt; phi[1,2]      -1.504283148   0.716713064</span></span>
-<span><span class="co">#&gt; phi[1,3]      -7.777250942  33.915906697</span></span>
-<span><span class="co">#&gt; phi[1,4]     -23.430286711  18.631038636</span></span>
-<span><span class="co">#&gt; phi[1,5]     -11.259893873  14.271289571</span></span>
-<span><span class="co">#&gt; phi[1,6]     -11.002944581  20.748676376</span></span>
-<span><span class="co">#&gt; omega[1,1]    -6.681375052   5.672199256</span></span>
-<span><span class="co">#&gt; psi[1,1]     317.385537678 806.662956122</span></span>
-<span><span class="co">#&gt; tau_sqr[1,1]   4.478970573  13.695931801</span></span>
-<span><span class="co">#&gt; tau_sqr[2,1]  -0.212942553   3.699314798</span></span>
-<span><span class="co">#&gt; tau_sqr[3,1]  -0.088654004   0.101594382</span></span>
-<span><span class="co">#&gt; tau_sqr[4,1]   0.067802523   0.189970157</span></span>
-<span><span class="co">#&gt; tau_sqr[5,1]  -0.132356320   0.194917979</span></span>
-<span><span class="co">#&gt; tau_sqr[6,1]  -0.153840567   0.001724880</span></span>
-<span><span class="co">#&gt; tau_sqr[2,2]   3.535170720   9.753049643</span></span>
-<span><span class="co">#&gt; tau_sqr[3,2]   0.012870080   0.124726931</span></span>
-<span><span class="co">#&gt; tau_sqr[4,2]   0.065448092   0.306500438</span></span>
-<span><span class="co">#&gt; tau_sqr[5,2]  -0.088872796   0.003902689</span></span>
-<span><span class="co">#&gt; tau_sqr[6,2]  -0.055048150   0.111930025</span></span>
-<span><span class="co">#&gt; tau_sqr[3,3]   0.015706529   0.024301996</span></span>
-<span><span class="co">#&gt; tau_sqr[4,3]   0.003116315   0.010242720</span></span>
-<span><span class="co">#&gt; tau_sqr[5,3]  -0.002742885   0.004053017</span></span>
-<span><span class="co">#&gt; tau_sqr[6,3]  -0.001261857   0.004430965</span></span>
-<span><span class="co">#&gt; tau_sqr[4,4]   0.013536599   0.026341137</span></span>
-<span><span class="co">#&gt; tau_sqr[5,4]  -0.002834832   0.002018442</span></span>
-<span><span class="co">#&gt; tau_sqr[6,4]  -0.002120168   0.004973561</span></span>
-<span><span class="co">#&gt; tau_sqr[5,5]   0.008680911   0.020533385</span></span>
-<span><span class="co">#&gt; tau_sqr[6,5]  -0.002840349   0.004310069</span></span>
-<span><span class="co">#&gt; tau_sqr[6,6]   0.012435484   0.021153085</span></span>
-<span><span class="co">#&gt; i_sqr[1,1]     0.998778795   0.999600170</span></span>
-<span><span class="co">#&gt; i_sqr[2,1]     0.998701296   0.999522496</span></span>
-<span><span class="co">#&gt; i_sqr[3,1]     0.753018284   0.831793842</span></span>
-<span><span class="co">#&gt; i_sqr[4,1]     0.805128754   0.877116503</span></span>
-<span><span class="co">#&gt; i_sqr[5,1]     0.693409963   0.885415180</span></span>
-<span><span class="co">#&gt; i_sqr[6,1]     0.761257973   0.847513796</span></span>
-<span><span class="co">#&gt; de[1,1]       -6.681375052   5.672199256</span></span>
-<span><span class="co">#&gt; ie[1,1]       -3.786844471   9.562898474</span></span>
-<span><span class="co">#&gt; te[1,1]       -2.675221556   7.442099763</span></span>
-<span><span class="co">#&gt; ie_x1_y1_z1   -3.551964024   0.362099380</span></span>
-<span><span class="co">#&gt; ie_x1_y2_z1   -1.737264135   3.608961928</span></span>
-<span><span class="co">#&gt; ie_x1_y3_z1   -1.563237151   6.632294580</span></span>
-<span><span class="co">#&gt; ie_x1_y4_z1   -0.520513445   0.649062075</span></span>
-<span><span class="co">#&gt; ie_x1_y5_z1   -0.214201892   0.269577458</span></span>
-<span><span class="co">#&gt; ie_x1_y6_z1   -2.088140083   3.929379313</span></span></code></pre></div>
+<span><span class="co">#&gt; Error:</span></span>
+<span><span class="co">#&gt; ! object 'random' not found</span></span></code></pre></div>
 </div>
 <div class="section level3">
 <h3 id="profile-likelihood-confidence-intervals">Profile-Likelihood Confidence Intervals<a class="anchor" aria-label="anchor" href="#profile-likelihood-confidence-intervals"></a>
 </h3>
 <div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/stats/confint.html" class="external-link">confint</a></span><span class="op">(</span><span class="va">random</span>, level <span class="op">=</span> <span class="fl">0.95</span>, lb <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
-<span><span class="co">#&gt;                        est         2.5 %        97.5 %</span></span>
-<span><span class="co">#&gt; alpha[1,1]    1.081760e+00  7.066558e-01   1.456990821</span></span>
-<span><span class="co">#&gt; alpha[2,1]   -1.055792e+00 -1.376730e+00  -0.735147058</span></span>
-<span><span class="co">#&gt; alpha[3,1]    4.749713e-01  4.542274e-01   0.495547390</span></span>
-<span><span class="co">#&gt; alpha[4,1]    1.031919e-02 -1.007115e-02   0.030689533</span></span>
-<span><span class="co">#&gt; alpha[5,1]    1.097800e-02 -7.865030e-03   0.029764558</span></span>
-<span><span class="co">#&gt; alpha[6,1]    4.795203e-01  4.601307e-01   0.498825496</span></span>
-<span><span class="co">#&gt; gamma[1,1]    2.474096e+00  1.941540e+00   3.006307438</span></span>
-<span><span class="co">#&gt; gamma[2,1]   -2.376548e+00 -2.832687e+00  -1.920436231</span></span>
-<span><span class="co">#&gt; gamma[3,1]    1.939295e-01  1.651738e-01   0.222672512</span></span>
-<span><span class="co">#&gt; gamma[4,1]   -2.678516e-02 -5.518713e-02   0.001472753</span></span>
-<span><span class="co">#&gt; gamma[5,1]    1.838867e-02 -7.544510e-03   0.044412616</span></span>
-<span><span class="co">#&gt; gamma[6,1]    1.889278e-01  1.621186e-01   0.215705224</span></span>
-<span><span class="co">#&gt; kappa[1,1]    7.444741e+00 -2.462176e+00  17.348435605</span></span>
-<span><span class="co">#&gt; phi[1,1]     -6.446527e-01 -1.353062e+00   0.063201181</span></span>
-<span><span class="co">#&gt; phi[1,2]     -3.937850e-01 -1.315733e+00   0.526619917</span></span>
-<span><span class="co">#&gt; phi[1,3]      1.306933e+01 -1.037073e-01  26.247137418</span></span>
-<span><span class="co">#&gt; phi[1,4]     -2.399624e+00 -1.665607e+01  11.862510839</span></span>
-<span><span class="co">#&gt; phi[1,5]      1.505698e+00 -1.057066e+01  13.562741632</span></span>
-<span><span class="co">#&gt; phi[1,6]      4.872866e+00 -9.000693e+00  18.736815416</span></span>
-<span><span class="co">#&gt; omega[1,1]   -5.045879e-01 -7.129622e+00   6.141337426</span></span>
-<span><span class="co">#&gt; psi[1,1]      5.620242e+02  4.977609e+02 638.238236041</span></span>
-<span><span class="co">#&gt; tau_sqr[1,1]  9.087451e+00  8.029903e+00  10.332251877</span></span>
-<span><span class="co">#&gt; tau_sqr[2,1]  1.743186e+00  1.060880e+00   2.480032106</span></span>
-<span><span class="co">#&gt; tau_sqr[3,1]  6.470189e-03 -3.571822e-02   0.048663151</span></span>
-<span><span class="co">#&gt; tau_sqr[4,1]  1.288863e-01  9.004398e-02   0.172993163</span></span>
-<span><span class="co">#&gt; tau_sqr[5,1]  3.128083e-02 -1.225096e-02   0.075912046</span></span>
-<span><span class="co">#&gt; tau_sqr[6,1] -7.605784e-02 -1.182374e-01  -0.036518264</span></span>
-<span><span class="co">#&gt; tau_sqr[2,2]  6.644110e+00  5.875310e+00   7.551526062</span></span>
-<span><span class="co">#&gt; tau_sqr[3,2]  6.879851e-02  3.267941e-02   0.107157384</span></span>
-<span><span class="co">#&gt; tau_sqr[4,2]  1.859743e-01  1.456025e-01   0.231562142</span></span>
-<span><span class="co">#&gt; tau_sqr[5,2] -4.248505e-02 -7.359876e-02  -0.011858028</span></span>
-<span><span class="co">#&gt; tau_sqr[6,2]  2.844094e-02 -5.119334e-03   0.062792195</span></span>
-<span><span class="co">#&gt; tau_sqr[3,3]  2.000426e-02  1.702432e-02   0.023535987</span></span>
-<span><span class="co">#&gt; tau_sqr[4,3]  6.679518e-03  4.407683e-03   0.009112409</span></span>
-<span><span class="co">#&gt; tau_sqr[5,3]  6.550663e-04 -1.466960e-03   0.002849838</span></span>
-<span><span class="co">#&gt; tau_sqr[6,3]  1.584554e-03 -6.177520e-04   0.003806763</span></span>
-<span><span class="co">#&gt; tau_sqr[4,4]  1.993887e-02  1.684122e-02   0.023608406</span></span>
-<span><span class="co">#&gt; tau_sqr[5,4] -4.081948e-04 -2.386302e-03   0.001551867</span></span>
-<span><span class="co">#&gt; tau_sqr[6,4]  1.426696e-03 -7.057251e-04   0.003652012</span></span>
-<span><span class="co">#&gt; tau_sqr[5,5]  1.460715e-02  1.192935e-02   0.017826639</span></span>
-<span><span class="co">#&gt; tau_sqr[6,5]  7.348600e-04 -1.295963e-03   0.002711700</span></span>
-<span><span class="co">#&gt; tau_sqr[6,6]  1.679428e-02  1.420256e-02   0.019852518</span></span>
-<span><span class="co">#&gt; i_sqr[1,1]    9.991895e-01  9.990832e-01   0.999287285</span></span>
-<span><span class="co">#&gt; i_sqr[2,1]    9.991119e-01  9.989972e-01   0.999174915</span></span>
-<span><span class="co">#&gt; i_sqr[3,1]    7.924061e-01  7.648116e-01   0.817821001</span></span>
-<span><span class="co">#&gt; i_sqr[4,1]    8.411226e-01  8.179531e-01   0.861930995</span></span>
-<span><span class="co">#&gt; i_sqr[5,1]    7.894126e-01  7.572071e-01   0.818064523</span></span>
-<span><span class="co">#&gt; i_sqr[6,1]    8.043859e-01  7.779651e-01   0.828511706</span></span>
-<span><span class="co">#&gt; de[1,1]      -5.045879e-01 -7.146359e+00   6.126106689</span></span>
-<span><span class="co">#&gt; ie[1,1]       2.888027e+00 -2.342768e+00   8.154487843</span></span>
-<span><span class="co">#&gt; te[1,1]       2.383439e+00 -1.831159e+00   6.603681828</span></span>
-<span><span class="co">#&gt; ie_x1_y1_z1  -1.594932e+00 -3.489236e+00   0.174193655</span></span>
-<span><span class="co">#&gt; ie_x1_y2_z1   9.358489e-01 -1.273854e+00   3.206925768</span></span>
-<span><span class="co">#&gt; ie_x1_y3_z1   2.534529e+00 -1.411206e-02   5.190507033</span></span>
-<span><span class="co">#&gt; ie_x1_y4_z1   6.427432e-02 -4.011508e-03   0.599929860</span></span>
-<span><span class="co">#&gt; ie_x1_y5_z1   2.768778e-02 -1.180243e-02   0.374320801</span></span>
-<span><span class="co">#&gt; ie_x1_y6_z1   9.206196e-01 -1.699380e+00   3.580259563</span></span></code></pre></div>
+<span><span class="co">#&gt; Error:</span></span>
+<span><span class="co">#&gt; ! object 'random' not found</span></span></code></pre></div>
 <div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/stats/confint.html" class="external-link">confint</a></span><span class="op">(</span><span class="va">random</span>, level <span class="op">=</span> <span class="fl">0.99</span>, lb <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
-<span><span class="co">#&gt;                        est         0.5 %        99.5 %</span></span>
-<span><span class="co">#&gt; alpha[1,1]    1.081760e+00   0.589216175   1.574175540</span></span>
-<span><span class="co">#&gt; alpha[2,1]   -1.055792e+00  -1.476899464  -0.634464458</span></span>
-<span><span class="co">#&gt; alpha[3,1]    4.749713e-01   0.447654491   0.502050134</span></span>
-<span><span class="co">#&gt; alpha[4,1]    1.031919e-02  -0.016507992   0.037038886</span></span>
-<span><span class="co">#&gt; alpha[5,1]    1.097800e-02  -0.013761455   0.035645765</span></span>
-<span><span class="co">#&gt; alpha[6,1]    4.795203e-01   0.454025468   0.504898420</span></span>
-<span><span class="co">#&gt; gamma[1,1]    2.474096e+00   1.775479988   3.173354386</span></span>
-<span><span class="co">#&gt; gamma[2,1]   -2.376548e+00  -2.975253242  -1.777910725</span></span>
-<span><span class="co">#&gt; gamma[3,1]    1.939295e-01   0.156199367   0.231662907</span></span>
-<span><span class="co">#&gt; gamma[4,1]   -2.678516e-02  -0.064132609   0.010416272</span></span>
-<span><span class="co">#&gt; gamma[5,1]    1.838867e-02  -0.015757163   0.052672773</span></span>
-<span><span class="co">#&gt; gamma[6,1]    1.889278e-01   0.153716991   0.224154566</span></span>
-<span><span class="co">#&gt; kappa[1,1]    7.444741e+00  -5.541703147  20.423720807</span></span>
-<span><span class="co">#&gt; phi[1,1]     -6.446527e-01  -1.571238919   0.283410074</span></span>
-<span><span class="co">#&gt; phi[1,2]     -3.937850e-01  -1.605371737   0.817579671</span></span>
-<span><span class="co">#&gt; phi[1,3]      1.306933e+01  -4.224315742  30.340555521</span></span>
-<span><span class="co">#&gt; phi[1,4]     -2.399624e+00 -21.113555863  16.158321099</span></span>
-<span><span class="co">#&gt; phi[1,5]      1.505698e+00 -14.336359636  17.347311483</span></span>
-<span><span class="co">#&gt; phi[1,6]      4.872866e+00 -13.290707350  23.040957691</span></span>
-<span><span class="co">#&gt; omega[1,1]   -5.045879e-01  -9.217522677   8.209891053</span></span>
-<span><span class="co">#&gt; psi[1,1]      5.620242e+02 479.457870067 664.365168044</span></span>
-<span><span class="co">#&gt; tau_sqr[1,1]  9.087451e+00   7.733625322  10.765403856</span></span>
-<span><span class="co">#&gt; tau_sqr[2,1]  1.743186e+00   0.851910853   2.724349874</span></span>
-<span><span class="co">#&gt; tau_sqr[3,1]  6.470189e-03  -0.048932122   0.062080537</span></span>
-<span><span class="co">#&gt; tau_sqr[4,1]  1.288863e-01   0.076586587   0.188070518</span></span>
-<span><span class="co">#&gt; tau_sqr[5,1]  3.128083e-02  -0.025973041   0.090528471</span></span>
-<span><span class="co">#&gt; tau_sqr[6,1] -7.605784e-02  -0.128602436  -0.024172522</span></span>
-<span><span class="co">#&gt; tau_sqr[2,2]  6.644110e+00   5.660160921   7.866604345</span></span>
-<span><span class="co">#&gt; tau_sqr[3,2]  6.879851e-02   0.021209738   0.119919829</span></span>
-<span><span class="co">#&gt; tau_sqr[4,2]  1.859743e-01   0.133832789   0.247143316</span></span>
-<span><span class="co">#&gt; tau_sqr[5,2] -4.248505e-02  -0.085381806  -0.002377318</span></span>
-<span><span class="co">#&gt; tau_sqr[6,2]  2.844094e-02  -0.015714707   0.074001602</span></span>
-<span><span class="co">#&gt; tau_sqr[3,3]  2.000426e-02   0.016182528   0.024761379</span></span>
-<span><span class="co">#&gt; tau_sqr[4,3]  6.679518e-03   0.003718460   0.009924995</span></span>
-<span><span class="co">#&gt; tau_sqr[5,3]  6.550663e-04  -0.002128264   0.003572530</span></span>
-<span><span class="co">#&gt; tau_sqr[6,3]  1.584554e-03  -0.001321754   0.004535081</span></span>
-<span><span class="co">#&gt; tau_sqr[4,4]  1.993887e-02   0.015969002   0.024891901</span></span>
-<span><span class="co">#&gt; tau_sqr[5,4] -4.081948e-04  -0.003031965   0.002177018</span></span>
-<span><span class="co">#&gt; tau_sqr[6,4]  1.426696e-03  -0.001377099   0.004389726</span></span>
-<span><span class="co">#&gt; tau_sqr[5,5]  1.460715e-02   0.011179708   0.018938211</span></span>
-<span><span class="co">#&gt; tau_sqr[6,5]  7.348600e-04  -0.001968372   0.003337700</span></span>
-<span><span class="co">#&gt; tau_sqr[6,6]  1.679428e-02   0.013476244   0.020939151</span></span>
-<span><span class="co">#&gt; i_sqr[1,1]    9.991895e-01   0.999047837   0.999315706</span></span>
-<span><span class="co">#&gt; i_sqr[2,1]    9.991119e-01   0.999034108   0.999194630</span></span>
-<span><span class="co">#&gt; i_sqr[3,1]    7.924061e-01   0.755658908   0.825289425</span></span>
-<span><span class="co">#&gt; i_sqr[4,1]    8.411226e-01   0.810154960   0.868117340</span></span>
-<span><span class="co">#&gt; i_sqr[5,1]    7.894126e-01   0.746067884   0.826748597</span></span>
-<span><span class="co">#&gt; i_sqr[6,1]    8.043859e-01   0.769326917   0.835552004</span></span>
-<span><span class="co">#&gt; de[1,1]      -5.045879e-01  -9.223785194   8.207157450</span></span>
-<span><span class="co">#&gt; ie[1,1]       2.888027e+00  -3.984532993   9.811202052</span></span>
-<span><span class="co">#&gt; te[1,1]       2.383439e+00  -3.144734390   7.900562791</span></span>
-<span><span class="co">#&gt; ie_x1_y1_z1  -1.594932e+00  -4.191722717   0.797546757</span></span>
-<span><span class="co">#&gt; ie_x1_y2_z1   9.358489e-01  -1.986526505   3.963264217</span></span>
-<span><span class="co">#&gt; ie_x1_y3_z1   2.534529e+00  -0.812201211   6.049394198</span></span>
-<span><span class="co">#&gt; ie_x1_y4_z1   6.427432e-02  -0.072195936   0.838003161</span></span>
-<span><span class="co">#&gt; ie_x1_y5_z1   2.768778e-02  -0.104582517   0.545666573</span></span>
-<span><span class="co">#&gt; ie_x1_y6_z1   9.206196e-01  -2.520010960   4.439638154</span></span></code></pre></div>
+<span><span class="co">#&gt; Error:</span></span>
+<span><span class="co">#&gt; ! object 'random' not found</span></span></code></pre></div>
 <ul>
 <li>The fixed part of the random-effects model gives pooled means for
 the person-specific parameters (e.g.,
@@ -1062,30 +665,17 @@ and the residual variance
 </ul>
 <div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">means</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/extract.html">extract</a></span><span class="op">(</span><span class="va">random</span>, what <span class="op">=</span> <span class="st">"alpha"</span><span class="op">)</span></span>
+<span><span class="co">#&gt; Error:</span></span>
+<span><span class="co">#&gt; ! object 'random' not found</span></span>
 <span><span class="va">means</span></span>
-<span><span class="co">#&gt;          alpha</span></span>
-<span><span class="co">#&gt; y1  1.08175952</span></span>
-<span><span class="co">#&gt; y2 -1.05579223</span></span>
-<span><span class="co">#&gt; y3  0.47497126</span></span>
-<span><span class="co">#&gt; y4  0.01031919</span></span>
-<span><span class="co">#&gt; y5  0.01097800</span></span>
-<span><span class="co">#&gt; y6  0.47952033</span></span>
+<span><span class="co">#&gt; Error:</span></span>
+<span><span class="co">#&gt; ! object 'means' not found</span></span>
 <span><span class="va">covariances</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/extract.html">extract</a></span><span class="op">(</span><span class="va">random</span>, what <span class="op">=</span> <span class="st">"tau_sqr"</span><span class="op">)</span></span>
+<span><span class="co">#&gt; Error:</span></span>
+<span><span class="co">#&gt; ! object 'random' not found</span></span>
 <span><span class="va">covariances</span></span>
-<span><span class="co">#&gt;              y1          y2           y3            y4            y5</span></span>
-<span><span class="co">#&gt; y1  9.087451187  1.74318612 0.0064701890  0.1288863403  0.0312808293</span></span>
-<span><span class="co">#&gt; y2  1.743186123  6.64411018 0.0687985052  0.1859742649 -0.0424850535</span></span>
-<span><span class="co">#&gt; y3  0.006470189  0.06879851 0.0200042627  0.0066795176  0.0006550663</span></span>
-<span><span class="co">#&gt; y4  0.128886340  0.18597426 0.0066795176  0.0199388676 -0.0004081948</span></span>
-<span><span class="co">#&gt; y5  0.031280829 -0.04248505 0.0006550663 -0.0004081948  0.0146071479</span></span>
-<span><span class="co">#&gt; y6 -0.076057844  0.02844094 0.0015845541  0.0014266964  0.0007348600</span></span>
-<span><span class="co">#&gt;              y6</span></span>
-<span><span class="co">#&gt; y1 -0.076057844</span></span>
-<span><span class="co">#&gt; y2  0.028440937</span></span>
-<span><span class="co">#&gt; y3  0.001584554</span></span>
-<span><span class="co">#&gt; y4  0.001426696</span></span>
-<span><span class="co">#&gt; y5  0.000734860</span></span>
-<span><span class="co">#&gt; y6  0.016794284</span></span></code></pre></div>
+<span><span class="co">#&gt; Error:</span></span>
+<span><span class="co">#&gt; ! object 'covariances' not found</span></span></code></pre></div>
 <p>Finally, we compare the meta-analytic population estimates to the
 known generating values.</p>
 <div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">

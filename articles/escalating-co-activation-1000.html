@@ -60,7 +60,7 @@
                         <h4 data-toc-skip class="author">Ivan Jacob
 Agaloos Pesigan</h4>
             
-            <h4 data-toc-skip class="date">2026-02-13</h4>
+            <h4 data-toc-skip class="date">2026-02-14</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/jeksterslab/metaDyn/blob/main/vignettes/escalating-co-activation-1000.Rmd"><code>vignettes/escalating-co-activation-1000.Rmd</code></a></small>
       <div class="d-none name"><code>escalating-co-activation-1000.Rmd</code></div>
@@ -408,20 +408,20 @@ positive definite covariance matrix. It returns:<br>
 </h4>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">fit</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="co">#&gt;                          mu[1,1]   mu[2,1] beta[1,1]   beta[2,1]   beta[1,2]</span></span>
-<span><span class="co">#&gt; FitVARMxID_VAR_ID1.Rds  4.069632  5.257517 0.7766154 -0.01231025  0.20562310</span></span>
-<span><span class="co">#&gt; FitVARMxID_VAR_ID2.Rds  7.672821  6.094505 0.2223178 -0.30914569 -0.23843803</span></span>
-<span><span class="co">#&gt; FitVARMxID_VAR_ID3.Rds 24.827945 11.528841 0.1101953 -0.20886863  0.33146719</span></span>
-<span><span class="co">#&gt; FitVARMxID_VAR_ID4.Rds 16.400665 11.302763 0.2534439 -0.12971130 -0.26910588</span></span>
-<span><span class="co">#&gt; FitVARMxID_VAR_ID5.Rds 14.558106 23.101649 0.1623998 -0.33939156  0.02788429</span></span>
-<span><span class="co">#&gt; FitVARMxID_VAR_ID6.Rds  3.055194  1.761810 0.4038128 -0.11991150  0.13141247</span></span>
-<span><span class="co">#&gt;                        beta[2,2]  psi[1,1]    psi[2,1]  psi[2,2]</span></span>
-<span><span class="co">#&gt; FitVARMxID_VAR_ID1.Rds 0.5601123 0.1706596 -0.03935187 0.1674326</span></span>
-<span><span class="co">#&gt; FitVARMxID_VAR_ID2.Rds 0.7579324 0.2378378 -0.01623838 0.1471512</span></span>
-<span><span class="co">#&gt; FitVARMxID_VAR_ID3.Rds 0.8158781 0.9765994  0.27592708 0.2964318</span></span>
-<span><span class="co">#&gt; FitVARMxID_VAR_ID4.Rds 0.1832713 0.3773208  0.06154313 0.2442620</span></span>
-<span><span class="co">#&gt; FitVARMxID_VAR_ID5.Rds 0.4186573 0.4718741  0.41396161 0.9861358</span></span>
-<span><span class="co">#&gt; FitVARMxID_VAR_ID6.Rds 0.6583966 0.2005669 -0.03980509 0.1539064</span></span></code></pre></div>
+<span><span class="co">#&gt;                            mu[1,1]   mu[2,1] beta[1,1]     beta[2,1]</span></span>
+<span><span class="co">#&gt; FitVARMxID_DTVAR_ID1.Rds  4.015206  5.249473 0.7849302  0.0006610565</span></span>
+<span><span class="co">#&gt; FitVARMxID_DTVAR_ID2.Rds  7.695885  6.002349 0.6501457 -0.1549957297</span></span>
+<span><span class="co">#&gt; FitVARMxID_DTVAR_ID3.Rds 24.519528 11.353784 0.8068372  0.0617411049</span></span>
+<span><span class="co">#&gt; FitVARMxID_DTVAR_ID4.Rds 16.392649 11.310589 0.6441803  0.1427115134</span></span>
+<span><span class="co">#&gt; FitVARMxID_DTVAR_ID5.Rds 14.559713 23.121465 0.5338519  0.2635350769</span></span>
+<span><span class="co">#&gt; FitVARMxID_DTVAR_ID6.Rds  3.049104  1.752681 0.4614750 -0.1289245691</span></span>
+<span><span class="co">#&gt;                            beta[1,2] beta[2,2]  psi[1,1]    psi[2,1]  psi[2,2]</span></span>
+<span><span class="co">#&gt; FitVARMxID_DTVAR_ID1.Rds  0.22173315 0.5987212 0.1677352 -0.04431894 0.1590936</span></span>
+<span><span class="co">#&gt; FitVARMxID_DTVAR_ID2.Rds -0.02998567 0.8336435 0.1741374 -0.04050284 0.1381707</span></span>
+<span><span class="co">#&gt; FitVARMxID_DTVAR_ID3.Rds  0.28525941 0.7988041 0.1871410 -0.03186416 0.1759231</span></span>
+<span><span class="co">#&gt; FitVARMxID_DTVAR_ID4.Rds  0.18096078 0.5100297 0.2309130 -0.03890301 0.1775926</span></span>
+<span><span class="co">#&gt; FitVARMxID_DTVAR_ID5.Rds  0.24663852 0.7862908 0.1980452 -0.04817681 0.2138077</span></span>
+<span><span class="co">#&gt; FitVARMxID_DTVAR_ID6.Rds  0.15963598 0.6560742 0.1908572 -0.03963838 0.1535987</span></span></code></pre></div>
 </div>
 <div class="section level4">
 <h4 id="proportion-of-converged-cases">Proportion of converged cases<a class="anchor" aria-label="anchor" href="#proportion-of-converged-cases"></a>
@@ -431,7 +431,7 @@ positive definite covariance matrix. It returns:<br>
 <span>  <span class="va">fit</span>,</span>
 <span>  prop <span class="op">=</span> <span class="cn">TRUE</span></span>
 <span><span class="op">)</span></span>
-<span><span class="co">#&gt; [1] 0.986</span></span></code></pre></div>
+<span><span class="co">#&gt; [1] 1</span></span></code></pre></div>
 </div>
 </div>
 </div>
