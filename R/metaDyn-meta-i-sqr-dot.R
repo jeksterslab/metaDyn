@@ -3,7 +3,7 @@
                       alpha) {
   if (univariate) {
     i_sqr <- list(
-      OpenMx::mxAlgebraFromString(
+      i_sqr = OpenMx::mxAlgebraFromString(
         algString = paste0(
           "cvectorize((diag2vec(tau_sqr)",
           "/",
@@ -14,15 +14,15 @@
     )
   } else {
     i_sqr <- list(
-      OpenMx::mxAlgebraFromString(
+      i_sqr_l = OpenMx::mxAlgebraFromString(
         algString = "chol(v_hat)",
         name = "i_sqr_l"
       ),
-      OpenMx::mxAlgebraFromString(
+      i_sqr_h = OpenMx::mxAlgebraFromString(
         algString = "solve(t(i_sqr_l)) %*% tau_sqr %*% solve(i_sqr_l)",
         name = "i_sqr_h"
       ),
-      OpenMx::mxAlgebraFromString(
+      i_sqr = OpenMx::mxAlgebraFromString(
         algString = paste0(
           "cvectorize(diag2vec(i_sqr_h)",
           "/",
@@ -36,7 +36,7 @@
   c(
     i_sqr,
     list(
-      OpenMx::mxAlgebraFromString(
+      i_sqr_vec = OpenMx::mxAlgebraFromString(
         algString = "cvectorize(i_sqr)",
         name = "i_sqr_vec",
         dimnames = list(

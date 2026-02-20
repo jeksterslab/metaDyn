@@ -381,7 +381,7 @@
     indirect_vec = indirect_vec,
     total_vec = total_vec,
     ie_xyz = ie_xyz
-  )
+  ) 
   ci <- ci[
     !sapply(
       X = ci,

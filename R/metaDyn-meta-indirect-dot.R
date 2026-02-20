@@ -40,8 +40,8 @@
     )
   )
   directs <- list(
-    direct,
-    direct_vec,
+    direct = direct,
+    direct_vec = direct_vec,
     OpenMx::mxCI(
       reference = "direct",
       interval = 1 - alpha
@@ -79,8 +79,8 @@
     )
   )
   indirects <- list(
-    indirect,
-    indirect_vec,
+    indirect = indirect,
+    indirect_vec = indirect_vec,
     OpenMx::mxCI(
       reference = "indirect",
       interval = 1 - alpha
@@ -118,8 +118,8 @@
     )
   )
   totals <- list(
-    total,
-    total_vec,
+    total = total,
+    total_vec = total_vec,
     OpenMx::mxCI(
       reference = "total",
       interval = 1 - alpha

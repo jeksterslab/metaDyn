@@ -156,7 +156,7 @@
       name,
       "))",
       " + ",
-      "vec2diag(log(diag2vec(",
+      "vec2diag(mxRobustLog(diag2vec(",
       name,
       ")))"
     ),

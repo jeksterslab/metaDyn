@@ -504,7 +504,7 @@ head(data)
 plot(sim, burnin = burnin)
 ```
 
-## Model Fitting
+## Stage 1: Person-Specific VAR Model
 
 ```{r}
 #| include = FALSE
@@ -519,68 +519,25 @@ library(fitVARMxID)
 
 The `FitVARMxID` function fits a VAR model on each individual $i$.
 
-### LDL'-parameterized covariance matrices
-
-Covariances such as `psi` and `theta` are estimated using the LDL' decomposition of a positive definite covariance matrix. The decomposition expresses a covariance matrix $\Sigma$ as  
-\begin{equation}
-  \boldsymbol{\Sigma} = \left( \mathbf{L} + \mathbf{I} \right) \mathrm{diag} \left( \mathrm{Softplus} \left( \mathbf{d}_{uc} \right) \right) \left( \mathbf{L} + \mathbf{I} \right)^{\prime},
-\end{equation}
-where:
-- $\mathbf{L}$ is a strictly lower-triangular matrix of free parameters (`l_mat_strict`),  
-- $\mathbf{I}$ is the identity matrix,  
-- $\mathbf{d}_{uc}$ is an unconstrained vector,  
-- $\mathrm{Softplus} \left(\mathbf{d}_{uc} \right) = \log \left(1 + \exp \left( \mathbf{d}_{uc} \right) \right)$ ensures strictly positive diagonal entries.  
-
-The `LDL()` function extracts this decomposition from a positive definite covariance matrix. It returns:  
-- `d_uc`: unconstrained diagonal parameters, equal to `InvSoftplus(d_vec)`,  
-- `d_vec`: diagonal entries, equal to `Softplus(d_uc)`,  
-- `l_mat_strict`: the strictly lower-triangular factor.  
-
-```{r}
-sigma <- matrix(
-  data = c(1.0, 0.5, 0.5, 1.0),
-  nrow = 2,
-  ncol = 2
-)
-ldl_sigma <- LDL(sigma)
-d_uc <- ldl_sigma$d_uc
-l_mat_strict <- ldl_sigma$l_mat_strict
-I <- diag(2)
-sigma_reconstructed <- (l_mat_strict + I) %*% diag(log1p(exp(d_uc)), 2) %*% t(l_mat_strict + I)
-sigma_reconstructed
-```
-
-### `FitVARMxID`
-
 ```{r, message = FALSE, warning = FALSE, results = "hide"}
 fit <- FitVARMxID(
   data = data,
   observed = c("y1", "y2"),
   id = "id",
   center = TRUE,
-  tries_explore = 1000,
-  tries_local = 100,
-  max_attempts = 100,
   ncores = parallel::detectCores()
 )
 ```
 
-#### Parameter estimates
-
 ```{r}
-head(summary(fit))
-```
-
-#### Proportion of converged cases
-
-```{r}
-converged(
+summary(
   fit,
-  prop = TRUE
+  means = TRUE,
+  ncores = parallel::detectCores()
 )
 ```
 
-## Mixed-Effects Meta-Analysis with Distal Outcome of Person-Specific Dynamics and Means
+## Stage 2: Mixed-Effects Meta-Analysis with Distal Outcome of Person-Specific Dynamics and Means
 
 ```{r}
 #| echo = FALSE
@@ -625,9 +582,6 @@ random <- MetaVARMx(
   z = z,
   effects = TRUE,
   set_point = TRUE,
-  robust_v = FALSE,
-  robust = TRUE,
-  lb = TRUE,
   ncores = parallel::detectCores()
 )
 ```

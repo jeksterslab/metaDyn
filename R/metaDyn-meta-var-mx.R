@@ -44,28 +44,20 @@
 #'   include estimates of the process noise covariance matrix, if available.
 #'   If `cov_dyn = FALSE`,
 #'   exclude estimates of the process noise covariance matrix.
-#' @param diag_cov Character string.
-#'   If `diag_cov = "var"`,
+#' @param var_metric Character string.
+#'   If `var_metric = "var"`,
 #'   `cov_dyn` and `cov_meas`
 #'   are in the original metric variance/covariance metric.
-#'   If `diag_cov = "logvar"`,
+#'   If `var_metric = "logvar"`,
 #'   the diagonal elements of `cov_dyn` and `cov_meas`
 #'   are the log of the variances
 #'   and the off-diagonal elements are the elements in `L`
 #'   in the `LDL'` decomposition.
-#'   If `diag_cov = "softplusvar"`,
+#'   If `var_metric = "softplusvar"`,
 #'   the diagonal elements of `cov_dyn` and `cov_meas`
 #'   are the softplus of the variances
 #'   and the off-diagonal elements are the elements in `L`
 #'   in the `LDL'` decomposition.
-#' @param converged Logical.
-#'   Only include converged cases.
-#' @param vanishing_theta Logical.
-#'   Test for measurement error variance going to zero
-#'   if `converged = TRUE`.
-#' @param theta_tol Numeric.
-#'   Tolerance for vanishing theta test
-#'   if `converged` and `theta_tol` are `TRUE`.
 #' @param robust_v Logical.
 #'   If `TRUE`,
 #'   use robust (sandwich) sampling variance-covariance matrix
@@ -142,8 +134,7 @@ MetaVARMx <- function(object,
                       int_dyn = FALSE,
                       cov_meas = FALSE,
                       cov_dyn = FALSE,
-                      diag_cov = "var",
-                      converged = TRUE,
+                      var_metric = "var",
                       vanishing_theta = TRUE,
                       theta_tol = 0.001,
                       robust_v = FALSE,
@@ -168,21 +159,6 @@ MetaVARMx <- function(object,
       "varmxid"
     )
   )
-  if (converged) {
-    fit_converged <- fitVARMxID:::converged.varmxid(
-      object = object,
-      grad_tol = grad_tol,
-      hess_tol = hess_tol,
-      vanishing_theta = vanishing_theta,
-      theta_tol = theta_tol,
-      prop = FALSE
-    )
-    object$output <- object$output[
-      which(
-        fit_converged
-      )
-    ]
-  }
   y <- fitVARMxID:::coef.varmxid(
     object = object,
     mu = set_point,
@@ -191,8 +167,8 @@ MetaVARMx <- function(object,
     nu = int_meas,
     psi = cov_dyn,
     theta = cov_meas,
-    diag_cov = diag_cov,
-    converged = FALSE
+    var_metric = var_metric,
+    ncores = ncores
   )
   v <- fitVARMxID:::vcov.varmxid(
     object = object,
@@ -202,25 +178,19 @@ MetaVARMx <- function(object,
     nu = int_meas,
     psi = cov_dyn,
     theta = cov_meas,
-    diag_cov = diag_cov,
-    converged = FALSE,
-    robust = robust_v
+    var_metric = var_metric,
+    robust = robust_v,
+    ncores = ncores
   )
-  if (!is.null(x) && converged) {
-    x <- x[
-      fit_converged
-    ]
-  }
-  if (!is.null(z) && converged) {
-    z <- z[
-      fit_converged
-    ]
-  }
   out <- Meta(
     y = y,
     v = v,
-    x = x,
-    z = z,
+    x = x[
+      object$converged
+    ],
+    z = z[
+      object$converged
+    ],
     random = random,
     alpha_free = alpha_free,
     alpha_values = alpha_values,

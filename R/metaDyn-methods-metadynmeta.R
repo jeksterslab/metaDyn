@@ -143,7 +143,7 @@ print.summary.metadynmeta <- function(x,
   cat(
     paste0(
       "\n",
-      "Status code = ",
+      "Status code: ",
       code,
       "\n"
     )
@@ -152,7 +152,7 @@ print.summary.metadynmeta <- function(x,
     paste0(
       "\n",
       "CI ",
-      "type = ",
+      "type: ",
       "\"",
       type,
       "\"",
@@ -313,7 +313,7 @@ confint.metadynmeta <- function(object,
     }
   }
   if (lb) {
-    if (is.null(object$lb) || object$args$alpha != 1 - level) {
+    if (is.null(object$lb) || object$args$alpha != 1 - level ) {
       utils::capture.output(
         suppressMessages(
           suppressWarnings(

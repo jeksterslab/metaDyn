@@ -149,10 +149,6 @@
     out,
     column
   )
-  out <- c(
-    out,
-    column
-  )
   iden <- OpenMx::mxMatrix(
     type = "Iden",
     nrow = p,

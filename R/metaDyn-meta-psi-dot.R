@@ -9,6 +9,12 @@
                      psi_l_lbound,
                      psi_l_ubound,
                      alpha) {
+  if (is.null(psi_d_lbound)) {
+    psi_d_lbound <- -30
+  }
+  if (is.null(psi_d_ubound)) {
+    psi_d_ubound <- 650
+  }
   idx <- seq_len(r)
   if (psi_diag) {
     out <- .MetaPsiDiag(

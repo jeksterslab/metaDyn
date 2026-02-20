@@ -2,7 +2,7 @@
                             p,
                             n) {
   list(
-    OpenMx::mxMatrix(
+    v_hat = OpenMx::mxMatrix(
       type = "Full",
       ncol = 1,
       nrow = p,

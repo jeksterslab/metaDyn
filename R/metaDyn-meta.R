@@ -187,7 +187,7 @@
 #'     \item{output}{A fitted OpenMx model.}
 #'     \item{robust}{Output from [OpenMx::imxRobustSE()]
 #'         with argument `details = TRUE` if `robust = TRUE`.}
-#'     \item{lb}{Likelhood-based confidence intervals
+#'     \item{lb}{Likelhood-based confidence intervals 
 #'         if `lb = TRUE`.}
 #'   }
 #'
