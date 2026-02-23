@@ -31,12 +31,12 @@
                      kappa_values,
                      kappa_lbound,
                      kappa_ubound,
-                     phi_values,
                      phi_free,
+                     phi_values,
                      phi_lbound,
                      phi_ubound,
-                     omega_values,
                      omega_free,
+                     omega_values,
                      omega_lbound,
                      omega_ubound,
                      psi_diag,
@@ -49,16 +49,9 @@
                      psi_l_lbound,
                      psi_l_ubound,
                      alpha,
-                     intervals,
                      tries_explore,
                      tries_local,
                      max_attempts,
-                     grad_tol,
-                     hess_tol,
-                     eps,
-                     factor,
-                     abs_bnd_tol,
-                     rel_bnd_tol,
                      seed,
                      silent,
                      ncores) {
@@ -120,12 +113,12 @@
     kappa_values = kappa_values,
     kappa_lbound = kappa_lbound,
     kappa_ubound = kappa_ubound,
-    phi_values = phi_values,
     phi_free = phi_free,
+    phi_values = phi_values,
     phi_lbound = phi_lbound,
     phi_ubound = phi_ubound,
-    omega_values = omega_values,
     omega_free = omega_free,
+    omega_values = omega_values,
     omega_lbound = omega_lbound,
     omega_ubound = omega_ubound,
     psi_diag = psi_diag,
@@ -141,20 +134,45 @@
   )
   model <- OpenMx::mxTryHard(
     model = model,
-    intervals = intervals,
     silent = silent
   )
-  .MxHelperEnsureGoodHessian(
-    model = model,
-    tries_explore = tries_explore,
-    tries_local = tries_local,
-    max_attempts = max_attempts,
-    grad_tol = grad_tol,
-    hess_tol = hess_tol,
-    eps = eps,
-    factor = factor,
-    abs_bnd_tol = abs_bnd_tol,
-    rel_bnd_tol = rel_bnd_tol,
-    silent = silent
-  )
+  if (
+    .MxHelperNeedsRescue(
+      model = model,
+      grad_tol = 1e-2,
+      ok_codes = 0L,
+      require_finite_fit = TRUE,
+      hess_tol_abs = 1e-8,
+      hess_tol_rel = 1e-10,
+      check_condition = FALSE,
+      cond_max = 1e12,
+      abs_bnd_tol = 1e-6,
+      rel_bnd_tol = 1e-4
+    )
+  ) {
+    model <- .MxHelperEnsureGoodHessian(
+      model = model,
+      tries_explore = tries_explore,
+      tries_local = tries_local,
+      max_attempts = max_attempts,
+      grad_tol = 1e-2,
+      hess_tol_abs = 1e-8,
+      hess_tol_rel = 1e-10,
+      check_condition = FALSE,
+      cond_max = 1e12,
+      abs_bnd_tol = 1e-6,
+      rel_bnd_tol = 1e-4,
+      factor = 10,
+      relax_on_last = TRUE,
+      relax_exclude = NULL,
+      protect_lb_zero = TRUE,
+      ok_codes = 0L,
+      require_finite_fit = TRUE,
+      rerun_code6 = TRUE,
+      relax_streak = 3,
+      relax_min_attempt = 3,
+      silent = silent
+    )
+  }
+  model
 }

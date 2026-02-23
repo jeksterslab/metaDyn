@@ -4,7 +4,7 @@
 \alias{print.metadynmeta}
 \title{Print Method for Object of Class \code{metadynmeta}}
 \usage{
-\method{print}{metadynmeta}(x, alpha = NULL, lb = NULL, robust = NULL, digits = 4, ...)
+\method{print}{metadynmeta}(x, alpha = NULL, robust = NULL, digits = 4, ...)
 }
 \arguments{
 \item{x}{an object of class \code{metadynmeta}.}
@@ -13,12 +13,6 @@
 Significance level \eqn{\alpha}.
 If \code{NULL}, the function will check \code{object}
 for \code{alpha} used in model fitting.}
-
-\item{lb}{Logical.
-If \code{TRUE}, returns profile likelihood-based confidence intervals.
-If \code{FALSE}, returns Wald confidence intervals.
-If \code{NULL}, the function will check \code{object}
-if likelihood-based confidence intervals are available.}
 
 \item{robust}{Logical.
 If \code{TRUE}, use robust (sandwich) sampling variance-covariance matrix.

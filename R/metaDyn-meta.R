@@ -137,44 +137,18 @@
 #'   If `TRUE`,
 #'   calculate robust (sandwich) sampling variance-covariance matrix
 #'   in stage 2.
-#' @param lb Logical.
-#'   If `TRUE`,
-#'   calculate likelihood based confidence intervals
-#'   in stage 2.
 #' @param alpha NUmeric.
 #'   Alpha for test of significance and confidence intervals.
 #' @param tries_explore Integer.
-#'   Number of extra tries for the wide exploration
-#'   phase using `OpenMx::mxTryHardWideSearch()` with `checkHess = FALSE`.
+#'   Number of extra tries for the wide exploration phase.
 #' @param tries_local Integer.
-#'   Number of extra tries for local polishing via
-#'   `OpenMx::mxTryHard()` when gradients remain above tolerance.
+#'   Number of extra tries for local polishing.
 #' @param max_attempts Integer.
 #'   Maximum number of remediation attempts
 #'   after the first Hessian computation fails the criteria.
-#'   Each attempt may nudge off bounds,
-#'   refit locally without the Hessian, and,
-#'   on the last attempt, relax bounds.
-#' @param grad_tol Numeric.
-#'   Tolerance for the maximum absolute gradient.
-#'   Smaller values are stricter.
-#' @param hess_tol Numeric.
-#'   Minimum allowable Hessian eigenvalue.
-#'   Smaller values are less strict.
-#' @param eps Numeric.
-#'   Proximity threshold to detect parameters on their bounds
-#'   and to nudge them inward by `10 * eps`.
-#' @param factor Numeric.
-#'   Multiplicative factor to relax parameter bounds
-#'   on the final remediation attempt.
-#'   Lower bounds are divided by `factor` and
-#'   upper bounds are multiplied by `factor`.
-#' @param abs_bnd_tol Numeric scalar. Absolute tolerance used when comparing
-#'   parameter values to bounds.
-#' @param rel_bnd_tol Numeric scalar. Relative tolerance multiplier.
-#' @param seed Random seed for reproducibility.
 #' @param silent Logical.
 #'   If `TRUE`, suppresses messages during the model fitting stage.
+#' @param seed Random seed for reproducibility.
 #' @param ncores Positive integer.
 #'   Number of cores to use.
 #'
@@ -187,9 +161,53 @@
 #'     \item{output}{A fitted OpenMx model.}
 #'     \item{robust}{Output from [OpenMx::imxRobustSE()]
 #'         with argument `details = TRUE` if `robust = TRUE`.}
-#'     \item{lb}{Likelhood-based confidence intervals
-#'         if `lb = TRUE`.}
 #'   }
+#'
+#' @examples
+#' \donttest{
+#' # Generate data using the simStateSpace package-------------------------
+#' library(simStateSpace)
+#' set.seed(42)
+#' n <- 5
+#' time <- 100
+#' p <- 2
+#' alpha <- rep(x = 0, times = p)
+#' beta <- 0.50 * diag(p)
+#' psi <- 0.001 * diag(p)
+#' psi_l <- t(chol(psi))
+#' mu0 <- simStateSpace::SSMMeanEta(
+#'   beta = beta,
+#'   alpha = alpha
+#' )
+#' sigma0 <- simStateSpace::SSMCovEta(
+#'   beta = beta,
+#'   psi = psi
+#' )
+#' sigma0_l <- t(chol(sigma0))
+#' sim <- SimSSMVARFixed(
+#'   n = n,
+#'   time = time,
+#'   mu0 = mu0,
+#'   sigma0_l = sigma0_l,
+#'   alpha = alpha,
+#'   beta = beta,
+#'   psi_l = psi_l
+#' )
+#' data <- as.data.frame(sim)
+#'
+#' # Stage 1---------------------------------------------------------------
+#' library(fitVARMxID)
+#' stage1 <- FitVARMxID(
+#'   data = data,
+#'   observed = paste0("y", seq_len(p)),
+#'   id = "id",
+#'   center = TRUE
+#' )
+#' summary(stage1)
+#' # Stage 2---------------------------------------------------------------
+#' stage2 <- Meta(y = coef(stage1), v = vcov(stage1))
+#' summary(stage2)
+#' }
 #'
 #' @references
 #' Cheung, M. W.-L. (2015).
@@ -237,12 +255,12 @@ Meta <- function(y,
                  kappa_values = NULL,
                  kappa_lbound = NULL,
                  kappa_ubound = NULL,
-                 phi_values = NULL,
                  phi_free = NULL,
+                 phi_values = NULL,
                  phi_lbound = NULL,
                  phi_ubound = NULL,
-                 omega_values = NULL,
                  omega_free = NULL,
+                 omega_values = NULL,
                  omega_lbound = NULL,
                  omega_ubound = NULL,
                  psi_diag = TRUE,
@@ -256,20 +274,35 @@ Meta <- function(y,
                  psi_l_ubound = NULL,
                  check_estimates = TRUE,
                  robust = FALSE,
-                 lb = FALSE,
                  alpha = 0.05,
                  tries_explore = 100,
                  tries_local = 100,
                  max_attempts = 10,
-                 grad_tol = 1e-2,
-                 hess_tol = 1e-8,
-                 eps = 1e-6,
-                 factor = 10,
-                 abs_bnd_tol = 1e-6,
-                 rel_bnd_tol = 1e-4,
                  silent = FALSE,
                  seed = NULL,
                  ncores = NULL) {
+  .MetaCheckFree(
+    alpha_free = alpha_free,
+    alpha_values = alpha_values,
+    tau_sqr_diag = tau_sqr_diag,
+    tau_sqr_d_free = tau_sqr_d_free,
+    tau_sqr_d_values = tau_sqr_d_values,
+    tau_sqr_l_free = tau_sqr_l_free,
+    tau_sqr_l_values = tau_sqr_l_values,
+    gamma_free = gamma_free,
+    gamma_values = gamma_values,
+    kappa_free = kappa_free,
+    kappa_values = kappa_values,
+    phi_free = phi_free,
+    phi_values = phi_values,
+    omega_free = omega_free,
+    omega_values = omega_values,
+    psi_diag = psi_diag,
+    psi_d_free = psi_d_free,
+    psi_d_values = psi_d_values,
+    psi_l_free = psi_l_free,
+    psi_l_values = psi_l_values
+  )
   p <- length(y[[1]])
   n <- length(y)
   stopifnot(
@@ -340,12 +373,12 @@ Meta <- function(y,
     kappa_values = kappa_values,
     kappa_lbound = kappa_lbound,
     kappa_ubound = kappa_ubound,
-    phi_values = phi_values,
     phi_free = phi_free,
+    phi_values = phi_values,
     phi_lbound = phi_lbound,
     phi_ubound = phi_ubound,
-    omega_values = omega_values,
     omega_free = omega_free,
+    omega_values = omega_values,
     omega_lbound = omega_lbound,
     omega_ubound = omega_ubound,
     psi_diag = psi_diag,
@@ -359,17 +392,10 @@ Meta <- function(y,
     psi_l_ubound = psi_l_ubound,
     check_estimates = check_estimates,
     robust = robust,
-    lb = lb,
     alpha = alpha,
     tries_explore = tries_explore,
     tries_local = tries_local,
     max_attempts = max_attempts,
-    grad_tol = grad_tol,
-    hess_tol = hess_tol,
-    eps = eps,
-    factor = factor,
-    abs_bnd_tol = abs_bnd_tol,
-    rel_bnd_tol = rel_bnd_tol,
     seed = seed,
     silent = silent,
     ncores = ncores
@@ -408,12 +434,12 @@ Meta <- function(y,
     kappa_values = kappa_values,
     kappa_lbound = kappa_lbound,
     kappa_ubound = kappa_ubound,
-    phi_values = phi_values,
     phi_free = phi_free,
+    phi_values = phi_values,
     phi_lbound = phi_lbound,
     phi_ubound = phi_ubound,
-    omega_values = omega_values,
     omega_free = omega_free,
+    omega_values = omega_values,
     omega_lbound = omega_lbound,
     omega_ubound = omega_ubound,
     psi_diag = psi_diag,
@@ -426,16 +452,9 @@ Meta <- function(y,
     psi_l_lbound = psi_l_lbound,
     psi_l_ubound = psi_l_ubound,
     alpha = alpha,
-    intervals = TRUE,
     tries_explore = tries_explore,
     tries_local = tries_local,
     max_attempts = max_attempts,
-    grad_tol = grad_tol,
-    hess_tol = hess_tol,
-    eps = eps,
-    factor = factor,
-    abs_bnd_tol = abs_bnd_tol,
-    rel_bnd_tol = rel_bnd_tol,
     seed = seed,
     silent = silent,
     ncores = ncores
@@ -460,26 +479,6 @@ Meta <- function(y,
     fun = "Meta",
     output = output,
     robust = sandwich
-  )
-  if (lb) {
-    utils::capture.output(
-      suppressMessages(
-        suppressWarnings(
-          ci <- .CILBMeta(
-            object = out,
-            alpha = alpha
-          )
-        )
-      )
-    )
-  } else {
-    ci <- NULL
-  }
-  out <- c(
-    out,
-    list(
-      lb = ci
-    )
   )
   class(out) <- c(
     "metadynmeta",

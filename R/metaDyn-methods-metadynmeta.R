@@ -7,11 +7,6 @@
 #'   If `NULL`, the function will check `object`
 #'   for `alpha` used in model fitting.
 #' @param digits Integer indicating the number of decimal places to display.
-#' @param lb Logical.
-#'   If `TRUE`, returns profile likelihood-based confidence intervals.
-#'   If `FALSE`, returns Wald confidence intervals.
-#'   If `NULL`, the function will check `object`
-#'   if likelihood-based confidence intervals are available.
 #' @param robust Logical.
 #'   If `TRUE`, use robust (sandwich) sampling variance-covariance matrix.
 #'   If `FALSE`, use normal theory sampling variance-covariance matrix.
@@ -33,7 +28,6 @@
 #' @export
 summary.metadynmeta <- function(object,
                                 alpha = NULL,
-                                lb = NULL,
                                 robust = NULL,
                                 digits = 4,
                                 ...) {
@@ -43,63 +37,38 @@ summary.metadynmeta <- function(object,
   if (is.null(alpha)) {
     alpha <- object$args$alpha
   }
-  if (is.null(lb)) {
-    if (is.null(object$lb)) {
-      lb <- FALSE
+  if (is.null(robust)) {
+    if (is.null(object$robust)) {
+      robust <- FALSE
     } else {
-      lb <- TRUE
+      robust <- TRUE
     }
   }
-  if (lb) {
-    if (is.null(object$lb)) {
+  if (robust) {
+    if (is.null(object$robust)) {
       utils::capture.output(
         suppressMessages(
           suppressWarnings(
-            ci <- .CILBMeta(
-              object = object,
-              alpha = alpha
+            sandwich <- OpenMx::imxRobustSE(
+              model = object$output,
+              details = TRUE
             )
           )
         )
       )
     } else {
-      ci <- object$lb
+      sandwich <- object$robust
     }
-    type <- "lb"
+    object$output@output$vcov <- sandwich$cov
+    object$output@output$standardErrors <- sandwich$SE
+    type <- "robust"
   } else {
-    if (is.null(robust)) {
-      if (is.null(object$robust)) {
-        robust <- FALSE
-      } else {
-        robust <- TRUE
-      }
-    }
-    if (robust) {
-      if (is.null(object$robust)) {
-        utils::capture.output(
-          suppressMessages(
-            suppressWarnings(
-              sandwich <- OpenMx::imxRobustSE(
-                model = object$output,
-                details = TRUE
-              )
-            )
-          )
-        )
-      } else {
-        sandwich <- object$robust
-      }
-      object$output@output$vcov <- sandwich$cov
-      object$output@output$standardErrors <- sandwich$SE
-      type <- "robust"
-    } else {
-      type <- "normal"
-    }
-    ci <- .CIWaldMeta(
-      object = object,
-      alpha = alpha
-    )
+    type <- "normal"
   }
+  ci <- .CIWaldMeta(
+    object = object,
+    alpha = alpha
+  )
   print_summary <- round(
     x = ci,
     digits = digits
@@ -143,7 +112,7 @@ print.summary.metadynmeta <- function(x,
   cat(
     paste0(
       "\n",
-      "Status code = ",
+      "Status code: ",
       code,
       "\n"
     )
@@ -152,11 +121,11 @@ print.summary.metadynmeta <- function(x,
     paste0(
       "\n",
       "CI ",
-      "type = ",
+      "type: ",
       "\"",
       type,
       "\"",
-      "\n"
+      "\n\n"
     )
   )
   print(print_summary)
@@ -176,7 +145,6 @@ print.summary.metadynmeta <- function(x,
 #' @export
 print.metadynmeta <- function(x,
                               alpha = NULL,
-                              lb = NULL,
                               robust = NULL,
                               digits = 4,
                               ...) {
@@ -185,7 +153,6 @@ print.metadynmeta <- function(x,
       object = x,
       alpha = alpha,
       digits = digits,
-      lb = lb,
       robust = robust
     )
   )
@@ -270,7 +237,6 @@ vcov.metadynmeta <- function(object,
 confint.metadynmeta <- function(object,
                                 parm = NULL,
                                 level = 0.95,
-                                lb = NULL,
                                 robust = NULL,
                                 ...) {
   stopifnot(
@@ -301,42 +267,10 @@ confint.metadynmeta <- function(object,
     object$output@output$vcov <- sandwich$cov
     object$output@output$standardErrors <- sandwich$SE
   }
-  wald <- .CIWaldMeta(
+  ci <- .CIWaldMeta(
     object = object,
     alpha = 1 - level
   )[, 5:6, drop = FALSE]
-  if (is.null(lb)) {
-    if (is.null(object$lb)) {
-      lb <- FALSE
-    } else {
-      lb <- TRUE
-    }
-  }
-  if (lb) {
-    if (is.null(object$lb) || object$args$alpha != 1 - level) {
-      utils::capture.output(
-        suppressMessages(
-          suppressWarnings(
-            ci <- .CILBMeta(
-              object = object,
-              alpha = 1 - level
-            )
-          )
-        )
-      )
-    } else {
-      ci <- object$lb
-    }
-  }
-  if (lb) {
-    ci[, 2:3, drop = FALSE]
-    ci <- ci[
-      rownames(wald), ,
-      drop = FALSE
-    ]
-  } else {
-    ci <- wald
-  }
   if (is.null(parm)) {
     parameters <- rownames(
       ci

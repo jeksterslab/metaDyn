@@ -32,12 +32,12 @@ Meta(
   kappa_values = NULL,
   kappa_lbound = NULL,
   kappa_ubound = NULL,
-  phi_values = NULL,
   phi_free = NULL,
+  phi_values = NULL,
   phi_lbound = NULL,
   phi_ubound = NULL,
-  omega_values = NULL,
   omega_free = NULL,
+  omega_values = NULL,
   omega_lbound = NULL,
   omega_ubound = NULL,
   psi_diag = TRUE,
@@ -51,17 +51,10 @@ Meta(
   psi_l_ubound = NULL,
   check_estimates = TRUE,
   robust = FALSE,
-  lb = FALSE,
   alpha = 0.05,
   tries_explore = 100,
   tries_local = 100,
   max_attempts = 10,
-  grad_tol = 0.01,
-  hess_tol = 1e-08,
-  eps = 1e-06,
-  factor = 10,
-  abs_bnd_tol = 1e-06,
-  rel_bnd_tol = 1e-04,
   silent = FALSE,
   seed = NULL,
   ncores = NULL
@@ -168,11 +161,11 @@ Optional vector of lower bound values for \code{kappa}.}
 \item{kappa_ubound}{Numeric vector.
 Optional vector of upper bound values for \code{kappa}.}
 
-\item{phi_values}{Numeric matrix.
-Optional matrix of starting values for \code{phi}.}
-
 \item{phi_free}{Logical matrix.
 Optional matrix of free (\code{TRUE}) parameters for \code{phi}.}
+
+\item{phi_values}{Numeric matrix.
+Optional matrix of starting values for \code{phi}.}
 
 \item{phi_lbound}{Numeric matrix.
 Optional matrix of lower bound values for \code{phi}.}
@@ -180,11 +173,11 @@ Optional matrix of lower bound values for \code{phi}.}
 \item{phi_ubound}{Numeric matrix.
 Optional matrix of upper bound values for \code{phi}.}
 
-\item{omega_values}{Numeric matrix.
-Optional matrix of starting values for \code{omega}.}
-
 \item{omega_free}{Logical matrix.
 Optional matrix of free (\code{TRUE}) parameters for \code{omega}.}
+
+\item{omega_values}{Numeric matrix.
+Optional matrix of starting values for \code{omega}.}
 
 \item{omega_lbound}{Numeric matrix.
 Optional matrix of lower bound values for \code{omega}.}
@@ -242,51 +235,18 @@ If \code{TRUE},
 calculate robust (sandwich) sampling variance-covariance matrix
 in stage 2.}
 
-\item{lb}{Logical.
-If \code{TRUE},
-calculate likelihood based confidence intervals
-in stage 2.}
-
 \item{alpha}{NUmeric.
 Alpha for test of significance and confidence intervals.}
 
 \item{tries_explore}{Integer.
-Number of extra tries for the wide exploration
-phase using \code{OpenMx::mxTryHardWideSearch()} with \code{checkHess = FALSE}.}
+Number of extra tries for the wide exploration phase.}
 
 \item{tries_local}{Integer.
-Number of extra tries for local polishing via
-\code{OpenMx::mxTryHard()} when gradients remain above tolerance.}
+Number of extra tries for local polishing.}
 
 \item{max_attempts}{Integer.
 Maximum number of remediation attempts
-after the first Hessian computation fails the criteria.
-Each attempt may nudge off bounds,
-refit locally without the Hessian, and,
-on the last attempt, relax bounds.}
-
-\item{grad_tol}{Numeric.
-Tolerance for the maximum absolute gradient.
-Smaller values are stricter.}
-
-\item{hess_tol}{Numeric.
-Minimum allowable Hessian eigenvalue.
-Smaller values are less strict.}
-
-\item{eps}{Numeric.
-Proximity threshold to detect parameters on their bounds
-and to nudge them inward by \code{10 * eps}.}
-
-\item{factor}{Numeric.
-Multiplicative factor to relax parameter bounds
-on the final remediation attempt.
-Lower bounds are divided by \code{factor} and
-upper bounds are multiplied by \code{factor}.}
-
-\item{abs_bnd_tol}{Numeric scalar. Absolute tolerance used when comparing
-parameter values to bounds.}
-
-\item{rel_bnd_tol}{Numeric scalar. Relative tolerance multiplier.}
+after the first Hessian computation fails the criteria.}
 
 \item{silent}{Logical.
 If \code{TRUE}, suppresses messages during the model fitting stage.}
@@ -306,8 +266,6 @@ a list with the following elements:
 \item{output}{A fitted OpenMx model.}
 \item{robust}{Output from \code{\link[OpenMx:imxRobustSE]{OpenMx::imxRobustSE()}}
 with argument \code{details = TRUE} if \code{robust = TRUE}.}
-\item{lb}{Likelhood-based confidence intervals
-if \code{lb = TRUE}.}
 }
 }
 \description{
@@ -317,6 +275,53 @@ and their sampling variance-covariance matrices.
 Optionally, it fits distal-outcome models
 in which between-person outcomes are regressed on
 between-person covariates and the meta-analyzed parameters/effect sizes.
+}
+\examples{
+\donttest{
+# Generate data using the simStateSpace package-------------------------
+library(simStateSpace)
+set.seed(42)
+n <- 5
+time <- 100
+p <- 2
+alpha <- rep(x = 0, times = p)
+beta <- 0.50 * diag(p)
+psi <- 0.001 * diag(p)
+psi_l <- t(chol(psi))
+mu0 <- simStateSpace::SSMMeanEta(
+  beta = beta,
+  alpha = alpha
+)
+sigma0 <- simStateSpace::SSMCovEta(
+  beta = beta,
+  psi = psi
+)
+sigma0_l <- t(chol(sigma0))
+sim <- SimSSMVARFixed(
+  n = n,
+  time = time,
+  mu0 = mu0,
+  sigma0_l = sigma0_l,
+  alpha = alpha,
+  beta = beta,
+  psi_l = psi_l
+)
+data <- as.data.frame(sim)
+
+# Stage 1---------------------------------------------------------------
+library(fitVARMxID)
+stage1 <- FitVARMxID(
+  data = data,
+  observed = paste0("y", seq_len(p)),
+  id = "id",
+  center = TRUE
+)
+summary(stage1)
+# Stage 2---------------------------------------------------------------
+stage2 <- Meta(y = coef(stage1), v = vcov(stage1))
+summary(stage2)
+}
+
 }
 \references{
 Cheung, M. W.-L. (2015).

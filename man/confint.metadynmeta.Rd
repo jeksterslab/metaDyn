@@ -4,7 +4,7 @@
 \alias{confint.metadynmeta}
 \title{Confidence Intervals for the Parameter Estimates}
 \usage{
-\method{confint}{metadynmeta}(object, parm = NULL, level = 0.95, lb = NULL, robust = NULL, ...)
+\method{confint}{metadynmeta}(object, parm = NULL, level = 0.95, robust = NULL, ...)
 }
 \arguments{
 \item{object}{an object of class \code{metadynmeta}.}
@@ -15,12 +15,6 @@ either a vector of numbers or a vector of names.
 If missing, all parameters are considered.}
 
 \item{level}{the confidence level required.}
-
-\item{lb}{Logical.
-If \code{TRUE}, returns profile likelihood-based confidence intervals.
-If \code{FALSE}, returns Wald confidence intervals.
-If \code{NULL}, the function will check \code{object}
-if likelihood-based confidence intervals are available.}
 
 \item{robust}{Logical.
 If \code{TRUE}, use robust (sandwich) sampling variance-covariance matrix.

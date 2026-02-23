@@ -2,9 +2,17 @@
                                                      name) {
   OpenMx::mxAlgebraFromString(
     algString = paste0(
-      "vec2diag(mxRobustLog(1 + exp(",
+      "vec2diag(",
+      "((",
       column,
-      ")) + 1e-8)"
+      " + abs(",
+      column,
+      ")) / 2) + ",
+      "mxRobustLog(1 + exp(-abs(",
+      column,
+      ")))",
+      " + 1e-8",
+      ")"
     ),
     name = name
   )

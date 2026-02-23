@@ -44,28 +44,6 @@
 #'   include estimates of the process noise covariance matrix, if available.
 #'   If `cov_dyn = FALSE`,
 #'   exclude estimates of the process noise covariance matrix.
-#' @param diag_cov Character string.
-#'   If `diag_cov = "var"`,
-#'   `cov_dyn` and `cov_meas`
-#'   are in the original metric variance/covariance metric.
-#'   If `diag_cov = "logvar"`,
-#'   the diagonal elements of `cov_dyn` and `cov_meas`
-#'   are the log of the variances
-#'   and the off-diagonal elements are the elements in `L`
-#'   in the `LDL'` decomposition.
-#'   If `diag_cov = "softplusvar"`,
-#'   the diagonal elements of `cov_dyn` and `cov_meas`
-#'   are the softplus of the variances
-#'   and the off-diagonal elements are the elements in `L`
-#'   in the `LDL'` decomposition.
-#' @param converged Logical.
-#'   Only include converged cases.
-#' @param vanishing_theta Logical.
-#'   Test for measurement error variance going to zero
-#'   if `converged = TRUE`.
-#' @param theta_tol Numeric.
-#'   Tolerance for vanishing theta test
-#'   if `converged` and `theta_tol` are `TRUE`.
 #' @param robust_v Logical.
 #'   If `TRUE`,
 #'   use robust (sandwich) sampling variance-covariance matrix
@@ -74,6 +52,52 @@
 #'   use normal theory sampling variance-covariance matrix
 #'   in stage 1.
 #' @inheritParams Meta
+#'
+#' @examples
+#' \donttest{
+#' # Generate data using the simStateSpace package-------------------------
+#' library(simStateSpace)
+#' set.seed(42)
+#' n <- 5
+#' time <- 100
+#' p <- 2
+#' alpha <- rep(x = 0, times = p)
+#' beta <- 0.50 * diag(p)
+#' psi <- 0.001 * diag(p)
+#' psi_l <- t(chol(psi))
+#' mu0 <- simStateSpace::SSMMeanEta(
+#'   beta = beta,
+#'   alpha = alpha
+#' )
+#' sigma0 <- simStateSpace::SSMCovEta(
+#'   beta = beta,
+#'   psi = psi
+#' )
+#' sigma0_l <- t(chol(sigma0))
+#' sim <- SimSSMVARFixed(
+#'   n = n,
+#'   time = time,
+#'   mu0 = mu0,
+#'   sigma0_l = sigma0_l,
+#'   alpha = alpha,
+#'   beta = beta,
+#'   psi_l = psi_l
+#' )
+#' data <- as.data.frame(sim)
+#'
+#' # Stage 1---------------------------------------------------------------
+#' library(fitVARMxID)
+#' stage1 <- FitVARMxID(
+#'   data = data,
+#'   observed = paste0("y", seq_len(p)),
+#'   id = "id",
+#'   center = TRUE
+#' )
+#' summary(stage1)
+#' # Stage 2---------------------------------------------------------------
+#' stage2 <- MetaVARMx(object = stage1)
+#' summary(stage2)
+#' }
 #'
 #' @references
 #' Cheung, M. W.-L. (2015).
@@ -118,12 +142,12 @@ MetaVARMx <- function(object,
                       kappa_values = NULL,
                       kappa_lbound = NULL,
                       kappa_ubound = NULL,
-                      phi_values = NULL,
                       phi_free = NULL,
+                      phi_values = NULL,
                       phi_lbound = NULL,
                       phi_ubound = NULL,
-                      omega_values = NULL,
                       omega_free = NULL,
+                      omega_values = NULL,
                       omega_lbound = NULL,
                       omega_ubound = NULL,
                       psi_diag = TRUE,
@@ -137,28 +161,17 @@ MetaVARMx <- function(object,
                       psi_l_ubound = NULL,
                       check_estimates = TRUE,
                       effects = TRUE,
-                      set_point = FALSE,
-                      int_meas = FALSE,
-                      int_dyn = FALSE,
-                      cov_meas = FALSE,
-                      cov_dyn = FALSE,
-                      diag_cov = "var",
-                      converged = TRUE,
-                      vanishing_theta = TRUE,
-                      theta_tol = 0.001,
+                      set_point = TRUE,
+                      int_meas = TRUE,
+                      int_dyn = TRUE,
+                      cov_meas = TRUE,
+                      cov_dyn = TRUE,
                       robust_v = FALSE,
                       robust = FALSE,
-                      lb = FALSE,
                       alpha = 0.05,
                       tries_explore = 100,
                       tries_local = 100,
                       max_attempts = 10,
-                      grad_tol = 1e-2,
-                      hess_tol = 1e-8,
-                      eps = 1e-6,
-                      factor = 10,
-                      abs_bnd_tol = 1e-6,
-                      rel_bnd_tol = 1e-4,
                       silent = FALSE,
                       seed = NULL,
                       ncores = NULL) {
@@ -168,21 +181,6 @@ MetaVARMx <- function(object,
       "varmxid"
     )
   )
-  if (converged) {
-    fit_converged <- fitVARMxID:::converged.varmxid(
-      object = object,
-      grad_tol = grad_tol,
-      hess_tol = hess_tol,
-      vanishing_theta = vanishing_theta,
-      theta_tol = theta_tol,
-      prop = FALSE
-    )
-    object$output <- object$output[
-      which(
-        fit_converged
-      )
-    ]
-  }
   y <- fitVARMxID:::coef.varmxid(
     object = object,
     mu = set_point,
@@ -191,8 +189,7 @@ MetaVARMx <- function(object,
     nu = int_meas,
     psi = cov_dyn,
     theta = cov_meas,
-    diag_cov = diag_cov,
-    converged = FALSE
+    ncores = ncores
   )
   v <- fitVARMxID:::vcov.varmxid(
     object = object,
@@ -202,25 +199,18 @@ MetaVARMx <- function(object,
     nu = int_meas,
     psi = cov_dyn,
     theta = cov_meas,
-    diag_cov = diag_cov,
-    converged = FALSE,
-    robust = robust_v
+    robust = robust_v,
+    ncores = ncores
   )
-  if (!is.null(x) && converged) {
-    x <- x[
-      fit_converged
-    ]
-  }
-  if (!is.null(z) && converged) {
-    z <- z[
-      fit_converged
-    ]
-  }
   out <- Meta(
     y = y,
     v = v,
-    x = x,
-    z = z,
+    x = x[
+      object$converged
+    ],
+    z = z[
+      object$converged
+    ],
     random = random,
     alpha_free = alpha_free,
     alpha_values = alpha_values,
@@ -244,12 +234,12 @@ MetaVARMx <- function(object,
     kappa_values = kappa_values,
     kappa_lbound = kappa_lbound,
     kappa_ubound = kappa_ubound,
-    phi_values = phi_values,
     phi_free = phi_free,
+    phi_values = phi_values,
     phi_lbound = phi_lbound,
     phi_ubound = phi_ubound,
-    omega_values = omega_values,
     omega_free = omega_free,
+    omega_values = omega_values,
     omega_lbound = omega_lbound,
     omega_ubound = omega_ubound,
     psi_diag = psi_diag,
@@ -263,17 +253,10 @@ MetaVARMx <- function(object,
     psi_l_ubound = psi_l_ubound,
     check_estimates = check_estimates,
     robust = robust,
-    lb = lb,
     alpha = alpha,
     tries_explore = tries_explore,
     tries_local = tries_local,
     max_attempts = max_attempts,
-    grad_tol = grad_tol,
-    hess_tol = hess_tol,
-    eps = eps,
-    factor = factor,
-    abs_bnd_tol = abs_bnd_tol,
-    rel_bnd_tol = rel_bnd_tol,
     seed = seed,
     silent = silent,
     ncores = ncores

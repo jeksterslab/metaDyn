@@ -1,4 +1,4 @@
-## ---- test-metaDyn-distal-mixed-effects
+## ---- test-metaDyn-distal-mixed-effects-values
 lapply(
   X = 1,
   FUN = function(i,
@@ -22,11 +22,13 @@ lapply(
     if (identical(Sys.getenv("GITHUB_TEST"), "true")) {
       ci <- TRUE
       n <- 1000
+      robust <- TRUE
       tol <- 0.10
       plus <- 0
     } else {
       ci <- FALSE
       n <- 500
+      robust <- FALSE
       tol <- 0.50
       plus <- 2
     }
@@ -83,8 +85,12 @@ lapply(
             )
           }
         )
-        tau_sqr_d_values <- c(-0.4327521, -0.4327521)
-        psi_d_values <- c(-0.4327521, -0.4327521, -0.4327521, -0.4327521)
+        ldl_tau_sqr <- metaDyn:::.MxHelperLDL(tau_sqr)
+        tau_sqr_d <- ldl_tau_sqr$uc_d
+        tau_sqr_l <- ldl_tau_sqr$s_l
+        ldl_psi <- metaDyn:::.MxHelperLDL(psi)
+        psi_d <- ldl_psi$uc_d
+        psi_l <- ldl_psi$s_l
         fit <- Meta(
           y = y,
           v = v,
@@ -98,56 +104,45 @@ lapply(
           alpha_values = alpha,
           alpha_lbound = alpha - 10,
           alpha_ubound = alpha + 10,
-          tau_sqr_diag = TRUE,
           tau_sqr_d_free = rep(
             x = TRUE,
-            times = length(tau_sqr_d_values)
+            times = length(tau_sqr_d)
           ),
-          tau_sqr_d_values = tau_sqr_d_values,
-          tau_sqr_d_lbound = tau_sqr_d_values - 10,
-          tau_sqr_d_ubound = tau_sqr_d_values + 10,
-          i_sqr_univariate = FALSE,
-          gamma_free = matrix(
+          tau_sqr_d_values = tau_sqr_d,
+          tau_sqr_d_lbound = -30,
+          tau_sqr_d_ubound = 600,
+          tau_sqr_l_free = matrix(
             data = TRUE,
-            nrow = nrow(gamma),
-            ncol = ncol(gamma)
+            nrow = nrow(tau_sqr_l),
+            ncol = ncol(tau_sqr_l)
           ),
+          tau_sqr_l_values = tau_sqr_l,
+          tau_sqr_l_lbound = -10,
+          tau_sqr_l_ubound = 10,
           gamma_values = gamma,
           gamma_lbound = gamma - 10,
           gamma_ubound = gamma + 10,
-          kappa_free = rep(
-            x = TRUE,
-            times = length(kappa)
-          ),
           kappa_values = kappa,
           kappa_lbound = kappa - 10,
           kappa_ubound = kappa + 10,
           phi_values = phi,
-          phi_free = matrix(
-            data = TRUE,
-            nrow = nrow(phi),
-            ncol = ncol(phi)
-          ),
           phi_lbound = phi - 10,
           phi_ubound = phi + 10,
           omega_values = omega,
-          omega_free = matrix(
-            data = TRUE,
-            nrow = nrow(omega),
-            ncol = ncol(omega)
-          ),
           omega_lbound = omega - 10,
           omega_ubound = omega + 10,
-          psi_diag = TRUE,
-          psi_d_free = rep(
-            x = TRUE,
-            times = length(psi_d_values)
+          psi_d_values = psi_d,
+          psi_d_lbound = -30,
+          psi_d_ubound = 600,
+          psi_l_free = matrix(
+            data = TRUE,
+            nrow = nrow(psi_l),
+            ncol = ncol(psi_l)
           ),
-          psi_d_values = psi_d_values,
-          psi_d_lbound = psi_d_values - 10,
-          psi_d_ubound = psi_d_values + 10,
-          robust = TRUE,
-          lb = TRUE,
+          psi_l_values = psi_l,
+          psi_l_lbound = -10,
+          psi_l_ubound = 10,
+          robust = robust,
           seed = 42
         )
         if (ci) {
@@ -155,10 +150,7 @@ lapply(
           vcov(fit)
           summary(fit)
           print(summary(fit))
-          summary(fit, lb = TRUE)
           confint(fit)
-          confint(fit, lb = TRUE)
-          confint(fit, level = 0.90, lb = TRUE)
           extract(fit)
           vcov(fit, robust = TRUE)
           confint(fit, robust = TRUE)
@@ -308,7 +300,7 @@ lapply(
       }
     )
   },
-  text = "test-metaDyn-distal-mixed-effects",
+  text = "test-metaDyn-distal-mixed-effects-values",
   alpha = c(10, 10),
   tau_sqr = 0.50 * diag(2),
   v_hat = 0.10 * diag(2),
