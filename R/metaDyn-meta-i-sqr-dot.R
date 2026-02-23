@@ -49,10 +49,6 @@
           ),
           "i_sqr_vec"
         )
-      ),
-      OpenMx::mxCI(
-        reference = "i_sqr",
-        interval = 1 - alpha
       )
     )
   )

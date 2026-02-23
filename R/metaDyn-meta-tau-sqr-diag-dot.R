@@ -11,24 +11,16 @@
     name,
     "_d"
   )
-  c(
-    .MxHelperSigmaDiagFromLDLMxMatrix(
-      p = p,
-      name = name,
-      column_name = tau_sqr_d,
-      d_free = tau_sqr_d_free,
-      d_values = tau_sqr_d_values,
-      d_lbound = tau_sqr_d_lbound,
-      d_ubound = tau_sqr_d_ubound,
-      d_rows = idx,
-      d_cols = tau_sqr_d,
-      d_equal = tau_sqr_d_equal
-    ),
-    list(
-      OpenMx::mxCI(
-        reference = name,
-        interval = 1 - alpha
-      )
-    )
+  .MxHelperSigmaDiagFromLDLMxMatrix(
+    p = p,
+    name = name,
+    column_name = tau_sqr_d,
+    d_free = tau_sqr_d_free,
+    d_values = tau_sqr_d_values,
+    d_lbound = tau_sqr_d_lbound,
+    d_ubound = tau_sqr_d_ubound,
+    d_rows = idx,
+    d_cols = tau_sqr_d,
+    d_equal = tau_sqr_d_equal
   )
 }

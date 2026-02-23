@@ -41,11 +41,7 @@
   )
   directs <- list(
     direct = direct,
-    direct_vec = direct_vec,
-    OpenMx::mxCI(
-      reference = "direct",
-      interval = 1 - alpha
-    )
+    direct_vec = direct_vec
   )
   # Indirect effect across all mediators
   indirect <- OpenMx::mxAlgebraFromString(
@@ -80,11 +76,7 @@
   )
   indirects <- list(
     indirect = indirect,
-    indirect_vec = indirect_vec,
-    OpenMx::mxCI(
-      reference = "indirect",
-      interval = 1 - alpha
-    )
+    indirect_vec = indirect_vec
   )
   # Total effect across all mediators
   total <- OpenMx::mxAlgebraFromString(
@@ -119,11 +111,7 @@
   )
   totals <- list(
     total = total,
-    total_vec = total_vec,
-    OpenMx::mxCI(
-      reference = "total",
-      interval = 1 - alpha
-    )
+    total_vec = total_vec
   )
   # Specific indirects: ie_<x>_<y>_<z> (1x1)
   grid_xyz <- expand.grid(
@@ -166,30 +154,10 @@
       )
     }
   )
-  indirect_xyz_cis <- lapply(
-    X = seq_len(nrow(grid_xyz)),
-    FUN = function(idx) {
-      zi <- grid_xyz$z[idx]
-      yi <- grid_xyz$y[idx]
-      xi <- grid_xyz$x[idx]
-      OpenMx::mxCI(
-        reference = paste0(
-          "ie_",
-          xnames[xi],
-          "_",
-          ynames[yi],
-          "_",
-          znames[zi]
-        ),
-        interval = 1 - alpha
-      )
-    }
-  )
   c(
     directs,
     indirects,
     totals,
-    indirect_xyz,
-    indirect_xyz_cis
+    indirect_xyz
   )
 }

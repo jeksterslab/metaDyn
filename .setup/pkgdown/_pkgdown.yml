@@ -23,13 +23,6 @@ reference:
   - has_keyword("methods")
 
 articles:
-- title: Examples
-  contents:
-  - stable-reciprocal-regulation-1000
-  - escalating-co-activation-1000
-  - adaptive-recovery-1000
-  - covariate-1000
-  - covariate-distal-1000
 - title: Session Information
   contents:
   - session
