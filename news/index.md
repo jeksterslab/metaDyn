@@ -1,5 +1,11 @@
 # Changelog
 
+## metaDyn 0.0.0.9006
+
+### Patch
+
+- Edits for compatibility with `fitVARMxID` version 1.0.2.
+
 ## metaDyn 0.0.0.9005
 
 ### Patch

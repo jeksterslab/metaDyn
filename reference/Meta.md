@@ -37,12 +37,12 @@ Meta(
   kappa_values = NULL,
   kappa_lbound = NULL,
   kappa_ubound = NULL,
-  phi_values = NULL,
   phi_free = NULL,
+  phi_values = NULL,
   phi_lbound = NULL,
   phi_ubound = NULL,
-  omega_values = NULL,
   omega_free = NULL,
+  omega_values = NULL,
   omega_lbound = NULL,
   omega_ubound = NULL,
   psi_diag = TRUE,
@@ -56,17 +56,10 @@ Meta(
   psi_l_ubound = NULL,
   check_estimates = TRUE,
   robust = FALSE,
-  lb = FALSE,
   alpha = 0.05,
   tries_explore = 100,
   tries_local = 100,
   max_attempts = 10,
-  grad_tol = 0.01,
-  hess_tol = 1e-08,
-  eps = 1e-06,
-  factor = 10,
-  abs_bnd_tol = 1e-06,
-  rel_bnd_tol = 1e-04,
   silent = FALSE,
   seed = NULL,
   ncores = NULL
@@ -202,13 +195,13 @@ Meta(
 
   Numeric vector. Optional vector of upper bound values for `kappa`.
 
-- phi_values:
-
-  Numeric matrix. Optional matrix of starting values for `phi`.
-
 - phi_free:
 
   Logical matrix. Optional matrix of free (`TRUE`) parameters for `phi`.
+
+- phi_values:
+
+  Numeric matrix. Optional matrix of starting values for `phi`.
 
 - phi_lbound:
 
@@ -218,14 +211,14 @@ Meta(
 
   Numeric matrix. Optional matrix of upper bound values for `phi`.
 
-- omega_values:
-
-  Numeric matrix. Optional matrix of starting values for `omega`.
-
 - omega_free:
 
   Logical matrix. Optional matrix of free (`TRUE`) parameters for
   `omega`.
+
+- omega_values:
+
+  Numeric matrix. Optional matrix of starting values for `omega`.
 
 - omega_lbound:
 
@@ -292,63 +285,22 @@ Meta(
   Logical. If `TRUE`, calculate robust (sandwich) sampling
   variance-covariance matrix in stage 2.
 
-- lb:
-
-  Logical. If `TRUE`, calculate likelihood based confidence intervals in
-  stage 2.
-
 - alpha:
 
   NUmeric. Alpha for test of significance and confidence intervals.
 
 - tries_explore:
 
-  Integer. Number of extra tries for the wide exploration phase using
-  [`OpenMx::mxTryHardWideSearch()`](https://rdrr.io/pkg/OpenMx/man/mxTryHard.html)
-  with `checkHess = FALSE`.
+  Integer. Number of extra tries for the wide exploration phase.
 
 - tries_local:
 
-  Integer. Number of extra tries for local polishing via
-  [`OpenMx::mxTryHard()`](https://rdrr.io/pkg/OpenMx/man/mxTryHard.html)
-  when gradients remain above tolerance.
+  Integer. Number of extra tries for local polishing.
 
 - max_attempts:
 
   Integer. Maximum number of remediation attempts after the first
-  Hessian computation fails the criteria. Each attempt may nudge off
-  bounds, refit locally without the Hessian, and, on the last attempt,
-  relax bounds.
-
-- grad_tol:
-
-  Numeric. Tolerance for the maximum absolute gradient. Smaller values
-  are stricter.
-
-- hess_tol:
-
-  Numeric. Minimum allowable Hessian eigenvalue. Smaller values are less
-  strict.
-
-- eps:
-
-  Numeric. Proximity threshold to detect parameters on their bounds and
-  to nudge them inward by `10 * eps`.
-
-- factor:
-
-  Numeric. Multiplicative factor to relax parameter bounds on the final
-  remediation attempt. Lower bounds are divided by `factor` and upper
-  bounds are multiplied by `factor`.
-
-- abs_bnd_tol:
-
-  Numeric scalar. Absolute tolerance used when comparing parameter
-  values to bounds.
-
-- rel_bnd_tol:
-
-  Numeric scalar. Relative tolerance multiplier.
+  Hessian computation fails the criteria.
 
 - silent:
 
@@ -390,10 +342,6 @@ following elements:
   [`OpenMx::imxRobustSE()`](https://rdrr.io/pkg/OpenMx/man/imxRobustSE.html)
   with argument `details = TRUE` if `robust = TRUE`.
 
-- lb:
-
-  Likelhood-based confidence intervals if `lb = TRUE`.
-
 ## References
 
 Cheung, M. W.-L. (2015). *Meta-analysis: A structural equation modeling
@@ -414,3 +362,139 @@ Other Meta-Analysis of VAR Functions:
 ## Author
 
 Ivan Jacob Agaloos Pesigan
+
+## Examples
+
+``` r
+# \donttest{
+# Generate data using the simStateSpace package-------------------------
+library(simStateSpace)
+set.seed(42)
+n <- 5
+time <- 100
+p <- 2
+alpha <- rep(x = 0, times = p)
+beta <- 0.50 * diag(p)
+psi <- 0.001 * diag(p)
+psi_l <- t(chol(psi))
+mu0 <- simStateSpace::SSMMeanEta(
+  beta = beta,
+  alpha = alpha
+)
+sigma0 <- simStateSpace::SSMCovEta(
+  beta = beta,
+  psi = psi
+)
+sigma0_l <- t(chol(sigma0))
+sim <- SimSSMVARFixed(
+  n = n,
+  time = time,
+  mu0 = mu0,
+  sigma0_l = sigma0_l,
+  alpha = alpha,
+  beta = beta,
+  psi_l = psi_l
+)
+data <- as.data.frame(sim)
+
+# Stage 1---------------------------------------------------------------
+library(fitVARMxID)
+stage1 <- FitVARMxID(
+  data = data,
+  observed = paste0("y", seq_len(p)),
+  id = "id",
+  center = TRUE
+)
+#> Running DTVAR_ID1 with 9 parameters
+#> 
+#> Beginning initial fit attempt
+#> Running DTVAR_ID1 with 9 parameters
+#> 
+#>  Lowest minimum so far:  -822.060942313193
+#> 
+#> Solution found
+#> 
+#> 
+#>  Solution found!  Final fit=-822.06094 (started at 367.82482)  (1 attempt(s): 1 valid, 0 errors)
+#>  Start values from best fit:
+#> 0.331612745243841,-0.0197631400065759,0.0270181292624815,0.539260086092713,0.0057946951525851,0.007106199232002,0.0623713422440293,-6.91195717901486,-6.98806630902827
+#> Running DTVAR_ID2 with 9 parameters
+#> 
+#> Beginning initial fit attempt
+#> Running DTVAR_ID2 with 9 parameters
+#> 
+#>  Lowest minimum so far:  -834.035953636412
+#> 
+#> Solution found
+#> 
+#> 
+#>  Solution found!  Final fit=-834.03595 (started at 367.84346)  (1 attempt(s): 1 valid, 0 errors)
+#>  Start values from best fit:
+#> 0.546679030340841,-0.0201020488638611,-0.0487574618599386,0.297450290600703,-0.00284153166188121,-0.0199122101192943,0.176134255014816,-7.14253861726531,-6.87719884724769
+#> Running DTVAR_ID3 with 9 parameters
+#> 
+#> Beginning initial fit attempt
+#> Running DTVAR_ID3 with 9 parameters
+#> 
+#>  Lowest minimum so far:  -808.550007472268
+#> 
+#> Solution found
+#> 
+#> 
+#>  Solution found!  Final fit=-808.55001 (started at 367.87017)  (1 attempt(s): 1 valid, 0 errors)
+#>  Start values from best fit:
+#> 0.528105561142997,-0.332501283495961,0.0108536161301484,0.361419705300276,-0.00426229999671594,-0.00173173484843314,-0.21387789357269,-6.9657202697529,-6.80024208411447
+#> Running DTVAR_ID4 with 9 parameters
+#> 
+#> Beginning initial fit attempt
+#> Running DTVAR_ID4 with 9 parameters
+#> 
+#>  Lowest minimum so far:  -845.339407101868
+#> 
+#> Solution found
+#> 
+#> 
+#>  Solution found!  Final fit=-845.33941 (started at 367.80199)  (1 attempt(s): 1 valid, 0 errors)
+#>  Start values from best fit:
+#> 0.160844162100514,-0.121824766994102,-0.0298919550660853,0.481815653357755,-0.0130955259827441,0.00326100822229185,0.00601848006477796,-7.23151794331632,-6.89984913049538
+#> Running DTVAR_ID5 with 9 parameters
+#> 
+#> Beginning initial fit attempt
+#> Running DTVAR_ID5 with 9 parameters
+#> 
+#>  Lowest minimum so far:  -832.354548096018
+#> 
+#> Solution found
+#> 
+#> 
+#>  Solution found!  Final fit=-832.35455 (started at 367.7976)  (1 attempt(s): 1 valid, 0 errors)
+#>  Start values from best fit:
+#> 0.299055985152669,0.0348621727088368,-0.0801687055865619,0.465890390856868,-0.00111115045695215,0.00331563195705935,-0.166419668597626,-6.91180267781828,-7.08999323366805
+summary(stage1)
+#> Call:
+#> FitVARMxID(data = data, observed = paste0("y", seq_len(p)), id = "id", 
+#>     center = TRUE)
+#> 
+#> Convergence:
+#> 100.0%
+#> 
+#> Estimated paramaters per individual.
+#>   mu[1,1] mu[2,1] beta[1,1] beta[2,1] beta[1,2] beta[2,2] psi[1,1] psi[2,1]
+#> 1  0.0058  0.0071    0.3316   -0.0198    0.0270    0.5393    1e-03    1e-04
+#> 2 -0.0028 -0.0199    0.5467   -0.0201   -0.0488    0.2975    8e-04    1e-04
+#> 3 -0.0043 -0.0017    0.5281   -0.3325    0.0109    0.3614    9e-04   -2e-04
+#> 4 -0.0131  0.0033    0.1608   -0.1218   -0.0299    0.4818    7e-04    0e+00
+#> 5 -0.0011  0.0033    0.2991    0.0349   -0.0802    0.4659    1e-03   -2e-04
+#>   psi[2,2]
+#> 1   0.0009
+#> 2   0.0011
+#> 3   0.0012
+#> 4   0.0010
+#> 5   0.0009
+# Stage 2---------------------------------------------------------------
+stage2 <- Meta(y = coef(stage1), v = vcov(stage1))
+#> Error in .MxHelperInvSoftplus(d): .MxHelperInvSoftplus() requires strictly positive input.
+summary(stage2)
+#> Error: object 'stage2' not found
+# }
+```

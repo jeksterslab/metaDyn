@@ -6,7 +6,7 @@ Print Method for Object of Class `metadynmeta`
 
 ``` r
 # S3 method for class 'metadynmeta'
-print(x, alpha = NULL, lb = NULL, robust = NULL, digits = 4, ...)
+print(x, alpha = NULL, robust = NULL, digits = 4, ...)
 ```
 
 ## Arguments
@@ -19,13 +19,6 @@ print(x, alpha = NULL, lb = NULL, robust = NULL, digits = 4, ...)
 
   Numeric vector. Significance level \\\alpha\\. If `NULL`, the function
   will check `object` for `alpha` used in model fitting.
-
-- lb:
-
-  Logical. If `TRUE`, returns profile likelihood-based confidence
-  intervals. If `FALSE`, returns Wald confidence intervals. If `NULL`,
-  the function will check `object` if likelihood-based confidence
-  intervals are available.
 
 - robust:
 

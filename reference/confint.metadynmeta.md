@@ -6,7 +6,7 @@ Confidence Intervals for the Parameter Estimates
 
 ``` r
 # S3 method for class 'metadynmeta'
-confint(object, parm = NULL, level = 0.95, lb = NULL, robust = NULL, ...)
+confint(object, parm = NULL, level = 0.95, robust = NULL, ...)
 ```
 
 ## Arguments
@@ -24,13 +24,6 @@ confint(object, parm = NULL, level = 0.95, lb = NULL, robust = NULL, ...)
 - level:
 
   the confidence level required.
-
-- lb:
-
-  Logical. If `TRUE`, returns profile likelihood-based confidence
-  intervals. If `FALSE`, returns Wald confidence intervals. If `NULL`,
-  the function will check `object` if likelihood-based confidence
-  intervals are available.
 
 - robust:
 

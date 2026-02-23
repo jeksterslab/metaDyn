@@ -3,6 +3,10 @@
 ``` r
 
 library(metaDyn)
+#> Loading required package: OpenMx
+#> To take full advantage of multiple cores, use:
+#>   mxOption(key='Number of Threads', value=parallel::detectCores()) #now
+#>   Sys.setenv(OMP_NUM_THREADS=parallel::detectCores()) #before library(OpenMx)
 ```
 
 ## Session
@@ -33,17 +37,15 @@ sessionInfo()
 #> [1] stats     graphics  grDevices utils     datasets  methods   base     
 #> 
 #> other attached packages:
-#> [1] metaDyn_0.0.0.9005   fitVARMxID_1.0.2     OpenMx_2.22.10      
-#> [4] simStateSpace_1.2.15
+#> [1] metaDyn_0.0.0.9006 OpenMx_2.22.10    
 #> 
 #> loaded via a namespace (and not attached):
 #>  [1] digest_0.6.39         xfun_0.56             Matrix_1.7-4         
-#>  [4] lattice_0.22-7        glue_1.8.0            knitr_1.51           
-#>  [7] parallel_4.5.2        RcppParallel_5.1.11-1 lifecycle_1.0.5      
-#> [10] cli_3.6.5.9000        rProject_0.0.24       vctrs_0.7.1          
-#> [13] grid_4.5.2            compiler_4.5.2        tools_4.5.2          
-#> [16] pillar_1.11.1         evaluate_1.0.5        Rcpp_1.1.1           
-#> [19] otel_0.2.0            rlang_1.1.7           MASS_7.3-65
+#>  [4] lattice_0.22-7        knitr_1.51            parallel_4.5.2       
+#>  [7] RcppParallel_5.1.11-1 lifecycle_1.0.5       cli_3.6.5.9000       
+#> [10] rProject_0.0.25       grid_4.5.2            compiler_4.5.2       
+#> [13] tools_4.5.2           evaluate_1.0.5        Rcpp_1.1.1           
+#> [16] otel_0.2.0            rlang_1.1.7           MASS_7.3-65
 ```
 
 ## Packages
@@ -52,10 +54,8 @@ sessionInfo()
 
 installed.packages()[, c("Package", "Version")]
 #>                   Package             Version     
-#> devtools          "devtools"          "2.4.6.9000"
 #> fitVARMxID        "fitVARMxID"        "1.0.2"     
-#> metaDyn           "metaDyn"           "0.0.0.9005"
-#> rProject          "rProject"          "0.0.24"    
+#> metaDyn           "metaDyn"           "0.0.0.9006"
 #> abind             "abind"             "1.4-8"     
 #> Amelia            "Amelia"            "1.8.3"     
 #> arm               "arm"               "1.14-4"    
@@ -113,7 +113,7 @@ installed.packages()[, c("Package", "Version")]
 #> curl              "curl"              "7.0.0"     
 #> data.table        "data.table"        "1.18.2.1"  
 #> DBI               "DBI"               "1.2.3"     
-#> dbplyr            "dbplyr"            "2.5.1"     
+#> dbplyr            "dbplyr"            "2.5.2"     
 #> Deriv             "Deriv"             "4.2.0"     
 #> desc              "desc"              "1.4.3"     
 #> deSolve           "deSolve"           "1.41"      
@@ -130,7 +130,7 @@ installed.packages()[, c("Package", "Version")]
 #> downlit           "downlit"           "0.4.5"     
 #> dplyr             "dplyr"             "1.2.0"     
 #> DT                "DT"                "0.34.0"    
-#> dtplyr            "dtplyr"            "1.3.2"     
+#> dtplyr            "dtplyr"            "1.3.3"     
 #> duckdb            "duckdb"            "1.4.4"     
 #> dynr              "dynr"              "0.1.16-114"
 #> dynUtils          "dynUtils"          "0.9.1"     
@@ -152,7 +152,7 @@ installed.packages()[, c("Package", "Version")]
 #> fontawesome       "fontawesome"       "0.5.3"     
 #> forcats           "forcats"           "1.0.1"     
 #> foreach           "foreach"           "1.5.2"     
-#> forecast          "forecast"          "9.0.0"     
+#> forecast          "forecast"          "9.0.1"     
 #> Formula           "Formula"           "1.2-5"     
 #> fracdiff          "fracdiff"          "1.5-3"     
 #> fs                "fs"                "1.6.6"     
@@ -192,12 +192,13 @@ installed.packages()[, c("Package", "Version")]
 #> htmlTable         "htmlTable"         "2.4.3"     
 #> htmltools         "htmltools"         "0.5.9"     
 #> htmlwidgets       "htmlwidgets"       "1.6.4"     
+#> httpgd            "httpgd"            "2.1.0"     
 #> httpuv            "httpuv"            "1.6.16"    
-#> httr              "httr"              "1.4.7"     
+#> httr              "httr"              "1.4.8"     
 #> httr2             "httr2"             "1.2.2"     
 #> ids               "ids"               "1.0.1"     
 #> ifaTools          "ifaTools"          "0.23"      
-#> igraph            "igraph"            "2.2.1"     
+#> igraph            "igraph"            "2.2.2"     
 #> infer             "infer"             "1.1.0"     
 #> ini               "ini"               "0.3.1"     
 #> inline            "inline"            "0.3.21"    
@@ -212,10 +213,11 @@ installed.packages()[, c("Package", "Version")]
 #> kernlab           "kernlab"           "0.9-33"    
 #> knitr             "knitr"             "1.51"      
 #> ks                "ks"                "1.15.1"    
+#> kutils            "kutils"            "1.73"      
 #> labeling          "labeling"          "0.4.3"     
-#> Lahman            "Lahman"            "13.0-0"    
+#> Lahman            "Lahman"            "14.0-0"    
 #> languageserver    "languageserver"    "0.3.16"    
-#> later             "later"             "1.4.5"     
+#> later             "later"             "1.4.6"     
 #> latex2exp         "latex2exp"         "0.9.8"     
 #> lava              "lava"              "1.8.2"     
 #> lavaan            "lavaan"            "0.6-21"    
@@ -223,6 +225,7 @@ installed.packages()[, c("Package", "Version")]
 #> lhs               "lhs"               "1.2.0"     
 #> lifecycle         "lifecycle"         "1.0.5"     
 #> lintr             "lintr"             "3.3.0-1"   
+#> lisrelToR         "lisrelToR"         "0.3"       
 #> listenv           "listenv"           "0.10.0"    
 #> litedown          "litedown"          "0.9"       
 #> littler           "littler"           "0.3.21"    
@@ -239,9 +242,10 @@ installed.packages()[, c("Package", "Version")]
 #> matrixStats       "matrixStats"       "1.5.0"     
 #> mclust            "mclust"            "6.1.2"     
 #> memoise           "memoise"           "2.0.1"     
-#> metaDyn           "metaDyn"           "0.0.0.9004"
+#> metaDyn           "metaDyn"           "0.0.0.9005"
 #> metaSEM           "metaSEM"           "1.5.0"     
 #> metaVAR           "metaVAR"           "0.0.0.9004"
+#> mi                "mi"                "1.2"       
 #> mice              "mice"              "3.19.0"    
 #> microbenchmark    "microbenchmark"    "1.5.0"     
 #> mime              "mime"              "0.13"      
@@ -262,6 +266,7 @@ installed.packages()[, c("Package", "Version")]
 #> nycflights13      "nycflights13"      "1.0.2"     
 #> OpenMx            "OpenMx"            "2.22.10"   
 #> openssl           "openssl"           "2.3.4"     
+#> openxlsx          "openxlsx"          "4.2.8.1"   
 #> ordinal           "ordinal"           "2025.12-29"
 #> otel              "otel"              "0.2.0"     
 #> pak               "pak"               "0.9.2"     
@@ -300,7 +305,6 @@ installed.packages()[, c("Package", "Version")]
 #> qgraph            "qgraph"            "1.9.8"     
 #> qpdf              "qpdf"              "1.4.1"     
 #> quadprog          "quadprog"          "1.5-8"     
-#> quantmod          "quantmod"          "0.4.28"    
 #> quantreg          "quantreg"          "6.1"       
 #> quarto            "quarto"            "1.5.1"     
 #> QuickJSR          "QuickJSR"          "1.9.0"     
@@ -335,7 +339,7 @@ installed.packages()[, c("Package", "Version")]
 #> remotes           "remotes"           "2.5.0"     
 #> reprex            "reprex"            "2.1.1"     
 #> reshape2          "reshape2"          "1.4.5"     
-#> reticulate        "reticulate"        "1.44.1"    
+#> reticulate        "reticulate"        "1.45.0"    
 #> rex               "rex"               "1.2.1"     
 #> rhdf5             "rhdf5"             "2.54.1"    
 #> rhdf5filters      "rhdf5filters"      "1.22.0"    
@@ -345,16 +349,18 @@ installed.packages()[, c("Package", "Version")]
 #> rlang             "rlang"             "1.1.7"     
 #> RMariaDB          "RMariaDB"          "1.3.5"     
 #> rmarkdown         "rmarkdown"         "2.30"      
+#> rockchalk         "rockchalk"         "1.8.157"   
 #> roxygen2          "roxygen2"          "7.3.3.9000"
 #> rpf               "rpf"               "1.0.15"    
-#> RPostgres         "RPostgres"         "1.4.9"     
-#> rProject          "rProject"          "0.0.24"    
+#> RPostgres         "RPostgres"         "1.4.10"    
+#> rProject          "rProject"          "0.0.25"    
 #> rprojroot         "rprojroot"         "2.1.1"     
 #> rsample           "rsample"           "1.3.2"     
 #> RSQLite           "RSQLite"           "2.4.6"     
 #> rstan             "rstan"             "2.32.7"    
 #> rstantools        "rstantools"        "2.6.0"     
 #> rstudioapi        "rstudioapi"        "0.18.0"    
+#> RUnit             "RUnit"             "0.4.33.1"  
 #> rversions         "rversions"         "3.0.0"     
 #> rvest             "rvest"             "1.0.5"     
 #> Ryacas            "Ryacas"            "1.1.6"     
@@ -362,8 +368,10 @@ installed.packages()[, c("Package", "Version")]
 #> sass              "sass"              "0.4.10"    
 #> scales            "scales"            "1.4.0"     
 #> selectr           "selectr"           "0.5-1"     
+#> sem               "sem"               "3.1-16"    
 #> semlbci           "semlbci"           "0.11.5"    
 #> semmcci           "semmcci"           "1.1.5"     
+#> semPlot           "semPlot"           "1.1.8"     
 #> sessioninfo       "sessioninfo"       "1.2.3"     
 #> sfd               "sfd"               "0.1.0"     
 #> shape             "shape"             "1.4.6.1"   
@@ -396,11 +404,10 @@ installed.packages()[, c("Package", "Version")]
 #> timechange        "timechange"        "0.4.0"     
 #> timeDate          "timeDate"          "4052.112"  
 #> tinytex           "tinytex"           "0.58.3"    
-#> tseries           "tseries"           "0.10-59"   
-#> TTR               "TTR"               "0.24.4"    
 #> tune              "tune"              "2.0.1"     
 #> tzdb              "tzdb"              "0.5.0"     
 #> ucminf            "ucminf"            "1.2.2"     
+#> unigd             "unigd"             "0.2.0"     
 #> urca              "urca"              "1.3-4"     
 #> urlchecker        "urlchecker"        "1.0.1"     
 #> usethis           "usethis"           "3.2.1"     
@@ -418,11 +425,11 @@ installed.packages()[, c("Package", "Version")]
 #> workflows         "workflows"         "1.3.0"     
 #> workflowsets      "workflowsets"      "1.1.1"     
 #> xfun              "xfun"              "0.56"      
+#> XML               "XML"               "3.99-0.22" 
 #> xml2              "xml2"              "1.5.2"     
 #> xmlparsedata      "xmlparsedata"      "1.0.5"     
 #> xopen             "xopen"             "1.0.1"     
 #> xtable            "xtable"            "1.8-4"     
-#> xts               "xts"               "0.14.1"    
 #> yaml              "yaml"              "2.3.12"    
 #> yardstick         "yardstick"         "1.3.2"     
 #> zip               "zip"               "2.3.3"     
@@ -475,10 +482,10 @@ installed.packages()[, c("Package", "Version")]
     #> Socket(s):                               1
     #> Stepping:                                0
     #> Frequency boost:                         enabled
-    #> CPU(s) scaling MHz:                      53%
+    #> CPU(s) scaling MHz:                      51%
     #> CPU max MHz:                             5060.9761
     #> CPU min MHz:                             1219.5129
-    #> BogoMIPS:                                4990.72
+    #> BogoMIPS:                                4990.49
     #> Flags:                                   fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush mmx fxsr sse sse2 ht syscall nx mmxext fxsr_opt pdpe1gb rdtscp lm constant_tsc rep_good amd_lbr_v2 nopl xtopology nonstop_tsc cpuid extd_apicid aperfmperf rapl pni pclmulqdq monitor ssse3 fma cx16 sse4_1 sse4_2 movbe popcnt aes xsave avx f16c rdrand lahf_lm cmp_legacy svm extapic cr8_legacy abm sse4a misalignsse 3dnowprefetch osvw ibs skinit wdt tce topoext perfctr_core perfctr_nb bpext perfctr_llc mwaitx cpb cat_l3 cdp_l3 hw_pstate ssbd mba perfmon_v2 ibrs ibpb stibp ibrs_enhanced vmmcall fsgsbase tsc_adjust bmi1 avx2 smep bmi2 erms invpcid cqm rdt_a avx512f avx512dq rdseed adx smap avx512ifma clflushopt clwb avx512cd sha_ni avx512bw avx512vl xsaveopt xsavec xgetbv1 xsaves cqm_llc cqm_occup_llc cqm_mbm_total cqm_mbm_local user_shstk avx_vnni avx512_bf16 clzero irperf xsaveerptr rdpru wbnoinvd cppc arat npt lbrv svm_lock nrip_save tsc_scale vmcb_clean flushbyasid decodeassists pausefilter pfthreshold v_vmsave_vmload vgif x2avic v_spec_ctrl vnmi avx512vbmi umip pku ospke avx512_vbmi2 gfni vaes vpclmulqdq avx512_vnni avx512_bitalg avx512_vpopcntdq rdpid bus_lock_detect movdiri movdir64b overflow_recov succor smca fsrm avx512_vp2intersect flush_l1d amd_lbr_pmc_freeze
     #> Virtualization:                          AMD-V
     #> L1d cache:                               768 KiB (16 instances)
@@ -508,6 +515,6 @@ installed.packages()[, c("Package", "Version")]
 ## Memory
 
     #>                total        used        free      shared  buff/cache   available
-    #> Mem:            44Gi       5.6Gi        35Gi        40Mi       3.7Gi        38Gi
+    #> Mem:            44Gi       3.3Gi        37Gi        15Mi       4.2Gi        41Gi
     #> Swap:           22Gi          0B        22Gi
-    #> Total:          66Gi       5.6Gi        58Gi
+    #> Total:          66Gi       3.3Gi        60Gi

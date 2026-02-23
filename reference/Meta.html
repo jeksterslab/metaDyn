@@ -17,7 +17,7 @@ between-person covariates and the meta-analyzed parameters/effect sizes."><scrip
 
     <a class="navbar-brand me-2" href="../index.html">metaDyn</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.9005</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.9006</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -84,12 +84,12 @@ between-person covariates and the meta-analyzed parameters/effect sizes.</p>
 <span>  kappa_values <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  kappa_lbound <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  kappa_ubound <span class="op">=</span> <span class="cn">NULL</span>,</span>
-<span>  phi_values <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  phi_free <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  phi_values <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  phi_lbound <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  phi_ubound <span class="op">=</span> <span class="cn">NULL</span>,</span>
-<span>  omega_values <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  omega_free <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  omega_values <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  omega_lbound <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  omega_ubound <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  psi_diag <span class="op">=</span> <span class="cn">TRUE</span>,</span>
@@ -103,17 +103,10 @@ between-person covariates and the meta-analyzed parameters/effect sizes.</p>
 <span>  psi_l_ubound <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  check_estimates <span class="op">=</span> <span class="cn">TRUE</span>,</span>
 <span>  robust <span class="op">=</span> <span class="cn">FALSE</span>,</span>
-<span>  lb <span class="op">=</span> <span class="cn">FALSE</span>,</span>
 <span>  alpha <span class="op">=</span> <span class="fl">0.05</span>,</span>
 <span>  tries_explore <span class="op">=</span> <span class="fl">100</span>,</span>
 <span>  tries_local <span class="op">=</span> <span class="fl">100</span>,</span>
 <span>  max_attempts <span class="op">=</span> <span class="fl">10</span>,</span>
-<span>  grad_tol <span class="op">=</span> <span class="fl">0.01</span>,</span>
-<span>  hess_tol <span class="op">=</span> <span class="fl">1e-08</span>,</span>
-<span>  eps <span class="op">=</span> <span class="fl">1e-06</span>,</span>
-<span>  factor <span class="op">=</span> <span class="fl">10</span>,</span>
-<span>  abs_bnd_tol <span class="op">=</span> <span class="fl">1e-06</span>,</span>
-<span>  rel_bnd_tol <span class="op">=</span> <span class="fl">1e-04</span>,</span>
 <span>  silent <span class="op">=</span> <span class="cn">FALSE</span>,</span>
 <span>  seed <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  ncores <span class="op">=</span> <span class="cn">NULL</span></span>
@@ -278,14 +271,14 @@ Optional vector of lower bound values for <code>kappa</code>.</p></dd>
 Optional vector of upper bound values for <code>kappa</code>.</p></dd>
 
 
-<dt id="arg-phi-values">phi_values<a class="anchor" aria-label="anchor" href="#arg-phi-values"></a></dt>
-<dd><p>Numeric matrix.
-Optional matrix of starting values for <code>phi</code>.</p></dd>
-
-
 <dt id="arg-phi-free">phi_free<a class="anchor" aria-label="anchor" href="#arg-phi-free"></a></dt>
 <dd><p>Logical matrix.
 Optional matrix of free (<code>TRUE</code>) parameters for <code>phi</code>.</p></dd>
+
+
+<dt id="arg-phi-values">phi_values<a class="anchor" aria-label="anchor" href="#arg-phi-values"></a></dt>
+<dd><p>Numeric matrix.
+Optional matrix of starting values for <code>phi</code>.</p></dd>
 
 
 <dt id="arg-phi-lbound">phi_lbound<a class="anchor" aria-label="anchor" href="#arg-phi-lbound"></a></dt>
@@ -298,14 +291,14 @@ Optional matrix of lower bound values for <code>phi</code>.</p></dd>
 Optional matrix of upper bound values for <code>phi</code>.</p></dd>
 
 
-<dt id="arg-omega-values">omega_values<a class="anchor" aria-label="anchor" href="#arg-omega-values"></a></dt>
-<dd><p>Numeric matrix.
-Optional matrix of starting values for <code>omega</code>.</p></dd>
-
-
 <dt id="arg-omega-free">omega_free<a class="anchor" aria-label="anchor" href="#arg-omega-free"></a></dt>
 <dd><p>Logical matrix.
 Optional matrix of free (<code>TRUE</code>) parameters for <code>omega</code>.</p></dd>
+
+
+<dt id="arg-omega-values">omega_values<a class="anchor" aria-label="anchor" href="#arg-omega-values"></a></dt>
+<dd><p>Numeric matrix.
+Optional matrix of starting values for <code>omega</code>.</p></dd>
 
 
 <dt id="arg-omega-lbound">omega_lbound<a class="anchor" aria-label="anchor" href="#arg-omega-lbound"></a></dt>
@@ -390,13 +383,6 @@ calculate robust (sandwich) sampling variance-covariance matrix
 in stage 2.</p></dd>
 
 
-<dt id="arg-lb">lb<a class="anchor" aria-label="anchor" href="#arg-lb"></a></dt>
-<dd><p>Logical.
-If <code>TRUE</code>,
-calculate likelihood based confidence intervals
-in stage 2.</p></dd>
-
-
 <dt id="arg-alpha">alpha<a class="anchor" aria-label="anchor" href="#arg-alpha"></a></dt>
 <dd><p>NUmeric.
 Alpha for test of significance and confidence intervals.</p></dd>
@@ -404,58 +390,18 @@ Alpha for test of significance and confidence intervals.</p></dd>
 
 <dt id="arg-tries-explore">tries_explore<a class="anchor" aria-label="anchor" href="#arg-tries-explore"></a></dt>
 <dd><p>Integer.
-Number of extra tries for the wide exploration
-phase using <code><a href="https://rdrr.io/pkg/OpenMx/man/mxTryHard.html" class="external-link">OpenMx::mxTryHardWideSearch()</a></code> with <code>checkHess = FALSE</code>.</p></dd>
+Number of extra tries for the wide exploration phase.</p></dd>
 
 
 <dt id="arg-tries-local">tries_local<a class="anchor" aria-label="anchor" href="#arg-tries-local"></a></dt>
 <dd><p>Integer.
-Number of extra tries for local polishing via
-<code><a href="https://rdrr.io/pkg/OpenMx/man/mxTryHard.html" class="external-link">OpenMx::mxTryHard()</a></code> when gradients remain above tolerance.</p></dd>
+Number of extra tries for local polishing.</p></dd>
 
 
 <dt id="arg-max-attempts">max_attempts<a class="anchor" aria-label="anchor" href="#arg-max-attempts"></a></dt>
 <dd><p>Integer.
 Maximum number of remediation attempts
-after the first Hessian computation fails the criteria.
-Each attempt may nudge off bounds,
-refit locally without the Hessian, and,
-on the last attempt, relax bounds.</p></dd>
-
-
-<dt id="arg-grad-tol">grad_tol<a class="anchor" aria-label="anchor" href="#arg-grad-tol"></a></dt>
-<dd><p>Numeric.
-Tolerance for the maximum absolute gradient.
-Smaller values are stricter.</p></dd>
-
-
-<dt id="arg-hess-tol">hess_tol<a class="anchor" aria-label="anchor" href="#arg-hess-tol"></a></dt>
-<dd><p>Numeric.
-Minimum allowable Hessian eigenvalue.
-Smaller values are less strict.</p></dd>
-
-
-<dt id="arg-eps">eps<a class="anchor" aria-label="anchor" href="#arg-eps"></a></dt>
-<dd><p>Numeric.
-Proximity threshold to detect parameters on their bounds
-and to nudge them inward by <code>10 * eps</code>.</p></dd>
-
-
-<dt id="arg-factor">factor<a class="anchor" aria-label="anchor" href="#arg-factor"></a></dt>
-<dd><p>Numeric.
-Multiplicative factor to relax parameter bounds
-on the final remediation attempt.
-Lower bounds are divided by <code>factor</code> and
-upper bounds are multiplied by <code>factor</code>.</p></dd>
-
-
-<dt id="arg-abs-bnd-tol">abs_bnd_tol<a class="anchor" aria-label="anchor" href="#arg-abs-bnd-tol"></a></dt>
-<dd><p>Numeric scalar. Absolute tolerance used when comparing
-parameter values to bounds.</p></dd>
-
-
-<dt id="arg-rel-bnd-tol">rel_bnd_tol<a class="anchor" aria-label="anchor" href="#arg-rel-bnd-tol"></a></dt>
-<dd><p>Numeric scalar. Relative tolerance multiplier.</p></dd>
+after the first Hessian computation fails the criteria.</p></dd>
 
 
 <dt id="arg-silent">silent<a class="anchor" aria-label="anchor" href="#arg-silent"></a></dt>
@@ -491,10 +437,6 @@ a list with the following elements:</p><dl><dt>call</dt>
 <dd><p>Output from <code><a href="https://rdrr.io/pkg/OpenMx/man/imxRobustSE.html" class="external-link">OpenMx::imxRobustSE()</a></code>
 with argument <code>details = TRUE</code> if <code>robust = TRUE</code>.</p></dd>
 
-<dt>lb</dt>
-<dd><p>Likelhood-based confidence intervals
-if <code>lb = TRUE</code>.</p></dd>
-
 
 </dl></div>
     <div class="section level2">
@@ -521,6 +463,142 @@ OpenMx 2.0: Extended structural equation and statistical modeling.
     <p>Ivan Jacob Agaloos Pesigan</p>
     </div>
 
+    <div class="section level2">
+    <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># \donttest{</span></span></span>
+<span class="r-in"><span><span class="co"># Generate data using the simStateSpace package-------------------------</span></span></span>
+<span class="r-in"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/jeksterslab/simStateSpace" class="external-link">simStateSpace</a></span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">42</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">n</span> <span class="op">&lt;-</span> <span class="fl">5</span></span></span>
+<span class="r-in"><span><span class="va">time</span> <span class="op">&lt;-</span> <span class="fl">100</span></span></span>
+<span class="r-in"><span><span class="va">p</span> <span class="op">&lt;-</span> <span class="fl">2</span></span></span>
+<span class="r-in"><span><span class="va">alpha</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span>x <span class="op">=</span> <span class="fl">0</span>, times <span class="op">=</span> <span class="va">p</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">beta</span> <span class="op">&lt;-</span> <span class="fl">0.50</span> <span class="op">*</span> <span class="fu"><a href="https://rdrr.io/r/base/diag.html" class="external-link">diag</a></span><span class="op">(</span><span class="va">p</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">psi</span> <span class="op">&lt;-</span> <span class="fl">0.001</span> <span class="op">*</span> <span class="fu"><a href="https://rdrr.io/r/base/diag.html" class="external-link">diag</a></span><span class="op">(</span><span class="va">p</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">psi_l</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/t.html" class="external-link">t</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/chol.html" class="external-link">chol</a></span><span class="op">(</span><span class="va">psi</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">mu0</span> <span class="op">&lt;-</span> <span class="fu">simStateSpace</span><span class="fu">::</span><span class="fu"><a href="https://github.com/jeksterslab/simStateSpace/reference/SSMMeanEta.html" class="external-link">SSMMeanEta</a></span><span class="op">(</span></span></span>
+<span class="r-in"><span>  beta <span class="op">=</span> <span class="va">beta</span>,</span></span>
+<span class="r-in"><span>  alpha <span class="op">=</span> <span class="va">alpha</span></span></span>
+<span class="r-in"><span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">sigma0</span> <span class="op">&lt;-</span> <span class="fu">simStateSpace</span><span class="fu">::</span><span class="fu"><a href="https://github.com/jeksterslab/simStateSpace/reference/SSMCovEta.html" class="external-link">SSMCovEta</a></span><span class="op">(</span></span></span>
+<span class="r-in"><span>  beta <span class="op">=</span> <span class="va">beta</span>,</span></span>
+<span class="r-in"><span>  psi <span class="op">=</span> <span class="va">psi</span></span></span>
+<span class="r-in"><span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">sigma0_l</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/t.html" class="external-link">t</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/chol.html" class="external-link">chol</a></span><span class="op">(</span><span class="va">sigma0</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">sim</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://github.com/jeksterslab/simStateSpace/reference/SimSSMVARFixed.html" class="external-link">SimSSMVARFixed</a></span><span class="op">(</span></span></span>
+<span class="r-in"><span>  n <span class="op">=</span> <span class="va">n</span>,</span></span>
+<span class="r-in"><span>  time <span class="op">=</span> <span class="va">time</span>,</span></span>
+<span class="r-in"><span>  mu0 <span class="op">=</span> <span class="va">mu0</span>,</span></span>
+<span class="r-in"><span>  sigma0_l <span class="op">=</span> <span class="va">sigma0_l</span>,</span></span>
+<span class="r-in"><span>  alpha <span class="op">=</span> <span class="va">alpha</span>,</span></span>
+<span class="r-in"><span>  beta <span class="op">=</span> <span class="va">beta</span>,</span></span>
+<span class="r-in"><span>  psi_l <span class="op">=</span> <span class="va">psi_l</span></span></span>
+<span class="r-in"><span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/as.data.frame.html" class="external-link">as.data.frame</a></span><span class="op">(</span><span class="va">sim</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># Stage 1---------------------------------------------------------------</span></span></span>
+<span class="r-in"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/jeksterslab/fitVARMxID" class="external-link">fitVARMxID</a></span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">stage1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://github.com/jeksterslab/fitVARMxID/reference/FitVARMxID.html" class="external-link">FitVARMxID</a></span><span class="op">(</span></span></span>
+<span class="r-in"><span>  data <span class="op">=</span> <span class="va">data</span>,</span></span>
+<span class="r-in"><span>  observed <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste0</a></span><span class="op">(</span><span class="st">"y"</span>, <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq_len</a></span><span class="op">(</span><span class="va">p</span><span class="op">)</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>  id <span class="op">=</span> <span class="st">"id"</span>,</span></span>
+<span class="r-in"><span>  center <span class="op">=</span> <span class="cn">TRUE</span></span></span>
+<span class="r-in"><span><span class="op">)</span></span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Running DTVAR_ID1 with 9 parameters</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Beginning initial fit attempt</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Running DTVAR_ID1 with 9 parameters</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span>  Lowest minimum so far:  -822.060942313193</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Solution found</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span>  Solution found!  Final fit=-822.06094 (started at 367.82482)  (1 attempt(s): 1 valid, 0 errors)</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span>  Start values from best fit:</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> 0.331612745243841,-0.0197631400065759,0.0270181292624815,0.539260086092713,0.0057946951525851,0.007106199232002,0.0623713422440293,-6.91195717901486,-6.98806630902827</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Running DTVAR_ID2 with 9 parameters</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Beginning initial fit attempt</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Running DTVAR_ID2 with 9 parameters</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span>  Lowest minimum so far:  -834.035953636412</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Solution found</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span>  Solution found!  Final fit=-834.03595 (started at 367.84346)  (1 attempt(s): 1 valid, 0 errors)</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span>  Start values from best fit:</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> 0.546679030340841,-0.0201020488638611,-0.0487574618599386,0.297450290600703,-0.00284153166188121,-0.0199122101192943,0.176134255014816,-7.14253861726531,-6.87719884724769</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Running DTVAR_ID3 with 9 parameters</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Beginning initial fit attempt</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Running DTVAR_ID3 with 9 parameters</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span>  Lowest minimum so far:  -808.550007472268</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Solution found</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span>  Solution found!  Final fit=-808.55001 (started at 367.87017)  (1 attempt(s): 1 valid, 0 errors)</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span>  Start values from best fit:</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> 0.528105561142997,-0.332501283495961,0.0108536161301484,0.361419705300276,-0.00426229999671594,-0.00173173484843314,-0.21387789357269,-6.9657202697529,-6.80024208411447</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Running DTVAR_ID4 with 9 parameters</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Beginning initial fit attempt</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Running DTVAR_ID4 with 9 parameters</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span>  Lowest minimum so far:  -845.339407101868</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Solution found</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span>  Solution found!  Final fit=-845.33941 (started at 367.80199)  (1 attempt(s): 1 valid, 0 errors)</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span>  Start values from best fit:</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> 0.160844162100514,-0.121824766994102,-0.0298919550660853,0.481815653357755,-0.0130955259827441,0.00326100822229185,0.00601848006477796,-7.23151794331632,-6.89984913049538</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Running DTVAR_ID5 with 9 parameters</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Beginning initial fit attempt</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Running DTVAR_ID5 with 9 parameters</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span>  Lowest minimum so far:  -832.354548096018</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Solution found</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span>  Solution found!  Final fit=-832.35455 (started at 367.7976)  (1 attempt(s): 1 valid, 0 errors)</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span>  Start values from best fit:</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> 0.299055985152669,0.0348621727088368,-0.0801687055865619,0.465890390856868,-0.00111115045695215,0.00331563195705935,-0.166419668597626,-6.91180267781828,-7.08999323366805</span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">stage1</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Call:</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> FitVARMxID(data = data, observed = paste0("y", seq_len(p)), id = "id", </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     center = TRUE)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Convergence:</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 100.0%</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Estimated paramaters per individual.</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   mu[1,1] mu[2,1] beta[1,1] beta[2,1] beta[1,2] beta[2,2] psi[1,1] psi[2,1]</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1  0.0058  0.0071    0.3316   -0.0198    0.0270    0.5393    1e-03    1e-04</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2 -0.0028 -0.0199    0.5467   -0.0201   -0.0488    0.2975    8e-04    1e-04</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3 -0.0043 -0.0017    0.5281   -0.3325    0.0109    0.3614    9e-04   -2e-04</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4 -0.0131  0.0033    0.1608   -0.1218   -0.0299    0.4818    7e-04    0e+00</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5 -0.0011  0.0033    0.2991    0.0349   -0.0802    0.4659    1e-03   -2e-04</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   psi[2,2]</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1   0.0009</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2   0.0011</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3   0.0012</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4   0.0010</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5   0.0009</span>
+<span class="r-in"><span><span class="co"># Stage 2---------------------------------------------------------------</span></span></span>
+<span class="r-in"><span><span class="va">stage2</span> <span class="op">&lt;-</span> <span class="fu">Meta</span><span class="op">(</span>y <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/coef.html" class="external-link">coef</a></span><span class="op">(</span><span class="va">stage1</span><span class="op">)</span>, v <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/vcov.html" class="external-link">vcov</a></span><span class="op">(</span><span class="va">stage1</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in .MxHelperInvSoftplus(d):</span> .MxHelperInvSoftplus() requires strictly positive input.</span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">stage2</span><span class="op">)</span></span></span>
+<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error:</span> object 'stage2' not found</span>
+<span class="r-in"><span><span class="co"># }</span></span></span>
+<span class="r-in"><span></span></span>
+</code></pre></div>
+    </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
     </nav></aside></div>
 
