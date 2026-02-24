@@ -122,11 +122,11 @@ from each individual fitted using the
 <span>  robust_v <span class="op">=</span> <span class="cn">FALSE</span>,</span>
 <span>  robust <span class="op">=</span> <span class="cn">FALSE</span>,</span>
 <span>  alpha <span class="op">=</span> <span class="fl">0.05</span>,</span>
+<span>  seed <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  tries_explore <span class="op">=</span> <span class="fl">100</span>,</span>
 <span>  tries_local <span class="op">=</span> <span class="fl">100</span>,</span>
 <span>  max_attempts <span class="op">=</span> <span class="fl">10</span>,</span>
 <span>  silent <span class="op">=</span> <span class="cn">FALSE</span>,</span>
-<span>  seed <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  ncores <span class="op">=</span> <span class="cn">NULL</span></span>
 <span><span class="op">)</span></span></code></pre></div>
     </div>
@@ -456,6 +456,10 @@ in stage 2.</p></dd>
 Alpha for test of significance and confidence intervals.</p></dd>
 
 
+<dt id="arg-seed">seed<a class="anchor" aria-label="anchor" href="#arg-seed"></a></dt>
+<dd><p>Random seed for reproducibility.</p></dd>
+
+
 <dt id="arg-tries-explore">tries_explore<a class="anchor" aria-label="anchor" href="#arg-tries-explore"></a></dt>
 <dd><p>Integer.
 Number of extra tries for the wide exploration phase.</p></dd>
@@ -475,10 +479,6 @@ after the first Hessian computation fails the criteria.</p></dd>
 <dt id="arg-silent">silent<a class="anchor" aria-label="anchor" href="#arg-silent"></a></dt>
 <dd><p>Logical.
 If <code>TRUE</code>, suppresses messages during the model fitting stage.</p></dd>
-
-
-<dt id="arg-seed">seed<a class="anchor" aria-label="anchor" href="#arg-seed"></a></dt>
-<dd><p>Random seed for reproducibility.</p></dd>
 
 
 <dt id="arg-ncores">ncores<a class="anchor" aria-label="anchor" href="#arg-ncores"></a></dt>

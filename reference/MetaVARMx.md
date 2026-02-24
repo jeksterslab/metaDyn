@@ -67,11 +67,11 @@ MetaVARMx(
   robust_v = FALSE,
   robust = FALSE,
   alpha = 0.05,
+  seed = NULL,
   tries_explore = 100,
   tries_local = 100,
   max_attempts = 10,
   silent = FALSE,
-  seed = NULL,
   ncores = NULL
 )
 ```
@@ -337,6 +337,10 @@ MetaVARMx(
 
   NUmeric. Alpha for test of significance and confidence intervals.
 
+- seed:
+
+  Random seed for reproducibility.
+
 - tries_explore:
 
   Integer. Number of extra tries for the wide exploration phase.
@@ -354,10 +358,6 @@ MetaVARMx(
 
   Logical. If `TRUE`, suppresses messages during the model fitting
   stage.
-
-- seed:
-
-  Random seed for reproducibility.
 
 - ncores:
 
