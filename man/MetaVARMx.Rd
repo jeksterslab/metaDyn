@@ -58,11 +58,11 @@ MetaVARMx(
   robust_v = FALSE,
   robust = FALSE,
   alpha = 0.05,
+  seed = NULL,
   tries_explore = 100,
   tries_local = 100,
   max_attempts = 10,
   silent = FALSE,
-  seed = NULL,
   ncores = NULL
 )
 }
@@ -282,6 +282,8 @@ in stage 2.}
 \item{alpha}{NUmeric.
 Alpha for test of significance and confidence intervals.}
 
+\item{seed}{Random seed for reproducibility.}
+
 \item{tries_explore}{Integer.
 Number of extra tries for the wide exploration phase.}
 
@@ -294,8 +296,6 @@ after the first Hessian computation fails the criteria.}
 
 \item{silent}{Logical.
 If \code{TRUE}, suppresses messages during the model fitting stage.}
-
-\item{seed}{Random seed for reproducibility.}
 
 \item{ncores}{Positive integer.
 Number of cores to use.}

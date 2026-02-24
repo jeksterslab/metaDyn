@@ -169,11 +169,11 @@ MetaVARMx <- function(object,
                       robust_v = FALSE,
                       robust = FALSE,
                       alpha = 0.05,
+                      seed = NULL,
                       tries_explore = 100,
                       tries_local = 100,
                       max_attempts = 10,
                       silent = FALSE,
-                      seed = NULL,
                       ncores = NULL) {
   stopifnot(
     inherits(
@@ -254,10 +254,10 @@ MetaVARMx <- function(object,
     check_estimates = check_estimates,
     robust = robust,
     alpha = alpha,
+    seed = seed,
     tries_explore = tries_explore,
     tries_local = tries_local,
     max_attempts = max_attempts,
-    seed = seed,
     silent = silent,
     ncores = ncores
   )

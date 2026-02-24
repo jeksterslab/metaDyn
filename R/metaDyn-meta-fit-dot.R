@@ -49,10 +49,10 @@
                      psi_l_lbound,
                      psi_l_ubound,
                      alpha,
+                     seed,
                      tries_explore,
                      tries_local,
                      max_attempts,
-                     seed,
                      silent,
                      ncores) {
   if (!is.null(seed)) {
