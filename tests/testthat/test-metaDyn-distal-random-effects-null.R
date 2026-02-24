@@ -22,7 +22,7 @@ lapply(
       n <- 1000
       robust <- TRUE
       tol <- 0.10
-      plus <- 0
+      plus <- 2
     } else {
       ci <- FALSE
       n <- 500
