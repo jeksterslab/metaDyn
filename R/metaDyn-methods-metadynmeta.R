@@ -112,7 +112,7 @@ print.summary.metadynmeta <- function(x,
   cat(
     paste0(
       "\n",
-      "Status code: ",
+      "Status code:\n",
       code,
       "\n"
     )
@@ -121,7 +121,7 @@ print.summary.metadynmeta <- function(x,
     paste0(
       "\n",
       "CI ",
-      "type: ",
+      "type:\n",
       "\"",
       type,
       "\"",
