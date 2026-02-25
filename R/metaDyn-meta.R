@@ -205,7 +205,26 @@
 #' )
 #' summary(stage1)
 #' # Stage 2---------------------------------------------------------------
-#' stage2 <- Meta(y = coef(stage1), v = vcov(stage1))
+#' # Meta-analyze set point vector and matrix of lagged-effects
+#' y <- coef(
+#'   object = stage1,
+#'   mu = TRUE,
+#'   beta = TRUE,
+#'   alpha = FALSE,
+#'   nu = FALSE,
+#'   psi = FALSE,
+#'   theta = FALSE
+#' )
+#' v <- vcov(
+#'   object = stage1,
+#'   mu = TRUE,
+#'   beta = TRUE,
+#'   alpha = FALSE,
+#'   nu = FALSE,
+#'   psi = FALSE,
+#'   theta = FALSE
+#' )
+#' stage2 <- Meta(y = y, v = v)
 #' summary(stage2)
 #' }
 #'

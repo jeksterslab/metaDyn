@@ -354,7 +354,16 @@ stage1 <- FitVARMxID(
 )
 summary(stage1)
 # Stage 2---------------------------------------------------------------
-stage2 <- MetaVARMx(object = stage1)
+# Meta-analyze set point vector and matrix of lagged-effects
+stage2 <- MetaVARMx(
+  object = stage1,
+  effects = TRUE,
+  set_point = TRUE,
+  int_meas = FALSE,
+  int_dyn = FALSE,
+  cov_meas = FALSE,
+  cov_dyn = FALSE
+)
 summary(stage2)
 }
 
