@@ -17,16 +17,14 @@ lapply(
     }
     if (identical(Sys.getenv("GITHUB_TEST"), "true")) {
       ci <- TRUE
-      n <- 1000
+      n <- 5000
       robust <- TRUE
       tol <- 0.10
-      plus <- 2
     } else {
       ci <- FALSE
       n <- 500
       robust <- FALSE
       tol <- 0.50
-      plus <- 2
     }
     testthat::test_that(
       text,
@@ -237,7 +235,7 @@ lapply(
     )
   },
   text = "test-metaDyn-mixed-effects-null",
-  alpha = c(10, 10),
+  alpha = rep(x = 0.50, times = 2),
   tau_sqr = 0.50 * diag(2),
   v_hat = 0.10 * diag(2),
   gamma = matrix(

@@ -37,7 +37,7 @@ knitr::opts_chunk$set(
 
 ## Description
 
-Fits fixed-, random-, or mixed-effects multivariate meta-analysis models using vector autoregressive model estimates from each individual.
+Fits fixed-, random-, or mixed-effects multivariate meta-analysis models using dynamic model estimates from each individual.
 
 ## Installation
 

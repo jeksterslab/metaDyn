@@ -1,7 +1,7 @@
 metaDyn
 ================
 Ivan Jacob Agaloos Pesigan
-2026-02-24
+2026-02-25
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
@@ -27,7 +27,7 @@ Check](https://github.com/jeksterslab/metaDyn/actions/workflows/shellcheck.yml/b
 ## Description
 
 Fits fixed-, random-, or mixed-effects multivariate meta-analysis models
-using vector autoregressive model estimates from each individual.
+using dynamic model estimates from each individual.
 
 ## Installation
 

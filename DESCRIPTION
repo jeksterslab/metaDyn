@@ -1,6 +1,6 @@
 Package: metaDyn
 Title: Multivariate Meta-Analysis of Dynamic Model Estimates
-Version: 0.0.0.9006
+Version: 1.0.0
 Authors@R: 
     person(given = "Ivan Jacob Agaloos",
            family = "Pesigan",
