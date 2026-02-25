@@ -492,7 +492,26 @@ summary(stage1)
 #> 4   0.0010
 #> 5   0.0009
 # Stage 2---------------------------------------------------------------
-stage2 <- Meta(y = coef(stage1), v = vcov(stage1))
+# Meta-analyze set point vector and matrix of lagged-effects
+y <- coef(
+  object = stage1,
+  mu = TRUE,
+  beta = TRUE,
+  alpha = FALSE,
+  nu = FALSE,
+  psi = FALSE,
+  theta = FALSE
+)
+v <- vcov(
+  object = stage1,
+  mu = TRUE,
+  beta = TRUE,
+  alpha = FALSE,
+  nu = FALSE,
+  psi = FALSE,
+  theta = FALSE
+)
+stage2 <- Meta(y = y, v = v)
 #> Error in .MxHelperInvSoftplus(d): .MxHelperInvSoftplus() requires strictly positive input.
 summary(stage2)
 #> Error: object 'stage2' not found

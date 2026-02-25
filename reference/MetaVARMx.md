@@ -513,7 +513,16 @@ summary(stage1)
 #> 4   0.0010
 #> 5   0.0009
 # Stage 2---------------------------------------------------------------
-stage2 <- MetaVARMx(object = stage1)
+# Meta-analyze set point vector and matrix of lagged-effects
+stage2 <- MetaVARMx(
+  object = stage1,
+  effects = TRUE,
+  set_point = TRUE,
+  int_meas = FALSE,
+  int_dyn = FALSE,
+  cov_meas = FALSE,
+  cov_dyn = FALSE
+)
 #> Error in .MxHelperInvSoftplus(d): .MxHelperInvSoftplus() requires strictly positive input.
 summary(stage2)
 #> Error: object 'stage2' not found
