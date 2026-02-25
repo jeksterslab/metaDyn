@@ -1,3 +1,9 @@
+# metaDyn 1.0.0
+
+## Patch
+
+* 1.0.0
+
 # metaDyn 0.0.0.9006
 
 ## Patch

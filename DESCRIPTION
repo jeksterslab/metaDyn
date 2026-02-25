@@ -1,6 +1,6 @@
 Package: metaDyn
 Title: Multivariate Meta-Analysis of Dynamic Model Estimates
-Version: 0.0.0.9006
+Version: 1.0.0
 Authors@R: 
     person(given = "Ivan Jacob Agaloos",
            family = "Pesigan",
@@ -21,7 +21,7 @@ Remotes: jeksterslab/fitVARMxID
 Suggests: knitr, rmarkdown, testthat, simStateSpace, MASS, metaSEM
 RoxygenNote: 7.3.3.9000
 NeedsCompilation: no
-Packaged: 2026-02-24 17:44:36 UTC; root
+Packaged: 2026-02-25 21:48:14 UTC; root
 Author: Ivan Jacob Agaloos Pesigan [aut, cre, cph] (ORCID:
     <https://orcid.org/0000-0003-4818-8420>)
 Maintainer: Ivan Jacob Agaloos Pesigan <r.jeksterslab@gmail.com>
