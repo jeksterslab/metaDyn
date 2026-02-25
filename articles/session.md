@@ -37,7 +37,7 @@ sessionInfo()
 #> [1] stats     graphics  grDevices utils     datasets  methods   base     
 #> 
 #> other attached packages:
-#> [1] metaDyn_0.0.0.9006 OpenMx_2.22.10    
+#> [1] metaDyn_1.0.0  OpenMx_2.22.10
 #> 
 #> loaded via a namespace (and not attached):
 #>  [1] digest_0.6.39         xfun_0.56             Matrix_1.7-4         
@@ -54,12 +54,11 @@ sessionInfo()
 
 installed.packages()[, c("Package", "Version")]
 #>                   Package             Version     
-#> fitVARMxID        "fitVARMxID"        "1.0.2"     
-#> metaDyn           "metaDyn"           "0.0.0.9006"
+#> metaDyn           "metaDyn"           "1.0.0"     
 #> abind             "abind"             "1.4-8"     
 #> Amelia            "Amelia"            "1.8.3"     
 #> arm               "arm"               "1.14-4"    
-#> arrow             "arrow"             "23.0.0.1"  
+#> arrow             "arrow"             "23.0.1"    
 #> ash               "ash"               "1.0-15"    
 #> AsioHeaders       "AsioHeaders"       "1.30.2-1"  
 #> askpass           "askpass"           "1.2.1"     
@@ -146,7 +145,6 @@ installed.packages()[, c("Package", "Version")]
 #> fda               "fda"               "6.3.0"     
 #> fdrtool           "fdrtool"           "1.2.18"    
 #> fds               "fds"               "1.8"       
-#> fitDTVARMxID      "fitDTVARMxID"      "1.0.0"     
 #> fitVARMxID        "fitVARMxID"        "1.0.2"     
 #> FNN               "FNN"               "1.1.4.1"   
 #> fontawesome       "fontawesome"       "0.5.3"     
@@ -160,7 +158,7 @@ installed.packages()[, c("Package", "Version")]
 #> fstcore           "fstcore"           "0.10.0"    
 #> furrr             "furrr"             "0.3.1"     
 #> future            "future"            "1.69.0"    
-#> future.apply      "future.apply"      "1.20.1"    
+#> future.apply      "future.apply"      "1.20.2"    
 #> gargle            "gargle"            "1.6.1"     
 #> generics          "generics"          "0.1.4"     
 #> gert              "gert"              "2.3.1"     
@@ -192,7 +190,7 @@ installed.packages()[, c("Package", "Version")]
 #> htmlTable         "htmlTable"         "2.4.3"     
 #> htmltools         "htmltools"         "0.5.9"     
 #> htmlwidgets       "htmlwidgets"       "1.6.4"     
-#> httpgd            "httpgd"            "2.1.0"     
+#> httpgd            "httpgd"            "2.1.3"     
 #> httpuv            "httpuv"            "1.6.16"    
 #> httr              "httr"              "1.4.8"     
 #> httr2             "httr2"             "1.2.2"     
@@ -242,9 +240,8 @@ installed.packages()[, c("Package", "Version")]
 #> matrixStats       "matrixStats"       "1.5.0"     
 #> mclust            "mclust"            "6.1.2"     
 #> memoise           "memoise"           "2.0.1"     
-#> metaDyn           "metaDyn"           "0.0.0.9005"
+#> metaDyn           "metaDyn"           "0.0.0.9006"
 #> metaSEM           "metaSEM"           "1.5.0"     
-#> metaVAR           "metaVAR"           "0.0.0.9004"
 #> mi                "mi"                "1.2"       
 #> mice              "mice"              "3.19.0"    
 #> microbenchmark    "microbenchmark"    "1.5.0"     
@@ -329,7 +326,7 @@ installed.packages()[, c("Package", "Version")]
 #> RcppTOML          "RcppTOML"          "0.2.3"     
 #> RCurl             "RCurl"             "1.98-1.17" 
 #> Rdpack            "Rdpack"            "2.6.6"     
-#> readr             "readr"             "2.1.6"     
+#> readr             "readr"             "2.2.0"     
 #> readxl            "readxl"            "1.4.5"     
 #> recipes           "recipes"           "1.3.1"     
 #> RefManageR        "RefManageR"        "1.4.0"     
@@ -375,7 +372,7 @@ installed.packages()[, c("Package", "Version")]
 #> sessioninfo       "sessioninfo"       "1.2.3"     
 #> sfd               "sfd"               "0.1.0"     
 #> shape             "shape"             "1.4.6.1"   
-#> shiny             "shiny"             "1.12.1"    
+#> shiny             "shiny"             "1.13.0"    
 #> simStateSpace     "simStateSpace"     "1.2.15"    
 #> slider            "slider"            "0.3.3"     
 #> snow              "snow"              "0.4-4"     
@@ -429,7 +426,7 @@ installed.packages()[, c("Package", "Version")]
 #> xml2              "xml2"              "1.5.2"     
 #> xmlparsedata      "xmlparsedata"      "1.0.5"     
 #> xopen             "xopen"             "1.0.1"     
-#> xtable            "xtable"            "1.8-4"     
+#> xtable            "xtable"            "1.8-8"     
 #> yaml              "yaml"              "2.3.12"    
 #> yardstick         "yardstick"         "1.3.2"     
 #> zip               "zip"               "2.3.3"     
@@ -469,52 +466,51 @@ installed.packages()[, c("Package", "Version")]
 
     #> Architecture:                            x86_64
     #> CPU op-mode(s):                          32-bit, 64-bit
-    #> Address sizes:                           48 bits physical, 48 bits virtual
+    #> Address sizes:                           46 bits physical, 48 bits virtual
     #> Byte Order:                              Little Endian
-    #> CPU(s):                                  32
-    #> On-line CPU(s) list:                     0-31
-    #> Vendor ID:                               AuthenticAMD
-    #> Model name:                              AMD Ryzen 9 9955HX 16-Core Processor
-    #> CPU family:                              26
-    #> Model:                                   68
+    #> CPU(s):                                  8
+    #> On-line CPU(s) list:                     0-7
+    #> Vendor ID:                               GenuineIntel
+    #> Model name:                              Intel(R) Xeon(R) CPU E5-1620 v2 @ 3.70GHz
+    #> CPU family:                              6
+    #> Model:                                   62
     #> Thread(s) per core:                      2
-    #> Core(s) per socket:                      16
+    #> Core(s) per socket:                      4
     #> Socket(s):                               1
-    #> Stepping:                                0
-    #> Frequency boost:                         enabled
-    #> CPU(s) scaling MHz:                      51%
-    #> CPU max MHz:                             5060.9761
-    #> CPU min MHz:                             1219.5129
-    #> BogoMIPS:                                4990.49
-    #> Flags:                                   fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush mmx fxsr sse sse2 ht syscall nx mmxext fxsr_opt pdpe1gb rdtscp lm constant_tsc rep_good amd_lbr_v2 nopl xtopology nonstop_tsc cpuid extd_apicid aperfmperf rapl pni pclmulqdq monitor ssse3 fma cx16 sse4_1 sse4_2 movbe popcnt aes xsave avx f16c rdrand lahf_lm cmp_legacy svm extapic cr8_legacy abm sse4a misalignsse 3dnowprefetch osvw ibs skinit wdt tce topoext perfctr_core perfctr_nb bpext perfctr_llc mwaitx cpb cat_l3 cdp_l3 hw_pstate ssbd mba perfmon_v2 ibrs ibpb stibp ibrs_enhanced vmmcall fsgsbase tsc_adjust bmi1 avx2 smep bmi2 erms invpcid cqm rdt_a avx512f avx512dq rdseed adx smap avx512ifma clflushopt clwb avx512cd sha_ni avx512bw avx512vl xsaveopt xsavec xgetbv1 xsaves cqm_llc cqm_occup_llc cqm_mbm_total cqm_mbm_local user_shstk avx_vnni avx512_bf16 clzero irperf xsaveerptr rdpru wbnoinvd cppc arat npt lbrv svm_lock nrip_save tsc_scale vmcb_clean flushbyasid decodeassists pausefilter pfthreshold v_vmsave_vmload vgif x2avic v_spec_ctrl vnmi avx512vbmi umip pku ospke avx512_vbmi2 gfni vaes vpclmulqdq avx512_vnni avx512_bitalg avx512_vpopcntdq rdpid bus_lock_detect movdiri movdir64b overflow_recov succor smca fsrm avx512_vp2intersect flush_l1d amd_lbr_pmc_freeze
-    #> Virtualization:                          AMD-V
-    #> L1d cache:                               768 KiB (16 instances)
-    #> L1i cache:                               512 KiB (16 instances)
-    #> L2 cache:                                16 MiB (16 instances)
-    #> L3 cache:                                64 MiB (2 instances)
+    #> Stepping:                                4
+    #> CPU(s) scaling MHz:                      90%
+    #> CPU max MHz:                             3900.0000
+    #> CPU min MHz:                             1200.0000
+    #> BogoMIPS:                                7382.68
+    #> Flags:                                   fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush dts acpi mmx fxsr sse sse2 ss ht tm pbe syscall nx pdpe1gb rdtscp lm constant_tsc arch_perfmon pebs bts rep_good nopl xtopology nonstop_tsc cpuid aperfmperf pni pclmulqdq dtes64 monitor ds_cpl vmx smx est tm2 ssse3 cx16 xtpr pdcm pcid dca sse4_1 sse4_2 x2apic popcnt tsc_deadline_timer aes xsave avx f16c rdrand lahf_lm cpuid_fault epb pti ssbd ibrs ibpb stibp tpr_shadow flexpriority ept vpid fsgsbase smep erms xsaveopt dtherm ida arat pln pts vnmi md_clear flush_l1d
+    #> Virtualization:                          VT-x
+    #> L1d cache:                               128 KiB (4 instances)
+    #> L1i cache:                               128 KiB (4 instances)
+    #> L2 cache:                                1 MiB (4 instances)
+    #> L3 cache:                                10 MiB (1 instance)
     #> NUMA node(s):                            1
-    #> NUMA node0 CPU(s):                       0-31
+    #> NUMA node0 CPU(s):                       0-7
     #> Vulnerability Gather data sampling:      Not affected
     #> Vulnerability Indirect target selection: Not affected
-    #> Vulnerability Itlb multihit:             Not affected
-    #> Vulnerability L1tf:                      Not affected
-    #> Vulnerability Mds:                       Not affected
-    #> Vulnerability Meltdown:                  Not affected
-    #> Vulnerability Mmio stale data:           Not affected
+    #> Vulnerability Itlb multihit:             KVM: Mitigation: Split huge pages
+    #> Vulnerability L1tf:                      Mitigation; PTE Inversion; VMX conditional cache flushes, SMT vulnerable
+    #> Vulnerability Mds:                       Mitigation; Clear CPU buffers; SMT vulnerable
+    #> Vulnerability Meltdown:                  Mitigation; PTI
+    #> Vulnerability Mmio stale data:           Unknown: No mitigations
     #> Vulnerability Reg file data sampling:    Not affected
     #> Vulnerability Retbleed:                  Not affected
-    #> Vulnerability Spec rstack overflow:      Mitigation; IBPB on VMEXIT only
+    #> Vulnerability Spec rstack overflow:      Not affected
     #> Vulnerability Spec store bypass:         Mitigation; Speculative Store Bypass disabled via prctl
     #> Vulnerability Spectre v1:                Mitigation; usercopy/swapgs barriers and __user pointer sanitization
-    #> Vulnerability Spectre v2:                Mitigation; Enhanced / Automatic IBRS; IBPB conditional; STIBP always-on; PBRSB-eIBRS Not affected; BHI Not affected
+    #> Vulnerability Spectre v2:                Mitigation; Retpolines; IBPB conditional; IBRS_FW; STIBP conditional; RSB filling; PBRSB-eIBRS Not affected; BHI Not affected
     #> Vulnerability Srbds:                     Not affected
     #> Vulnerability Tsa:                       Not affected
     #> Vulnerability Tsx async abort:           Not affected
-    #> Vulnerability Vmscape:                   Mitigation; IBPB on VMEXIT
+    #> Vulnerability Vmscape:                   Mitigation; IBPB before exit to userspace
 
 ## Memory
 
     #>                total        used        free      shared  buff/cache   available
-    #> Mem:            44Gi       4.8Gi        34Gi        41Mi       5.3Gi        39Gi
-    #> Swap:           22Gi          0B        22Gi
-    #> Total:          66Gi       4.8Gi        57Gi
+    #> Mem:            23Gi       6.6Gi       4.8Gi       363Mi        12Gi        16Gi
+    #> Swap:           11Gi        10Mi        11Gi
+    #> Total:          34Gi       6.6Gi        16Gi

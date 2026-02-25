@@ -1,11 +1,11 @@
 # metaDyn
 
-Ivan Jacob Agaloos Pesigan 2026-02-24
+Ivan Jacob Agaloos Pesigan 2026-02-25
 
 ## Description
 
 Fits fixed-, random-, or mixed-effects multivariate meta-analysis models
-using vector autoregressive model estimates from each individual.
+using dynamic model estimates from each individual.
 
 ## Installation
 

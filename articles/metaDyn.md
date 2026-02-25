@@ -19,7 +19,7 @@ Check](https://github.com/jeksterslab/metaDyn/actions/workflows/shellcheck.yml/b
 ## Description
 
 Fits fixed-, random-, or mixed-effects multivariate meta-analysis models
-using vector autoregressive model estimates from each individual.
+using dynamic model estimates from each individual.
 
 ## Installation
 
