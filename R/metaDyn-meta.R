@@ -224,7 +224,7 @@
 #'   psi = FALSE,
 #'   theta = FALSE
 #' )
-#' stage2 <- Meta(y = y, v = v)
+#' stage2 <- Meta(y = y, v = v, random = FALSE)
 #' summary(stage2)
 #' }
 #'

@@ -98,6 +98,7 @@
 #' # Meta-analyze set point vector and matrix of lagged-effects
 #' stage2 <- MetaVARMx(
 #'   object = stage1,
+#'   random = FALSE,
 #'   effects = TRUE,
 #'   set_point = TRUE,
 #'   int_meas = FALSE,

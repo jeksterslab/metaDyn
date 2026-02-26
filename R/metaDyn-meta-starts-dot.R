@@ -38,6 +38,14 @@
           y_mat
         )
         tau_sqr <- stats::var(y_mat)
+        # check if diag is lower than epsilon
+        tau_sqr_diag <- diag(tau_sqr)
+        tau_sqr_diag <- ifelse(
+          test = tau_sqr_diag <= 0.001,
+          yes = 0.001,
+          no = tau_sqr_diag
+        )
+        diag(tau_sqr) <- tau_sqr_diag
         if (length(ynames) == 1) {
           tau_sqr_d_values <- .MxHelperInvSoftplus(c(tau_sqr))
         } else {
@@ -207,6 +215,14 @@
               nrow(z_mat) - qr(xy_mat)$rank
             )
           )
+          # check if diag is lower than epsilon
+          psi_diag <- diag(psi)
+          psi_diag <- ifelse(
+            test = psi_diag <= 0.001,
+            yes = 0.001,
+            no = psi_diag
+          )
+          diag(psi) <- psi_diag
           ldl_psi <- .MxHelperLDL(
             x = psi
           )
