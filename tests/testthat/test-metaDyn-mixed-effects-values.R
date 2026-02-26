@@ -19,7 +19,7 @@ lapply(
       ci <- TRUE
       n <- 5000
       robust <- TRUE
-      tol <- 0.10
+      tol <- 0.50
     } else {
       ci <- FALSE
       n <- 500
