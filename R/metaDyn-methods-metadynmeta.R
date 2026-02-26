@@ -129,7 +129,7 @@ print.summary.metadynmeta <- function(x,
     )
   )
   print(print_summary)
-  invisible(x)
+  invisible(object)
 }
 
 #' Print Method for Object of Class `metadynmeta`
