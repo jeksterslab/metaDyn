@@ -516,6 +516,7 @@ summary(stage1)
 # Meta-analyze set point vector and matrix of lagged-effects
 stage2 <- MetaVARMx(
   object = stage1,
+  random = FALSE,
   effects = TRUE,
   set_point = TRUE,
   int_meas = FALSE,
@@ -523,8 +524,36 @@ stage2 <- MetaVARMx(
   cov_meas = FALSE,
   cov_dyn = FALSE
 )
-#> Error in .MxHelperInvSoftplus(d): .MxHelperInvSoftplus() requires strictly positive input.
+#> Running Model with 6 parameters
+#> 
+#> Beginning initial fit attempt
+#> Running Model with 6 parameters
+#> 
+#>  Lowest minimum so far:  -93.184957280109
+#> 
+#> Solution found
+#> 
+#> 
+#>  Solution found!  Final fit=-93.184957 (started at -91.256471)  (1 attempt(s): 1 valid, 0 errors)
+#>  Start values from best fit:
+#> -0.00428470046284236,-0.00406757081116166,0.386594914967842,-0.0851794164286438,-0.0234341474339058,0.444138933642437
 summary(stage2)
-#> Error: object 'stage2' not found
+#> Call:
+#> MetaVARMx(object = stage1, random = FALSE, effects = TRUE, set_point = TRUE, 
+#>     int_meas = FALSE, int_dyn = FALSE, cov_meas = FALSE, cov_dyn = FALSE)
+#> 
+#> Status code:
+#> 0
+#> 
+#> CI type:
+#> "normal"
+#> 
+#>                est     se       z      p    2.5%   97.5%
+#> alpha[1,1] -0.0043 0.0020 -2.1572 0.0310 -0.0082 -0.0004
+#> alpha[2,1] -0.0041 0.0025 -1.6581 0.0973 -0.0089  0.0007
+#> alpha[3,1]  0.3866 0.0404  9.5726 0.0000  0.3074  0.4657
+#> alpha[4,1] -0.0852 0.0426 -2.0016 0.0453 -0.1686 -0.0018
+#> alpha[5,1] -0.0234 0.0366 -0.6403 0.5220 -0.0952  0.0483
+#> alpha[6,1]  0.4441 0.0389 11.4250 0.0000  0.3679  0.5203
 # }
 ```
