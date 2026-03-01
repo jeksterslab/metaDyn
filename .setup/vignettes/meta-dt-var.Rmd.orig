@@ -1,0 +1,419 @@
+---
+title: "Meta-Analysis of Discrete-Time Vector Autoregressive Model Estimates"
+author: Ivan Jacob Agaloos Pesigan
+date: "`r Sys.Date()`"
+bibliography: "vignettes.bib"
+csl: https://raw.githubusercontent.com/citation-style-language/styles/master/apa.csl
+nocite: |
+  @RCoreTeam-2024
+  @Neale-Hunter-Pritikin-etal-2015
+  @Hunter-2017
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Meta-Analysis of Discrete-Time Vector Autoregressive Model Estimates}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, knitr}
+#| include = FALSE
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  fig.path = "fig-vignettes-meta-dt-var-",
+  fig.cap = "",
+  fig.width = 11,
+  fig.height = 8,
+  fig.retina = 2,
+  dpi = 300,
+  comment = "#>"
+)
+```
+
+```{r, seed}
+#| echo = FALSE
+options(scipen = 999)
+set.seed(42)
+```
+
+```{r, dimensions}
+#| echo = FALSE
+n <- 100
+time <- 1000
+k <- p <- 2
+```
+
+```{r, parameters}
+#| echo = FALSE
+library(simStateSpace)
+mu_mu <- c(
+  2.87,
+  2.04
+)
+mu_sigma <- matrix(
+  data = c(
+    1.20, 0.46,
+    0.46, 1.10
+  ),
+  nrow = 2,
+  ncol = 2
+)
+mu_sigma_l <- t(chol(mu_sigma))
+beta_mu <- matrix(
+  data = c(
+    0.280, -0.035,
+    -0.048, 0.260
+  ),
+  nrow = 2,
+  ncol = 2
+)
+beta_sigma <- matrix(
+  data = c(
+    0.017, 0.005, 0.001, 0.008,
+    0.005, 0.008, 0.001, 0.006,
+    0.001, 0.001, 0.001, 0.002,
+    0.008, 0.006, 0.002, 0.026
+  ),
+  nrow = 4,
+  ncol = 4
+)
+beta_sigma_l <- t(chol(beta_sigma))
+alpha_mu <- SSMInterceptEta(
+  beta = beta_mu,
+  mean_eta = mu_mu
+)
+psi <- list(
+  matrix(
+    data = c(
+      1.30, 0.57,
+      0.57, 1.56
+    ),
+    nrow = 2,
+    ncol = 2
+  )
+)
+psi_l <- list(
+  t(chol(psi[[1]]))
+)
+```
+
+```{r, common}
+#| echo = FALSE
+nu <- list(
+  rep(
+    x = 0,
+    times = 2
+  )
+)
+lambda <- list(
+  diag(2)
+)
+theta <- list(
+  matrix(
+    data = 0,
+    nrow = 2,
+    ncol = 2
+  )
+)
+theta_l <- list(
+  matrix(
+    data = 0,
+    nrow = 2,
+    ncol = 2
+  )
+)
+```
+
+```{r, person-specific}
+#| echo = FALSE
+library(simStateSpace)
+mu <- SimMuN(
+  n = n,
+  mu = mu_mu,
+  vcov_mu_l = mu_sigma_l
+)
+beta <- SimBetaN(
+  n = n,
+  beta = beta_mu,
+  vcov_beta_vec_l = beta_sigma_l
+)
+alpha <- mapply(
+  FUN = SSMInterceptEta,
+  beta = beta,
+  mean_eta = mu,
+  SIMPLIFY = FALSE
+)
+```
+
+```{r, initial}
+#| echo = FALSE
+mu0 <- mu
+sigma0 <- lapply(
+  X = beta,
+  FUN = simStateSpace::SSMCovEta,
+  psi = psi[[1]]
+)
+sigma0_l <- lapply(
+  X = sigma0,
+  FUN = function(i) {
+    t(chol(i))
+  }
+)
+```
+
+## Dynamics Description
+
+The *Stable Reciprocal Regulation* process represents a bivariate dynamic system in which two latent psychological constructs---such as negative and positive affect---mutually influence each other over time. Each construct shows moderate self-regulation (autoregressive effects) and mild opposing cross-effects, reflecting an equilibrium-seeking mechanism characteristic of emotional balance.
+
+Individuals vary in their self-regulatory tendencies and in the strength of these antagonistic couplings. At the population level, the transition matrix indicates that increases in one construct are followed by slight decreases in the other, producing a stable, damped oscillatory pattern around individual equilibrium points. The process noise covariance allows for small correlated disturbances, while measurement errors are assumed to be minimal and symmetric across indicators.
+
+This dynamic pattern captures a psychologically plausible process of *reciprocal inhibition*---where short-term fluctuations in one system component (e.g., negative affect) are naturally counteracted by adjustments in its counterpart (e.g., positive affect), leading to emotional homeostasis over time.
+
+## Model
+
+The measurement model is given by
+\begin{equation}
+  \mathbf{y}_{i, t} = \boldsymbol{\eta}_{i, t}
+\end{equation}
+where $\mathbf{y}_{i, t}$ and $\boldsymbol{\eta}_{i, t}$ are random variables.
+
+The dynamic structure is given by
+\begin{equation}
+  \boldsymbol{\eta}_{i, t} = \boldsymbol{\alpha}_{i} + \boldsymbol{\beta}_{i} \boldsymbol{\eta}_{i, t - 1} + \boldsymbol{\zeta}_{i, t}, \quad \mathrm{with} \quad \boldsymbol{\zeta}_{i, t} \sim \mathcal{N}   \left( \mathbf{0}, \boldsymbol{\Psi} \right)
+\end{equation}
+where $\boldsymbol{\eta}_{i, t}$, $\boldsymbol{\eta}_{i, t - 1}$, and $\boldsymbol{\zeta}_{i, t}$ are random variables, and $\boldsymbol{\beta}_{i}$, and $\boldsymbol{\Psi}$ are model parameters. Here, $\boldsymbol{\eta}_{i, t}$ is a vector of latent variables at time $t$ and individual $i$, $\boldsymbol{\eta}_{i, t - 1}$ represents a vector of latent variables at time $t - 1$ and individual $i$, and $\boldsymbol{\zeta}_{i, t}$ represents a vector of dynamic noise at time $t$ and individual $i$. $\boldsymbol{\beta}_{i}$ is a matrix of autoregression and cross regression coefficients for individual $i$, and $\boldsymbol{\Psi}$ the covariance matrix of $\boldsymbol{\zeta}_{i, t}$ that is invariant across all individuals. In this model, $\boldsymbol{\Psi}$ is a symmetric matrix.
+
+### Alternative Parameterization
+
+An alternative parameterization of the dynamic structure that directly estimates the set-point vector $\boldsymbol{\mu}_{i}$ is given by
+\begin{equation}
+  \boldsymbol{\eta}_{i, t} = \boldsymbol{\mu}_{i} + \boldsymbol{\beta}_{i} \left( \boldsymbol{\eta}_{i, t - 1} - \boldsymbol{\mu}_{i} \right) + \boldsymbol{\zeta}_{i, t} .
+\end{equation}
+
+Algebraic manipulation of the equation results in the following
+\begin{equation}
+  \boldsymbol{\eta}_{i, t} = \boldsymbol{\mu}_{i} - \boldsymbol{\beta}_{i} \boldsymbol{\mu}_{i} + \boldsymbol{\beta}_{i} \boldsymbol{\eta}_{i, t - 1} + \boldsymbol{\zeta}_{i, t} ,
+\end{equation}
+where we can see that the intercept vector $\boldsymbol{\alpha}_{i}$ is implied by $\boldsymbol{\mu}_{i} - \boldsymbol{\beta}_{i} \boldsymbol{\mu}_{i}$.
+
+## Data Generation
+
+### Notation
+
+Let $t = `r time`$ be the number of time points and $n = `r n`$ be the number of individuals. We simulate a total of time $= `r time`$ points per individual.
+
+Let the initial condition $\boldsymbol{\eta}_{0}$ be given by
+\begin{equation}
+  \boldsymbol{\eta}_{0} \sim \mathcal{N} \left( \boldsymbol{\mu}_{\boldsymbol{\eta} \mid 0}, \boldsymbol{\Sigma}_{\boldsymbol{\eta} \mid 0} \right) .
+\end{equation}
+$\boldsymbol{\mu}_{\boldsymbol{\eta} \mid 0}$ and $\boldsymbol{\Sigma}_{\boldsymbol{\eta} \mid 0}$ are functions of $\boldsymbol{\alpha}$ and $\boldsymbol{\beta}$.
+
+Let the set point vector $\boldsymbol{\mu}$ be normally distributed with the following means
+\begin{equation}
+  \left(
+    \begin{array}{c}
+      `r mu_mu[1]` \\
+      `r mu_mu[2]` \\
+    \end{array}
+  \right)
+\end{equation}
+and covariance matrix
+\begin{equation}
+  \left(
+    \begin{array}{cc}
+      `r mu_sigma[1, 1]` & `r mu_sigma[1, 2]` \\
+      `r mu_sigma[2, 1]` & `r mu_sigma[2, 2]` \\
+    \end{array}
+  \right) .
+\end{equation}
+
+Let the transition matrix $\boldsymbol{\beta}$ be normally distributed with the following means
+\begin{equation}
+  \left(
+    \begin{array}{cc}
+      `r beta_mu[1, 1]` & `r beta_mu[1, 2]` \\
+      `r beta_mu[2, 1]` & `r beta_mu[2, 2]` \\
+    \end{array}
+  \right)
+\end{equation}
+and covariance matrix
+\begin{equation}
+  \left(
+    \begin{array}{cccc}
+      `r beta_sigma[1, 1]` & `r beta_sigma[1, 2]` & `r beta_sigma[1, 3]` & `r beta_sigma[1, 4]` \\
+      `r beta_sigma[2, 1]` & `r beta_sigma[2, 2]` & `r beta_sigma[2, 3]` & `r beta_sigma[2, 4]` \\
+      `r beta_sigma[3, 1]` & `r beta_sigma[3, 2]` & `r beta_sigma[3, 3]` & `r beta_sigma[3, 4]` \\
+      `r beta_sigma[4, 1]` & `r beta_sigma[4, 2]` & `r beta_sigma[4, 3]` & `r beta_sigma[4, 4]` \\
+    \end{array}
+  \right) .
+\end{equation}
+
+The `SimMuN` and `SimBetaN` functions from the `simStateSpace` package generate random set point vectors and transition matrices from the multivariate normal distribution. Note that the `SimBetaN` function generates transition matrices that are weakly stationary with an option to set lower and upper bounds. The person-specific set-point vector $\boldsymbol{\mu}_{i}$ was derived from the generated $\boldsymbol{\alpha}_{i}$ and $\boldsymbol{\beta}_{i}$.
+
+Let the dynamic process noise $\boldsymbol{\Psi}$ be given by
+\begin{equation}
+  \boldsymbol{\Psi}
+  =
+  \left(
+    \begin{array}{cc}
+      `r psi[[1]][1, 1]` & `r psi[[1]][1, 2]` \\
+      `r psi[[1]][2, 1]` & `r psi[[1]][2, 2]` \\
+    \end{array}
+  \right) .
+\end{equation}
+
+```{r}
+#| echo = FALSE
+options(scipen = 0)
+```
+
+### R Function Arguments
+
+```{r, argument}
+n
+time
+# first mu0 in the list of length n
+mu0[[1]]
+# first sigma0 in the list of length n
+sigma0[[1]]
+# first sigma0_l in the list of length n
+sigma0_l[[1]] # sigma0_l <- t(chol(sigma0))
+# first alpha in the list of length n
+alpha[[1]]
+# first beta in the list of length n
+beta[[1]]
+# first psi in the list of length n
+psi[[1]]
+psi_l[[1]] # psi_l <- t(chol(psi))
+# first mu (set-point) in the list of length n
+mu[[1]]
+```
+
+### Visualizing the Dynamics Without Process Noise and Measurement Error (n = 5 with Different Initial Condition)
+
+```{r, no-error}
+#| echo = FALSE
+library(simStateSpace)
+sim <- SimSSMVARFixed(
+  n = 5,
+  time = 20,
+  mu0 = c(0, 0),
+  sigma0_l = diag(2),
+  alpha = alpha_mu,
+  beta = beta_mu,
+  psi_l = matrix(
+    data = 0,
+    nrow = k,
+    ncol = k
+  )
+)
+plot(sim, type = "l")
+```
+
+### Using the `SimSSMVARIVary` Function from the `simStateSpace` Package to Simulate Data
+
+```{r, error}
+library(simStateSpace)
+sim <- SimSSMVARIVary(
+  n = n,
+  time = time,
+  mu0 = mu0,
+  sigma0_l = sigma0_l,
+  alpha = alpha,
+  beta = beta,
+  psi_l = psi_l
+)
+data <- as.data.frame(sim)
+head(data)
+plot(sim)
+```
+
+## Stage 1: Person-Specific VAR Model
+
+```{r, library}
+#| include = FALSE
+library(OpenMx)
+library(fitVARMxID)
+```
+
+```{r, library-echo}
+library(OpenMx)
+library(fitVARMxID)
+```
+
+The `FitVARMxID` function fits a VAR model on each individual $i$.
+
+```{r, stage1, message = FALSE, warning = FALSE, results = "hide"}
+fit <- FitVARMxID(
+  data = data,
+  observed = c("y1", "y2"),
+  id = "id",
+  center = TRUE
+)
+```
+
+```{r, summary-stage1}
+summary(
+  fit,
+  means = TRUE
+)
+```
+
+## Stage 2: Random-Effects Meta-Analysis of Person-Specific Dynamics and Means
+
+We synthesize the person-specific estimates to recover population-level effects and their between-person variability. We use a random-effects model so the pooled mean reflects both within-person estimation uncertainty and between-person heterogeneity.
+
+```{r, stage2, message = FALSE, warning = FALSE, results = "hide"}
+library(metaDyn)
+metavar <- MetaVARMx(
+  object = fit,
+  effects = TRUE,
+  set_point = TRUE
+)
+```
+
+```{r, summary-state2}
+summary(metavar)
+```
+
+### Normal Theory Confidence Intervals
+
+```{r, confint-95, message = FALSE, warning = FALSE}
+confint(metavar, level = 0.95)
+```
+
+```{r, confint-99, message = FALSE, warning = FALSE}
+confint(metavar, level = 0.99)
+```
+
+### Robust Confidence Intervals
+
+```{r, confint-robust-95, message = FALSE, warning = FALSE}
+confint(metavar, level = 0.95, robust = TRUE)
+```
+
+```{r, confint-robust-99, message = FALSE, warning = FALSE}
+confint(metavar, level = 0.99, robust = TRUE)
+```
+
+- The fixed part of the random-effects model gives pooled means $\boldsymbol{\alpha} = \mathbb{E} \left[ \mathrm{Vec} \left( \boldsymbol{\mu}, \boldsymbol{\beta} \right)  \right]$.
+- The random part yields between-person covariances ($\boldsymbol{\tau}^{2}$) quantifying heterogeneity in set-point ($\boldsymbol{\mu}$) and dynamics ($\boldsymbol{\beta}$) across individuals.
+
+```{r, fixed-random}
+means <- extract(metavar, what = "alpha")
+means
+covariances <- extract(metavar, what = "tau_sqr")
+covariances
+```
+
+## Summary
+
+This vignette demonstrates a two-stage hierarchical estimation approach for dynamic systems:
+1. individual-level DT-VAR estimation, and  
+2. population-level meta-analysis of person-specific dynamics and means.
+
+## References
+
+```{r, rm}
+#| include = FALSE
+rm(list = ls())
+```

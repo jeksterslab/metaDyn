@@ -23,7 +23,8 @@ pkg_cran <- c(
   "OpenMx",
   "metaSEM",
   "simStateSpace",
-  "Matrix"
+  "Matrix",
+  "fitVARMxID"
 )
 
 pkg_github <- c(

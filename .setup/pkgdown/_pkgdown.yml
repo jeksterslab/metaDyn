@@ -23,6 +23,9 @@ reference:
   - has_keyword("methods")
 
 articles:
+- title: Examples
+  contents:
+  - meta-dt-var
 - title: Session Information
   contents:
   - session
