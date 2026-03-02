@@ -145,7 +145,7 @@ is a symmetric matrix.</p>
 <h3 id="alternative-parameterization">Alternative Parameterization<a class="anchor" aria-label="anchor" href="#alternative-parameterization"></a>
 </h3>
 <p>An alternative parameterization of the dynamic structure that
-directly estimates the set-point vector
+directly estimates the set point vector
 <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi mathvariant="bold-italic">𝝁</mi><mi>i</mi></msub><annotation encoding="application/x-tex">\boldsymbol{\mu}_{i}</annotation></semantics></math>
 is given by
 <math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi mathvariant="bold-italic">𝜼</mi><mrow><mi>i</mi><mo>,</mo><mi>t</mi></mrow></msub><mo>=</mo><msub><mi mathvariant="bold-italic">𝝁</mi><mi>i</mi></msub><mo>+</mo><msub><mi mathvariant="bold-italic">𝜷</mi><mi>i</mi></msub><mrow><mo stretchy="true" form="prefix">(</mo><msub><mi mathvariant="bold-italic">𝜼</mi><mrow><mi>i</mi><mo>,</mo><mi>t</mi><mo>−</mo><mn>1</mn></mrow></msub><mo>−</mo><msub><mi mathvariant="bold-italic">𝝁</mi><mi>i</mi></msub><mo stretchy="true" form="postfix">)</mo></mrow><mo>+</mo><msub><mi mathvariant="bold-italic">𝜻</mi><mrow><mi>i</mi><mo>,</mo><mi>t</mi></mrow></msub><mi>.</mi></mrow><annotation encoding="application/x-tex">\begin{equation}
@@ -281,7 +281,7 @@ be given by
 <span><span class="co">#&gt;           [,1]     [,2]</span></span>
 <span><span class="co">#&gt; [1,] 1.1401754 0.000000</span></span>
 <span><span class="co">#&gt; [2,] 0.4999231 1.144586</span></span>
-<span><span class="co"># first mu (set-point) in the list of length n</span></span>
+<span><span class="co"># first mu (set point) in the list of length n</span></span>
 <span><span class="va">mu</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span></span>
 <span><span class="co">#&gt; [1] 2.287769 2.606098</span></span></code></pre></div>
 </div>
@@ -556,7 +556,7 @@ to zero, simplifies the random effects.</p>
 <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="bold-italic">𝜶</mi><mo>=</mo><mi mathvariant="double-struck">𝔼</mi><mrow><mo stretchy="true" form="prefix">[</mo><mrow><mi mathvariant="normal">V</mi><mi mathvariant="normal">e</mi><mi mathvariant="normal">c</mi></mrow><mrow><mo stretchy="true" form="prefix">(</mo><mi mathvariant="bold-italic">𝝁</mi><mo>,</mo><mi mathvariant="bold-italic">𝜷</mi><mo stretchy="true" form="postfix">)</mo></mrow><mo stretchy="true" form="postfix">]</mo></mrow></mrow><annotation encoding="application/x-tex">\boldsymbol{\alpha} = \mathbb{E} \left[ \mathrm{Vec} \left( \boldsymbol{\mu}, \boldsymbol{\beta} \right)  \right]</annotation></semantics></math>.</li>
 <li>The random part yields between-person covariances
 (<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msup><mi mathvariant="bold-italic">𝝉</mi><mn>2</mn></msup><annotation encoding="application/x-tex">\boldsymbol{\tau}^{2}</annotation></semantics></math>)
-quantifying heterogeneity in set-point
+quantifying heterogeneity in set point
 (<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi mathvariant="bold-italic">𝝁</mi><annotation encoding="application/x-tex">\boldsymbol{\mu}</annotation></semantics></math>)
 and dynamics
 (<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi mathvariant="bold-italic">𝜷</mi><annotation encoding="application/x-tex">\boldsymbol{\beta}</annotation></semantics></math>)

@@ -57,7 +57,7 @@ In this model, $`\boldsymbol{\Psi}`$ is a symmetric matrix.
 ### Alternative Parameterization
 
 An alternative parameterization of the dynamic structure that directly
-estimates the set-point vector $`\boldsymbol{\mu}_{i}`$ is given by
+estimates the set point vector $`\boldsymbol{\mu}_{i}`$ is given by
 ``` math
 \begin{equation}
   \boldsymbol{\eta}_{i, t} = \boldsymbol{\mu}_{i} + \boldsymbol{\beta}_{i} \left( \boldsymbol{\eta}_{i, t - 1} - \boldsymbol{\mu}_{i} \right) + \boldsymbol{\zeta}_{i, t} .
@@ -199,7 +199,7 @@ psi_l[[1]] # psi_l <- t(chol(psi))
 #>           [,1]     [,2]
 #> [1,] 1.1401754 0.000000
 #> [2,] 0.4999231 1.144586
-# first mu (set-point) in the list of length n
+# first mu (set point) in the list of length n
 mu[[1]]
 #> [1] 2.287769 2.606098
 ```
@@ -491,7 +491,7 @@ confint(metavar, level = 0.99, robust = TRUE)
 - The fixed part of the random-effects model gives pooled means
   $`\boldsymbol{\alpha} = \mathbb{E} \left[ \mathrm{Vec} \left( \boldsymbol{\mu}, \boldsymbol{\beta} \right)  \right]`$.
 - The random part yields between-person covariances
-  ($`\boldsymbol{\tau}^{2}`$) quantifying heterogeneity in set-point
+  ($`\boldsymbol{\tau}^{2}`$) quantifying heterogeneity in set point
   ($`\boldsymbol{\mu}`$) and dynamics ($`\boldsymbol{\beta}`$) across
   individuals.
 

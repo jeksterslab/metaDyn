@@ -3,27 +3,27 @@
 ## Dynamics Description
 
 The *Stable Reciprocal Regulation* process is modeled as a
-**continuous-time bivariate dynamic system** in which two latent
+continuous-time bivariate dynamic system in which two latent
 psychological constructs (e.g., negative and positive affect) mutually
 influence each other through their instantaneous rates of change. The
-dynamics are governed by the continuous-time **drift matrix** whose
-**negative diagonal elements** indicate substantial self-regulation:
-deviations from a person’s equilibrium are pulled back toward baseline
-at a moderate-to-strong rate. The **negative off-diagonal elements**
-reflect *reciprocal inhibition*: higher levels of one construct are
-associated with an increased instantaneous tendency for the other
-construct to decline. Because the cross-effects are modest relative to
-the self-regulatory terms, the system exhibits **stable, non-oscillatory
-relaxation** back toward person-specific equilibrium points.
+dynamics are governed by the continuous-time drift matrix whose negative
+diagonal elements indicate substantial self-regulation: deviations from
+a person’s equilibrium are pulled back toward baseline at a
+moderate-to-strong rate. The negative off-diagonal elements reflect
+reciprocal inhibition: higher levels of one construct are associated
+with an increased instantaneous tendency for the other construct to
+decline. Because the cross-effects are modest relative to the
+self-regulatory terms, the system exhibits stable, non-oscillatory
+relaxation back toward person-specific equilibrium points.
 
 Individuals are allowed to differ in both their self-regulatory rates
 and the strength of these antagonistic couplings. Stochastic
-disturbances enter through the **process-noise covariance**, permitting
+disturbances enter through the process-noise covariance, permitting
 small (potentially correlated) departures from the deterministic drift,
 while measurement errors are assumed to be minimal and comparable across
 indicators. Overall, this pattern captures a psychologically plausible
-mechanism of *reciprocal inhibition* in which short-term perturbations
-in one component (e.g., negative affect) are naturally counteracted by
+mechanism of reciprocal inhibition in which short-term perturbations in
+one component (e.g., negative affect) are naturally counteracted by
 compensatory adjustment in the other (e.g., positive affect), supporting
 emotional homeostasis over time.
 
@@ -41,11 +41,11 @@ variables.
 The dynamic structure is given by
 ``` math
 \begin{equation}
-  \mathrm{d} \boldsymbol{\eta}_{i, t} = \left( \boldsymbol{\alpha}_{i} + \boldsymbol{\beta}_{i} \boldsymbol{\eta}_{i, t} \right) \mathrm{d} t + \boldsymbol{\Psi}_{i}^{\frac{1}{2}} \mathrm{d} \mathbf{W}_{i, t}
+  \mathrm{d} \boldsymbol{\eta}_{i, t} = \left( \boldsymbol{\alpha}_{i} + \boldsymbol{\beta}_{i} \boldsymbol{\eta}_{i, t} \right) \mathrm{d} t + \boldsymbol{\Psi}^{\frac{1}{2}} \mathrm{d} \mathbf{W}_{i, t}
 \end{equation}
 ```
-where $`\mathrm{d}\boldsymbol{W}`$ is a Wiener process or Brownian
-motion, which represents random fluctuations,
+where $`\mathrm{d}\boldsymbol{W}_{i, t}`$ is a Wiener process or
+Brownian motion, which represents random fluctuations,
 $`\boldsymbol{\eta}_{i, t}`$ is a random variable, and
 $`\boldsymbol{\beta}_{i}`$, and $`\boldsymbol{\Psi}`$ are model
 parameters. Here, $`\boldsymbol{\eta}_{i, t}`$ is a vector of latent
@@ -56,10 +56,17 @@ and $`\boldsymbol{\Psi}`$ the covariance matrix of the process noise.
 ### Alternative Parameterization
 
 An alternative parameterization of the dynamic structure that directly
-estimates the set-point vector $`\boldsymbol{\mu}_{i}`$ is given by
+estimates the set point vector $`\boldsymbol{\mu}_{i}`$ is given by
 ``` math
 \begin{equation}
-  \mathrm{d} \boldsymbol{\eta}_{i, t} = \boldsymbol{\beta}_{i} \left( \boldsymbol{\eta}_{i, t} - \boldsymbol{\mu}_{i} \right) \mathrm{d} t + \boldsymbol{\Psi}_{i}^{\frac{1}{2}} \mathrm{d} \mathbf{W}_{i, t}
+  \mathrm{d} \boldsymbol{\eta}_{i, t} = \boldsymbol{\beta}_{i} \left( \boldsymbol{\eta}_{i, t} - \boldsymbol{\mu}_{i} \right) \mathrm{d} t + \boldsymbol{\Psi}^{\frac{1}{2}} \mathrm{d} \mathbf{W}_{i, t} .
+\end{equation}
+```
+
+Algebraic manipulation of the equation results in the following
+``` math
+\begin{equation}
+  \mathrm{d} \boldsymbol{\eta}_{i, t} =  \left( - \boldsymbol{\beta}_{i} \boldsymbol{\mu}_{i} + \boldsymbol{\beta}_{i} \boldsymbol{\eta}_{i, t} \right) \mathrm{d} t + \boldsymbol{\Psi}^{\frac{1}{2}} \mathrm{d} \mathbf{W}_{i, t}
 \end{equation}
 ```
 where we can see that the intercept vector $`\boldsymbol{\alpha}_{i}`$
@@ -190,7 +197,7 @@ psi_l[[1]] # psi_l <- t(chol(psi))
 #>           [,1]     [,2]
 #> [1,] 1.1401754 0.000000
 #> [2,] 0.4999231 1.144586
-# first mu (set-point) in the list of length n
+# first mu (set point) in the list of length n
 mu[[1]]
 #> [1] 2.287769 2.606098
 ```
@@ -501,7 +508,7 @@ confint(metavar, level = 0.99, robust = TRUE)
 - The fixed part of the random-effects model gives pooled means
   $`\boldsymbol{\alpha} = \mathbb{E} \left[ \mathrm{Vec} \left( \boldsymbol{\mu}, \boldsymbol{\beta} \right)  \right]`$.
 - The random part yields between-person covariances
-  ($`\boldsymbol{\tau}^{2}`$) quantifying heterogeneity in set-point
+  ($`\boldsymbol{\tau}^{2}`$) quantifying heterogeneity in set point
   ($`\boldsymbol{\mu}`$) and dynamics ($`\boldsymbol{\beta}`$) across
   individuals.
 
