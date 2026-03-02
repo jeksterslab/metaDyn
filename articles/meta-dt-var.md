@@ -79,8 +79,7 @@ $`\boldsymbol{\mu}_{i} - \boldsymbol{\beta}_{i} \boldsymbol{\mu}_{i}`$.
 ### Notation
 
 Let $`t = 1000`$ be the number of time points and $`n = 100`$ be the
-number of individuals. We simulate a total of time $`= 1000`$ points per
-individual.
+number of individuals.
 
 Let the initial condition $`\boldsymbol{\eta}_{0}`$ be given by
 ``` math
@@ -522,7 +521,8 @@ covariances
 
 This vignette demonstrates a two-stage hierarchical estimation approach
 for dynamic systems: 1. individual-level DT-VAR estimation, and\
-2. population-level meta-analysis of person-specific dynamics and means.
+2. population-level meta-analysis of person-specific set points and
+dynamics.
 
 ## References
 

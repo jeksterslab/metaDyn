@@ -59,14 +59,7 @@ An alternative parameterization of the dynamic structure that directly
 estimates the set-point vector $`\boldsymbol{\mu}_{i}`$ is given by
 ``` math
 \begin{equation}
-  \mathrm{d} \boldsymbol{\eta}_{i, t} = \boldsymbol{\beta}_{i} \left( \boldsymbol{\eta}_{i, t} - \boldsymbol{\mu}_{i} \right) \mathrm{d} t + \boldsymbol{\Psi}_{i}^{\frac{1}{2}} \mathrm{d} \mathbf{W}_{i, t} .
-\end{equation}
-```
-
-Algebraic manipulation of the equation results in the following
-``` math
-\begin{equation}
-  \mathrm{d} \boldsymbol{\eta}_{i, t} = \boldsymbol{\beta}_{i} \left( \boldsymbol{\eta}_{i, t} - \boldsymbol{\mu}_{i} \right) \mathrm{d} t + \boldsymbol{\Psi}_{i}^{\frac{1}{2}} \mathrm{d} \mathbf{W}_{i, t} ,
+  \mathrm{d} \boldsymbol{\eta}_{i, t} = \boldsymbol{\beta}_{i} \left( \boldsymbol{\eta}_{i, t} - \boldsymbol{\mu}_{i} \right) \mathrm{d} t + \boldsymbol{\Psi}_{i}^{\frac{1}{2}} \mathrm{d} \mathbf{W}_{i, t}
 \end{equation}
 ```
 where we can see that the intercept vector $`\boldsymbol{\alpha}_{i}`$
@@ -77,8 +70,7 @@ is implied by $`- \boldsymbol{\beta}_{i} \boldsymbol{\mu}_{i}`$.
 ### Notation
 
 Let $`t = 1000`$ be the number of time points and $`n = 100`$ be the
-number of individuals. We simulate a total of time $`= 1000`$ points per
-individual.
+number of individuals.
 
 Let the initial condition $`\boldsymbol{\eta}_{0}`$ be given by
 ``` math
@@ -141,7 +133,7 @@ and covariance matrix
 ```
 
 The `SimMuN` and `SimPhiN` functions from the `simStateSpace` package
-generate random set point vectors and transition matrices from the
+generate random set point vectors and drift matrices from the
 multivariate normal distribution. Note that the `SimPhiN` function
 generates drift matrices that are weakly stationary with an option to
 set lower and upper bounds.
@@ -302,9 +294,9 @@ model so the pooled mean reflects both within-person estimation
 uncertainty and between-person heterogeneity.
 
 All available parameters are meta-analyzed by default. Setting
-`cov_dyn = FALSE`, meta-analyzes only the set points and transition
-matrix. Setting `tau_sqr_l_free`, such that covariances between `mu` and
-`beta` are constained to zero, simplifies the random effects.
+`cov_dyn = FALSE`, meta-analyzes only the set points and drift matrix.
+Setting `tau_sqr_l_free`, such that covariances between `mu` and `beta`
+are constained to zero, simplifies the random effects.
 
 ``` r
 
@@ -539,7 +531,8 @@ covariances
 
 This vignette demonstrates a two-stage hierarchical estimation approach
 for dynamic systems: 1. individual-level CT-VAR estimation, and\
-2. population-level meta-analysis of person-specific dynamics and means.
+2. population-level meta-analysis of person-specific set points and
+dynamics.
 
 ## References
 
