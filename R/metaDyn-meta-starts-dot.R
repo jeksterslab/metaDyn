@@ -47,13 +47,20 @@
         )
         diag(tau_sqr) <- tau_sqr_diag
         if (length(ynames) == 1) {
-          tau_sqr_d_values <- .MxHelperInvSoftplus(c(tau_sqr))
+          d_values <- .MxHelperInvSoftplus(c(tau_sqr))
+          l_values <- NULL
         } else {
           ldl_tau_sqr <- .MxHelperLDL(
             x = tau_sqr
           )
-          tau_sqr_d_values <- ldl_tau_sqr$uc_d
-          tau_sqr_l_values <- ldl_tau_sqr$s_l
+          d_values <- ldl_tau_sqr$uc_d
+          l_values <- ldl_tau_sqr$s_l
+        }
+        if (is.null(tau_sqr_d_values)) {
+          tau_sqr_d_values <- d_values
+        }
+        if (is.null(tau_sqr_l_values)) {
+          tau_sqr_l_values <- l_values
         }
       }
     } else {
@@ -80,12 +87,16 @@
             y = y_mat
           )
         )
-        alpha_values <- gamma_hat[, 1]
-        gamma_values <- gamma_hat[
-          ,
-          xnames,
-          drop = FALSE
-        ]
+        if (is.null(alpha_values)) {
+          alpha_values <- gamma_hat[, 1]
+        }
+        if (is.null(gamma_values)) {
+          gamma_values <- gamma_hat[
+            ,
+            xnames,
+            drop = FALSE
+          ]
+        }
         tau_sqr <- (
           crossprod(
             y_mat - x_mat %*% t(gamma_hat)
@@ -102,13 +113,20 @@
         )
         diag(tau_sqr) <- tau_sqr_diag
         if (length(ynames) == 1) {
-          tau_sqr_d_values <- .MxHelperInvSoftplus(c(tau_sqr))
+          d_values <- .MxHelperInvSoftplus(c(tau_sqr))
+          l_values <- NULL
         } else {
           ldl_tau_sqr <- .MxHelperLDL(
             x = tau_sqr
           )
-          tau_sqr_d_values <- ldl_tau_sqr$uc_d
-          tau_sqr_l_values <- ldl_tau_sqr$s_l
+          d_values <- ldl_tau_sqr$uc_d
+          l_values <- ldl_tau_sqr$s_l
+        }
+        if (is.null(tau_sqr_d_values)) {
+          tau_sqr_d_values <- d_values
+        }
+        if (is.null(tau_sqr_l_values)) {
+          tau_sqr_l_values <- l_values
         }
       }
     }
@@ -138,12 +156,16 @@
               y = z_mat
             )
           )
-          kappa_values <- phi_hat[, 1]
-          phi_values <- phi_hat[
-            ,
-            ynames,
-            drop = FALSE
-          ]
+          if (is.null(kappa_values)) {
+            kappa_values <- phi_hat[, 1]
+          }
+          if (is.null(phi_values)) {
+            phi_values <- phi_hat[
+              ,
+              ynames,
+              drop = FALSE
+            ]
+          }
           psi <- (
             crossprod(
               z_mat - y_mat %*% t(phi_hat)
@@ -160,13 +182,20 @@
           )
           diag(psi) <- psi_diag
           if (length(znames) == 1) {
-            psi_d_values <- .MxHelperInvSoftplus(c(psi))
+            d_values <- .MxHelperInvSoftplus(c(psi))
+            l_values <- NULL
           } else {
             ldl_psi <- .MxHelperLDL(
               x = psi
             )
-            psi_d_values <- ldl_psi$uc_d
-            psi_l_values <- ldl_psi$s_l
+            d_values <- ldl_psi$uc_d
+            l_values <- ldl_psi$s_l
+          }
+          if (is.null(psi_d_values)) {
+            psi_d_values <- d_values
+          }
+          if (is.null(psi_l_values)) {
+            psi_l_values <- l_values
           }
         }
       } else {
@@ -197,17 +226,23 @@
               ]
             )
           )
-          kappa_values <- phi_hat[, 1]
-          omega_values <- phi_hat[
-            ,
-            xnames,
-            drop = FALSE
-          ]
-          phi_values <- phi_hat[
-            ,
-            ynames,
-            drop = FALSE
-          ]
+          if (is.null(kappa_values)) {
+            kappa_values <- phi_hat[, 1]
+          }
+          if (is.null(omega_values)) {
+            omega_values <- phi_hat[
+              ,
+              xnames,
+              drop = FALSE
+            ]
+          }
+          if (is.null(phi_values)) {
+            phi_values <- phi_hat[
+              ,
+              ynames,
+              drop = FALSE
+            ]
+          }
           psi <- (
             crossprod(
               z_mat - xy_mat %*% t(phi_hat)
@@ -226,8 +261,14 @@
           ldl_psi <- .MxHelperLDL(
             x = psi
           )
-          psi_d_values <- ldl_psi$uc_d
-          psi_l_values <- ldl_psi$s_l
+          d_values <- ldl_psi$uc_d
+          l_values <- ldl_psi$s_l
+          if (is.null(psi_d_values)) {
+            psi_d_values <- d_values
+          }
+          if (is.null(psi_l_values)) {
+            psi_l_values <- l_values
+          }
         }
       }
     }

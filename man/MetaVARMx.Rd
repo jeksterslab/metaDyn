@@ -39,7 +39,7 @@ MetaVARMx(
   omega_values = NULL,
   omega_lbound = NULL,
   omega_ubound = NULL,
-  psi_diag = TRUE,
+  psi_diag = FALSE,
   psi_d_free = NULL,
   psi_d_values = NULL,
   psi_d_lbound = NULL,
