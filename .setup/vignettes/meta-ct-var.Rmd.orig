@@ -1,5 +1,5 @@
 ---
-title: "Meta-Analysis of Discrete-Time Vector Autoregressive Model Estimates"
+title: "Meta-Analysis of Continuous-Time Vector Autoregressive Model Estimates"
 author: Ivan Jacob Agaloos Pesigan
 date: "`r Sys.Date()`"
 bibliography: "vignettes.bib"
@@ -10,7 +10,7 @@ nocite: |
   @Hunter-2017
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{Meta-Analysis of Discrete-Time Vector Autoregressive Model Estimates}
+  %\VignetteIndexEntry{Meta-Analysis of Continuous-Time Vector Autoregressive Model Estimates}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
@@ -19,7 +19,7 @@ vignette: >
 #| include = FALSE
 knitr::opts_chunk$set(
   collapse = TRUE,
-  fig.path = "fig-vignettes-meta-dt-var-",
+  fig.path = "fig-vignettes-meta-ct-var-",
   fig.cap = "",
   fig.width = 11,
   fig.height = 8,
@@ -66,6 +66,7 @@ beta_mu <- matrix(
   nrow = 2,
   ncol = 2
 )
+beta_mu <- expm::logm(beta_mu)
 beta_sigma <- matrix(
   data = c(
     0.017, 0.005, 0.001, 0.008,
@@ -77,8 +78,8 @@ beta_sigma <- matrix(
   ncol = 4
 )
 beta_sigma_l <- t(chol(beta_sigma))
-alpha_mu <- SSMInterceptEta(
-  beta = beta_mu,
+alpha_mu <- LinSDEInterceptEta(
+  phi = beta_mu,
   mean_eta = mu_mu
 )
 psi <- list(
@@ -131,14 +132,14 @@ mu <- SimMuN(
   mu = mu_mu,
   vcov_mu_l = mu_sigma_l
 )
-beta <- SimBetaN(
+beta <- SimPhiN(
   n = n,
-  beta = beta_mu,
-  vcov_beta_vec_l = beta_sigma_l
+  phi = beta_mu,
+  vcov_phi_vec_l = beta_sigma_l
 )
 alpha <- mapply(
-  FUN = SSMInterceptEta,
-  beta = beta,
+  FUN = LinSDEInterceptEta,
+  phi = beta,
   mean_eta = mu,
   SIMPLIFY = FALSE
 )
@@ -149,8 +150,8 @@ alpha <- mapply(
 mu0 <- mu
 sigma0 <- lapply(
   X = beta,
-  FUN = simStateSpace::SSMCovEta,
-  psi = psi[[1]]
+  FUN = simStateSpace::LinSDECovEta,
+  sigma = psi[[1]]
 )
 sigma0_l <- lapply(
   X = sigma0,
@@ -162,11 +163,9 @@ sigma0_l <- lapply(
 
 ## Dynamics Description
 
-The *Stable Reciprocal Regulation* process represents a bivariate dynamic system in which two latent psychological constructs---such as negative and positive affect---mutually influence each other over time. Each construct shows moderate self-regulation (autoregressive effects) and mild opposing cross-effects, reflecting an equilibrium-seeking mechanism characteristic of emotional balance.
+The *Stable Reciprocal Regulation* process is modeled as a **continuous-time bivariate dynamic system** in which two latent psychological constructs (e.g., negative and positive affect) mutually influence each other through their instantaneous rates of change. The dynamics are governed by the continuous-time **drift matrix** whose **negative diagonal elements** indicate substantial self-regulation: deviations from a person’s equilibrium are pulled back toward baseline at a moderate-to-strong rate. The **negative off-diagonal elements** reflect *reciprocal inhibition*: higher levels of one construct are associated with an increased instantaneous tendency for the other construct to decline. Because the cross-effects are modest relative to the self-regulatory terms, the system exhibits **stable, non-oscillatory relaxation** back toward person-specific equilibrium points.
 
-Individuals vary in their self-regulatory tendencies and in the strength of these antagonistic couplings. At the population level, the transition matrix indicates that increases in one construct are followed by slight decreases in the other, producing a stable, damped oscillatory pattern around individual equilibrium points. The process noise covariance allows for small correlated disturbances, while measurement errors are assumed to be minimal and symmetric across indicators.
-
-This dynamic pattern captures a psychologically plausible process of *reciprocal inhibition*---where short-term fluctuations in one system component (e.g., negative affect) are naturally counteracted by adjustments in its counterpart (e.g., positive affect), leading to emotional homeostasis over time.
+Individuals are allowed to differ in both their self-regulatory rates and the strength of these antagonistic couplings. Stochastic disturbances enter through the **process-noise covariance**, permitting small (potentially correlated) departures from the deterministic drift, while measurement errors are assumed to be minimal and comparable across indicators. Overall, this pattern captures a psychologically plausible mechanism of *reciprocal inhibition* in which short-term perturbations in one component (e.g., negative affect) are naturally counteracted by compensatory adjustment in the other (e.g., positive affect), supporting emotional homeostasis over time.
 
 ## Model
 
@@ -178,22 +177,22 @@ where $\mathbf{y}_{i, t}$ and $\boldsymbol{\eta}_{i, t}$ are random variables.
 
 The dynamic structure is given by
 \begin{equation}
-  \boldsymbol{\eta}_{i, t} = \boldsymbol{\alpha}_{i} + \boldsymbol{\beta}_{i} \boldsymbol{\eta}_{i, t - 1} + \boldsymbol{\zeta}_{i, t}, \quad \mathrm{with} \quad \boldsymbol{\zeta}_{i, t} \sim \mathcal{N}   \left( \mathbf{0}, \boldsymbol{\Psi} \right)
+  \mathrm{d} \boldsymbol{\eta}_{i, t} = \left( \boldsymbol{\alpha}_{i} + \boldsymbol{\beta}_{i} \boldsymbol{\eta}_{i, t} \right) \mathrm{d} t + \boldsymbol{\Psi}_{i}^{\frac{1}{2}} \mathrm{d} \mathbf{W}_{i, t}
 \end{equation}
-where $\boldsymbol{\eta}_{i, t}$, $\boldsymbol{\eta}_{i, t - 1}$, and $\boldsymbol{\zeta}_{i, t}$ are random variables, and $\boldsymbol{\beta}_{i}$, and $\boldsymbol{\Psi}$ are model parameters. Here, $\boldsymbol{\eta}_{i, t}$ is a vector of latent variables at time $t$ and individual $i$, $\boldsymbol{\eta}_{i, t - 1}$ represents a vector of latent variables at time $t - 1$ and individual $i$, and $\boldsymbol{\zeta}_{i, t}$ represents a vector of dynamic noise at time $t$ and individual $i$. $\boldsymbol{\beta}_{i}$ is a matrix of autoregression and cross regression coefficients for individual $i$, and $\boldsymbol{\Psi}$ the covariance matrix of $\boldsymbol{\zeta}_{i, t}$ that is invariant across all individuals. In this model, $\boldsymbol{\Psi}$ is a symmetric matrix.
+where $\mathrm{d}\boldsymbol{W}$ is a Wiener process or Brownian motion, which represents random fluctuations, $\boldsymbol{\eta}_{i, t}$ is a random variable, and $\boldsymbol{\beta}_{i}$, and $\boldsymbol{\Psi}$ are model parameters. Here, $\boldsymbol{\eta}_{i, t}$ is a vector of latent variables at time $t$ and individual $i$. $\boldsymbol{\beta}_{i}$ is a matrix of auto and cross effect coefficients for individual $i$, and $\boldsymbol{\Psi}$ the covariance matrix of the process noise.
 
 ### Alternative Parameterization
 
 An alternative parameterization of the dynamic structure that directly estimates the set-point vector $\boldsymbol{\mu}_{i}$ is given by
 \begin{equation}
-  \boldsymbol{\eta}_{i, t} = \boldsymbol{\mu}_{i} + \boldsymbol{\beta}_{i} \left( \boldsymbol{\eta}_{i, t - 1} - \boldsymbol{\mu}_{i} \right) + \boldsymbol{\zeta}_{i, t} .
+  \mathrm{d} \boldsymbol{\eta}_{i, t} = \boldsymbol{\beta}_{i} \left( \boldsymbol{\eta}_{i, t} - \boldsymbol{\mu}_{i} \right) \mathrm{d} t + \boldsymbol{\Psi}_{i}^{\frac{1}{2}} \mathrm{d} \mathbf{W}_{i, t} .
 \end{equation}
 
 Algebraic manipulation of the equation results in the following
 \begin{equation}
-  \boldsymbol{\eta}_{i, t} = \boldsymbol{\mu}_{i} - \boldsymbol{\beta}_{i} \boldsymbol{\mu}_{i} + \boldsymbol{\beta}_{i} \boldsymbol{\eta}_{i, t - 1} + \boldsymbol{\zeta}_{i, t} ,
+  \mathrm{d} \boldsymbol{\eta}_{i, t} = \boldsymbol{\beta}_{i} \left( \boldsymbol{\eta}_{i, t} - \boldsymbol{\mu}_{i} \right) \mathrm{d} t + \boldsymbol{\Psi}_{i}^{\frac{1}{2}} \mathrm{d} \mathbf{W}_{i, t} ,
 \end{equation}
-where we can see that the intercept vector $\boldsymbol{\alpha}_{i}$ is implied by $\boldsymbol{\mu}_{i} - \boldsymbol{\beta}_{i} \boldsymbol{\mu}_{i}$.
+where we can see that the intercept vector $\boldsymbol{\alpha}_{i}$ is implied by $- \boldsymbol{\beta}_{i} \boldsymbol{\mu}_{i}$.
 
 ## Data Generation
 
@@ -247,7 +246,7 @@ and covariance matrix
   \right) .
 \end{equation}
 
-The `SimMuN` and `SimBetaN` functions from the `simStateSpace` package generate random set point vectors and transition matrices from the multivariate normal distribution. Note that the `SimBetaN` function generates transition matrices that are weakly stationary with an option to set lower and upper bounds.
+The `SimMuN` and `SimPhiN` functions from the `simStateSpace` package generate random set point vectors and transition matrices from the multivariate normal distribution. Note that the `SimPhiN` function generates drift matrices that are weakly stationary with an option to set lower and upper bounds.
 
 Let the dynamic process noise $\boldsymbol{\Psi}$ be given by
 \begin{equation}
@@ -293,14 +292,22 @@ mu[[1]]
 ```{r, no-error}
 #| echo = FALSE
 library(simStateSpace)
-sim <- SimSSMVARFixed(
+sim <- SimSSMLinSDEFixed(
   n = 5,
-  time = 20,
+  time = 100,
+  delta_t = 0.1,
   mu0 = c(0, 0),
   sigma0_l = diag(2),
-  alpha = alpha_mu,
-  beta = beta_mu,
-  psi_l = matrix(
+  iota = alpha_mu,
+  phi = beta_mu,
+  sigma_l = matrix(
+    data = 0,
+    nrow = k,
+    ncol = k
+  ),
+  nu = c(0, 0),
+  lambda = diag(2),
+  theta_l = matrix(
     data = 0,
     nrow = k,
     ncol = k
@@ -309,21 +316,29 @@ sim <- SimSSMVARFixed(
 plot(sim, type = "l")
 ```
 
-### Using the `SimSSMVARIVary` Function from the `simStateSpace` Package to Simulate Data
+### Using the `SimSSMLinSDEFixed` Function from the `simStateSpace` Package to Simulate Data
+
+> **Note:** The `SimSSMLinSDEFixed` function uses a different set of parameter names.
+> See `help(SimSSMLinSDEFixed)` for more details.
 
 ```{r, error}
 library(simStateSpace)
-sim <- SimSSMVARIVary(
+sim <- SimSSMLinSDEIVary(
   n = n,
   time = time,
+  delta_t = 0.1,
   mu0 = mu0,
   sigma0_l = sigma0_l,
-  alpha = alpha,
-  beta = beta,
-  psi_l = psi_l
+  iota = alpha,
+  phi = beta,
+  sigma_l = psi_l,
+  nu = nu,
+  lambda = lambda,
+  theta_l = theta_l
 )
 data <- as.data.frame(sim)
 head(data)
+summary(data)
 plot(sim)
 ```
 
@@ -347,6 +362,8 @@ fit <- FitVARMxID(
   data = data,
   observed = c("y1", "y2"),
   id = "id",
+  ct = TRUE,
+  time = "time",
   center = TRUE
 )
 ```
@@ -431,7 +448,7 @@ covariances
 ## Summary
 
 This vignette demonstrates a two-stage hierarchical estimation approach for dynamic systems:
-1. individual-level DT-VAR estimation, and  
+1. individual-level CT-VAR estimation, and  
 2. population-level meta-analysis of person-specific dynamics and means.
 
 ## References

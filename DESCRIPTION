@@ -27,5 +27,6 @@ Suggests:
     testthat,
     simStateSpace,
     MASS,
-    metaSEM
+    metaSEM,
+    expm
 RoxygenNote: 7.3.3.9000

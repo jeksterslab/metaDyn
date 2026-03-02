@@ -26,6 +26,7 @@ articles:
 - title: Examples
   contents:
   - meta-dt-var
+  - meta-ct-var
 - title: Session Information
   contents:
   - session
