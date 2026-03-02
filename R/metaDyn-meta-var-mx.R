@@ -52,8 +52,7 @@
 #'   use normal theory sampling variance-covariance matrix
 #'   in stage 1.
 #' @inheritParams Meta
-#' @inherit return Meta
-#' @inherit references Meta
+#' @inherit Meta return references
 #'
 #' @examples
 #' \donttest{
