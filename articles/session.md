@@ -483,7 +483,7 @@ installed.packages()[, c("Package", "Version")]
     #> Core(s) per socket:                      4
     #> Socket(s):                               1
     #> Stepping:                                10
-    #> CPU(s) scaling MHz:                      78%
+    #> CPU(s) scaling MHz:                      75%
     #> CPU max MHz:                             3600.0000
     #> CPU min MHz:                             400.0000
     #> BogoMIPS:                                3799.90
@@ -516,6 +516,6 @@ installed.packages()[, c("Package", "Version")]
 ## Memory
 
     #>                total        used        free      shared  buff/cache   available
-    #> Mem:           7.4Gi       4.1Gi       583Mi       302Mi       3.3Gi       3.2Gi
-    #> Swap:          7.8Gi       1.3Gi       6.5Gi
-    #> Total:          15Gi       5.4Gi       7.0Gi
+    #> Mem:           7.4Gi       5.3Gi       408Mi       522Mi       2.5Gi       2.1Gi
+    #> Swap:          7.8Gi       2.1Gi       5.7Gi
+    #> Total:          15Gi       7.4Gi       6.1Gi
