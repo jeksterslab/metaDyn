@@ -52,6 +52,8 @@
 #'   use normal theory sampling variance-covariance matrix
 #'   in stage 1.
 #' @inheritParams Meta
+#' @inherit return Meta
+#' @inherit references Meta
 #'
 #' @examples
 #' \donttest{
@@ -108,20 +110,6 @@
 #' )
 #' summary(stage2)
 #' }
-#'
-#' @references
-#' Cheung, M. W.-L. (2015).
-#' *Meta-analysis: A structural equation modeling approach*.
-#' Wiley.
-#' \doi{10.1002/9781118957813}
-#'
-#' Neale, M. C., Hunter, M. D., Pritikin, J. N.,
-#' Zahery, M., Brick, T. R., Kirkpatrick, R. M., Estabrook, R.,
-#' Bates, T. C., Maes, H. H., & Boker, S. M. (2015).
-#' OpenMx 2.0: Extended structural equation and statistical modeling.
-#' *Psychometrika*,
-#' *81*(2), 535–549.
-#' \doi{10.1007/s11336-014-9435-8}
 #'
 #' @family Meta-Analysis of VAR Functions
 #' @keywords metaDyn meta
