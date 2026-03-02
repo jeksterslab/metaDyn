@@ -5,7 +5,7 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<title>Meta-Analysis of Discrete-Time Vector Autoregressive Model Estimates • metaDyn</title>
+<title>Meta-Analysis of Continuous-Time Vector Autoregressive Model Estimates • metaDyn</title>
 <script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="../deps/bootstrap-5.3.1/bootstrap.min.css" rel="stylesheet">
 <script src="../deps/bootstrap-5.3.1/bootstrap.bundle.min.js"></script><link href="../deps/Roboto-0.4.10/font.css" rel="stylesheet">
@@ -13,7 +13,7 @@
 <link href="../deps/Roboto_Slab-0.4.10/font.css" rel="stylesheet">
 <link href="../deps/font-awesome-6.5.2/css/all.min.css" rel="stylesheet">
 <link href="../deps/font-awesome-6.5.2/css/v4-shims.min.css" rel="stylesheet">
-<script src="../deps/headroom-0.11.0/headroom.min.js"></script><script src="../deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="../deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="../deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="../deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="../deps/search-1.0.0/fuse.min.js"></script><script src="../deps/search-1.0.0/mark.min.js"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="Meta-Analysis of Discrete-Time Vector Autoregressive Model Estimates">
+<script src="../deps/headroom-0.11.0/headroom.min.js"></script><script src="../deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="../deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="../deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="../deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="../deps/search-1.0.0/fuse.min.js"></script><script src="../deps/search-1.0.0/mark.min.js"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="Meta-Analysis of Continuous-Time Vector Autoregressive Model Estimates">
 <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 </head>
 <body>
@@ -56,14 +56,14 @@
 <div class="row">
   <main id="main" class="col-md-9"><div class="page-header">
 
-      <h1>Meta-Analysis of Discrete-Time Vector Autoregressive Model Estimates</h1>
+      <h1>Meta-Analysis of Continuous-Time Vector Autoregressive Model Estimates</h1>
                         <h4 data-toc-skip class="author">Ivan Jacob
 Agaloos Pesigan</h4>
             
             <h4 data-toc-skip class="date">2026-03-02</h4>
       
-      <small class="dont-index">Source: <a href="https://github.com/jeksterslab/metaDyn/blob/main/vignettes/meta-dt-var.Rmd"><code>vignettes/meta-dt-var.Rmd</code></a></small>
-      <div class="d-none name"><code>meta-dt-var.Rmd</code></div>
+      <small class="dont-index">Source: <a href="https://github.com/jeksterslab/metaDyn/blob/main/vignettes/meta-ct-var.Rmd"><code>vignettes/meta-ct-var.Rmd</code></a></small>
+      <div class="d-none name"><code>meta-ct-var.Rmd</code></div>
     </div>
 
     
@@ -71,24 +71,32 @@ Agaloos Pesigan</h4>
 <div class="section level2">
 <h2 id="dynamics-description">Dynamics Description<a class="anchor" aria-label="anchor" href="#dynamics-description"></a>
 </h2>
-<p>The <em>Stable Reciprocal Regulation</em> process represents a
-bivariate dynamic system in which two latent psychological
-constructs—such as negative and positive affect—mutually influence each
-other over time. Each construct shows moderate self-regulation
-(autoregressive effects) and mild opposing cross-effects, reflecting an
-equilibrium-seeking mechanism characteristic of emotional balance.</p>
-<p>Individuals vary in their self-regulatory tendencies and in the
-strength of these antagonistic couplings. At the population level, the
-transition matrix indicates that increases in one construct are followed
-by slight decreases in the other, producing a stable, damped oscillatory
-pattern around individual equilibrium points. The process noise
-covariance allows for small correlated disturbances, while measurement
-errors are assumed to be minimal and symmetric across indicators.</p>
-<p>This dynamic pattern captures a psychologically plausible process of
-<em>reciprocal inhibition</em>—where short-term fluctuations in one
-system component (e.g., negative affect) are naturally counteracted by
-adjustments in its counterpart (e.g., positive affect), leading to
-emotional homeostasis over time.</p>
+<p>The <em>Stable Reciprocal Regulation</em> process is modeled as a
+<strong>continuous-time bivariate dynamic system</strong> in which two
+latent psychological constructs (e.g., negative and positive affect)
+mutually influence each other through their instantaneous rates of
+change. The dynamics are governed by the continuous-time <strong>drift
+matrix</strong> whose <strong>negative diagonal elements</strong>
+indicate substantial self-regulation: deviations from a person’s
+equilibrium are pulled back toward baseline at a moderate-to-strong
+rate. The <strong>negative off-diagonal elements</strong> reflect
+<em>reciprocal inhibition</em>: higher levels of one construct are
+associated with an increased instantaneous tendency for the other
+construct to decline. Because the cross-effects are modest relative to
+the self-regulatory terms, the system exhibits <strong>stable,
+non-oscillatory relaxation</strong> back toward person-specific
+equilibrium points.</p>
+<p>Individuals are allowed to differ in both their self-regulatory rates
+and the strength of these antagonistic couplings. Stochastic
+disturbances enter through the <strong>process-noise
+covariance</strong>, permitting small (potentially correlated)
+departures from the deterministic drift, while measurement errors are
+assumed to be minimal and comparable across indicators. Overall, this
+pattern captures a psychologically plausible mechanism of <em>reciprocal
+inhibition</em> in which short-term perturbations in one component
+(e.g., negative affect) are naturally counteracted by compensatory
+adjustment in the other (e.g., positive affect), supporting emotional
+homeostasis over time.</p>
 </div>
 <div class="section level2">
 <h2 id="model">Model<a class="anchor" aria-label="anchor" href="#model"></a>
@@ -102,14 +110,14 @@ and
 <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi mathvariant="bold-italic">𝜼</mi><mrow><mi>i</mi><mo>,</mo><mi>t</mi></mrow></msub><annotation encoding="application/x-tex">\boldsymbol{\eta}_{i, t}</annotation></semantics></math>
 are random variables.</p>
 <p>The dynamic structure is given by
-<math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi mathvariant="bold-italic">𝜼</mi><mrow><mi>i</mi><mo>,</mo><mi>t</mi></mrow></msub><mo>=</mo><msub><mi mathvariant="bold-italic">𝜶</mi><mi>i</mi></msub><mo>+</mo><msub><mi mathvariant="bold-italic">𝜷</mi><mi>i</mi></msub><msub><mi mathvariant="bold-italic">𝜼</mi><mrow><mi>i</mi><mo>,</mo><mi>t</mi><mo>−</mo><mn>1</mn></mrow></msub><mo>+</mo><msub><mi mathvariant="bold-italic">𝜻</mi><mrow><mi>i</mi><mo>,</mo><mi>t</mi></mrow></msub><mo>,</mo><mspace width="1.0em"></mspace><mrow><mi mathvariant="normal">w</mi><mi mathvariant="normal">i</mi><mi mathvariant="normal">t</mi><mi mathvariant="normal">h</mi></mrow><mspace width="1.0em"></mspace><msub><mi mathvariant="bold-italic">𝜻</mi><mrow><mi>i</mi><mo>,</mo><mi>t</mi></mrow></msub><mo>∼</mo><mi mathvariant="script">𝒩</mi><mrow><mo stretchy="true" form="prefix">(</mo><mn mathvariant="bold">𝟎</mn><mo>,</mo><mi mathvariant="bold">𝚿</mi><mo stretchy="true" form="postfix">)</mo></mrow></mrow><annotation encoding="application/x-tex">\begin{equation}
-  \boldsymbol{\eta}_{i, t} = \boldsymbol{\alpha}_{i} + \boldsymbol{\beta}_{i} \boldsymbol{\eta}_{i, t - 1} + \boldsymbol{\zeta}_{i, t}, \quad \mathrm{with} \quad \boldsymbol{\zeta}_{i, t} \sim \mathcal{N}   \left( \mathbf{0}, \boldsymbol{\Psi} \right)
+<math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal">d</mi><msub><mi mathvariant="bold-italic">𝜼</mi><mrow><mi>i</mi><mo>,</mo><mi>t</mi></mrow></msub><mo>=</mo><mrow><mo stretchy="true" form="prefix">(</mo><msub><mi mathvariant="bold-italic">𝜶</mi><mi>i</mi></msub><mo>+</mo><msub><mi mathvariant="bold-italic">𝜷</mi><mi>i</mi></msub><msub><mi mathvariant="bold-italic">𝜼</mi><mrow><mi>i</mi><mo>,</mo><mi>t</mi></mrow></msub><mo stretchy="true" form="postfix">)</mo></mrow><mi mathvariant="normal">d</mi><mi>t</mi><mo>+</mo><msubsup><mi mathvariant="bold">𝚿</mi><mi>i</mi><mfrac><mn>1</mn><mn>2</mn></mfrac></msubsup><mi mathvariant="normal">d</mi><msub><mi mathvariant="bold-italic">𝑾</mi><mrow><mi>i</mi><mo>,</mo><mi>t</mi></mrow></msub></mrow><annotation encoding="application/x-tex">\begin{equation}
+  \mathrm{d} \boldsymbol{\eta}_{i, t} = \left( \boldsymbol{\alpha}_{i} + \boldsymbol{\beta}_{i} \boldsymbol{\eta}_{i, t} \right) \mathrm{d} t + \boldsymbol{\Psi}_{i}^{\frac{1}{2}} \mathrm{d} \mathbf{W}_{i, t}
 \end{equation}</annotation></semantics></math> where
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi mathvariant="bold-italic">𝜼</mi><mrow><mi>i</mi><mo>,</mo><mi>t</mi></mrow></msub><annotation encoding="application/x-tex">\boldsymbol{\eta}_{i, t}</annotation></semantics></math>,
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi mathvariant="bold-italic">𝜼</mi><mrow><mi>i</mi><mo>,</mo><mi>t</mi><mo>−</mo><mn>1</mn></mrow></msub><annotation encoding="application/x-tex">\boldsymbol{\eta}_{i, t - 1}</annotation></semantics></math>,
-and
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi mathvariant="bold-italic">𝜻</mi><mrow><mi>i</mi><mo>,</mo><mi>t</mi></mrow></msub><annotation encoding="application/x-tex">\boldsymbol{\zeta}_{i, t}</annotation></semantics></math>
-are random variables, and
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal">d</mi><mi mathvariant="bold-italic">𝑾</mi></mrow><annotation encoding="application/x-tex">\mathrm{d}\boldsymbol{W}</annotation></semantics></math>
+is a Wiener process or Brownian motion, which represents random
+fluctuations,
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi mathvariant="bold-italic">𝜼</mi><mrow><mi>i</mi><mo>,</mo><mi>t</mi></mrow></msub><annotation encoding="application/x-tex">\boldsymbol{\eta}_{i, t}</annotation></semantics></math>
+is a random variable, and
 <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi mathvariant="bold-italic">𝜷</mi><mi>i</mi></msub><annotation encoding="application/x-tex">\boldsymbol{\beta}_{i}</annotation></semantics></math>,
 and
 <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi mathvariant="bold">𝚿</mi><annotation encoding="application/x-tex">\boldsymbol{\Psi}</annotation></semantics></math>
@@ -118,29 +126,13 @@ are model parameters. Here,
 is a vector of latent variables at time
 <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>t</mi><annotation encoding="application/x-tex">t</annotation></semantics></math>
 and individual
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>i</mi><annotation encoding="application/x-tex">i</annotation></semantics></math>,
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi mathvariant="bold-italic">𝜼</mi><mrow><mi>i</mi><mo>,</mo><mi>t</mi><mo>−</mo><mn>1</mn></mrow></msub><annotation encoding="application/x-tex">\boldsymbol{\eta}_{i, t - 1}</annotation></semantics></math>
-represents a vector of latent variables at time
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>t</mi><mo>−</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">t - 1</annotation></semantics></math>
-and individual
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>i</mi><annotation encoding="application/x-tex">i</annotation></semantics></math>,
-and
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi mathvariant="bold-italic">𝜻</mi><mrow><mi>i</mi><mo>,</mo><mi>t</mi></mrow></msub><annotation encoding="application/x-tex">\boldsymbol{\zeta}_{i, t}</annotation></semantics></math>
-represents a vector of dynamic noise at time
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>t</mi><annotation encoding="application/x-tex">t</annotation></semantics></math>
-and individual
 <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>i</mi><annotation encoding="application/x-tex">i</annotation></semantics></math>.
 <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi mathvariant="bold-italic">𝜷</mi><mi>i</mi></msub><annotation encoding="application/x-tex">\boldsymbol{\beta}_{i}</annotation></semantics></math>
-is a matrix of autoregression and cross regression coefficients for
-individual
+is a matrix of auto and cross effect coefficients for individual
 <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>i</mi><annotation encoding="application/x-tex">i</annotation></semantics></math>,
 and
 <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi mathvariant="bold">𝚿</mi><annotation encoding="application/x-tex">\boldsymbol{\Psi}</annotation></semantics></math>
-the covariance matrix of
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi mathvariant="bold-italic">𝜻</mi><mrow><mi>i</mi><mo>,</mo><mi>t</mi></mrow></msub><annotation encoding="application/x-tex">\boldsymbol{\zeta}_{i, t}</annotation></semantics></math>
-that is invariant across all individuals. In this model,
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi mathvariant="bold">𝚿</mi><annotation encoding="application/x-tex">\boldsymbol{\Psi}</annotation></semantics></math>
-is a symmetric matrix.</p>
+the covariance matrix of the process noise.</p>
 <div class="section level3">
 <h3 id="alternative-parameterization">Alternative Parameterization<a class="anchor" aria-label="anchor" href="#alternative-parameterization"></a>
 </h3>
@@ -148,17 +140,17 @@ is a symmetric matrix.</p>
 directly estimates the set-point vector
 <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi mathvariant="bold-italic">𝝁</mi><mi>i</mi></msub><annotation encoding="application/x-tex">\boldsymbol{\mu}_{i}</annotation></semantics></math>
 is given by
-<math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi mathvariant="bold-italic">𝜼</mi><mrow><mi>i</mi><mo>,</mo><mi>t</mi></mrow></msub><mo>=</mo><msub><mi mathvariant="bold-italic">𝝁</mi><mi>i</mi></msub><mo>+</mo><msub><mi mathvariant="bold-italic">𝜷</mi><mi>i</mi></msub><mrow><mo stretchy="true" form="prefix">(</mo><msub><mi mathvariant="bold-italic">𝜼</mi><mrow><mi>i</mi><mo>,</mo><mi>t</mi><mo>−</mo><mn>1</mn></mrow></msub><mo>−</mo><msub><mi mathvariant="bold-italic">𝝁</mi><mi>i</mi></msub><mo stretchy="true" form="postfix">)</mo></mrow><mo>+</mo><msub><mi mathvariant="bold-italic">𝜻</mi><mrow><mi>i</mi><mo>,</mo><mi>t</mi></mrow></msub><mi>.</mi></mrow><annotation encoding="application/x-tex">\begin{equation}
-  \boldsymbol{\eta}_{i, t} = \boldsymbol{\mu}_{i} + \boldsymbol{\beta}_{i} \left( \boldsymbol{\eta}_{i, t - 1} - \boldsymbol{\mu}_{i} \right) + \boldsymbol{\zeta}_{i, t} .
+<math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal">d</mi><msub><mi mathvariant="bold-italic">𝜼</mi><mrow><mi>i</mi><mo>,</mo><mi>t</mi></mrow></msub><mo>=</mo><msub><mi mathvariant="bold-italic">𝜷</mi><mi>i</mi></msub><mrow><mo stretchy="true" form="prefix">(</mo><msub><mi mathvariant="bold-italic">𝜼</mi><mrow><mi>i</mi><mo>,</mo><mi>t</mi></mrow></msub><mo>−</mo><msub><mi mathvariant="bold-italic">𝝁</mi><mi>i</mi></msub><mo stretchy="true" form="postfix">)</mo></mrow><mi mathvariant="normal">d</mi><mi>t</mi><mo>+</mo><msubsup><mi mathvariant="bold">𝚿</mi><mi>i</mi><mfrac><mn>1</mn><mn>2</mn></mfrac></msubsup><mi mathvariant="normal">d</mi><msub><mi mathvariant="bold-italic">𝑾</mi><mrow><mi>i</mi><mo>,</mo><mi>t</mi></mrow></msub><mi>.</mi></mrow><annotation encoding="application/x-tex">\begin{equation}
+  \mathrm{d} \boldsymbol{\eta}_{i, t} = \boldsymbol{\beta}_{i} \left( \boldsymbol{\eta}_{i, t} - \boldsymbol{\mu}_{i} \right) \mathrm{d} t + \boldsymbol{\Psi}_{i}^{\frac{1}{2}} \mathrm{d} \mathbf{W}_{i, t} .
 \end{equation}</annotation></semantics></math></p>
 <p>Algebraic manipulation of the equation results in the following
-<math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi mathvariant="bold-italic">𝜼</mi><mrow><mi>i</mi><mo>,</mo><mi>t</mi></mrow></msub><mo>=</mo><msub><mi mathvariant="bold-italic">𝝁</mi><mi>i</mi></msub><mo>−</mo><msub><mi mathvariant="bold-italic">𝜷</mi><mi>i</mi></msub><msub><mi mathvariant="bold-italic">𝝁</mi><mi>i</mi></msub><mo>+</mo><msub><mi mathvariant="bold-italic">𝜷</mi><mi>i</mi></msub><msub><mi mathvariant="bold-italic">𝜼</mi><mrow><mi>i</mi><mo>,</mo><mi>t</mi><mo>−</mo><mn>1</mn></mrow></msub><mo>+</mo><msub><mi mathvariant="bold-italic">𝜻</mi><mrow><mi>i</mi><mo>,</mo><mi>t</mi></mrow></msub><mo>,</mo></mrow><annotation encoding="application/x-tex">\begin{equation}
-  \boldsymbol{\eta}_{i, t} = \boldsymbol{\mu}_{i} - \boldsymbol{\beta}_{i} \boldsymbol{\mu}_{i} + \boldsymbol{\beta}_{i} \boldsymbol{\eta}_{i, t - 1} + \boldsymbol{\zeta}_{i, t} ,
+<math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal">d</mi><msub><mi mathvariant="bold-italic">𝜼</mi><mrow><mi>i</mi><mo>,</mo><mi>t</mi></mrow></msub><mo>=</mo><msub><mi mathvariant="bold-italic">𝜷</mi><mi>i</mi></msub><mrow><mo stretchy="true" form="prefix">(</mo><msub><mi mathvariant="bold-italic">𝜼</mi><mrow><mi>i</mi><mo>,</mo><mi>t</mi></mrow></msub><mo>−</mo><msub><mi mathvariant="bold-italic">𝝁</mi><mi>i</mi></msub><mo stretchy="true" form="postfix">)</mo></mrow><mi mathvariant="normal">d</mi><mi>t</mi><mo>+</mo><msubsup><mi mathvariant="bold">𝚿</mi><mi>i</mi><mfrac><mn>1</mn><mn>2</mn></mfrac></msubsup><mi mathvariant="normal">d</mi><msub><mi mathvariant="bold-italic">𝑾</mi><mrow><mi>i</mi><mo>,</mo><mi>t</mi></mrow></msub><mo>,</mo></mrow><annotation encoding="application/x-tex">\begin{equation}
+  \mathrm{d} \boldsymbol{\eta}_{i, t} = \boldsymbol{\beta}_{i} \left( \boldsymbol{\eta}_{i, t} - \boldsymbol{\mu}_{i} \right) \mathrm{d} t + \boldsymbol{\Psi}_{i}^{\frac{1}{2}} \mathrm{d} \mathbf{W}_{i, t} ,
 \end{equation}</annotation></semantics></math> where we can see that the
 intercept vector
 <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi mathvariant="bold-italic">𝜶</mi><mi>i</mi></msub><annotation encoding="application/x-tex">\boldsymbol{\alpha}_{i}</annotation></semantics></math>
 is implied by
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi mathvariant="bold-italic">𝝁</mi><mi>i</mi></msub><mo>−</mo><msub><mi mathvariant="bold-italic">𝜷</mi><mi>i</mi></msub><msub><mi mathvariant="bold-italic">𝝁</mi><mi>i</mi></msub></mrow><annotation encoding="application/x-tex">\boldsymbol{\mu}_{i} - \boldsymbol{\beta}_{i} \boldsymbol{\mu}_{i}</annotation></semantics></math>.</p>
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>−</mi><msub><mi mathvariant="bold-italic">𝜷</mi><mi>i</mi></msub><msub><mi mathvariant="bold-italic">𝝁</mi><mi>i</mi></msub></mrow><annotation encoding="application/x-tex">- \boldsymbol{\beta}_{i} \boldsymbol{\mu}_{i}</annotation></semantics></math>.</p>
 </div>
 </div>
 <div class="section level2">
@@ -208,11 +200,11 @@ be normally distributed with the following means
 <p>Let the transition matrix
 <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi mathvariant="bold-italic">𝜷</mi><annotation encoding="application/x-tex">\boldsymbol{\beta}</annotation></semantics></math>
 be normally distributed with the following means
-<math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="true" form="prefix">(</mo><mtable><mtr><mtd columnalign="center" style="text-align: center"><mn>0.28</mn></mtd><mtd columnalign="center" style="text-align: center"><mi>−</mi><mn>0.048</mn></mtd></mtr><mtr><mtd columnalign="center" style="text-align: center"><mi>−</mi><mn>0.035</mn></mtd><mtd columnalign="center" style="text-align: center"><mn>0.26</mn></mtd></mtr><mtr><mtd columnalign="center" style="text-align: center"></mtd></mtr></mtable><mo stretchy="true" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">\begin{equation}
+<math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="true" form="prefix">(</mo><mtable><mtr><mtd columnalign="center" style="text-align: center"><mi>−</mi><mn>1.2843504</mn></mtd><mtd columnalign="center" style="text-align: center"><mi>−</mi><mn>0.1792463</mn></mtd></mtr><mtr><mtd columnalign="center" style="text-align: center"><mi>−</mi><mn>0.1307004</mn></mtd><mtd columnalign="center" style="text-align: center"><mi>−</mi><mn>1.3590363</mn></mtd></mtr><mtr><mtd columnalign="center" style="text-align: center"></mtd></mtr></mtable><mo stretchy="true" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">\begin{equation}
   \left(
     \begin{array}{cc}
-      0.28 &amp; -0.048 \\
-      -0.035 &amp; 0.26 \\
+      -1.2843504 &amp; -0.1792463 \\
+      -0.1307004 &amp; -1.3590363 \\
     \end{array}
   \right)
 \end{equation}</annotation></semantics></math> and covariance matrix
@@ -226,11 +218,11 @@ be normally distributed with the following means
     \end{array}
   \right) .
 \end{equation}</annotation></semantics></math></p>
-<p>The <code>SimMuN</code> and <code>SimBetaN</code> functions from the
+<p>The <code>SimMuN</code> and <code>SimPhiN</code> functions from the
 <code>simStateSpace</code> package generate random set point vectors and
 transition matrices from the multivariate normal distribution. Note that
-the <code>SimBetaN</code> function generates transition matrices that
-are weakly stationary with an option to set lower and upper bounds.</p>
+the <code>SimPhiN</code> function generates drift matrices that are
+weakly stationary with an option to set lower and upper bounds.</p>
 <p>Let the dynamic process noise
 <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi mathvariant="bold">𝚿</mi><annotation encoding="application/x-tex">\boldsymbol{\Psi}</annotation></semantics></math>
 be given by
@@ -259,21 +251,21 @@ be given by
 <span><span class="co"># first sigma0 in the list of length n</span></span>
 <span><span class="va">sigma0</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span></span>
 <span><span class="co">#&gt;           [,1]      [,2]</span></span>
-<span><span class="co">#&gt; [1,] 1.4403549 0.5646226</span></span>
-<span><span class="co">#&gt; [2,] 0.5646226 1.6885649</span></span>
+<span><span class="co">#&gt; [1,] 0.5037766 0.1478276</span></span>
+<span><span class="co">#&gt; [2,] 0.1478276 0.5694164</span></span>
 <span><span class="co"># first sigma0_l in the list of length n</span></span>
 <span><span class="va">sigma0_l</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span> <span class="co"># sigma0_l &lt;- t(chol(sigma0))</span></span>
-<span><span class="co">#&gt;           [,1]     [,2]</span></span>
-<span><span class="co">#&gt; [1,] 1.2001479 0.000000</span></span>
-<span><span class="co">#&gt; [2,] 0.4704608 1.211293</span></span>
+<span><span class="co">#&gt;           [,1]      [,2]</span></span>
+<span><span class="co">#&gt; [1,] 0.7097722 0.0000000</span></span>
+<span><span class="co">#&gt; [2,] 0.2082747 0.7252848</span></span>
 <span><span class="co"># first alpha in the list of length n</span></span>
 <span><span class="va">alpha</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span></span>
-<span><span class="co">#&gt; [1] 1.678968 2.010503</span></span>
+<span><span class="co">#&gt; [1] 3.312112 3.842713</span></span>
 <span><span class="co"># first beta in the list of length n</span></span>
 <span><span class="va">beta</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span></span>
-<span><span class="co">#&gt;             [,1]        [,2]</span></span>
-<span><span class="co">#&gt; [1,]  0.32874206 -0.05498069</span></span>
-<span><span class="co">#&gt; [2,] -0.07362662  0.29317209</span></span>
+<span><span class="co">#&gt;           [,1]      [,2]</span></span>
+<span><span class="co">#&gt; [1,] -1.235608 -0.186227</span></span>
+<span><span class="co">#&gt; [2,] -0.169327 -1.325864</span></span>
 <span><span class="co"># first psi in the list of length n</span></span>
 <span><span class="va">psi</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span></span>
 <span><span class="co">#&gt;      [,1] [,2]</span></span>
@@ -291,34 +283,51 @@ be given by
 <h3 id="visualizing-the-dynamics-without-process-noise-and-measurement-error-n-5-with-different-initial-condition">Visualizing the Dynamics Without Process Noise and Measurement Error
 (n = 5 with Different Initial Condition)<a class="anchor" aria-label="anchor" href="#visualizing-the-dynamics-without-process-noise-and-measurement-error-n-5-with-different-initial-condition"></a>
 </h3>
-<p><img src="fig-vignettes-meta-dt-var-no-error-1.png" alt="" width="3300"><img src="fig-vignettes-meta-dt-var-no-error-2.png" alt="" width="3300"></p>
+<p><img src="fig-vignettes-meta-ct-var-no-error-1.png" alt="" width="3300"><img src="fig-vignettes-meta-ct-var-no-error-2.png" alt="" width="3300"></p>
 </div>
 <div class="section level3">
-<h3 id="using-the-simssmvarivary-function-from-the-simstatespace-package-to-simulate-data">Using the <code>SimSSMVARIVary</code> Function from the
-<code>simStateSpace</code> Package to Simulate Data<a class="anchor" aria-label="anchor" href="#using-the-simssmvarivary-function-from-the-simstatespace-package-to-simulate-data"></a>
+<h3 id="using-the-simssmlinsdefixed-function-from-the-simstatespace-package-to-simulate-data">Using the <code>SimSSMLinSDEFixed</code> Function from the
+<code>simStateSpace</code> Package to Simulate Data<a class="anchor" aria-label="anchor" href="#using-the-simssmlinsdefixed-function-from-the-simstatespace-package-to-simulate-data"></a>
 </h3>
+<blockquote>
+<p><strong>Note:</strong> The <code>SimSSMLinSDEFixed</code> function
+uses a different set of parameter names. See
+<code><a href="https://github.com/jeksterslab/simStateSpace/reference/SimSSMLinSDEFixed.html" class="external-link">help(SimSSMLinSDEFixed)</a></code> for more details.</p>
+</blockquote>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/jeksterslab/simStateSpace" class="external-link">simStateSpace</a></span><span class="op">)</span></span>
-<span><span class="va">sim</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://github.com/jeksterslab/simStateSpace/reference/SimSSMVARIVary.html" class="external-link">SimSSMVARIVary</a></span><span class="op">(</span></span>
+<span><span class="va">sim</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://github.com/jeksterslab/simStateSpace/reference/SimSSMLinSDEIVary.html" class="external-link">SimSSMLinSDEIVary</a></span><span class="op">(</span></span>
 <span>  n <span class="op">=</span> <span class="va">n</span>,</span>
 <span>  time <span class="op">=</span> <span class="va">time</span>,</span>
+<span>  delta_t <span class="op">=</span> <span class="fl">0.1</span>,</span>
 <span>  mu0 <span class="op">=</span> <span class="va">mu0</span>,</span>
 <span>  sigma0_l <span class="op">=</span> <span class="va">sigma0_l</span>,</span>
-<span>  alpha <span class="op">=</span> <span class="va">alpha</span>,</span>
-<span>  beta <span class="op">=</span> <span class="va">beta</span>,</span>
-<span>  psi_l <span class="op">=</span> <span class="va">psi_l</span></span>
+<span>  iota <span class="op">=</span> <span class="va">alpha</span>,</span>
+<span>  phi <span class="op">=</span> <span class="va">beta</span>,</span>
+<span>  sigma_l <span class="op">=</span> <span class="va">psi_l</span>,</span>
+<span>  nu <span class="op">=</span> <span class="va">nu</span>,</span>
+<span>  lambda <span class="op">=</span> <span class="va">lambda</span>,</span>
+<span>  theta_l <span class="op">=</span> <span class="va">theta_l</span></span>
 <span><span class="op">)</span></span>
 <span><span class="va">data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/as.data.frame.html" class="external-link">as.data.frame</a></span><span class="op">(</span><span class="va">sim</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">data</span><span class="op">)</span></span>
-<span><span class="co">#&gt;   id time        y1       y2</span></span>
-<span><span class="co">#&gt; 1  1    0 2.2494783 1.541912</span></span>
-<span><span class="co">#&gt; 2  1    1 2.8646254 2.346091</span></span>
-<span><span class="co">#&gt; 3  1    2 0.8218736 3.348071</span></span>
-<span><span class="co">#&gt; 4  1    3 2.4900816 2.282659</span></span>
-<span><span class="co">#&gt; 5  1    4 2.7074414 3.944741</span></span>
-<span><span class="co">#&gt; 6  1    5 2.9755157 2.667683</span></span>
+<span><span class="co">#&gt;   id time       y1       y2</span></span>
+<span><span class="co">#&gt; 1  1  0.0 2.523315 3.353060</span></span>
+<span><span class="co">#&gt; 2  1  0.1 2.309397 3.020899</span></span>
+<span><span class="co">#&gt; 3  1  0.2 2.600318 3.078564</span></span>
+<span><span class="co">#&gt; 4  1  0.3 2.698363 2.929001</span></span>
+<span><span class="co">#&gt; 5  1  0.4 2.444623 2.861375</span></span>
+<span><span class="co">#&gt; 6  1  0.5 3.190602 2.891174</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">data</span><span class="op">)</span></span>
+<span><span class="co">#&gt;        id              time             y1               y2        </span></span>
+<span><span class="co">#&gt;  Min.   :  1.00   Min.   : 0.00   Min.   :-2.335   Min.   :-1.951  </span></span>
+<span><span class="co">#&gt;  1st Qu.: 25.75   1st Qu.:24.98   1st Qu.: 2.093   1st Qu.: 1.261  </span></span>
+<span><span class="co">#&gt;  Median : 50.50   Median :49.95   Median : 2.990   Median : 2.187  </span></span>
+<span><span class="co">#&gt;  Mean   : 50.50   Mean   :49.95   Mean   : 2.975   Mean   : 2.185  </span></span>
+<span><span class="co">#&gt;  3rd Qu.: 75.25   3rd Qu.:74.92   3rd Qu.: 3.873   3rd Qu.: 3.081  </span></span>
+<span><span class="co">#&gt;  Max.   :100.00   Max.   :99.90   Max.   : 8.893   Max.   : 6.970</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">sim</span><span class="op">)</span></span></code></pre></div>
-<p><img src="fig-vignettes-meta-dt-var-error-1.png" alt="" width="3300"><img src="fig-vignettes-meta-dt-var-error-2.png" alt="" width="3300"></p>
+<p><img src="fig-vignettes-meta-ct-var-error-1.png" alt="" width="3300"><img src="fig-vignettes-meta-ct-var-error-2.png" alt="" width="3300"></p>
 </div>
 </div>
 <div class="section level2">
@@ -335,6 +344,8 @@ individual
 <span>  data <span class="op">=</span> <span class="va">data</span>,</span>
 <span>  observed <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"y1"</span>, <span class="st">"y2"</span><span class="op">)</span>,</span>
 <span>  id <span class="op">=</span> <span class="st">"id"</span>,</span>
+<span>  ct <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>  time <span class="op">=</span> <span class="st">"time"</span>,</span>
 <span>  center <span class="op">=</span> <span class="cn">TRUE</span></span>
 <span><span class="op">)</span></span></code></pre></div>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
@@ -344,16 +355,16 @@ individual
 <span><span class="op">)</span></span>
 <span><span class="co">#&gt; Call:</span></span>
 <span><span class="co">#&gt; FitVARMxID(data = data, observed = c("y1", "y2"), id = "id", </span></span>
-<span><span class="co">#&gt;     center = TRUE)</span></span>
+<span><span class="co">#&gt;     time = "time", ct = TRUE, center = TRUE)</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Convergence:</span></span>
 <span><span class="co">#&gt; 100.0%</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Means of the estimated paramaters per individual.</span></span>
 <span><span class="co">#&gt;   mu[1,1]   mu[2,1] beta[1,1] beta[2,1] beta[1,2] beta[2,2]  psi[1,1]  psi[2,1] </span></span>
-<span><span class="co">#&gt;    2.9733    2.1842    0.2711   -0.0659   -0.0543    0.2394    1.2932    0.5612 </span></span>
+<span><span class="co">#&gt;    2.9743    2.1847   -1.3528   -0.1673   -0.1959   -1.4373    1.3040    0.5685 </span></span>
 <span><span class="co">#&gt;  psi[2,2] </span></span>
-<span><span class="co">#&gt;    1.5390</span></span></code></pre></div>
+<span><span class="co">#&gt;    1.5566</span></span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="stage-2-random-effects-meta-analysis-of-person-specific-dynamics-and-means">Stage 2: Random-Effects Meta-Analysis of Person-Specific Dynamics
@@ -409,90 +420,90 @@ to zero, simplifies the random effects.</p>
 <span><span class="co">#&gt; "normal"</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt;                  est     se         z      p    2.5%   97.5%</span></span>
-<span><span class="co">#&gt; alpha[1,1]    2.9733 0.1115   26.6780 0.0000  2.7548  3.1917</span></span>
-<span><span class="co">#&gt; alpha[2,1]    2.1842 0.1052   20.7574 0.0000  1.9780  2.3905</span></span>
-<span><span class="co">#&gt; alpha[3,1]    0.2721 0.0122   22.3273 0.0000  0.2482  0.2959</span></span>
-<span><span class="co">#&gt; alpha[4,1]   -0.0659 0.0106   -6.2441 0.0000 -0.0866 -0.0452</span></span>
-<span><span class="co">#&gt; alpha[5,1]   -0.0545 0.0047  -11.6642 0.0000 -0.0636 -0.0453</span></span>
-<span><span class="co">#&gt; alpha[6,1]    0.2400 0.0150   16.0266 0.0000  0.2107  0.2694</span></span>
-<span><span class="co">#&gt; tau_sqr[1,1]  1.2395 0.1757    7.0558 0.0000  0.8952  1.5839</span></span>
-<span><span class="co">#&gt; tau_sqr[2,1]  0.5389 0.1284    4.1978 0.0000  0.2873  0.7905</span></span>
-<span><span class="co">#&gt; tau_sqr[2,2]  1.1040 0.1561    7.0706 0.0000  0.7980  1.4101</span></span>
-<span><span class="co">#&gt; tau_sqr[3,3]  0.0138 0.0021    6.6488 0.0000  0.0097  0.0179</span></span>
-<span><span class="co">#&gt; tau_sqr[4,3]  0.0021 0.0013    1.5923 0.1113 -0.0005  0.0046</span></span>
-<span><span class="co">#&gt; tau_sqr[5,3]  0.0013 0.0006    2.3892 0.0169  0.0002  0.0025</span></span>
-<span><span class="co">#&gt; tau_sqr[6,3]  0.0037 0.0018    2.0437 0.0410  0.0002  0.0073</span></span>
-<span><span class="co">#&gt; tau_sqr[4,4]  0.0099 0.0016    6.3385 0.0000  0.0068  0.0129</span></span>
-<span><span class="co">#&gt; tau_sqr[5,4]  0.0007 0.0005    1.5217 0.1281 -0.0002  0.0017</span></span>
-<span><span class="co">#&gt; tau_sqr[6,4]  0.0053 0.0016    3.2861 0.0010  0.0022  0.0085</span></span>
-<span><span class="co">#&gt; tau_sqr[5,5]  0.0013 0.0003    4.3121 0.0000  0.0007  0.0019</span></span>
-<span><span class="co">#&gt; tau_sqr[6,5]  0.0023 0.0007    3.2361 0.0012  0.0009  0.0037</span></span>
-<span><span class="co">#&gt; tau_sqr[6,6]  0.0214 0.0031    6.9559 0.0000  0.0154  0.0274</span></span>
-<span><span class="co">#&gt; i_sqr[1,1]    0.9982 0.0003 3986.3091 0.0000  0.9977  0.9987</span></span>
-<span><span class="co">#&gt; i_sqr[2,1]    0.9975 0.0004 2847.0387 0.0000  0.9968  0.9982</span></span>
-<span><span class="co">#&gt; i_sqr[3,1]    0.9295 0.0099   94.3040 0.0000  0.9102  0.9488</span></span>
-<span><span class="co">#&gt; i_sqr[4,1]    0.9108 0.0126   72.4726 0.0000  0.8862  0.9355</span></span>
-<span><span class="co">#&gt; i_sqr[5,1]    0.8301 0.0236   35.1474 0.0000  0.7838  0.8764</span></span>
-<span><span class="co">#&gt; i_sqr[6,1]    0.9684 0.0044  222.4578 0.0000  0.9599  0.9770</span></span></code></pre></div>
+<span><span class="co">#&gt; alpha[1,1]    2.9744 0.1120   26.5604 0.0000  2.7549  3.1939</span></span>
+<span><span class="co">#&gt; alpha[2,1]    2.1851 0.1061   20.5982 0.0000  1.9772  2.3930</span></span>
+<span><span class="co">#&gt; alpha[3,1]   -1.3135 0.0239  -54.9339 0.0000 -1.3604 -1.2666</span></span>
+<span><span class="co">#&gt; alpha[4,1]   -0.1676 0.0227   -7.3936 0.0000 -0.2120 -0.1231</span></span>
+<span><span class="co">#&gt; alpha[5,1]   -0.1945 0.0187  -10.3817 0.0000 -0.2312 -0.1578</span></span>
+<span><span class="co">#&gt; alpha[6,1]   -1.3984 0.0252  -55.4547 0.0000 -1.4478 -1.3489</span></span>
+<span><span class="co">#&gt; tau_sqr[1,1]  1.2467 0.1775    7.0247 0.0000  0.8989  1.5946</span></span>
+<span><span class="co">#&gt; tau_sqr[2,1]  0.5415 0.1285    4.2133 0.0000  0.2896  0.7934</span></span>
+<span><span class="co">#&gt; tau_sqr[2,2]  1.1174 0.1577    7.0845 0.0000  0.8083  1.4265</span></span>
+<span><span class="co">#&gt; tau_sqr[3,3]  0.0216 0.0071    3.0299 0.0024  0.0076  0.0356</span></span>
+<span><span class="co">#&gt; tau_sqr[4,3]  0.0017 0.0047    0.3587 0.7198 -0.0075  0.0108</span></span>
+<span><span class="co">#&gt; tau_sqr[5,3]  0.0001 0.0040    0.0316 0.9748 -0.0078  0.0080</span></span>
+<span><span class="co">#&gt; tau_sqr[6,3] -0.0050 0.0058   -0.8681 0.3853 -0.0163  0.0063</span></span>
+<span><span class="co">#&gt; tau_sqr[4,4]  0.0096 0.0059    1.6209 0.1050 -0.0020  0.0212</span></span>
+<span><span class="co">#&gt; tau_sqr[5,4]  0.0039 0.0030    1.3023 0.1928 -0.0020  0.0098</span></span>
+<span><span class="co">#&gt; tau_sqr[6,4] -0.0046 0.0054   -0.8424 0.3995 -0.0152  0.0060</span></span>
+<span><span class="co">#&gt; tau_sqr[5,5]  0.0041 0.0035    1.1897 0.2342 -0.0027  0.0109</span></span>
+<span><span class="co">#&gt; tau_sqr[6,5]  0.0039 0.0041    0.9542 0.3400 -0.0041  0.0118</span></span>
+<span><span class="co">#&gt; tau_sqr[6,6]  0.0259 0.0078    3.3250 0.0009  0.0106  0.0412</span></span>
+<span><span class="co">#&gt; i_sqr[1,1]    0.9950 0.0007 1397.1450 0.0000  0.9936  0.9964</span></span>
+<span><span class="co">#&gt; i_sqr[2,1]    0.9932 0.0010 1038.1662 0.0000  0.9913  0.9951</span></span>
+<span><span class="co">#&gt; i_sqr[3,1]    0.3951 0.0787    5.0232 0.0000  0.2409  0.5493</span></span>
+<span><span class="co">#&gt; i_sqr[4,1]    0.2663 0.0999    2.6661 0.0077  0.0705  0.4621</span></span>
+<span><span class="co">#&gt; i_sqr[5,1]    0.1684 0.0960    1.7552 0.0792 -0.0197  0.3565</span></span>
+<span><span class="co">#&gt; i_sqr[6,1]    0.4450 0.0723    6.1563 0.0000  0.3034  0.5867</span></span></code></pre></div>
 <div class="section level3">
 <h3 id="normal-theory-confidence-intervals">Normal Theory Confidence Intervals<a class="anchor" aria-label="anchor" href="#normal-theory-confidence-intervals"></a>
 </h3>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/stats/confint.html" class="external-link">confint</a></span><span class="op">(</span><span class="va">metavar</span>, level <span class="op">=</span> <span class="fl">0.95</span><span class="op">)</span></span>
-<span><span class="co">#&gt;                      2.5 %       97.5 %</span></span>
-<span><span class="co">#&gt; alpha[1,1]    2.7548475802  3.191727394</span></span>
-<span><span class="co">#&gt; alpha[2,1]    1.9779802345  2.390459327</span></span>
-<span><span class="co">#&gt; alpha[3,1]    0.2481697810  0.295932857</span></span>
-<span><span class="co">#&gt; alpha[4,1]   -0.0866203626 -0.045232927</span></span>
-<span><span class="co">#&gt; alpha[5,1]   -0.0636488998 -0.045335910</span></span>
-<span><span class="co">#&gt; alpha[6,1]    0.2106840822  0.269395273</span></span>
-<span><span class="co">#&gt; tau_sqr[1,1]  0.8952136727  1.583853550</span></span>
-<span><span class="co">#&gt; tau_sqr[2,1]  0.2872888715  0.790510937</span></span>
-<span><span class="co">#&gt; tau_sqr[2,2]  0.7979839538  1.410052961</span></span>
-<span><span class="co">#&gt; tau_sqr[3,3]  0.0097228646  0.017851360</span></span>
-<span><span class="co">#&gt; tau_sqr[4,3] -0.0004745953  0.004585298</span></span>
-<span><span class="co">#&gt; tau_sqr[5,3]  0.0002425316  0.002457235</span></span>
-<span><span class="co">#&gt; tau_sqr[6,3]  0.0001528987  0.007307417</span></span>
-<span><span class="co">#&gt; tau_sqr[4,4]  0.0068280428  0.012940924</span></span>
-<span><span class="co">#&gt; tau_sqr[5,4] -0.0002130223  0.001692102</span></span>
-<span><span class="co">#&gt; tau_sqr[6,4]  0.0021500865  0.008505561</span></span>
-<span><span class="co">#&gt; tau_sqr[5,5]  0.0007063599  0.001883537</span></span>
-<span><span class="co">#&gt; tau_sqr[6,5]  0.0008998299  0.003663792</span></span>
-<span><span class="co">#&gt; tau_sqr[6,6]  0.0153530733  0.027399453</span></span>
-<span><span class="co">#&gt; i_sqr[1,1]    0.9977391627  0.998720770</span></span>
-<span><span class="co">#&gt; i_sqr[2,1]    0.9968355398  0.998208972</span></span>
-<span><span class="co">#&gt; i_sqr[3,1]    0.9101721963  0.948808248</span></span>
-<span><span class="co">#&gt; i_sqr[4,1]    0.8862012083  0.935466795</span></span>
-<span><span class="co">#&gt; i_sqr[5,1]    0.7837930064  0.876370685</span></span>
-<span><span class="co">#&gt; i_sqr[6,1]    0.9599112961  0.976976239</span></span></code></pre></div>
+<span><span class="co">#&gt;                     2.5 %       97.5 %</span></span>
+<span><span class="co">#&gt; alpha[1,1]    2.754884057  3.193857583</span></span>
+<span><span class="co">#&gt; alpha[2,1]    1.977166171  2.392997102</span></span>
+<span><span class="co">#&gt; alpha[3,1]   -1.360361699 -1.266634180</span></span>
+<span><span class="co">#&gt; alpha[4,1]   -0.211971209 -0.123137203</span></span>
+<span><span class="co">#&gt; alpha[5,1]   -0.231196553 -0.157764459</span></span>
+<span><span class="co">#&gt; alpha[6,1]   -1.447791742 -1.348945259</span></span>
+<span><span class="co">#&gt; tau_sqr[1,1]  0.898881136  1.594579410</span></span>
+<span><span class="co">#&gt; tau_sqr[2,1]  0.289612006  0.793425685</span></span>
+<span><span class="co">#&gt; tau_sqr[2,2]  0.808257178  1.426525394</span></span>
+<span><span class="co">#&gt; tau_sqr[3,3]  0.007629055  0.035580870</span></span>
+<span><span class="co">#&gt; tau_sqr[4,3] -0.007465183  0.010809554</span></span>
+<span><span class="co">#&gt; tau_sqr[5,3] -0.007793433  0.008049002</span></span>
+<span><span class="co">#&gt; tau_sqr[6,3] -0.016283531  0.006286548</span></span>
+<span><span class="co">#&gt; tau_sqr[4,4] -0.002009185  0.021220691</span></span>
+<span><span class="co">#&gt; tau_sqr[5,4] -0.001983889  0.009841723</span></span>
+<span><span class="co">#&gt; tau_sqr[6,4] -0.015168121  0.006048596</span></span>
+<span><span class="co">#&gt; tau_sqr[5,5] -0.002677109  0.010946654</span></span>
+<span><span class="co">#&gt; tau_sqr[6,5] -0.004084324  0.011833761</span></span>
+<span><span class="co">#&gt; tau_sqr[6,6]  0.010649363  0.041230450</span></span>
+<span><span class="co">#&gt; i_sqr[1,1]    0.993576205  0.996367768</span></span>
+<span><span class="co">#&gt; i_sqr[2,1]    0.991335776  0.995085961</span></span>
+<span><span class="co">#&gt; i_sqr[3,1]    0.240935212  0.549253310</span></span>
+<span><span class="co">#&gt; i_sqr[4,1]    0.070527851  0.462061436</span></span>
+<span><span class="co">#&gt; i_sqr[5,1]   -0.019652611  0.356545330</span></span>
+<span><span class="co">#&gt; i_sqr[6,1]    0.303358017  0.586733849</span></span></code></pre></div>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/stats/confint.html" class="external-link">confint</a></span><span class="op">(</span><span class="va">metavar</span>, level <span class="op">=</span> <span class="fl">0.99</span><span class="op">)</span></span>
-<span><span class="co">#&gt;                      0.5 %       99.5 %</span></span>
-<span><span class="co">#&gt; alpha[1,1]    2.6862087868  3.260366188</span></span>
-<span><span class="co">#&gt; alpha[2,1]    1.9131750724  2.455264489</span></span>
-<span><span class="co">#&gt; alpha[3,1]    0.2406656578  0.303436980</span></span>
-<span><span class="co">#&gt; alpha[4,1]   -0.0931227999 -0.038730490</span></span>
-<span><span class="co">#&gt; alpha[5,1]   -0.0665260789 -0.042458731</span></span>
-<span><span class="co">#&gt; alpha[6,1]    0.2014598856  0.278619469</span></span>
-<span><span class="co">#&gt; tau_sqr[1,1]  0.7870205066  1.692046716</span></span>
-<span><span class="co">#&gt; tau_sqr[2,1]  0.2082269551  0.869572853</span></span>
-<span><span class="co">#&gt; tau_sqr[2,2]  0.7018209433  1.506215971</span></span>
-<span><span class="co">#&gt; tau_sqr[3,3]  0.0084457854  0.019128439</span></span>
-<span><span class="co">#&gt; tau_sqr[4,3] -0.0012695622  0.005380265</span></span>
-<span><span class="co">#&gt; tau_sqr[5,3] -0.0001054234  0.002805190</span></span>
-<span><span class="co">#&gt; tau_sqr[6,3] -0.0009711576  0.008431473</span></span>
-<span><span class="co">#&gt; tau_sqr[4,4]  0.0058676396  0.013901327</span></span>
-<span><span class="co">#&gt; tau_sqr[5,4] -0.0005123390  0.001991419</span></span>
-<span><span class="co">#&gt; tau_sqr[6,4]  0.0011515691  0.009504078</span></span>
-<span><span class="co">#&gt; tau_sqr[5,5]  0.0005214121  0.002068484</span></span>
-<span><span class="co">#&gt; tau_sqr[6,5]  0.0004655800  0.004098042</span></span>
-<span><span class="co">#&gt; tau_sqr[6,6]  0.0134604499  0.029292076</span></span>
-<span><span class="co">#&gt; i_sqr[1,1]    0.9975849411  0.998874992</span></span>
-<span><span class="co">#&gt; i_sqr[2,1]    0.9966197579  0.998424754</span></span>
-<span><span class="co">#&gt; i_sqr[3,1]    0.9041020327  0.954878411</span></span>
-<span><span class="co">#&gt; i_sqr[4,1]    0.8784610237  0.943206980</span></span>
-<span><span class="co">#&gt; i_sqr[5,1]    0.7692479990  0.890915692</span></span>
-<span><span class="co">#&gt; i_sqr[6,1]    0.9572301992  0.979657336</span></span></code></pre></div>
+<span><span class="co">#&gt;                     0.5 %       99.5 %</span></span>
+<span><span class="co">#&gt; alpha[1,1]    2.685916317  3.262825322</span></span>
+<span><span class="co">#&gt; alpha[2,1]    1.911834397  2.458328876</span></span>
+<span><span class="co">#&gt; alpha[3,1]   -1.375087360 -1.251908519</span></span>
+<span><span class="co">#&gt; alpha[4,1]   -0.225928042 -0.109180369</span></span>
+<span><span class="co">#&gt; alpha[5,1]   -0.242733571 -0.146227441</span></span>
+<span><span class="co">#&gt; alpha[6,1]   -1.463321649 -1.333415351</span></span>
+<span><span class="co">#&gt; tau_sqr[1,1]  0.789579016  1.703881530</span></span>
+<span><span class="co">#&gt; tau_sqr[2,1]  0.210457140  0.872580551</span></span>
+<span><span class="co">#&gt; tau_sqr[2,2]  0.711120201  1.523662370</span></span>
+<span><span class="co">#&gt; tau_sqr[3,3]  0.003237507  0.039972418</span></span>
+<span><span class="co">#&gt; tau_sqr[4,3] -0.010336353  0.013680724</span></span>
+<span><span class="co">#&gt; tau_sqr[5,3] -0.010282460  0.010538029</span></span>
+<span><span class="co">#&gt; tau_sqr[6,3] -0.019829548  0.009832564</span></span>
+<span><span class="co">#&gt; tau_sqr[4,4] -0.005658863  0.024870369</span></span>
+<span><span class="co">#&gt; tau_sqr[5,4] -0.003841828  0.011699661</span></span>
+<span><span class="co">#&gt; tau_sqr[6,4] -0.018501509  0.009381984</span></span>
+<span><span class="co">#&gt; tau_sqr[5,5] -0.004817557  0.013087102</span></span>
+<span><span class="co">#&gt; tau_sqr[6,5] -0.006585237  0.014334674</span></span>
+<span><span class="co">#&gt; tau_sqr[6,6]  0.005844727  0.046035087</span></span>
+<span><span class="co">#&gt; i_sqr[1,1]    0.993137619  0.996806355</span></span>
+<span><span class="co">#&gt; i_sqr[2,1]    0.990746579  0.995675157</span></span>
+<span><span class="co">#&gt; i_sqr[3,1]    0.192494928  0.597693594</span></span>
+<span><span class="co">#&gt; i_sqr[4,1]    0.009013466  0.523575821</span></span>
+<span><span class="co">#&gt; i_sqr[5,1]   -0.078757592  0.415650311</span></span>
+<span><span class="co">#&gt; i_sqr[6,1]    0.258836447  0.631255419</span></span></code></pre></div>
 </div>
 <div class="section level3">
 <h3 id="robust-confidence-intervals">Robust Confidence Intervals<a class="anchor" aria-label="anchor" href="#robust-confidence-intervals"></a>
@@ -500,59 +511,59 @@ to zero, simplifies the random effects.</p>
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/stats/confint.html" class="external-link">confint</a></span><span class="op">(</span><span class="va">metavar</span>, level <span class="op">=</span> <span class="fl">0.95</span>, robust <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
 <span><span class="co">#&gt;                      2.5 %       97.5 %</span></span>
-<span><span class="co">#&gt; alpha[1,1]    2.7537439219  3.192831053</span></span>
-<span><span class="co">#&gt; alpha[2,1]    1.9769402699  2.391499291</span></span>
-<span><span class="co">#&gt; alpha[3,1]    0.2480913828  0.296011255</span></span>
-<span><span class="co">#&gt; alpha[4,1]   -0.0867381022 -0.045115188</span></span>
-<span><span class="co">#&gt; alpha[5,1]   -0.0637169122 -0.045267898</span></span>
-<span><span class="co">#&gt; alpha[6,1]    0.2105330709  0.269546284</span></span>
-<span><span class="co">#&gt; tau_sqr[1,1]  0.9013774676  1.577689755</span></span>
-<span><span class="co">#&gt; tau_sqr[2,1]  0.2782811217  0.799518686</span></span>
-<span><span class="co">#&gt; tau_sqr[2,2]  0.8239167519  1.384120163</span></span>
-<span><span class="co">#&gt; tau_sqr[3,3]  0.0091146471  0.018459577</span></span>
-<span><span class="co">#&gt; tau_sqr[4,3] -0.0001676562  0.004278359</span></span>
-<span><span class="co">#&gt; tau_sqr[5,3]  0.0002915496  0.002408217</span></span>
-<span><span class="co">#&gt; tau_sqr[6,3] -0.0004738128  0.007934129</span></span>
-<span><span class="co">#&gt; tau_sqr[4,4]  0.0073130948  0.012455872</span></span>
-<span><span class="co">#&gt; tau_sqr[5,4] -0.0001897158  0.001668795</span></span>
-<span><span class="co">#&gt; tau_sqr[6,4]  0.0023861430  0.008269505</span></span>
-<span><span class="co">#&gt; tau_sqr[5,5]  0.0007579726  0.001831924</span></span>
-<span><span class="co">#&gt; tau_sqr[6,5]  0.0011454504  0.003418172</span></span>
-<span><span class="co">#&gt; tau_sqr[6,6]  0.0135445586  0.029207967</span></span>
-<span><span class="co">#&gt; i_sqr[1,1]    0.9977479488  0.998711984</span></span>
-<span><span class="co">#&gt; i_sqr[2,1]    0.9969041042  0.998140408</span></span>
-<span><span class="co">#&gt; i_sqr[3,1]    0.9072812506  0.951699193</span></span>
-<span><span class="co">#&gt; i_sqr[4,1]    0.8887985870  0.932869416</span></span>
-<span><span class="co">#&gt; i_sqr[5,1]    0.7844820049  0.875681686</span></span>
-<span><span class="co">#&gt; i_sqr[6,1]    0.9586155831  0.978271952</span></span></code></pre></div>
+<span><span class="co">#&gt; alpha[1,1]    2.7537489604  3.194992679</span></span>
+<span><span class="co">#&gt; alpha[2,1]    1.9759518792  2.394211394</span></span>
+<span><span class="co">#&gt; alpha[3,1]   -1.3588674820 -1.268128397</span></span>
+<span><span class="co">#&gt; alpha[4,1]   -0.2123668782 -0.122741533</span></span>
+<span><span class="co">#&gt; alpha[5,1]   -0.2310729994 -0.157888013</span></span>
+<span><span class="co">#&gt; alpha[6,1]   -1.4453893048 -1.351347696</span></span>
+<span><span class="co">#&gt; tau_sqr[1,1]  0.9084167397  1.585043807</span></span>
+<span><span class="co">#&gt; tau_sqr[2,1]  0.2934569960  0.789580695</span></span>
+<span><span class="co">#&gt; tau_sqr[2,2]  0.8505421607  1.384240411</span></span>
+<span><span class="co">#&gt; tau_sqr[3,3]  0.0060477632  0.037162162</span></span>
+<span><span class="co">#&gt; tau_sqr[4,3] -0.0069557177  0.010300088</span></span>
+<span><span class="co">#&gt; tau_sqr[5,3] -0.0076598547  0.007915424</span></span>
+<span><span class="co">#&gt; tau_sqr[6,3] -0.0153198902  0.005322906</span></span>
+<span><span class="co">#&gt; tau_sqr[4,4] -0.0003311056  0.019542611</span></span>
+<span><span class="co">#&gt; tau_sqr[5,4] -0.0010859415  0.008943775</span></span>
+<span><span class="co">#&gt; tau_sqr[6,4] -0.0132340711  0.004114546</span></span>
+<span><span class="co">#&gt; tau_sqr[5,5] -0.0017118526  0.009981397</span></span>
+<span><span class="co">#&gt; tau_sqr[6,5] -0.0031210890  0.010870526</span></span>
+<span><span class="co">#&gt; tau_sqr[6,6]  0.0050732355  0.046806578</span></span>
+<span><span class="co">#&gt; i_sqr[1,1]    0.9936144676  0.996329506</span></span>
+<span><span class="co">#&gt; i_sqr[2,1]    0.9915998882  0.994821848</span></span>
+<span><span class="co">#&gt; i_sqr[3,1]    0.2234487839  0.566739739</span></span>
+<span><span class="co">#&gt; i_sqr[4,1]    0.0900913529  0.442497934</span></span>
+<span><span class="co">#&gt; i_sqr[5,1]    0.0122705694  0.324622150</span></span>
+<span><span class="co">#&gt; i_sqr[6,1]    0.2267817671  0.663310098</span></span></code></pre></div>
 <div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/stats/confint.html" class="external-link">confint</a></span><span class="op">(</span><span class="va">metavar</span>, level <span class="op">=</span> <span class="fl">0.99</span>, robust <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
-<span><span class="co">#&gt;                      0.5 %       99.5 %</span></span>
-<span><span class="co">#&gt; alpha[1,1]    2.684758e+00  3.261816641</span></span>
-<span><span class="co">#&gt; alpha[2,1]    1.911808e+00  2.456631234</span></span>
-<span><span class="co">#&gt; alpha[3,1]    2.405626e-01  0.303540013</span></span>
-<span><span class="co">#&gt; alpha[4,1]   -9.327754e-02 -0.038575754</span></span>
-<span><span class="co">#&gt; alpha[5,1]   -6.661546e-02 -0.042369348</span></span>
-<span><span class="co">#&gt; alpha[6,1]    2.012614e-01  0.278817932</span></span>
-<span><span class="co">#&gt; tau_sqr[1,1]  7.951211e-01  1.683946116</span></span>
-<span><span class="co">#&gt; tau_sqr[2,1]  1.963888e-01  0.881411043</span></span>
-<span><span class="co">#&gt; tau_sqr[2,2]  7.359024e-01  1.472134498</span></span>
-<span><span class="co">#&gt; tau_sqr[3,3]  7.646452e-03  0.019927772</span></span>
-<span><span class="co">#&gt; tau_sqr[4,3] -8.661758e-04  0.004976879</span></span>
-<span><span class="co">#&gt; tau_sqr[5,3] -4.100291e-05  0.002740769</span></span>
-<span><span class="co">#&gt; tau_sqr[6,3] -1.794796e-03  0.009255112</span></span>
-<span><span class="co">#&gt; tau_sqr[4,4]  6.505106e-03  0.013263860</span></span>
-<span><span class="co">#&gt; tau_sqr[5,4] -4.817090e-04  0.001960788</span></span>
-<span><span class="co">#&gt; tau_sqr[6,4]  1.461800e-03  0.009193848</span></span>
-<span><span class="co">#&gt; tau_sqr[5,5]  5.892426e-04  0.002000654</span></span>
-<span><span class="co">#&gt; tau_sqr[6,5]  7.883800e-04  0.003775242</span></span>
-<span><span class="co">#&gt; tau_sqr[6,6]  1.108366e-02  0.031668867</span></span>
-<span><span class="co">#&gt; i_sqr[1,1]    9.975965e-01  0.998863445</span></span>
-<span><span class="co">#&gt; i_sqr[2,1]    9.967099e-01  0.998334645</span></span>
-<span><span class="co">#&gt; i_sqr[3,1]    9.003027e-01  0.958677758</span></span>
-<span><span class="co">#&gt; i_sqr[4,1]    8.818746e-01  0.939793445</span></span>
-<span><span class="co">#&gt; i_sqr[5,1]    7.701535e-01  0.890010195</span></span>
-<span><span class="co">#&gt; i_sqr[6,1]    9.555273e-01  0.981360192</span></span></code></pre></div>
+<span><span class="co">#&gt;                     0.5 %       99.5 %</span></span>
+<span><span class="co">#&gt; alpha[1,1]    2.684424548  3.264317091</span></span>
+<span><span class="co">#&gt; alpha[2,1]    1.910238547  2.459924726</span></span>
+<span><span class="co">#&gt; alpha[3,1]   -1.373123626 -1.253872254</span></span>
+<span><span class="co">#&gt; alpha[4,1]   -0.226448040 -0.108660371</span></span>
+<span><span class="co">#&gt; alpha[5,1]   -0.242571194 -0.146389818</span></span>
+<span><span class="co">#&gt; alpha[6,1]   -1.460164312 -1.336572688</span></span>
+<span><span class="co">#&gt; tau_sqr[1,1]  0.802110923  1.691349624</span></span>
+<span><span class="co">#&gt; tau_sqr[2,1]  0.215510314  0.867527377</span></span>
+<span><span class="co">#&gt; tau_sqr[2,2]  0.766692089  1.468090483</span></span>
+<span><span class="co">#&gt; tau_sqr[3,3]  0.001159337  0.042050588</span></span>
+<span><span class="co">#&gt; tau_sqr[4,3] -0.009666801  0.013011172</span></span>
+<span><span class="co">#&gt; tau_sqr[5,3] -0.010106908  0.010362477</span></span>
+<span><span class="co">#&gt; tau_sqr[6,3] -0.018563109  0.008566125</span></span>
+<span><span class="co">#&gt; tau_sqr[4,4] -0.003453493  0.022664999</span></span>
+<span><span class="co">#&gt; tau_sqr[5,4] -0.002661724  0.010519558</span></span>
+<span><span class="co">#&gt; tau_sqr[6,4] -0.015959736  0.006840212</span></span>
+<span><span class="co">#&gt; tau_sqr[5,5] -0.003548995  0.011818540</span></span>
+<span><span class="co">#&gt; tau_sqr[6,5] -0.005319331  0.013068768</span></span>
+<span><span class="co">#&gt; tau_sqr[6,6] -0.001483548  0.053363361</span></span>
+<span><span class="co">#&gt; i_sqr[1,1]    0.993187904  0.996756069</span></span>
+<span><span class="co">#&gt; i_sqr[2,1]    0.991093682  0.995328055</span></span>
+<span><span class="co">#&gt; i_sqr[3,1]    0.169513866  0.620674657</span></span>
+<span><span class="co">#&gt; i_sqr[4,1]    0.034724266  0.497865021</span></span>
+<span><span class="co">#&gt; i_sqr[5,1]   -0.036803421  0.373696139</span></span>
+<span><span class="co">#&gt; i_sqr[6,1]    0.158198196  0.731893670</span></span></code></pre></div>
 <ul>
 <li>The fixed part of the random-effects model gives pooled means
 <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="bold-italic">𝜶</mi><mo>=</mo><mi mathvariant="double-struck">𝔼</mi><mrow><mo stretchy="true" form="prefix">[</mo><mrow><mi mathvariant="normal">V</mi><mi mathvariant="normal">e</mi><mi mathvariant="normal">c</mi></mrow><mrow><mo stretchy="true" form="prefix">(</mo><mi mathvariant="bold-italic">𝝁</mi><mo>,</mo><mi mathvariant="bold-italic">𝜷</mi><mo stretchy="true" form="postfix">)</mo></mrow><mo stretchy="true" form="postfix">]</mo></mrow></mrow><annotation encoding="application/x-tex">\boldsymbol{\alpha} = \mathbb{E} \left[ \mathrm{Vec} \left( \boldsymbol{\mu}, \boldsymbol{\beta} \right)  \right]</annotation></semantics></math>.</li>
@@ -567,36 +578,29 @@ across individuals.</li>
 <div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">means</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/extract.html">extract</a></span><span class="op">(</span><span class="va">metavar</span>, what <span class="op">=</span> <span class="st">"alpha"</span><span class="op">)</span></span>
 <span><span class="va">means</span></span>
-<span><span class="co">#&gt;          alpha</span></span>
-<span><span class="co">#&gt; y1  2.97328749</span></span>
-<span><span class="co">#&gt; y2  2.18421978</span></span>
-<span><span class="co">#&gt; y3  0.27205132</span></span>
-<span><span class="co">#&gt; y4 -0.06592664</span></span>
-<span><span class="co">#&gt; y5 -0.05449241</span></span>
-<span><span class="co">#&gt; y6  0.24003968</span></span>
+<span><span class="co">#&gt;         alpha</span></span>
+<span><span class="co">#&gt; y1  2.9743708</span></span>
+<span><span class="co">#&gt; y2  2.1850816</span></span>
+<span><span class="co">#&gt; y3 -1.3134979</span></span>
+<span><span class="co">#&gt; y4 -0.1675542</span></span>
+<span><span class="co">#&gt; y5 -0.1944805</span></span>
+<span><span class="co">#&gt; y6 -1.3983685</span></span>
 <span><span class="va">covariances</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/extract.html">extract</a></span><span class="op">(</span><span class="va">metavar</span>, what <span class="op">=</span> <span class="st">"tau_sqr"</span><span class="op">)</span></span>
 <span><span class="va">covariances</span></span>
-<span><span class="co">#&gt;               y1            y2            y3            y4           y5</span></span>
-<span><span class="co">#&gt; y1  1.2395336113  0.5388999040 -0.0003579292  0.0028293214 0.0074337980</span></span>
-<span><span class="co">#&gt; y2  0.5388999040  1.1040184574 -0.0097309331 -0.0091950022 0.0017706456</span></span>
-<span><span class="co">#&gt; y3 -0.0003579292 -0.0097309331  0.0137871122  0.0020553514 0.0013498833</span></span>
-<span><span class="co">#&gt; y4  0.0028293214 -0.0091950022  0.0020553514  0.0098844832 0.0007395397</span></span>
-<span><span class="co">#&gt; y5  0.0074337980  0.0017706456  0.0013498833  0.0007395397 0.0012949482</span></span>
-<span><span class="co">#&gt; y6  0.0241284525  0.0009662369  0.0037301579  0.0053278237 0.0022818110</span></span>
-<span><span class="co">#&gt;              y6</span></span>
-<span><span class="co">#&gt; y1 0.0241284525</span></span>
-<span><span class="co">#&gt; y2 0.0009662369</span></span>
-<span><span class="co">#&gt; y3 0.0037301579</span></span>
-<span><span class="co">#&gt; y4 0.0053278237</span></span>
-<span><span class="co">#&gt; y5 0.0022818110</span></span>
-<span><span class="co">#&gt; y6 0.0213762630</span></span></code></pre></div>
+<span><span class="co">#&gt;            y1           y2            y3           y4           y5           y6</span></span>
+<span><span class="co">#&gt; y1 1.24673027  0.541518845  0.0255140119  0.018167265 0.0347879308  0.029621672</span></span>
+<span><span class="co">#&gt; y2 0.54151885  1.117391286 -0.0082835061 -0.033976084 0.0242975818  0.036579585</span></span>
+<span><span class="co">#&gt; y3 0.02551401 -0.008283506  0.0216049626  0.001672185 0.0001277845 -0.004998492</span></span>
+<span><span class="co">#&gt; y4 0.01816726 -0.033976084  0.0016721854  0.009605753 0.0039289167 -0.004559762</span></span>
+<span><span class="co">#&gt; y5 0.03478793  0.024297582  0.0001277845  0.003928917 0.0041347723  0.003874719</span></span>
+<span><span class="co">#&gt; y6 0.02962167  0.036579585 -0.0049984919 -0.004559762 0.0038747186  0.025939907</span></span></code></pre></div>
 </div>
 </div>
 <div class="section level2">
 <h2 id="summary">Summary<a class="anchor" aria-label="anchor" href="#summary"></a>
 </h2>
 <p>This vignette demonstrates a two-stage hierarchical estimation
-approach for dynamic systems: 1. individual-level DT-VAR estimation,
+approach for dynamic systems: 1. individual-level CT-VAR estimation,
 and<br>
 2. population-level meta-analysis of person-specific dynamics and
 means.</p>

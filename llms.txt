@@ -1,6 +1,6 @@
 # metaDyn
 
-Ivan Jacob Agaloos Pesigan 2026-03-01
+Ivan Jacob Agaloos Pesigan 2026-03-02
 
 ## Description
 
@@ -91,6 +91,8 @@ computing*. R Foundation for Statistical Computing.
 
 - [Meta-Analysis of Discrete-Time Vector Autoregressive Model
   Estimates](https://github.com/jeksterslab/metaDyn/articles/meta-dt-var.md):
+- [Meta-Analysis of Continuous-Time Vector Autoregressive Model
+  Estimates](https://github.com/jeksterslab/metaDyn/articles/meta-ct-var.md):
 
 ### Session Information
 
