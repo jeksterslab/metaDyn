@@ -300,6 +300,18 @@ If \code{TRUE}, suppresses messages during the model fitting stage.}
 \item{ncores}{Positive integer.
 Number of cores to use.}
 }
+\value{
+Returns an object of class \code{metadynmeta} which is
+a list with the following elements:
+\describe{
+\item{call}{Function call.}
+\item{args}{List of function arguments.}
+\item{fun}{Function used ("Meta").}
+\item{output}{A fitted OpenMx model.}
+\item{robust}{Output from \code{\link[OpenMx:imxRobustSE]{OpenMx::imxRobustSE()}}
+with argument \code{details = TRUE} if \code{robust = TRUE}.}
+}
+}
 \description{
 This function estimates fixed-, random-, or mixed-effects
 meta-analytic parameters using per-individual coefficient estimates
@@ -368,6 +380,20 @@ stage2 <- MetaVARMx(
 summary(stage2)
 }
 
+}
+\references{
+Cheung, M. W.-L. (2015).
+\emph{Meta-analysis: A structural equation modeling approach}.
+Wiley.
+\doi{10.1002/9781118957813}
+
+Neale, M. C., Hunter, M. D., Pritikin, J. N.,
+Zahery, M., Brick, T. R., Kirkpatrick, R. M., Estabrook, R.,
+Bates, T. C., Maes, H. H., & Boker, S. M. (2015).
+OpenMx 2.0: Extended structural equation and statistical modeling.
+\emph{Psychometrika},
+\emph{81}(2), 535–549.
+\doi{10.1007/s11336-014-9435-8}
 }
 \seealso{
 Other Meta-Analysis of VAR Functions: 
