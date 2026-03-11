@@ -107,7 +107,12 @@
 #'   cov_meas = FALSE,
 #'   cov_dyn = FALSE
 #' )
+#' print(stage2)
 #' summary(stage2)
+#' coef(stage2)
+#' vcov(stage2)
+#' confint(stage2)
+#' extract(stage2, what = "alpha")
 #' }
 #'
 #' @family Meta-Analysis of VAR Functions
