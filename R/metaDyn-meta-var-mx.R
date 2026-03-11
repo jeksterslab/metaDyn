@@ -177,7 +177,7 @@ MetaVARMx <- function(object,
                       tries_local = 100,
                       max_attempts = 10,
                       silent = FALSE,
-                      ncores = NULL) {                 
+                      ncores = NULL) {
   stopifnot(
     inherits(
       object,
