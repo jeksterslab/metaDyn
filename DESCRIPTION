@@ -13,9 +13,10 @@ URL: https://github.com/jeksterslab/metaDyn, https://jeksterslab.github.io/metaD
 BugReports: https://github.com/jeksterslab/metaDyn/issues
 License: MIT + file LICENSE
 Encoding: UTF-8
+LazyData: true
 Roxygen: list(markdown = TRUE)
 Depends:
-    R (>= 3.5.0),
+    R (>= 4.1.0),
     OpenMx (>= 2.22.10)
 Imports:
     Matrix,
