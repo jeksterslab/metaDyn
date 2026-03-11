@@ -683,6 +683,24 @@ OpenMx 2.0: Extended structural equation and statistical modeling.
 <span class="r-msg co"><span class="r-pr">#&gt;</span>  Solution found!  Final fit=-93.184957 (started at -91.256471)  (1 attempt(s): 1 valid, 0 errors)</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span>  Start values from best fit:</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> -0.00428470046284236,-0.00406757081116166,0.386594914967842,-0.0851794164286438,-0.0234341474339058,0.444138933642437</span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="va">stage2</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Call:</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> MetaVARMx(object = stage1, random = FALSE, effects = TRUE, set_point = TRUE, </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     int_meas = FALSE, int_dyn = FALSE, cov_meas = FALSE, cov_dyn = FALSE)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Status code:</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> CI type:</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> "normal"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                est     se       z      p    2.5%   97.5%</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> alpha[1,1] -0.0043 0.0020 -2.1572 0.0310 -0.0082 -0.0004</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> alpha[2,1] -0.0041 0.0025 -1.6581 0.0973 -0.0089  0.0007</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> alpha[3,1]  0.3866 0.0404  9.5726 0.0000  0.3074  0.4657</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> alpha[4,1] -0.0852 0.0426 -2.0016 0.0453 -0.1686 -0.0018</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> alpha[5,1] -0.0234 0.0366 -0.6403 0.5220 -0.0952  0.0483</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> alpha[6,1]  0.4441 0.0389 11.4250 0.0000  0.3679  0.5203</span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">stage2</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Call:</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> MetaVARMx(object = stage1, random = FALSE, effects = TRUE, set_point = TRUE, </span>
@@ -701,6 +719,40 @@ OpenMx 2.0: Extended structural equation and statistical modeling.
 <span class="r-out co"><span class="r-pr">#&gt;</span> alpha[4,1] -0.0852 0.0426 -2.0016 0.0453 -0.1686 -0.0018</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> alpha[5,1] -0.0234 0.0366 -0.6403 0.5220 -0.0952  0.0483</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> alpha[6,1]  0.4441 0.0389 11.4250 0.0000  0.3679  0.5203</span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/stats/coef.html" class="external-link">coef</a></span><span class="op">(</span><span class="va">stage2</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    alpha_1_1    alpha_2_1    alpha_3_1    alpha_4_1    alpha_5_1    alpha_6_1 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> -0.004284700 -0.004067571  0.386594915 -0.085179416 -0.023434147  0.444138934 </span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/stats/vcov.html" class="external-link">vcov</a></span><span class="op">(</span><span class="va">stage2</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>               alpha_1_1     alpha_2_1     alpha_3_1     alpha_4_1     alpha_5_1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> alpha_1_1  3.945120e-06 -9.272526e-07 -1.623657e-07 -8.465722e-08  3.101554e-07</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> alpha_2_1 -9.272526e-07  6.018304e-06 -4.967260e-08  1.570763e-08 -4.253183e-07</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> alpha_3_1 -1.623657e-07 -4.967260e-08  1.630982e-03 -5.152802e-05  1.278208e-04</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> alpha_4_1 -8.465722e-08  1.570763e-08 -5.152802e-05  1.811072e-03  2.982352e-05</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> alpha_5_1  3.101554e-07 -4.253183e-07  1.278208e-04  2.982352e-05  1.339356e-03</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> alpha_6_1 -5.031268e-08  8.714482e-09  3.196157e-05  1.522492e-04 -4.720765e-05</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>               alpha_6_1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> alpha_1_1 -5.031268e-08</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> alpha_2_1  8.714482e-09</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> alpha_3_1  3.196157e-05</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> alpha_4_1  1.522492e-04</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> alpha_5_1 -4.720765e-05</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> alpha_6_1  1.511210e-03</span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/stats/confint.html" class="external-link">confint</a></span><span class="op">(</span><span class="va">stage2</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                   2.5 %        97.5 %</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> alpha[1,1] -0.008177645 -0.0003917561</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> alpha[2,1] -0.008875800  0.0007406584</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> alpha[3,1]  0.307440940  0.4657488899</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> alpha[4,1] -0.168589007 -0.0017698258</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> alpha[5,1] -0.095163377  0.0482950822</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> alpha[6,1]  0.367946735  0.5203311320</span>
+<span class="r-in"><span><span class="fu"><a href="extract.html">extract</a></span><span class="op">(</span><span class="va">stage2</span>, what <span class="op">=</span> <span class="st">"alpha"</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>           alpha</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> y1 -0.004284700</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> y2 -0.004067571</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> y3  0.386594915</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> y4 -0.085179416</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> y5 -0.023434147</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> y6  0.444138934</span>
 <span class="r-in"><span><span class="co"># }</span></span></span>
 <span class="r-in"><span></span></span>
 </code></pre></div>
