@@ -225,6 +225,7 @@
 #'   theta = FALSE
 #' )
 #' stage2 <- Meta(y = y, v = v, random = FALSE)
+#' # Methods for the output of the Meta() function
 #' print(stage2)
 #' summary(stage2)
 #' coef(stage2)

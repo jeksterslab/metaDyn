@@ -107,6 +107,7 @@
 #'   cov_meas = FALSE,
 #'   cov_dyn = FALSE
 #' )
+#' # Methods for the output of the MetaVARMx() function
 #' print(stage2)
 #' summary(stage2)
 #' coef(stage2)
@@ -176,7 +177,7 @@ MetaVARMx <- function(object,
                       tries_local = 100,
                       max_attempts = 10,
                       silent = FALSE,
-                      ncores = NULL) {
+                      ncores = NULL) {                 
   stopifnot(
     inherits(
       object,
