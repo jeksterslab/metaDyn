@@ -107,6 +107,7 @@
 #'   cov_meas = FALSE,
 #'   cov_dyn = FALSE
 #' )
+#' # Methods for the output of the MetaVARMx() function
 #' print(stage2)
 #' summary(stage2)
 #' coef(stage2)
