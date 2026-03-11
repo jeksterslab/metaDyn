@@ -525,6 +525,7 @@ stage2 <- Meta(y = y, v = v, random = FALSE)
 #>  Solution found!  Final fit=-93.184957 (started at -91.256471)  (1 attempt(s): 1 valid, 0 errors)
 #>  Start values from best fit:
 #> -0.00428470046284236,-0.00406757081116166,0.386594914967842,-0.0851794164286438,-0.0234341474339058,0.444138933642437
+# Methods for the output of the Meta() function
 print(stage2)
 #> Call:
 #> Meta(y = y, v = v, random = FALSE)
