@@ -391,9 +391,9 @@ to zero, simplifies the random effects.</p>
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/jeksterslab/metaDyn">metaDyn</a></span><span class="op">)</span></span>
 <span><span class="va">metavar</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/MetaVARMx.html">MetaVARMx</a></span><span class="op">(</span></span>
 <span>  object <span class="op">=</span> <span class="va">fit</span>,</span>
-<span>  cov_dyn <span class="op">=</span> <span class="cn">FALSE</span>,</span>
 <span>  tau_sqr_l_free <span class="op">=</span> <span class="va">tau_sqr_l_free</span>,</span>
-<span>  tau_sqr_l_values <span class="op">=</span> <span class="va">tau_sqr_l_values</span></span>
+<span>  tau_sqr_l_values <span class="op">=</span> <span class="va">tau_sqr_l_values</span>,</span>
+<span>  cov_dyn <span class="op">=</span> <span class="cn">FALSE</span></span>
 <span><span class="op">)</span></span></code></pre></div>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">metavar</span><span class="op">)</span></span>
@@ -597,6 +597,10 @@ dynamics.</p>
 <h2 class="unnumbered" id="references">References<a class="anchor" aria-label="anchor" href="#references"></a>
 </h2>
 <div id="refs" class="references csl-bib-body hanging-indent" entry-spacing="0" line-spacing="2">
+<div id="ref-Cheung-2015" class="csl-entry">
+Cheung, M. W.-L. (2015). <em>Meta-analysis: A structural equation
+modeling approach</em>. Wiley. <a href="https://doi.org/10.1002/9781118957813" class="external-link">https://doi.org/10.1002/9781118957813</a>
+</div>
 <div id="ref-Hunter-2017" class="csl-entry">
 Hunter, M. D. (2017). State space modeling in an open source, modular,
 structural equation modeling environment. <em>Structural Equation
@@ -609,8 +613,8 @@ Boker, S. M. (2015). <span>OpenMx</span> 2.0: Extended structural
 equation and statistical modeling. <em>Psychometrika</em>,
 <em>81</em>(2), 535–549. <a href="https://doi.org/10.1007/s11336-014-9435-8" class="external-link">https://doi.org/10.1007/s11336-014-9435-8</a>
 </div>
-<div id="ref-RCoreTeam-2024" class="csl-entry">
-R Core Team. (2024). <em><span>R</span>: A language and environment for
+<div id="ref-RCoreTeam-2025" class="csl-entry">
+R Core Team. (2025). <em><span>R</span>: A language and environment for
 statistical computing</em>. R Foundation for Statistical Computing. <a href="https://www.R-project.org/" class="external-link">https://www.R-project.org/</a>
 </div>
 </div>

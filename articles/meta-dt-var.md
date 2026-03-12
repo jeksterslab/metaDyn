@@ -317,9 +317,9 @@ tau_sqr_l_values <- matrix(
 library(metaDyn)
 metavar <- MetaVARMx(
   object = fit,
-  cov_dyn = FALSE,
   tau_sqr_l_free = tau_sqr_l_free,
-  tau_sqr_l_values = tau_sqr_l_values
+  tau_sqr_l_values = tau_sqr_l_values,
+  cov_dyn = FALSE
 )
 ```
 
@@ -530,6 +530,9 @@ dynamics.
 
 ## References
 
+Cheung, M. W.-L. (2015). *Meta-analysis: A structural equation modeling
+approach*. Wiley. <https://doi.org/10.1002/9781118957813>
+
 Hunter, M. D. (2017). State space modeling in an open source, modular,
 structural equation modeling environment. *Structural Equation Modeling:
 A Multidisciplinary Journal*, *25*(2), 307–324.
@@ -541,6 +544,6 @@ S. M. (2015). OpenMx 2.0: Extended structural equation and statistical
 modeling. *Psychometrika*, *81*(2), 535–549.
 <https://doi.org/10.1007/s11336-014-9435-8>
 
-R Core Team. (2024). *R: A language and environment for statistical
+R Core Team. (2025). *R: A language and environment for statistical
 computing*. R Foundation for Statistical Computing.
 <https://www.R-project.org/>
