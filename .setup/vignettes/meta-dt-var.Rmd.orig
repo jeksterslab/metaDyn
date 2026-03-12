@@ -5,7 +5,8 @@ date: "`r Sys.Date()`"
 bibliography: "vignettes.bib"
 csl: https://raw.githubusercontent.com/citation-style-language/styles/master/apa.csl
 nocite: |
-  @RCoreTeam-2024
+  @Cheung-2015
+  @RCoreTeam-2025
   @Neale-Hunter-Pritikin-etal-2015
   @Hunter-2017
 output: rmarkdown::html_vignette
@@ -391,9 +392,9 @@ tau_sqr_l_values <- matrix(
 library(metaDyn)
 metavar <- MetaVARMx(
   object = fit,
-  cov_dyn = FALSE,
   tau_sqr_l_free = tau_sqr_l_free,
-  tau_sqr_l_values = tau_sqr_l_values
+  tau_sqr_l_values = tau_sqr_l_values,
+  cov_dyn = FALSE
 )
 ```
 
