@@ -43,8 +43,8 @@ sessionInfo()
 #> [1] stats     graphics  grDevices utils     datasets  methods   base     
 #> 
 #> other attached packages:
-#> [1] metaDyn_1.0.0        fitVARMxID_1.0.2     OpenMx_2.22.10      
-#> [4] simStateSpace_1.2.16
+#> [1] metaDyn_1.0.0         fitVARMxID_1.0.2.9000 OpenMx_2.22.11       
+#> [4] simStateSpace_1.2.16 
 #> 
 #> loaded via a namespace (and not attached):
 #>  [1] digest_0.6.39         xfun_0.56             Matrix_1.7-4         
@@ -62,7 +62,10 @@ sessionInfo()
 ``` r
 installed.packages()[, c("Package", "Version")]
 #>                   Package             Version     
+#> fitVARMxID        "fitVARMxID"        "1.0.2.9000"
 #> metaDyn           "metaDyn"           "1.0.0"     
+#> OpenMx            "OpenMx"            "2.22.11"   
+#> simStateSpace     "simStateSpace"     "1.2.16"    
 #> abind             "abind"             "1.4-8"     
 #> Amelia            "Amelia"            "1.8.3"     
 #> arm               "arm"               "1.14-4"    
@@ -488,7 +491,7 @@ installed.packages()[, c("Package", "Version")]
 #> Core(s) per socket:                      4
 #> Socket(s):                               1
 #> Stepping:                                12
-#> CPU(s) scaling MHz:                      73%
+#> CPU(s) scaling MHz:                      86%
 #> CPU max MHz:                             4100.0000
 #> CPU min MHz:                             400.0000
 #> BogoMIPS:                                3799.90
@@ -524,7 +527,7 @@ installed.packages()[, c("Package", "Version")]
 
 ```
 #>                total        used        free      shared  buff/cache   available
-#> Mem:            15Gi       4.5Gi       1.4Gi       626Mi        10Gi        10Gi
-#> Swap:          7.8Gi       5.8Mi       7.8Gi
-#> Total:          22Gi       4.5Gi       9.2Gi
+#> Mem:            15Gi       4.3Gi       3.9Gi       497Mi       8.0Gi        10Gi
+#> Swap:          7.8Gi       6.0Mi       7.8Gi
+#> Total:          22Gi       4.3Gi        11Gi
 ```

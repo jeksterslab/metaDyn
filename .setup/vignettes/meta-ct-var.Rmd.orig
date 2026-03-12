@@ -375,13 +375,13 @@ summary(
 )
 ```
 
-## Stage 2: Random-Effects Meta-Analysis of Person-Specific Dynamics and Means
+## Stage 2: Random-Effects Meta-Analysis of Person-Specific Set Points and Dynamics
 
 We synthesize the person-specific estimates to recover population-level effects and their between-person variability. We use a random-effects model so the pooled mean reflects both within-person estimation uncertainty and between-person heterogeneity.
 
 All available parameters are meta-analyzed by default. Setting `cov_dyn = FALSE`, meta-analyzes only the set points and drift matrix. Setting `tau_sqr_l_free`, such that covariances between `mu` and `beta` are constained to zero, simplifies the random effects.
 
-```{r, stage2, message = FALSE, warning = FALSE, results = "hide"}
+```{r, tau_sqr}
 tau_sqr_l_free <- matrix(
   data = c(
     FALSE, FALSE, FALSE, FALSE, FALSE, FALSE,
@@ -402,6 +402,9 @@ tau_sqr_l_values <- matrix(
   nrow = 6,
   ncol = 6
 )
+```
+
+```{r, stage2, message = FALSE, warning = FALSE, results = "hide"}
 library(metaDyn)
 metavar <- MetaVARMx(
   object = fit,
