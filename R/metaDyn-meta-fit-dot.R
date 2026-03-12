@@ -132,10 +132,18 @@
     psi_l_ubound = psi_l_ubound,
     alpha = alpha
   )
-  model <- OpenMx::mxTryHard(
+  model <- .MxHelperRun(
     model = model,
+    grad_tol = 1e-2,
+    ok_codes = 0L,
+    require_finite_fit = TRUE,
+    hess_tol_abs = 1e-8,
+    hess_tol_rel = 1e-10,
+    check_condition = FALSE,
+    cond_max = 1e12,
     silent = silent
   )
+  # first rescue
   if (
     .MxHelperNeedsRescue(
       model = model,
@@ -167,6 +175,46 @@
       relax_exclude = NULL,
       protect_lb_zero = TRUE,
       ok_codes = 0L,
+      require_finite_fit = TRUE,
+      rerun_code6 = TRUE,
+      relax_streak = 3,
+      relax_min_attempt = 3,
+      silent = silent
+    )
+  }
+  # second rescue
+  # allow status code 5
+  if (
+    .MxHelperNeedsRescue(
+      model = model,
+      grad_tol = 1e-2,
+      ok_codes = c(0L, 5L),
+      require_finite_fit = TRUE,
+      hess_tol_abs = 1e-8,
+      hess_tol_rel = 1e-10,
+      check_condition = FALSE,
+      cond_max = 1e12,
+      abs_bnd_tol = 1e-6,
+      rel_bnd_tol = 1e-4
+    )
+  ) {
+    model <- .MxHelperEnsureGoodHessian(
+      model = model,
+      tries_explore = tries_explore,
+      tries_local = tries_local,
+      max_attempts = max_attempts,
+      grad_tol = 1e-2,
+      hess_tol_abs = 1e-8,
+      hess_tol_rel = 1e-10,
+      check_condition = FALSE,
+      cond_max = 1e12,
+      abs_bnd_tol = 1e-6,
+      rel_bnd_tol = 1e-4,
+      factor = 10,
+      relax_on_last = TRUE,
+      relax_exclude = NULL,
+      protect_lb_zero = TRUE,
+      ok_codes = c(0L, 5L),
       require_finite_fit = TRUE,
       rerun_code6 = TRUE,
       relax_streak = 3,
