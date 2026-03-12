@@ -293,7 +293,7 @@ summary(
 #>    1.5566
 ```
 
-## Stage 2: Random-Effects Meta-Analysis of Person-Specific Dynamics and Means
+## Stage 2: Random-Effects Meta-Analysis of Person-Specific Set Points and Dynamics
 
 We synthesize the person-specific estimates to recover population-level
 effects and their between-person variability. We use a random-effects
@@ -327,6 +327,10 @@ tau_sqr_l_values <- matrix(
   nrow = 6,
   ncol = 6
 )
+```
+
+``` r
+
 library(metaDyn)
 metavar <- MetaVARMx(
   object = fit,

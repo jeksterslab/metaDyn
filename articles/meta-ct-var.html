@@ -60,7 +60,7 @@
                         <h4 data-toc-skip class="author">Ivan Jacob
 Agaloos Pesigan</h4>
             
-            <h4 data-toc-skip class="date">2026-03-11</h4>
+            <h4 data-toc-skip class="date">2026-03-12</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/jeksterslab/metaDyn/blob/main/vignettes/meta-ct-var.Rmd"><code>vignettes/meta-ct-var.Rmd</code></a></small>
       <div class="d-none name"><code>meta-ct-var.Rmd</code></div>
@@ -362,8 +362,8 @@ individual
 <span><span class="co">#&gt;    1.5566</span></span></code></pre></div>
 </div>
 <div class="section level2">
-<h2 id="stage-2-random-effects-meta-analysis-of-person-specific-dynamics-and-means">Stage 2: Random-Effects Meta-Analysis of Person-Specific Dynamics
-and Means<a class="anchor" aria-label="anchor" href="#stage-2-random-effects-meta-analysis-of-person-specific-dynamics-and-means"></a>
+<h2 id="stage-2-random-effects-meta-analysis-of-person-specific-set-points-and-dynamics">Stage 2: Random-Effects Meta-Analysis of Person-Specific Set Points
+and Dynamics<a class="anchor" aria-label="anchor" href="#stage-2-random-effects-meta-analysis-of-person-specific-set-points-and-dynamics"></a>
 </h2>
 <p>We synthesize the person-specific estimates to recover
 population-level effects and their between-person variability. We use a
@@ -394,15 +394,16 @@ simplifies the random effects.</p>
 <span>  data <span class="op">=</span> <span class="fl">0</span>,</span>
 <span>  nrow <span class="op">=</span> <span class="fl">6</span>,</span>
 <span>  ncol <span class="op">=</span> <span class="fl">6</span></span>
-<span><span class="op">)</span></span>
-<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/jeksterslab/metaDyn">metaDyn</a></span><span class="op">)</span></span>
+<span><span class="op">)</span></span></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/jeksterslab/metaDyn">metaDyn</a></span><span class="op">)</span></span>
 <span><span class="va">metavar</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/MetaVARMx.html">MetaVARMx</a></span><span class="op">(</span></span>
 <span>  object <span class="op">=</span> <span class="va">fit</span>,</span>
 <span>  cov_dyn <span class="op">=</span> <span class="cn">FALSE</span>,</span>
 <span>  tau_sqr_l_free <span class="op">=</span> <span class="va">tau_sqr_l_free</span>,</span>
 <span>  tau_sqr_l_values <span class="op">=</span> <span class="va">tau_sqr_l_values</span></span>
 <span><span class="op">)</span></span></code></pre></div>
-<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">metavar</span><span class="op">)</span></span>
 <span><span class="co">#&gt; Call:</span></span>
 <span><span class="co">#&gt; MetaVARMx(object = fit, tau_sqr_l_free = tau_sqr_l_free, tau_sqr_l_values = tau_sqr_l_values, </span></span>
@@ -443,7 +444,7 @@ simplifies the random effects.</p>
 <div class="section level3">
 <h3 id="normal-theory-confidence-intervals">Normal Theory Confidence Intervals<a class="anchor" aria-label="anchor" href="#normal-theory-confidence-intervals"></a>
 </h3>
-<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/stats/confint.html" class="external-link">confint</a></span><span class="op">(</span><span class="va">metavar</span>, level <span class="op">=</span> <span class="fl">0.95</span><span class="op">)</span></span>
 <span><span class="co">#&gt;                     2.5 %       97.5 %</span></span>
 <span><span class="co">#&gt; alpha[1,1]    2.754697920  3.193733175</span></span>
@@ -471,7 +472,7 @@ simplifies the random effects.</p>
 <span><span class="co">#&gt; i_sqr[4,1]    0.056303462  0.466432631</span></span>
 <span><span class="co">#&gt; i_sqr[5,1]   -0.051801426  0.359393016</span></span>
 <span><span class="co">#&gt; i_sqr[6,1]    0.298060935  0.586200280</span></span></code></pre></div>
-<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/stats/confint.html" class="external-link">confint</a></span><span class="op">(</span><span class="va">metavar</span>, level <span class="op">=</span> <span class="fl">0.99</span><span class="op">)</span></span>
 <span><span class="co">#&gt;                     0.5 %      99.5 %</span></span>
 <span><span class="co">#&gt; alpha[1,1]    2.685720483  3.26271061</span></span>
@@ -503,7 +504,7 @@ simplifies the random effects.</p>
 <div class="section level3">
 <h3 id="robust-confidence-intervals">Robust Confidence Intervals<a class="anchor" aria-label="anchor" href="#robust-confidence-intervals"></a>
 </h3>
-<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/stats/confint.html" class="external-link">confint</a></span><span class="op">(</span><span class="va">metavar</span>, level <span class="op">=</span> <span class="fl">0.95</span>, robust <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
 <span><span class="co">#&gt;                     2.5 %       97.5 %</span></span>
 <span><span class="co">#&gt; alpha[1,1]    2.753595167  3.194835928</span></span>
@@ -531,7 +532,7 @@ simplifies the random effects.</p>
 <span><span class="co">#&gt; i_sqr[4,1]    0.072856492  0.449879601</span></span>
 <span><span class="co">#&gt; i_sqr[5,1]   -0.024244107  0.331835696</span></span>
 <span><span class="co">#&gt; i_sqr[6,1]    0.226365579  0.657895637</span></span></code></pre></div>
-<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/stats/confint.html" class="external-link">confint</a></span><span class="op">(</span><span class="va">metavar</span>, level <span class="op">=</span> <span class="fl">0.99</span>, robust <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
 <span><span class="co">#&gt;                      0.5 %       99.5 %</span></span>
 <span><span class="co">#&gt; alpha[1,1]    2.6842712195  3.264159876</span></span>
@@ -570,7 +571,7 @@ and dynamics
 (<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi mathvariant="bold-italic">𝜷</mi><annotation encoding="application/x-tex">\boldsymbol{\beta}</annotation></semantics></math>)
 across individuals.</li>
 </ul>
-<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">means</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/extract.html">extract</a></span><span class="op">(</span><span class="va">metavar</span>, what <span class="op">=</span> <span class="st">"alpha"</span><span class="op">)</span></span>
 <span><span class="va">means</span></span>
 <span><span class="co">#&gt;         alpha</span></span>
