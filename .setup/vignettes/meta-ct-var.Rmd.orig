@@ -358,6 +358,8 @@ library(fitVARMxID)
 
 The `FitVARMxID` function fits a VAR model on each individual $i$.
 
+> **Note:** Consider using the argument `ncores` to use multiple cores for parallel processing.
+
 ```{r, stage1, message = FALSE, warning = FALSE, results = "hide"}
 fit <- FitVARMxID(
   data = data,
@@ -365,7 +367,8 @@ fit <- FitVARMxID(
   id = "id",
   ct = TRUE,
   time = "time",
-  center = TRUE
+  center = TRUE,
+  ncores = parallel::detectCores()
 )
 ```
 
@@ -405,13 +408,16 @@ tau_sqr_l_values <- matrix(
 )
 ```
 
+> **Note:** Consider using the argument `ncores` to use multiple cores for parallel processing.
+
 ```{r, stage2, message = FALSE, warning = FALSE, results = "hide"}
 library(metaDyn)
 metavar <- MetaVARMx(
   object = fit,
   tau_sqr_l_free = tau_sqr_l_free,
   tau_sqr_l_values = tau_sqr_l_values,
-  cov_dyn = FALSE
+  cov_dyn = FALSE,
+  ncores = parallel::detectCores()
 )
 ```
 
