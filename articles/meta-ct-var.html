@@ -68,14 +68,6 @@ Agaloos Pesigan</h4>
 
     
     
-<pre><code><span><span class="co">#&gt; Error in `LinSDEInterceptEta()`:</span></span>
-<span><span class="co">#&gt; ! could not find function "LinSDEInterceptEta"</span></span></code></pre>
-<pre><code><span><span class="co">#&gt; Error in `SimMuN()`:</span></span>
-<span><span class="co">#&gt; ! could not find function "SimMuN"</span></span>
-<span><span class="co">#&gt; Error:</span></span>
-<span><span class="co">#&gt; ! object 'LinSDEInterceptEta' not found</span></span></code></pre>
-<pre><code><span><span class="co">#&gt; Error:</span></span>
-<span><span class="co">#&gt; ! object 'mu' not found</span></span></code></pre>
 <div class="section level2">
 <h2 id="dynamics-description">Dynamics Description<a class="anchor" aria-label="anchor" href="#dynamics-description"></a>
 </h2>
@@ -243,34 +235,32 @@ be given by
 <div class="section level3">
 <h3 id="r-function-arguments">R Function Arguments<a class="anchor" aria-label="anchor" href="#r-function-arguments"></a>
 </h3>
-<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">n</span></span>
 <span><span class="co">#&gt; [1] 100</span></span>
 <span><span class="va">time</span></span>
 <span><span class="co">#&gt; [1] 1000</span></span>
 <span><span class="co"># first mu0 in the list of length n</span></span>
 <span><span class="va">mu0</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span></span>
-<span><span class="co">#&gt; Error:</span></span>
-<span><span class="co">#&gt; ! object 'mu0' not found</span></span>
+<span><span class="co">#&gt; [1] 2.287769 2.606098</span></span>
 <span><span class="co"># first sigma0 in the list of length n</span></span>
 <span><span class="va">sigma0</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span></span>
 <span><span class="co">#&gt;           [,1]      [,2]</span></span>
-<span><span class="co">#&gt; [1,] 0.4655348 0.1787411</span></span>
-<span><span class="co">#&gt; [2,] 0.1787411 0.6227817</span></span>
+<span><span class="co">#&gt; [1,] 0.5037766 0.1478276</span></span>
+<span><span class="co">#&gt; [2,] 0.1478276 0.5694164</span></span>
 <span><span class="co"># first sigma0_l in the list of length n</span></span>
 <span><span class="va">sigma0_l</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span> <span class="co"># sigma0_l &lt;- t(chol(sigma0))</span></span>
 <span><span class="co">#&gt;           [,1]      [,2]</span></span>
-<span><span class="co">#&gt; [1,] 0.6823011 0.0000000</span></span>
-<span><span class="co">#&gt; [2,] 0.2619680 0.7444155</span></span>
+<span><span class="co">#&gt; [1,] 0.7097722 0.0000000</span></span>
+<span><span class="co">#&gt; [2,] 0.2082747 0.7252848</span></span>
 <span><span class="co"># first alpha in the list of length n</span></span>
 <span><span class="va">alpha</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span></span>
-<span><span class="co">#&gt; Error:</span></span>
-<span><span class="co">#&gt; ! object 'alpha' not found</span></span>
+<span><span class="co">#&gt; [1] 3.312112 3.842713</span></span>
 <span><span class="co"># first beta in the list of length n</span></span>
 <span><span class="va">beta</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span></span>
-<span><span class="co">#&gt;             [,1]       [,2]</span></span>
-<span><span class="co">#&gt; [1,] -1.35364971 -0.1109365</span></span>
-<span><span class="co">#&gt; [2,] -0.08472144 -1.2281299</span></span>
+<span><span class="co">#&gt;           [,1]      [,2]</span></span>
+<span><span class="co">#&gt; [1,] -1.235608 -0.186227</span></span>
+<span><span class="co">#&gt; [2,] -0.169327 -1.325864</span></span>
 <span><span class="co"># first psi in the list of length n</span></span>
 <span><span class="va">psi</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span></span>
 <span><span class="co">#&gt;      [,1] [,2]</span></span>
@@ -282,17 +272,13 @@ be given by
 <span><span class="co">#&gt; [2,] 0.4999231 1.144586</span></span>
 <span><span class="co"># first mu (set point) in the list of length n</span></span>
 <span><span class="va">mu</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span></span>
-<span><span class="co">#&gt; Error:</span></span>
-<span><span class="co">#&gt; ! object 'mu' not found</span></span></code></pre></div>
+<span><span class="co">#&gt; [1] 2.287769 2.606098</span></span></code></pre></div>
 </div>
 <div class="section level3">
 <h3 id="visualizing-the-dynamics-without-process-noise-and-measurement-error-n-5-with-different-initial-condition">Visualizing the Dynamics Without Process Noise and Measurement Error
 (n = 5 with Different Initial Condition)<a class="anchor" aria-label="anchor" href="#visualizing-the-dynamics-without-process-noise-and-measurement-error-n-5-with-different-initial-condition"></a>
 </h3>
-<pre><code><span><span class="co">#&gt; Error:</span></span>
-<span><span class="co">#&gt; ! object 'alpha_mu' not found</span></span>
-<span><span class="co">#&gt; Error:</span></span>
-<span><span class="co">#&gt; ! object 'sim' not found</span></span></code></pre>
+<p><img src="fig-vignettes-meta-ct-var-no-error-1.png" alt="" width="3300"><img src="fig-vignettes-meta-ct-var-no-error-2.png" alt="" width="3300"></p>
 </div>
 <div class="section level3">
 <h3 id="using-the-simssmlinsdefixed-function-from-the-simstatespace-package-to-simulate-data">Using the <code>SimSSMLinSDEFixed</code> Function from the
@@ -303,7 +289,7 @@ be given by
 uses a different set of parameter names. See
 <code><a href="https://github.com/jeksterslab/simStateSpace/reference/SimSSMLinSDEFixed.html" class="external-link">help(SimSSMLinSDEFixed)</a></code> for more details.</p>
 </blockquote>
-<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/jeksterslab/simStateSpace" class="external-link">simStateSpace</a></span><span class="op">)</span></span>
 <span><span class="va">sim</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://github.com/jeksterslab/simStateSpace/reference/SimSSMLinSDEIVary.html" class="external-link">SimSSMLinSDEIVary</a></span><span class="op">(</span></span>
 <span>  n <span class="op">=</span> <span class="va">n</span>,</span>
@@ -318,37 +304,37 @@ uses a different set of parameter names. See
 <span>  lambda <span class="op">=</span> <span class="va">lambda</span>,</span>
 <span>  theta_l <span class="op">=</span> <span class="va">theta_l</span></span>
 <span><span class="op">)</span></span>
-<span><span class="co">#&gt; Error:</span></span>
-<span><span class="co">#&gt; ! object 'mu0' not found</span></span>
 <span><span class="va">data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/as.data.frame.html" class="external-link">as.data.frame</a></span><span class="op">(</span><span class="va">sim</span><span class="op">)</span></span>
-<span><span class="co">#&gt; Error:</span></span>
-<span><span class="co">#&gt; ! object 'sim' not found</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">data</span><span class="op">)</span></span>
-<span><span class="co">#&gt;                                                                             </span></span>
-<span><span class="co">#&gt; 1 function (..., list = character(), package = NULL, lib.loc = NULL,        </span></span>
-<span><span class="co">#&gt; 2     verbose = getOption("verbose"), envir = .GlobalEnv, overwrite = TRUE) </span></span>
-<span><span class="co">#&gt; 3 {                                                                         </span></span>
-<span><span class="co">#&gt; 4     fileExt &lt;- function(x) {                                              </span></span>
-<span><span class="co">#&gt; 5         db &lt;- grepl("\\\\.[^.]+\\\\.(gz|bz2|xz)$", x)                     </span></span>
-<span><span class="co">#&gt; 6         ans &lt;- sub(".*\\\\.", "", x)</span></span>
+<span><span class="co">#&gt;   id time       y1       y2</span></span>
+<span><span class="co">#&gt; 1  1  0.0 2.523315 3.353060</span></span>
+<span><span class="co">#&gt; 2  1  0.1 2.309397 3.020899</span></span>
+<span><span class="co">#&gt; 3  1  0.2 2.600318 3.078564</span></span>
+<span><span class="co">#&gt; 4  1  0.3 2.698363 2.929001</span></span>
+<span><span class="co">#&gt; 5  1  0.4 2.444623 2.861375</span></span>
+<span><span class="co">#&gt; 6  1  0.5 3.190602 2.891174</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">data</span><span class="op">)</span></span>
-<span><span class="co">#&gt; Error in `object[[i]]`:</span></span>
-<span><span class="co">#&gt; ! object of type 'closure' is not subsettable</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">sim</span><span class="op">)</span></span>
-<span><span class="co">#&gt; Error:</span></span>
-<span><span class="co">#&gt; ! object 'sim' not found</span></span></code></pre></div>
+<span><span class="co">#&gt;        id              time             y1               y2        </span></span>
+<span><span class="co">#&gt;  Min.   :  1.00   Min.   : 0.00   Min.   :-2.335   Min.   :-1.951  </span></span>
+<span><span class="co">#&gt;  1st Qu.: 25.75   1st Qu.:24.98   1st Qu.: 2.093   1st Qu.: 1.261  </span></span>
+<span><span class="co">#&gt;  Median : 50.50   Median :49.95   Median : 2.990   Median : 2.187  </span></span>
+<span><span class="co">#&gt;  Mean   : 50.50   Mean   :49.95   Mean   : 2.975   Mean   : 2.185  </span></span>
+<span><span class="co">#&gt;  3rd Qu.: 75.25   3rd Qu.:74.92   3rd Qu.: 3.873   3rd Qu.: 3.081  </span></span>
+<span><span class="co">#&gt;  Max.   :100.00   Max.   :99.90   Max.   : 8.893   Max.   : 6.970</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">sim</span><span class="op">)</span></span></code></pre></div>
+<p><img src="fig-vignettes-meta-ct-var-error-1.png" alt="" width="3300"><img src="fig-vignettes-meta-ct-var-error-2.png" alt="" width="3300"></p>
 </div>
 </div>
 <div class="section level2">
 <h2 id="stage-1-person-specific-var-model">Stage 1: Person-Specific VAR Model<a class="anchor" aria-label="anchor" href="#stage-1-person-specific-var-model"></a>
 </h2>
-<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://openmx.ssri.psu.edu/" class="external-link">OpenMx</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/jeksterslab/fitVARMxID" class="external-link">fitVARMxID</a></span><span class="op">)</span></span></code></pre></div>
 <p>The <code>FitVARMxID</code> function fits a VAR model on each
 individual
 <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>i</mi><annotation encoding="application/x-tex">i</annotation></semantics></math>.</p>
-<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">fit</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://github.com/jeksterslab/fitVARMxID/reference/FitVARMxID.html" class="external-link">FitVARMxID</a></span><span class="op">(</span></span>
 <span>  data <span class="op">=</span> <span class="va">data</span>,</span>
 <span>  observed <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"y1"</span>, <span class="st">"y2"</span><span class="op">)</span>,</span>
@@ -356,16 +342,24 @@ individual
 <span>  ct <span class="op">=</span> <span class="cn">TRUE</span>,</span>
 <span>  time <span class="op">=</span> <span class="st">"time"</span>,</span>
 <span>  center <span class="op">=</span> <span class="cn">TRUE</span></span>
-<span><span class="op">)</span></span>
-<span><span class="co">#&gt; Error in `data[, id]`:</span></span>
-<span><span class="co">#&gt; ! object of type 'closure' is not subsettable</span></span></code></pre></div>
-<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
+<span><span class="op">)</span></span></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span></span>
 <span>  <span class="va">fit</span>,</span>
 <span>  means <span class="op">=</span> <span class="cn">TRUE</span></span>
 <span><span class="op">)</span></span>
-<span><span class="co">#&gt; Error:</span></span>
-<span><span class="co">#&gt; ! object 'fit' not found</span></span></code></pre></div>
+<span><span class="co">#&gt; Call:</span></span>
+<span><span class="co">#&gt; FitVARMxID(data = data, observed = c("y1", "y2"), id = "id", </span></span>
+<span><span class="co">#&gt;     time = "time", ct = TRUE, center = TRUE)</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; Convergence:</span></span>
+<span><span class="co">#&gt; 100.0%</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; Means of the estimated paramaters per individual.</span></span>
+<span><span class="co">#&gt;   mu[1,1]   mu[2,1] beta[1,1] beta[2,1] beta[1,2] beta[2,2]  psi[1,1]  psi[2,1] </span></span>
+<span><span class="co">#&gt;    2.9743    2.1847   -1.3528   -0.1673   -0.1959   -1.4373    1.3040    0.5685 </span></span>
+<span><span class="co">#&gt;  psi[2,2] </span></span>
+<span><span class="co">#&gt;    1.5566</span></span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="stage-2-random-effects-meta-analysis-of-person-specific-set-points-and-dynamics">Stage 2: Random-Effects Meta-Analysis of Person-Specific Set Points
@@ -380,7 +374,7 @@ estimation uncertainty and between-person heterogeneity.</p>
 drift matrix. Setting <code>tau_sqr_l_free</code>, such that covariances
 between <code>mu</code> and <code>beta</code> are constained to zero,
 simplifies the random effects.</p>
-<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">tau_sqr_l_free</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html" class="external-link">matrix</a></span><span class="op">(</span></span>
 <span>  data <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span></span>
 <span>    <span class="cn">FALSE</span>, <span class="cn">FALSE</span>, <span class="cn">FALSE</span>, <span class="cn">FALSE</span>, <span class="cn">FALSE</span>, <span class="cn">FALSE</span>,</span>
@@ -401,43 +395,171 @@ simplifies the random effects.</p>
 <span>  nrow <span class="op">=</span> <span class="fl">6</span>,</span>
 <span>  ncol <span class="op">=</span> <span class="fl">6</span></span>
 <span><span class="op">)</span></span></code></pre></div>
-<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/jeksterslab/metaDyn">metaDyn</a></span><span class="op">)</span></span>
 <span><span class="va">metavar</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/MetaVARMx.html">MetaVARMx</a></span><span class="op">(</span></span>
 <span>  object <span class="op">=</span> <span class="va">fit</span>,</span>
 <span>  tau_sqr_l_free <span class="op">=</span> <span class="va">tau_sqr_l_free</span>,</span>
 <span>  tau_sqr_l_values <span class="op">=</span> <span class="va">tau_sqr_l_values</span>,</span>
 <span>  cov_dyn <span class="op">=</span> <span class="cn">FALSE</span></span>
-<span><span class="op">)</span></span>
-<span><span class="co">#&gt; Error:</span></span>
-<span><span class="co">#&gt; ! object 'fit' not found</span></span></code></pre></div>
-<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
+<span><span class="op">)</span></span></code></pre></div>
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">metavar</span><span class="op">)</span></span>
-<span><span class="co">#&gt; Error:</span></span>
-<span><span class="co">#&gt; ! object 'metavar' not found</span></span></code></pre></div>
+<span><span class="co">#&gt; Call:</span></span>
+<span><span class="co">#&gt; MetaVARMx(object = fit, tau_sqr_l_free = tau_sqr_l_free, tau_sqr_l_values = tau_sqr_l_values, </span></span>
+<span><span class="co">#&gt;     cov_dyn = FALSE)</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; Status code:</span></span>
+<span><span class="co">#&gt; 0</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; CI type:</span></span>
+<span><span class="co">#&gt; "normal"</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt;                  est     se         z      p    2.5%   97.5%</span></span>
+<span><span class="co">#&gt; alpha[1,1]    2.9742 0.1120   26.5553 0.0000  2.7547  3.1937</span></span>
+<span><span class="co">#&gt; alpha[2,1]    2.1845 0.1062   20.5783 0.0000  1.9765  2.3926</span></span>
+<span><span class="co">#&gt; alpha[3,1]   -1.3129 0.0238  -55.2242 0.0000 -1.3595 -1.2663</span></span>
+<span><span class="co">#&gt; alpha[4,1]   -0.1670 0.0225   -7.4221 0.0000 -0.2111 -0.1229</span></span>
+<span><span class="co">#&gt; alpha[5,1]   -0.1943 0.0186  -10.4597 0.0000 -0.2307 -0.1579</span></span>
+<span><span class="co">#&gt; alpha[6,1]   -1.3984 0.0251  -55.8086 0.0000 -1.4475 -1.3492</span></span>
+<span><span class="co">#&gt; tau_sqr[1,1]  1.2471 0.1775    7.0246 0.0000  0.8991  1.5950</span></span>
+<span><span class="co">#&gt; tau_sqr[2,1]  0.5434 0.1307    4.1583 0.0000  0.2873  0.7996</span></span>
+<span><span class="co">#&gt; tau_sqr[2,2]  1.1190 0.1593    7.0232 0.0000  0.8067  1.4313</span></span>
+<span><span class="co">#&gt; tau_sqr[3,3]  0.0209 0.0072    2.8945 0.0038  0.0067  0.0350</span></span>
+<span><span class="co">#&gt; tau_sqr[4,3]  0.0013 0.0048    0.2586 0.7959 -0.0082  0.0108</span></span>
+<span><span class="co">#&gt; tau_sqr[5,3]  0.0005 0.0041    0.1170 0.9069 -0.0075  0.0084</span></span>
+<span><span class="co">#&gt; tau_sqr[6,3] -0.0046 0.0058   -0.7892 0.4300 -0.0159  0.0068</span></span>
+<span><span class="co">#&gt; tau_sqr[4,4]  0.0088 0.0063    1.3986 0.1619 -0.0035  0.0212</span></span>
+<span><span class="co">#&gt; tau_sqr[5,4]  0.0045 0.0032    1.4267 0.1537 -0.0017  0.0108</span></span>
+<span><span class="co">#&gt; tau_sqr[6,4] -0.0038 0.0056   -0.6877 0.4916 -0.0147  0.0071</span></span>
+<span><span class="co">#&gt; tau_sqr[5,5]  0.0035 0.0036    0.9680 0.3330 -0.0036  0.0106</span></span>
+<span><span class="co">#&gt; tau_sqr[6,5]  0.0032 0.0042    0.7698 0.4414 -0.0050  0.0114</span></span>
+<span><span class="co">#&gt; tau_sqr[6,6]  0.0251 0.0079    3.1574 0.0016  0.0095  0.0406</span></span>
+<span><span class="co">#&gt; i_sqr[1,1]    0.9950 0.0007 1397.5277 0.0000  0.9936  0.9964</span></span>
+<span><span class="co">#&gt; i_sqr[2,1]    0.9932 0.0010 1034.5138 0.0000  0.9913  0.9951</span></span>
+<span><span class="co">#&gt; i_sqr[3,1]    0.3866 0.0819    4.7197 0.0000  0.2260  0.5471</span></span>
+<span><span class="co">#&gt; i_sqr[4,1]    0.2614 0.1046    2.4981 0.0125  0.0563  0.4664</span></span>
+<span><span class="co">#&gt; i_sqr[5,1]    0.1538 0.1049    1.4661 0.1426 -0.0518  0.3594</span></span>
+<span><span class="co">#&gt; i_sqr[6,1]    0.4421 0.0735    6.0149 0.0000  0.2981  0.5862</span></span></code></pre></div>
 <div class="section level3">
 <h3 id="normal-theory-confidence-intervals">Normal Theory Confidence Intervals<a class="anchor" aria-label="anchor" href="#normal-theory-confidence-intervals"></a>
 </h3>
-<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/stats/confint.html" class="external-link">confint</a></span><span class="op">(</span><span class="va">metavar</span>, level <span class="op">=</span> <span class="fl">0.95</span><span class="op">)</span></span>
-<span><span class="co">#&gt; Error:</span></span>
-<span><span class="co">#&gt; ! object 'metavar' not found</span></span></code></pre></div>
-<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
+<span><span class="co">#&gt;                     2.5 %       97.5 %</span></span>
+<span><span class="co">#&gt; alpha[1,1]    2.754697920  3.193733175</span></span>
+<span><span class="co">#&gt; alpha[2,1]    1.976480275  2.392610565</span></span>
+<span><span class="co">#&gt; alpha[3,1]   -1.359474981 -1.266284141</span></span>
+<span><span class="co">#&gt; alpha[4,1]   -0.211132346 -0.122918630</span></span>
+<span><span class="co">#&gt; alpha[5,1]   -0.230690233 -0.157879112</span></span>
+<span><span class="co">#&gt; alpha[6,1]   -1.447460395 -1.349241914</span></span>
+<span><span class="co">#&gt; tau_sqr[1,1]  0.899135556  1.595042757</span></span>
+<span><span class="co">#&gt; tau_sqr[2,1]  0.287298520  0.799593547</span></span>
+<span><span class="co">#&gt; tau_sqr[2,2]  0.806737218  1.431303262</span></span>
+<span><span class="co">#&gt; tau_sqr[3,3]  0.006747421  0.035049670</span></span>
+<span><span class="co">#&gt; tau_sqr[4,3] -0.008248909  0.010756532</span></span>
+<span><span class="co">#&gt; tau_sqr[5,3] -0.007494722  0.008446156</span></span>
+<span><span class="co">#&gt; tau_sqr[6,3] -0.015888876  0.006766169</span></span>
+<span><span class="co">#&gt; tau_sqr[4,4] -0.003547420  0.021224104</span></span>
+<span><span class="co">#&gt; tau_sqr[5,4] -0.001693146  0.010753552</span></span>
+<span><span class="co">#&gt; tau_sqr[6,4] -0.014733930  0.007079880</span></span>
+<span><span class="co">#&gt; tau_sqr[5,5] -0.003582845  0.010575514</span></span>
+<span><span class="co">#&gt; tau_sqr[6,5] -0.004985040  0.011433547</span></span>
+<span><span class="co">#&gt; tau_sqr[6,6]  0.009510610  0.040645736</span></span>
+<span><span class="co">#&gt; i_sqr[1,1]    0.993578025  0.996368828</span></span>
+<span><span class="co">#&gt; i_sqr[2,1]    0.991335998  0.995099449</span></span>
+<span><span class="co">#&gt; i_sqr[3,1]    0.226027843  0.547081391</span></span>
+<span><span class="co">#&gt; i_sqr[4,1]    0.056303462  0.466432631</span></span>
+<span><span class="co">#&gt; i_sqr[5,1]   -0.051801426  0.359393016</span></span>
+<span><span class="co">#&gt; i_sqr[6,1]    0.298060935  0.586200280</span></span></code></pre></div>
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/stats/confint.html" class="external-link">confint</a></span><span class="op">(</span><span class="va">metavar</span>, level <span class="op">=</span> <span class="fl">0.99</span><span class="op">)</span></span>
-<span><span class="co">#&gt; Error:</span></span>
-<span><span class="co">#&gt; ! object 'metavar' not found</span></span></code></pre></div>
+<span><span class="co">#&gt;                     0.5 %      99.5 %</span></span>
+<span><span class="co">#&gt; alpha[1,1]    2.685720483  3.26271061</span></span>
+<span><span class="co">#&gt; alpha[2,1]    1.911101468  2.45798937</span></span>
+<span><span class="co">#&gt; alpha[3,1]   -1.374116323 -1.25164280</span></span>
+<span><span class="co">#&gt; alpha[4,1]   -0.224991725 -0.10905925</span></span>
+<span><span class="co">#&gt; alpha[5,1]   -0.242129689 -0.14643966</span></span>
+<span><span class="co">#&gt; alpha[6,1]   -1.462891636 -1.33381067</span></span>
+<span><span class="co">#&gt; tau_sqr[1,1]  0.789800611  1.70437770</span></span>
+<span><span class="co">#&gt; tau_sqr[2,1]  0.206811138  0.88008093</span></span>
+<span><span class="co">#&gt; tau_sqr[2,2]  0.708610781  1.52942970</span></span>
+<span><span class="co">#&gt; tau_sqr[3,3]  0.002300815  0.03949628</span></span>
+<span><span class="co">#&gt; tau_sqr[4,3] -0.011234880  0.01374250</span></span>
+<span><span class="co">#&gt; tau_sqr[5,3] -0.009999215  0.01095065</span></span>
+<span><span class="co">#&gt; tau_sqr[6,3] -0.019448242  0.01032553</span></span>
+<span><span class="co">#&gt; tau_sqr[4,4] -0.007439309  0.02511599</span></span>
+<span><span class="co">#&gt; tau_sqr[5,4] -0.003648663  0.01270907</span></span>
+<span><span class="co">#&gt; tau_sqr[6,4] -0.018161128  0.01050708</span></span>
+<span><span class="co">#&gt; tau_sqr[5,5] -0.005807285  0.01279995</span></span>
+<span><span class="co">#&gt; tau_sqr[6,5] -0.007564587  0.01401309</span></span>
+<span><span class="co">#&gt; tau_sqr[6,6]  0.004618928  0.04553742</span></span>
+<span><span class="co">#&gt; i_sqr[1,1]    0.993139558  0.99680729</span></span>
+<span><span class="co">#&gt; i_sqr[2,1]    0.990744718  0.99569073</span></span>
+<span><span class="co">#&gt; i_sqr[3,1]    0.175586675  0.59752256</span></span>
+<span><span class="co">#&gt; i_sqr[4,1]   -0.008132500  0.53086859</span></span>
+<span><span class="co">#&gt; i_sqr[5,1]   -0.116404755  0.42399634</span></span>
+<span><span class="co">#&gt; i_sqr[6,1]    0.252790963  0.63147025</span></span></code></pre></div>
 </div>
 <div class="section level3">
 <h3 id="robust-confidence-intervals">Robust Confidence Intervals<a class="anchor" aria-label="anchor" href="#robust-confidence-intervals"></a>
 </h3>
-<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/stats/confint.html" class="external-link">confint</a></span><span class="op">(</span><span class="va">metavar</span>, level <span class="op">=</span> <span class="fl">0.95</span>, robust <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
-<span><span class="co">#&gt; Error:</span></span>
-<span><span class="co">#&gt; ! object 'metavar' not found</span></span></code></pre></div>
-<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
+<span><span class="co">#&gt;                     2.5 %       97.5 %</span></span>
+<span><span class="co">#&gt; alpha[1,1]    2.753595167  3.194835928</span></span>
+<span><span class="co">#&gt; alpha[2,1]    1.975427810  2.393663029</span></span>
+<span><span class="co">#&gt; alpha[3,1]   -1.358281426 -1.267477696</span></span>
+<span><span class="co">#&gt; alpha[4,1]   -0.211854456 -0.122196521</span></span>
+<span><span class="co">#&gt; alpha[5,1]   -0.230839452 -0.157729893</span></span>
+<span><span class="co">#&gt; alpha[6,1]   -1.445575820 -1.351126489</span></span>
+<span><span class="co">#&gt; tau_sqr[1,1]  0.908528628  1.585649685</span></span>
+<span><span class="co">#&gt; tau_sqr[2,1]  0.284665842  0.802226224</span></span>
+<span><span class="co">#&gt; tau_sqr[2,2]  0.848743506  1.389296975</span></span>
+<span><span class="co">#&gt; tau_sqr[3,3]  0.006102537  0.035694554</span></span>
+<span><span class="co">#&gt; tau_sqr[4,3] -0.007485709  0.009993332</span></span>
+<span><span class="co">#&gt; tau_sqr[5,3] -0.007525424  0.008476859</span></span>
+<span><span class="co">#&gt; tau_sqr[6,3] -0.015341374  0.006218667</span></span>
+<span><span class="co">#&gt; tau_sqr[4,4] -0.002283607  0.019960290</span></span>
+<span><span class="co">#&gt; tau_sqr[5,4] -0.001047066  0.010107472</span></span>
+<span><span class="co">#&gt; tau_sqr[6,4] -0.012836700  0.005182651</span></span>
+<span><span class="co">#&gt; tau_sqr[5,5] -0.002928275  0.009920944</span></span>
+<span><span class="co">#&gt; tau_sqr[6,5] -0.004278437  0.010726945</span></span>
+<span><span class="co">#&gt; tau_sqr[6,6]  0.005258147  0.044898199</span></span>
+<span><span class="co">#&gt; i_sqr[1,1]    0.993615694  0.996331158</span></span>
+<span><span class="co">#&gt; i_sqr[2,1]    0.991608488  0.994826960</span></span>
+<span><span class="co">#&gt; i_sqr[3,1]    0.218712000  0.554397234</span></span>
+<span><span class="co">#&gt; i_sqr[4,1]    0.072856492  0.449879601</span></span>
+<span><span class="co">#&gt; i_sqr[5,1]   -0.024244107  0.331835696</span></span>
+<span><span class="co">#&gt; i_sqr[6,1]    0.226365579  0.657895637</span></span></code></pre></div>
+<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/stats/confint.html" class="external-link">confint</a></span><span class="op">(</span><span class="va">metavar</span>, level <span class="op">=</span> <span class="fl">0.99</span>, robust <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
-<span><span class="co">#&gt; Error:</span></span>
-<span><span class="co">#&gt; ! object 'metavar' not found</span></span></code></pre></div>
+<span><span class="co">#&gt;                      0.5 %       99.5 %</span></span>
+<span><span class="co">#&gt; alpha[1,1]    2.6842712195  3.264159876</span></span>
+<span><span class="co">#&gt; alpha[2,1]    1.9097182949  2.459372544</span></span>
+<span><span class="co">#&gt; alpha[3,1]   -1.3725477260 -1.253211396</span></span>
+<span><span class="co">#&gt; alpha[4,1]   -0.2259407384 -0.108110238</span></span>
+<span><span class="co">#&gt; alpha[5,1]   -0.2423257958 -0.146243549</span></span>
+<span><span class="co">#&gt; alpha[6,1]   -1.4604148850 -1.336287424</span></span>
+<span><span class="co">#&gt; tau_sqr[1,1]  0.8021451999  1.692033113</span></span>
+<span><span class="co">#&gt; tau_sqr[2,1]  0.2033512131  0.883540853</span></span>
+<span><span class="co">#&gt; tau_sqr[2,2]  0.7638164007  1.474224080</span></span>
+<span><span class="co">#&gt; tau_sqr[3,3]  0.0014532938  0.040343797</span></span>
+<span><span class="co">#&gt; tau_sqr[4,3] -0.0102318653  0.012739489</span></span>
+<span><span class="co">#&gt; tau_sqr[5,3] -0.0100395653  0.010991000</span></span>
+<span><span class="co">#&gt; tau_sqr[6,3] -0.0187287022  0.009605995</span></span>
+<span><span class="co">#&gt; tau_sqr[4,4] -0.0057783762  0.023455060</span></span>
+<span><span class="co">#&gt; tau_sqr[5,4] -0.0027995706  0.011859977</span></span>
+<span><span class="co">#&gt; tau_sqr[6,4] -0.0156677456  0.008013696</span></span>
+<span><span class="co">#&gt; tau_sqr[5,5] -0.0049470337  0.011939703</span></span>
+<span><span class="co">#&gt; tau_sqr[6,5] -0.0066359535  0.013084461</span></span>
+<span><span class="co">#&gt; tau_sqr[6,6] -0.0009697561  0.051126102</span></span>
+<span><span class="co">#&gt; i_sqr[1,1]    0.9931890636  0.996757789</span></span>
+<span><span class="co">#&gt; i_sqr[2,1]    0.9911028290  0.995332619</span></span>
+<span><span class="co">#&gt; i_sqr[3,1]    0.1659720271  0.607137207</span></span>
+<span><span class="co">#&gt; i_sqr[4,1]    0.0136218691  0.509114224</span></span>
+<span><span class="co">#&gt; i_sqr[5,1]   -0.0801882983  0.387779888</span></span>
+<span><span class="co">#&gt; i_sqr[6,1]    0.1585672927  0.725693922</span></span></code></pre></div>
 <ul>
 <li>The fixed part of the random-effects model gives pooled means
 <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="bold-italic">𝜶</mi><mo>=</mo><mi mathvariant="double-struck">𝔼</mi><mrow><mo stretchy="true" form="prefix">[</mo><mrow><mi mathvariant="normal">V</mi><mi mathvariant="normal">e</mi><mi mathvariant="normal">c</mi></mrow><mrow><mo stretchy="true" form="prefix">(</mo><mi mathvariant="bold-italic">𝝁</mi><mo>,</mo><mi mathvariant="bold-italic">𝜷</mi><mo stretchy="true" form="postfix">)</mo></mrow><mo stretchy="true" form="postfix">]</mo></mrow></mrow><annotation encoding="application/x-tex">\boldsymbol{\alpha} = \mathbb{E} \left[ \mathrm{Vec} \left( \boldsymbol{\mu}, \boldsymbol{\beta} \right)  \right]</annotation></semantics></math>.</li>
@@ -449,19 +571,25 @@ and dynamics
 (<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi mathvariant="bold-italic">𝜷</mi><annotation encoding="application/x-tex">\boldsymbol{\beta}</annotation></semantics></math>)
 across individuals.</li>
 </ul>
-<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">means</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/extract.html">extract</a></span><span class="op">(</span><span class="va">metavar</span>, what <span class="op">=</span> <span class="st">"alpha"</span><span class="op">)</span></span>
-<span><span class="co">#&gt; Error:</span></span>
-<span><span class="co">#&gt; ! object 'metavar' not found</span></span>
 <span><span class="va">means</span></span>
-<span><span class="co">#&gt; Error:</span></span>
-<span><span class="co">#&gt; ! object 'means' not found</span></span>
+<span><span class="co">#&gt;         alpha</span></span>
+<span><span class="co">#&gt; y1  2.9742155</span></span>
+<span><span class="co">#&gt; y2  2.1845454</span></span>
+<span><span class="co">#&gt; y3 -1.3128796</span></span>
+<span><span class="co">#&gt; y4 -0.1670255</span></span>
+<span><span class="co">#&gt; y5 -0.1942847</span></span>
+<span><span class="co">#&gt; y6 -1.3983512</span></span>
 <span><span class="va">covariances</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/extract.html">extract</a></span><span class="op">(</span><span class="va">metavar</span>, what <span class="op">=</span> <span class="st">"tau_sqr"</span><span class="op">)</span></span>
-<span><span class="co">#&gt; Error:</span></span>
-<span><span class="co">#&gt; ! object 'metavar' not found</span></span>
 <span><span class="va">covariances</span></span>
-<span><span class="co">#&gt; Error:</span></span>
-<span><span class="co">#&gt; ! object 'covariances' not found</span></span></code></pre></div>
+<span><span class="co">#&gt;          y1       y2            y3           y4           y5           y6</span></span>
+<span><span class="co">#&gt; y1 1.247089 0.543446  0.0000000000  0.000000000 0.0000000000  0.000000000</span></span>
+<span><span class="co">#&gt; y2 0.543446 1.119020  0.0000000000  0.000000000 0.0000000000  0.000000000</span></span>
+<span><span class="co">#&gt; y3 0.000000 0.000000  0.0208985452  0.001253812 0.0004757173 -0.004561354</span></span>
+<span><span class="co">#&gt; y4 0.000000 0.000000  0.0012538118  0.008838342 0.0045302032 -0.003827025</span></span>
+<span><span class="co">#&gt; y5 0.000000 0.000000  0.0004757173  0.004530203 0.0034963346  0.003224254</span></span>
+<span><span class="co">#&gt; y6 0.000000 0.000000 -0.0045613535 -0.003827025 0.0032242538  0.025078173</span></span></code></pre></div>
 </div>
 </div>
 <div class="section level2">
