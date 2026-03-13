@@ -143,7 +143,6 @@
     cond_max = 1e12,
     silent = silent
   )
-  # first rescue
   if (
     .MxHelperNeedsRescue(
       model = model,
