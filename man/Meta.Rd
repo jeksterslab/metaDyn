@@ -364,7 +364,7 @@ OpenMx 2.0: Extended structural equation and statistical modeling.
 }
 \seealso{
 Other Meta-Analysis of VAR Functions:
-\code{\link{MetaVARMx}()}
+\code{\link[=MetaVARMx]{MetaVARMx()}}
 }
 \author{
 Ivan Jacob Agaloos Pesigan
