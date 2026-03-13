@@ -1,7 +1,7 @@
 ---
 title: "Meta-Analysis of Continuous-Time Vector Autoregressive Model Estimates"
 author: Ivan Jacob Agaloos Pesigan
-date: "2026-03-12"
+date: "2026-03-13"
 bibliography: "vignettes.bib"
 csl: https://raw.githubusercontent.com/citation-style-language/styles/master/apa.csl
 nocite: |
@@ -23,12 +23,26 @@ vignette: >
 
 
 
+```
+#> Error in `LinSDEInterceptEta()`:
+#> ! could not find function "LinSDEInterceptEta"
+```
 
 
 
 
+```
+#> Error in `SimMuN()`:
+#> ! could not find function "SimMuN"
+#> Error:
+#> ! object 'LinSDEInterceptEta' not found
+```
 
 
+```
+#> Error:
+#> ! object 'mu' not found
+```
 
 ## Dynamics Description
 
@@ -141,25 +155,27 @@ time
 #> [1] 1000
 # first mu0 in the list of length n
 mu0[[1]]
-#> [1] 2.287769 2.606098
+#> Error:
+#> ! object 'mu0' not found
 # first sigma0 in the list of length n
 sigma0[[1]]
 #>           [,1]      [,2]
-#> [1,] 0.5037766 0.1478276
-#> [2,] 0.1478276 0.5694164
+#> [1,] 0.4655348 0.1787411
+#> [2,] 0.1787411 0.6227817
 # first sigma0_l in the list of length n
 sigma0_l[[1]] # sigma0_l <- t(chol(sigma0))
 #>           [,1]      [,2]
-#> [1,] 0.7097722 0.0000000
-#> [2,] 0.2082747 0.7252848
+#> [1,] 0.6823011 0.0000000
+#> [2,] 0.2619680 0.7444155
 # first alpha in the list of length n
 alpha[[1]]
-#> [1] 3.312112 3.842713
+#> Error:
+#> ! object 'alpha' not found
 # first beta in the list of length n
 beta[[1]]
-#>           [,1]      [,2]
-#> [1,] -1.235608 -0.186227
-#> [2,] -0.169327 -1.325864
+#>             [,1]       [,2]
+#> [1,] -1.35364971 -0.1109365
+#> [2,] -0.08472144 -1.2281299
 # first psi in the list of length n
 psi[[1]]
 #>      [,1] [,2]
@@ -171,12 +187,19 @@ psi_l[[1]] # psi_l <- t(chol(psi))
 #> [2,] 0.4999231 1.144586
 # first mu (set point) in the list of length n
 mu[[1]]
-#> [1] 2.287769 2.606098
+#> Error:
+#> ! object 'mu' not found
 ```
 
 ### Visualizing the Dynamics Without Process Noise and Measurement Error (n = 5 with Different Initial Condition)
 
-<img src="fig-vignettes-meta-ct-var-no-error-1.png" alt="" width="3300" /><img src="fig-vignettes-meta-ct-var-no-error-2.png" alt="" width="3300" />
+
+```
+#> Error:
+#> ! object 'alpha_mu' not found
+#> Error:
+#> ! object 'sim' not found
+```
 
 ### Using the `SimSSMLinSDEFixed` Function from the `simStateSpace` Package to Simulate Data
 
@@ -199,27 +222,26 @@ sim <- SimSSMLinSDEIVary(
   lambda = lambda,
   theta_l = theta_l
 )
+#> Error:
+#> ! object 'mu0' not found
 data <- as.data.frame(sim)
+#> Error:
+#> ! object 'sim' not found
 head(data)
-#>   id time       y1       y2
-#> 1  1  0.0 2.523315 3.353060
-#> 2  1  0.1 2.309397 3.020899
-#> 3  1  0.2 2.600318 3.078564
-#> 4  1  0.3 2.698363 2.929001
-#> 5  1  0.4 2.444623 2.861375
-#> 6  1  0.5 3.190602 2.891174
+#>                                                                             
+#> 1 function (..., list = character(), package = NULL, lib.loc = NULL,        
+#> 2     verbose = getOption("verbose"), envir = .GlobalEnv, overwrite = TRUE) 
+#> 3 {                                                                         
+#> 4     fileExt <- function(x) {                                              
+#> 5         db <- grepl("\\\\.[^.]+\\\\.(gz|bz2|xz)$", x)                     
+#> 6         ans <- sub(".*\\\\.", "", x)
 summary(data)
-#>        id              time             y1               y2        
-#>  Min.   :  1.00   Min.   : 0.00   Min.   :-2.335   Min.   :-1.951  
-#>  1st Qu.: 25.75   1st Qu.:24.98   1st Qu.: 2.093   1st Qu.: 1.261  
-#>  Median : 50.50   Median :49.95   Median : 2.990   Median : 2.187  
-#>  Mean   : 50.50   Mean   :49.95   Mean   : 2.975   Mean   : 2.185  
-#>  3rd Qu.: 75.25   3rd Qu.:74.92   3rd Qu.: 3.873   3rd Qu.: 3.081  
-#>  Max.   :100.00   Max.   :99.90   Max.   : 8.893   Max.   : 6.970
+#> Error in `object[[i]]`:
+#> ! object of type 'closure' is not subsettable
 plot(sim)
+#> Error:
+#> ! object 'sim' not found
 ```
-
-<img src="fig-vignettes-meta-ct-var-error-1.png" alt="" width="3300" /><img src="fig-vignettes-meta-ct-var-error-2.png" alt="" width="3300" />
 
 ## Stage 1: Person-Specific VAR Model
 
@@ -243,6 +265,8 @@ fit <- FitVARMxID(
   time = "time",
   center = TRUE
 )
+#> Error in `data[, id]`:
+#> ! object of type 'closure' is not subsettable
 ```
 
 
@@ -251,18 +275,8 @@ summary(
   fit,
   means = TRUE
 )
-#> Call:
-#> FitVARMxID(data = data, observed = c("y1", "y2"), id = "id", 
-#>     time = "time", ct = TRUE, center = TRUE)
-#> 
-#> Convergence:
-#> 100.0%
-#> 
-#> Means of the estimated paramaters per individual.
-#>   mu[1,1]   mu[2,1] beta[1,1] beta[2,1] beta[1,2] beta[2,2]  psi[1,1]  psi[2,1] 
-#>    2.9743    2.1847   -1.3528   -0.1673   -0.1959   -1.4373    1.3040    0.5685 
-#>  psi[2,2] 
-#>    1.5566
+#> Error:
+#> ! object 'fit' not found
 ```
 
 ## Stage 2: Random-Effects Meta-Analysis of Person-Specific Set Points and Dynamics
@@ -304,47 +318,15 @@ metavar <- MetaVARMx(
   tau_sqr_l_values = tau_sqr_l_values,
   cov_dyn = FALSE
 )
+#> Error:
+#> ! object 'fit' not found
 ```
 
 
 ``` r
 summary(metavar)
-#> Call:
-#> MetaVARMx(object = fit, tau_sqr_l_free = tau_sqr_l_free, tau_sqr_l_values = tau_sqr_l_values, 
-#>     cov_dyn = FALSE)
-#> 
-#> Status code:
-#> 0
-#> 
-#> CI type:
-#> "normal"
-#> 
-#>                  est     se         z      p    2.5%   97.5%
-#> alpha[1,1]    2.9742 0.1120   26.5553 0.0000  2.7547  3.1937
-#> alpha[2,1]    2.1845 0.1062   20.5782 0.0000  1.9765  2.3926
-#> alpha[3,1]   -1.3129 0.0238  -55.2154 0.0000 -1.3595 -1.2663
-#> alpha[4,1]   -0.1670 0.0225   -7.4224 0.0000 -0.2111 -0.1229
-#> alpha[5,1]   -0.1943 0.0186  -10.4589 0.0000 -0.2307 -0.1579
-#> alpha[6,1]   -1.3984 0.0251  -55.8077 0.0000 -1.4475 -1.3493
-#> tau_sqr[1,1]  1.2471 0.1775    7.0240 0.0000  0.8991  1.5951
-#> tau_sqr[2,1]  0.5434 0.1307    4.1581 0.0000  0.2873  0.7996
-#> tau_sqr[2,2]  1.1190 0.1593    7.0230 0.0000  0.8067  1.4313
-#> tau_sqr[3,3]  0.0209 0.0072    2.8958 0.0038  0.0068  0.0351
-#> tau_sqr[4,3]  0.0013 0.0048    0.2596 0.7951 -0.0082  0.0108
-#> tau_sqr[5,3]  0.0005 0.0041    0.1145 0.9088 -0.0075  0.0084
-#> tau_sqr[6,3] -0.0046 0.0058   -0.7903 0.4294 -0.0159  0.0068
-#> tau_sqr[4,4]  0.0088 0.0063    1.3967 0.1625 -0.0036  0.0212
-#> tau_sqr[5,4]  0.0045 0.0032    1.4282 0.1532 -0.0017  0.0108
-#> tau_sqr[6,4] -0.0038 0.0056   -0.6871 0.4920 -0.0147  0.0071
-#> tau_sqr[5,5]  0.0035 0.0036    0.9685 0.3328 -0.0036  0.0106
-#> tau_sqr[6,5]  0.0032 0.0042    0.7704 0.4411 -0.0050  0.0114
-#> tau_sqr[6,6]  0.0251 0.0079    3.1578 0.0016  0.0095  0.0406
-#> i_sqr[1,1]    0.9950 0.0007 1397.4009 0.0000  0.9936  0.9964
-#> i_sqr[2,1]    0.9932 0.0010 1034.4732 0.0000  0.9913  0.9951
-#> i_sqr[3,1]    0.3867 0.0819    4.7230 0.0000  0.2262  0.5472
-#> i_sqr[4,1]    0.2611 0.1047    2.4943 0.0126  0.0559  0.4662
-#> i_sqr[5,1]    0.1539 0.1049    1.4663 0.1426 -0.0518  0.3596
-#> i_sqr[6,1]    0.4421 0.0735    6.0151 0.0000  0.2981  0.5862
+#> Error:
+#> ! object 'metavar' not found
 ```
 
 ### Normal Theory Confidence Intervals
@@ -352,63 +334,15 @@ summary(metavar)
 
 ``` r
 confint(metavar, level = 0.95)
-#>                     2.5 %       97.5 %
-#> alpha[1,1]    2.754696045  3.193731376
-#> alpha[2,1]    1.976474067  2.392606257
-#> alpha[3,1]   -1.359474960 -1.266269726
-#> alpha[4,1]   -0.211117405 -0.122913372
-#> alpha[5,1]   -0.230706166 -0.157885425
-#> alpha[6,1]   -1.447474727 -1.349253669
-#> tau_sqr[1,1]  0.899101482  1.595068262
-#> tau_sqr[2,1]  0.287289240  0.799600676
-#> tau_sqr[2,2]  0.806733881  1.431323212
-#> tau_sqr[3,3]  0.006758455  0.035067582
-#> tau_sqr[4,3] -0.008243214  0.010760656
-#> tau_sqr[5,3] -0.007508769  0.008440594
-#> tau_sqr[6,3] -0.015893856  0.006759754
-#> tau_sqr[4,4] -0.003558069  0.021201786
-#> tau_sqr[5,4] -0.001687169  0.010750922
-#> tau_sqr[6,4] -0.014718555  0.007077279
-#> tau_sqr[5,5] -0.003586430  0.010592712
-#> tau_sqr[6,5] -0.004982897  0.011437299
-#> tau_sqr[6,6]  0.009512959  0.040644433
-#> i_sqr[1,1]    0.993577890  0.996368946
-#> i_sqr[2,1]    0.991336015  0.995099613
-#> i_sqr[3,1]    0.226230792  0.547190408
-#> i_sqr[4,1]    0.055922177  0.466205292
-#> i_sqr[5,1]   -0.051811496  0.359575917
-#> i_sqr[6,1]    0.298064576  0.586192720
+#> Error:
+#> ! object 'metavar' not found
 ```
 
 
 ``` r
 confint(metavar, level = 0.99)
-#>                     0.5 %      99.5 %
-#> alpha[1,1]    2.685718595  3.26270883
-#> alpha[2,1]    1.911094961  2.45798536
-#> alpha[3,1]   -1.374118564 -1.25162612
-#> alpha[4,1]   -0.224975263 -0.10905551
-#> alpha[5,1]   -0.242147134 -0.14644446
-#> alpha[6,1]   -1.462906373 -1.33382202
-#> tau_sqr[1,1]  0.789757177  1.70441257
-#> tau_sqr[2,1]  0.206799280  0.88009064
-#> tau_sqr[2,2]  0.708603785  1.52945331
-#> tau_sqr[3,3]  0.002310769  0.03951527
-#> tau_sqr[4,3] -0.011228939  0.01374638
-#> tau_sqr[5,3] -0.010014596  0.01094642
-#> tau_sqr[6,3] -0.019452996  0.01031889
-#> tau_sqr[4,4] -0.007448124  0.02509184
-#> tau_sqr[5,4] -0.003641335  0.01270509
-#> tau_sqr[6,4] -0.018142928  0.01050165
-#> tau_sqr[5,5] -0.005814134  0.01282042
-#> tau_sqr[6,5] -0.007562696  0.01401710
-#> tau_sqr[6,6]  0.004621850  0.04553554
-#> i_sqr[1,1]    0.993139383  0.99680745
-#> i_sqr[2,1]    0.990744710  0.99569092
-#> i_sqr[3,1]    0.175804382  0.59761682
-#> i_sqr[4,1]   -0.008537972  0.53066544
-#> i_sqr[5,1]   -0.116445143  0.42420956
-#> i_sqr[6,1]    0.252796364  0.63146093
+#> Error:
+#> ! object 'metavar' not found
 ```
 
 ### Robust Confidence Intervals
@@ -416,63 +350,15 @@ confint(metavar, level = 0.99)
 
 ``` r
 confint(metavar, level = 0.95, robust = TRUE)
-#>                     2.5 %       97.5 %
-#> alpha[1,1]    2.753593015  3.194834407
-#> alpha[2,1]    1.975420908  2.393659416
-#> alpha[3,1]   -1.358281269 -1.267463417
-#> alpha[4,1]   -0.211834262 -0.122196515
-#> alpha[5,1]   -0.230855898 -0.157735694
-#> alpha[6,1]   -1.445588013 -1.351140383
-#> tau_sqr[1,1]  0.908468573  1.585701171
-#> tau_sqr[2,1]  0.284646516  0.802243399
-#> tau_sqr[2,2]  0.848739524  1.389317569
-#> tau_sqr[3,3]  0.006114429  0.035711609
-#> tau_sqr[4,3] -0.007480445  0.009997887
-#> tau_sqr[5,3] -0.007539559  0.008471384
-#> tau_sqr[6,3] -0.015345472  0.006211371
-#> tau_sqr[4,4] -0.002296195  0.019939912
-#> tau_sqr[5,4] -0.001040629  0.010104382
-#> tau_sqr[6,4] -0.012816684  0.005175409
-#> tau_sqr[5,5] -0.002935216  0.009941498
-#> tau_sqr[6,5] -0.004276456  0.010730858
-#> tau_sqr[6,6]  0.005253647  0.044903745
-#> i_sqr[1,1]    0.993615455  0.996331381
-#> i_sqr[2,1]    0.991608450  0.994827179
-#> i_sqr[3,1]    0.218928592  0.554492608
-#> i_sqr[4,1]    0.072554246  0.449573223
-#> i_sqr[5,1]   -0.024293221  0.332057642
-#> i_sqr[6,1]    0.226361973  0.657895323
+#> Error:
+#> ! object 'metavar' not found
 ```
 
 
 ``` r
 confint(metavar, level = 0.99, robust = TRUE)
-#>                      0.5 %       99.5 %
-#> alpha[1,1]    2.6842689681  3.264158453
-#> alpha[2,1]    1.9097108766  2.459369448
-#> alpha[3,1]   -1.3725497872 -1.253194899
-#> alpha[4,1]   -0.2259173726 -0.108113404
-#> alpha[5,1]   -0.2423439147 -0.146247677
-#> alpha[6,1]   -1.4604268108 -1.336301585
-#> tau_sqr[1,1]  0.8020676206  1.692102124
-#> tau_sqr[2,1]  0.2033261525  0.883563763
-#> tau_sqr[2,2]  0.7638085573  1.474248536
-#> tau_sqr[3,3]  0.0014643749  0.040361663
-#> tau_sqr[4,3] -0.0102264896  0.012743932
-#> tau_sqr[5,3] -0.0100550607  0.010986886
-#> tau_sqr[6,3] -0.0187322978  0.009598196
-#> tau_sqr[4,4] -0.0057897408  0.023433458
-#> tau_sqr[5,4] -0.0027916373  0.011855391
-#> tau_sqr[6,4] -0.0156434467  0.008002171
-#> tau_sqr[5,5] -0.0049582939  0.011964576
-#> tau_sqr[6,5] -0.0066342754  0.013088678
-#> tau_sqr[6,6] -0.0009758344  0.051133226
-#> i_sqr[1,1]    0.9931887520  0.996758083
-#> i_sqr[2,1]    0.9911027505  0.995332878
-#> i_sqr[3,1]    0.1662076640  0.607213536
-#> i_sqr[4,1]    0.0133202715  0.508807197
-#> i_sqr[5,1]   -0.0802799988  0.388044420
-#> i_sqr[6,1]    0.1585631705  0.725694126
+#> Error:
+#> ! object 'metavar' not found
 ```
 
 - The fixed part of the random-effects model gives pooled means $\boldsymbol{\alpha} = \mathbb{E} \left[ \mathrm{Vec} \left( \boldsymbol{\mu}, \boldsymbol{\beta} \right)  \right]$.
@@ -481,23 +367,17 @@ confint(metavar, level = 0.99, robust = TRUE)
 
 ``` r
 means <- extract(metavar, what = "alpha")
+#> Error:
+#> ! object 'metavar' not found
 means
-#>         alpha
-#> y1  2.9742137
-#> y2  2.1845402
-#> y3 -1.3128723
-#> y4 -0.1670154
-#> y5 -0.1942958
-#> y6 -1.3983642
+#> Error:
+#> ! object 'means' not found
 covariances <- extract(metavar, what = "tau_sqr")
+#> Error:
+#> ! object 'metavar' not found
 covariances
-#>          y1       y2            y3           y4           y5           y6
-#> y1 1.247085 0.543445  0.0000000000  0.000000000 0.0000000000  0.000000000
-#> y2 0.543445 1.119029  0.0000000000  0.000000000 0.0000000000  0.000000000
-#> y3 0.000000 0.000000  0.0209130189  0.001258721 0.0004659125 -0.004567051
-#> y4 0.000000 0.000000  0.0012587211  0.008821858 0.0045318767 -0.003820638
-#> y5 0.000000 0.000000  0.0004659125  0.004531877 0.0035031413  0.003227201
-#> y6 0.000000 0.000000 -0.0045670509 -0.003820638 0.0032272012  0.025078696
+#> Error:
+#> ! object 'covariances' not found
 ```
 
 ## Summary

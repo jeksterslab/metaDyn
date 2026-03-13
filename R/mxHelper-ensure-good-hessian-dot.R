@@ -22,7 +22,7 @@
   obj <- inherits(model, "MxModel")
   if (isFALSE(obj)) {
     # nolint start
-    return(NULL)
+    return(model)
     # nolint end
   }
 

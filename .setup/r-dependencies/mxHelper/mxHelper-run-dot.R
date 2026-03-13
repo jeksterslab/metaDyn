@@ -49,10 +49,12 @@
   }
   input_model <- model
   if (run) {
+    # allow status codes 0, 1, 5, 6
     model <- tryCatch(
       OpenMx::mxTryHard(
-        model  = model,
+        model = model,
         silent = silent,
+        OKstatuscodes = c(0, 1, 5, 6),
         ...
       ),
       error = function(e) {
