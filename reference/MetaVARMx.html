@@ -534,44 +534,67 @@ OpenMx 2.0: Extended structural equation and statistical modeling.
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># \donttest{</span></span></span>
-<span class="r-in"><span><span class="co"># Generate data using the simStateSpace package-------------------------</span></span></span>
-<span class="r-in"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/jeksterslab/simStateSpace" class="external-link">simStateSpace</a></span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">42</span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="va">n</span> <span class="op">&lt;-</span> <span class="fl">5</span></span></span>
-<span class="r-in"><span><span class="va">time</span> <span class="op">&lt;-</span> <span class="fl">100</span></span></span>
-<span class="r-in"><span><span class="va">p</span> <span class="op">&lt;-</span> <span class="fl">2</span></span></span>
-<span class="r-in"><span><span class="va">alpha</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span>x <span class="op">=</span> <span class="fl">0</span>, times <span class="op">=</span> <span class="va">p</span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="va">beta</span> <span class="op">&lt;-</span> <span class="fl">0.50</span> <span class="op">*</span> <span class="fu"><a href="https://rdrr.io/r/base/diag.html" class="external-link">diag</a></span><span class="op">(</span><span class="va">p</span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="va">psi</span> <span class="op">&lt;-</span> <span class="fl">0.001</span> <span class="op">*</span> <span class="fu"><a href="https://rdrr.io/r/base/diag.html" class="external-link">diag</a></span><span class="op">(</span><span class="va">p</span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="va">psi_l</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/t.html" class="external-link">t</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/chol.html" class="external-link">chol</a></span><span class="op">(</span><span class="va">psi</span><span class="op">)</span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="va">mu0</span> <span class="op">&lt;-</span> <span class="fu">simStateSpace</span><span class="fu">::</span><span class="fu"><a href="https://github.com/jeksterslab/simStateSpace/reference/SSMMeanEta.html" class="external-link">SSMMeanEta</a></span><span class="op">(</span></span></span>
-<span class="r-in"><span>  beta <span class="op">=</span> <span class="va">beta</span>,</span></span>
-<span class="r-in"><span>  alpha <span class="op">=</span> <span class="va">alpha</span></span></span>
-<span class="r-in"><span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="va">sigma0</span> <span class="op">&lt;-</span> <span class="fu">simStateSpace</span><span class="fu">::</span><span class="fu"><a href="https://github.com/jeksterslab/simStateSpace/reference/SSMCovEta.html" class="external-link">SSMCovEta</a></span><span class="op">(</span></span></span>
-<span class="r-in"><span>  beta <span class="op">=</span> <span class="va">beta</span>,</span></span>
-<span class="r-in"><span>  psi <span class="op">=</span> <span class="va">psi</span></span></span>
-<span class="r-in"><span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="va">sigma0_l</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/t.html" class="external-link">t</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/chol.html" class="external-link">chol</a></span><span class="op">(</span><span class="va">sigma0</span><span class="op">)</span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="va">sim</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://github.com/jeksterslab/simStateSpace/reference/SimSSMVARFixed.html" class="external-link">SimSSMVARFixed</a></span><span class="op">(</span></span></span>
-<span class="r-in"><span>  n <span class="op">=</span> <span class="va">n</span>,</span></span>
-<span class="r-in"><span>  time <span class="op">=</span> <span class="va">time</span>,</span></span>
-<span class="r-in"><span>  mu0 <span class="op">=</span> <span class="va">mu0</span>,</span></span>
-<span class="r-in"><span>  sigma0_l <span class="op">=</span> <span class="va">sigma0_l</span>,</span></span>
-<span class="r-in"><span>  alpha <span class="op">=</span> <span class="va">alpha</span>,</span></span>
-<span class="r-in"><span>  beta <span class="op">=</span> <span class="va">beta</span>,</span></span>
-<span class="r-in"><span>  psi_l <span class="op">=</span> <span class="va">psi_l</span></span></span>
-<span class="r-in"><span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="va">data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/as.data.frame.html" class="external-link">as.data.frame</a></span><span class="op">(</span><span class="va">sim</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/ns-load.html" class="external-link">requireNamespace</a></span><span class="op">(</span><span class="st">"simStateSpace"</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span></span>
+<span class="r-in"><span>  <span class="co"># Generate data using the simStateSpace package-------------------------</span></span></span>
+<span class="r-in"><span>  <span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/jeksterslab/simStateSpace" class="external-link">simStateSpace</a></span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">42</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="va">n</span> <span class="op">&lt;-</span> <span class="fl">5</span></span></span>
+<span class="r-in"><span>  <span class="va">time</span> <span class="op">&lt;-</span> <span class="fl">100</span></span></span>
+<span class="r-in"><span>  <span class="va">p</span> <span class="op">&lt;-</span> <span class="fl">2</span></span></span>
+<span class="r-in"><span>  <span class="va">alpha</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span>x <span class="op">=</span> <span class="fl">0</span>, times <span class="op">=</span> <span class="va">p</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="va">beta</span> <span class="op">&lt;-</span> <span class="fl">0.50</span> <span class="op">*</span> <span class="fu"><a href="https://rdrr.io/r/base/diag.html" class="external-link">diag</a></span><span class="op">(</span><span class="va">p</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="va">psi</span> <span class="op">&lt;-</span> <span class="fl">0.001</span> <span class="op">*</span> <span class="fu"><a href="https://rdrr.io/r/base/diag.html" class="external-link">diag</a></span><span class="op">(</span><span class="va">p</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="va">psi_l</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/t.html" class="external-link">t</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/chol.html" class="external-link">chol</a></span><span class="op">(</span><span class="va">psi</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="va">mu0</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://github.com/jeksterslab/simStateSpace/reference/SSMMeanEta.html" class="external-link">SSMMeanEta</a></span><span class="op">(</span></span></span>
+<span class="r-in"><span>    beta <span class="op">=</span> <span class="va">beta</span>,</span></span>
+<span class="r-in"><span>    alpha <span class="op">=</span> <span class="va">alpha</span></span></span>
+<span class="r-in"><span>  <span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="va">sigma0</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://github.com/jeksterslab/simStateSpace/reference/SSMCovEta.html" class="external-link">SSMCovEta</a></span><span class="op">(</span></span></span>
+<span class="r-in"><span>    beta <span class="op">=</span> <span class="va">beta</span>,</span></span>
+<span class="r-in"><span>    psi <span class="op">=</span> <span class="va">psi</span></span></span>
+<span class="r-in"><span>  <span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="va">sigma0_l</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/t.html" class="external-link">t</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/chol.html" class="external-link">chol</a></span><span class="op">(</span><span class="va">sigma0</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="va">sim</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://github.com/jeksterslab/simStateSpace/reference/SimSSMVARFixed.html" class="external-link">SimSSMVARFixed</a></span><span class="op">(</span></span></span>
+<span class="r-in"><span>    n <span class="op">=</span> <span class="va">n</span>,</span></span>
+<span class="r-in"><span>    time <span class="op">=</span> <span class="va">time</span>,</span></span>
+<span class="r-in"><span>    mu0 <span class="op">=</span> <span class="va">mu0</span>,</span></span>
+<span class="r-in"><span>    sigma0_l <span class="op">=</span> <span class="va">sigma0_l</span>,</span></span>
+<span class="r-in"><span>    alpha <span class="op">=</span> <span class="va">alpha</span>,</span></span>
+<span class="r-in"><span>    beta <span class="op">=</span> <span class="va">beta</span>,</span></span>
+<span class="r-in"><span>    psi_l <span class="op">=</span> <span class="va">psi_l</span></span></span>
+<span class="r-in"><span>  <span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="va">data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/as.data.frame.html" class="external-link">as.data.frame</a></span><span class="op">(</span><span class="va">sim</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="co"># Stage 1---------------------------------------------------------------</span></span></span>
-<span class="r-in"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/jeksterslab/fitVARMxID" class="external-link">fitVARMxID</a></span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="va">stage1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://github.com/jeksterslab/fitVARMxID/reference/FitVARMxID.html" class="external-link">FitVARMxID</a></span><span class="op">(</span></span></span>
-<span class="r-in"><span>  data <span class="op">=</span> <span class="va">data</span>,</span></span>
-<span class="r-in"><span>  observed <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste0</a></span><span class="op">(</span><span class="st">"y"</span>, <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq_len</a></span><span class="op">(</span><span class="va">p</span><span class="op">)</span><span class="op">)</span>,</span></span>
-<span class="r-in"><span>  id <span class="op">=</span> <span class="st">"id"</span>,</span></span>
-<span class="r-in"><span>  center <span class="op">=</span> <span class="cn">TRUE</span></span></span>
-<span class="r-in"><span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="co"># Stage 1---------------------------------------------------------------</span></span></span>
+<span class="r-in"><span>  <span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/jeksterslab/fitVARMxID" class="external-link">fitVARMxID</a></span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="va">stage1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://github.com/jeksterslab/fitVARMxID/reference/FitVARMxID.html" class="external-link">FitVARMxID</a></span><span class="op">(</span></span></span>
+<span class="r-in"><span>    data <span class="op">=</span> <span class="va">data</span>,</span></span>
+<span class="r-in"><span>    observed <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste0</a></span><span class="op">(</span><span class="st">"y"</span>, <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq_len</a></span><span class="op">(</span><span class="va">p</span><span class="op">)</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>    id <span class="op">=</span> <span class="st">"id"</span>,</span></span>
+<span class="r-in"><span>    center <span class="op">=</span> <span class="cn">TRUE</span></span></span>
+<span class="r-in"><span>  <span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">stage1</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="co"># Stage 2---------------------------------------------------------------</span></span></span>
+<span class="r-in"><span>  <span class="co"># Meta-analyze set point vector and matrix of lagged-effects</span></span></span>
+<span class="r-in"><span>  <span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/jeksterslab/metaDyn">metaDyn</a></span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="va">stage2</span> <span class="op">&lt;-</span> <span class="fu">MetaVARMx</span><span class="op">(</span></span></span>
+<span class="r-in"><span>    object <span class="op">=</span> <span class="va">stage1</span>,</span></span>
+<span class="r-in"><span>    random <span class="op">=</span> <span class="cn">FALSE</span>,</span></span>
+<span class="r-in"><span>    effects <span class="op">=</span> <span class="cn">TRUE</span>,</span></span>
+<span class="r-in"><span>    set_point <span class="op">=</span> <span class="cn">TRUE</span>,</span></span>
+<span class="r-in"><span>    int_meas <span class="op">=</span> <span class="cn">FALSE</span>,</span></span>
+<span class="r-in"><span>    int_dyn <span class="op">=</span> <span class="cn">FALSE</span>,</span></span>
+<span class="r-in"><span>    cov_meas <span class="op">=</span> <span class="cn">FALSE</span>,</span></span>
+<span class="r-in"><span>    cov_dyn <span class="op">=</span> <span class="cn">FALSE</span></span></span>
+<span class="r-in"><span>  <span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="co"># Methods for the output of the MetaVARMx() function</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="va">stage2</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">stage2</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/stats/coef.html" class="external-link">coef</a></span><span class="op">(</span><span class="va">stage2</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/stats/vcov.html" class="external-link">vcov</a></span><span class="op">(</span><span class="va">stage2</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/stats/confint.html" class="external-link">confint</a></span><span class="op">(</span><span class="va">stage2</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="extract.html">extract</a></span><span class="op">(</span><span class="va">stage2</span>, what <span class="op">=</span> <span class="st">"alpha"</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="op">}</span></span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Running DTVAR_ID1 with 9 parameters</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Beginning initial fit attempt</span>
@@ -637,39 +660,6 @@ OpenMx 2.0: Extended structural equation and statistical modeling.
 <span class="r-msg co"><span class="r-pr">#&gt;</span>  Solution found!  Final fit=-832.35455 (started at 367.7976)  (1 attempt(s): 1 valid, 0 errors)</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span>  Start values from best fit:</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> 0.299055985152669,0.0348621727088368,-0.0801687055865619,0.465890390856868,-0.00111115045695215,0.00331563195705935,-0.166419668597626,-6.91180267781828,-7.08999323366805</span>
-<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">stage1</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Call:</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> FitVARMxID(data = data, observed = paste0("y", seq_len(p)), id = "id", </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     center = TRUE)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Convergence:</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 100.0%</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Estimated paramaters per individual.</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   mu[1,1] mu[2,1] beta[1,1] beta[2,1] beta[1,2] beta[2,2] psi[1,1] psi[2,1]</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1  0.0058  0.0071    0.3316   -0.0198    0.0270    0.5393    1e-03    1e-04</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2 -0.0028 -0.0199    0.5467   -0.0201   -0.0488    0.2975    8e-04    1e-04</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3 -0.0043 -0.0017    0.5281   -0.3325    0.0109    0.3614    9e-04   -2e-04</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4 -0.0131  0.0033    0.1608   -0.1218   -0.0299    0.4818    7e-04    0e+00</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 5 -0.0011  0.0033    0.2991    0.0349   -0.0802    0.4659    1e-03   -2e-04</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   psi[2,2]</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1   0.0009</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2   0.0011</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3   0.0012</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4   0.0010</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 5   0.0009</span>
-<span class="r-in"><span><span class="co"># Stage 2---------------------------------------------------------------</span></span></span>
-<span class="r-in"><span><span class="co"># Meta-analyze set point vector and matrix of lagged-effects</span></span></span>
-<span class="r-in"><span><span class="va">stage2</span> <span class="op">&lt;-</span> <span class="fu">MetaVARMx</span><span class="op">(</span></span></span>
-<span class="r-in"><span>  object <span class="op">=</span> <span class="va">stage1</span>,</span></span>
-<span class="r-in"><span>  random <span class="op">=</span> <span class="cn">FALSE</span>,</span></span>
-<span class="r-in"><span>  effects <span class="op">=</span> <span class="cn">TRUE</span>,</span></span>
-<span class="r-in"><span>  set_point <span class="op">=</span> <span class="cn">TRUE</span>,</span></span>
-<span class="r-in"><span>  int_meas <span class="op">=</span> <span class="cn">FALSE</span>,</span></span>
-<span class="r-in"><span>  int_dyn <span class="op">=</span> <span class="cn">FALSE</span>,</span></span>
-<span class="r-in"><span>  cov_meas <span class="op">=</span> <span class="cn">FALSE</span>,</span></span>
-<span class="r-in"><span>  cov_dyn <span class="op">=</span> <span class="cn">FALSE</span></span></span>
-<span class="r-in"><span><span class="op">)</span></span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Running Model with 6 parameters</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Beginning initial fit attempt</span>
@@ -683,8 +673,6 @@ OpenMx 2.0: Extended structural equation and statistical modeling.
 <span class="r-msg co"><span class="r-pr">#&gt;</span>  Solution found!  Final fit=-93.184957 (started at -91.256471)  (1 attempt(s): 1 valid, 0 errors)</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span>  Start values from best fit:</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> -0.00428470046284236,-0.00406757081116166,0.386594914967842,-0.0851794164286438,-0.0234341474339058,0.444138933642437</span>
-<span class="r-in"><span><span class="co"># Methods for the output of the MetaVARMx() function</span></span></span>
-<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="va">stage2</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Call:</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> MetaVARMx(object = stage1, random = FALSE, effects = TRUE, set_point = TRUE, </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>     int_meas = FALSE, int_dyn = FALSE, cov_meas = FALSE, cov_dyn = FALSE)</span>
@@ -702,51 +690,6 @@ OpenMx 2.0: Extended structural equation and statistical modeling.
 <span class="r-out co"><span class="r-pr">#&gt;</span> alpha[4,1] -0.0852 0.0426 -2.0016 0.0453 -0.1686 -0.0018</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> alpha[5,1] -0.0234 0.0366 -0.6403 0.5220 -0.0952  0.0483</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> alpha[6,1]  0.4441 0.0389 11.4250 0.0000  0.3679  0.5203</span>
-<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">stage2</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Call:</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> MetaVARMx(object = stage1, random = FALSE, effects = TRUE, set_point = TRUE, </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     int_meas = FALSE, int_dyn = FALSE, cov_meas = FALSE, cov_dyn = FALSE)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Status code:</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> CI type:</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> "normal"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                est     se       z      p    2.5%   97.5%</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> alpha[1,1] -0.0043 0.0020 -2.1572 0.0310 -0.0082 -0.0004</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> alpha[2,1] -0.0041 0.0025 -1.6581 0.0973 -0.0089  0.0007</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> alpha[3,1]  0.3866 0.0404  9.5726 0.0000  0.3074  0.4657</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> alpha[4,1] -0.0852 0.0426 -2.0016 0.0453 -0.1686 -0.0018</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> alpha[5,1] -0.0234 0.0366 -0.6403 0.5220 -0.0952  0.0483</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> alpha[6,1]  0.4441 0.0389 11.4250 0.0000  0.3679  0.5203</span>
-<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/stats/coef.html" class="external-link">coef</a></span><span class="op">(</span><span class="va">stage2</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    alpha_1_1    alpha_2_1    alpha_3_1    alpha_4_1    alpha_5_1    alpha_6_1 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> -0.004284700 -0.004067571  0.386594915 -0.085179416 -0.023434147  0.444138934 </span>
-<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/stats/vcov.html" class="external-link">vcov</a></span><span class="op">(</span><span class="va">stage2</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>               alpha_1_1     alpha_2_1     alpha_3_1     alpha_4_1     alpha_5_1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> alpha_1_1  3.945120e-06 -9.272526e-07 -1.623657e-07 -8.465722e-08  3.101554e-07</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> alpha_2_1 -9.272526e-07  6.018304e-06 -4.967260e-08  1.570763e-08 -4.253183e-07</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> alpha_3_1 -1.623657e-07 -4.967260e-08  1.630982e-03 -5.152802e-05  1.278208e-04</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> alpha_4_1 -8.465722e-08  1.570763e-08 -5.152802e-05  1.811072e-03  2.982352e-05</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> alpha_5_1  3.101554e-07 -4.253183e-07  1.278208e-04  2.982352e-05  1.339356e-03</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> alpha_6_1 -5.031268e-08  8.714482e-09  3.196157e-05  1.522492e-04 -4.720765e-05</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>               alpha_6_1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> alpha_1_1 -5.031268e-08</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> alpha_2_1  8.714482e-09</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> alpha_3_1  3.196157e-05</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> alpha_4_1  1.522492e-04</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> alpha_5_1 -4.720765e-05</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> alpha_6_1  1.511210e-03</span>
-<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/stats/confint.html" class="external-link">confint</a></span><span class="op">(</span><span class="va">stage2</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                   2.5 %        97.5 %</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> alpha[1,1] -0.008177645 -0.0003917561</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> alpha[2,1] -0.008875800  0.0007406584</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> alpha[3,1]  0.307440940  0.4657488899</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> alpha[4,1] -0.168589007 -0.0017698258</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> alpha[5,1] -0.095163377  0.0482950822</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> alpha[6,1]  0.367946735  0.5203311320</span>
-<span class="r-in"><span><span class="fu"><a href="extract.html">extract</a></span><span class="op">(</span><span class="va">stage2</span>, what <span class="op">=</span> <span class="st">"alpha"</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>           alpha</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> y1 -0.004284700</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> y2 -0.004067571</span>

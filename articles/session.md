@@ -33,7 +33,7 @@ sessionInfo()
 #> [1] stats     graphics  grDevices utils     datasets  methods   base     
 #> 
 #> other attached packages:
-#> [1] metaDyn_1.0.0         fitVARMxID_1.0.2.9000 OpenMx_2.22.10       
+#> [1] metaDyn_1.0.0         fitVARMxID_1.0.2.9000 OpenMx_2.22.11       
 #> [4] simStateSpace_1.2.16 
 #> 
 #> loaded via a namespace (and not attached):
@@ -54,6 +54,8 @@ installed.packages()[, c("Package", "Version")]
 #>                   Package             Version     
 #> fitVARMxID        "fitVARMxID"        "1.0.2.9000"
 #> metaDyn           "metaDyn"           "1.0.0"     
+#> mvtnorm           "mvtnorm"           "1.3-5"     
+#> OpenMx            "OpenMx"            "2.22.11"   
 #> simStateSpace     "simStateSpace"     "1.2.16"    
 #> abind             "abind"             "1.4-8"     
 #> Amelia            "Amelia"            "1.8.3"     
@@ -478,8 +480,8 @@ installed.packages()[, c("Package", "Version")]
     #> Core(s) per socket:                      4
     #> Socket(s):                               1
     #> Stepping:                                12
-    #> CPU(s) scaling MHz:                      87%
-    #> CPU max MHz:                             4100.0000
+    #> CPU(s) scaling MHz:                      91%
+    #> CPU max MHz:                             1600.0000
     #> CPU min MHz:                             400.0000
     #> BogoMIPS:                                3799.90
     #> Flags:                                   fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush dts acpi mmx fxsr sse sse2 ss ht tm pbe syscall nx pdpe1gb rdtscp lm constant_tsc art arch_perfmon pebs bts rep_good nopl xtopology nonstop_tsc cpuid aperfmperf pni pclmulqdq dtes64 monitor ds_cpl vmx smx est tm2 ssse3 sdbg fma cx16 xtpr pdcm pcid sse4_1 sse4_2 x2apic movbe popcnt tsc_deadline_timer aes xsave avx f16c rdrand lahf_lm abm 3dnowprefetch cpuid_fault epb ssbd ibrs ibpb stibp ibrs_enhanced tpr_shadow flexpriority ept vpid ept_ad fsgsbase tsc_adjust bmi1 avx2 smep bmi2 erms invpcid mpx rdseed adx smap clflushopt intel_pt xsaveopt xsavec xgetbv1 xsaves dtherm ida arat pln pts hwp hwp_notify hwp_act_window hwp_epp vnmi md_clear flush_l1d arch_capabilities
@@ -511,6 +513,6 @@ installed.packages()[, c("Package", "Version")]
 ## Memory
 
     #>                total        used        free      shared  buff/cache   available
-    #> Mem:            15Gi       6.7Gi       1.6Gi       725Mi       7.8Gi       8.4Gi
-    #> Swap:          7.8Gi       6.0Mi       7.8Gi
-    #> Total:          22Gi       6.7Gi       9.4Gi
+    #> Mem:            15Gi       3.9Gi       6.8Gi       414Mi       5.2Gi        11Gi
+    #> Swap:          7.8Gi          0B       7.8Gi
+    #> Total:          22Gi       3.9Gi        14Gi

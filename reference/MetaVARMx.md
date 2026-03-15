@@ -415,44 +415,67 @@ Ivan Jacob Agaloos Pesigan
 
 ``` r
 # \donttest{
-# Generate data using the simStateSpace package-------------------------
-library(simStateSpace)
-set.seed(42)
-n <- 5
-time <- 100
-p <- 2
-alpha <- rep(x = 0, times = p)
-beta <- 0.50 * diag(p)
-psi <- 0.001 * diag(p)
-psi_l <- t(chol(psi))
-mu0 <- simStateSpace::SSMMeanEta(
-  beta = beta,
-  alpha = alpha
-)
-sigma0 <- simStateSpace::SSMCovEta(
-  beta = beta,
-  psi = psi
-)
-sigma0_l <- t(chol(sigma0))
-sim <- SimSSMVARFixed(
-  n = n,
-  time = time,
-  mu0 = mu0,
-  sigma0_l = sigma0_l,
-  alpha = alpha,
-  beta = beta,
-  psi_l = psi_l
-)
-data <- as.data.frame(sim)
+if (requireNamespace("simStateSpace")) {
+  # Generate data using the simStateSpace package-------------------------
+  library(simStateSpace)
+  set.seed(42)
+  n <- 5
+  time <- 100
+  p <- 2
+  alpha <- rep(x = 0, times = p)
+  beta <- 0.50 * diag(p)
+  psi <- 0.001 * diag(p)
+  psi_l <- t(chol(psi))
+  mu0 <- SSMMeanEta(
+    beta = beta,
+    alpha = alpha
+  )
+  sigma0 <- SSMCovEta(
+    beta = beta,
+    psi = psi
+  )
+  sigma0_l <- t(chol(sigma0))
+  sim <- SimSSMVARFixed(
+    n = n,
+    time = time,
+    mu0 = mu0,
+    sigma0_l = sigma0_l,
+    alpha = alpha,
+    beta = beta,
+    psi_l = psi_l
+  )
+  data <- as.data.frame(sim)
 
-# Stage 1---------------------------------------------------------------
-library(fitVARMxID)
-stage1 <- FitVARMxID(
-  data = data,
-  observed = paste0("y", seq_len(p)),
-  id = "id",
-  center = TRUE
-)
+  # Stage 1---------------------------------------------------------------
+  library(fitVARMxID)
+  stage1 <- FitVARMxID(
+    data = data,
+    observed = paste0("y", seq_len(p)),
+    id = "id",
+    center = TRUE
+  )
+  summary(stage1)
+  # Stage 2---------------------------------------------------------------
+  # Meta-analyze set point vector and matrix of lagged-effects
+  library(metaDyn)
+  stage2 <- MetaVARMx(
+    object = stage1,
+    random = FALSE,
+    effects = TRUE,
+    set_point = TRUE,
+    int_meas = FALSE,
+    int_dyn = FALSE,
+    cov_meas = FALSE,
+    cov_dyn = FALSE
+  )
+  # Methods for the output of the MetaVARMx() function
+  print(stage2)
+  summary(stage2)
+  coef(stage2)
+  vcov(stage2)
+  confint(stage2)
+  extract(stage2, what = "alpha")
+}
 #> Running DTVAR_ID1 with 9 parameters
 #> 
 #> Beginning initial fit attempt
@@ -518,39 +541,6 @@ stage1 <- FitVARMxID(
 #>  Solution found!  Final fit=-832.35455 (started at 367.7976)  (1 attempt(s): 1 valid, 0 errors)
 #>  Start values from best fit:
 #> 0.299055985152669,0.0348621727088368,-0.0801687055865619,0.465890390856868,-0.00111115045695215,0.00331563195705935,-0.166419668597626,-6.91180267781828,-7.08999323366805
-summary(stage1)
-#> Call:
-#> FitVARMxID(data = data, observed = paste0("y", seq_len(p)), id = "id", 
-#>     center = TRUE)
-#> 
-#> Convergence:
-#> 100.0%
-#> 
-#> Estimated paramaters per individual.
-#>   mu[1,1] mu[2,1] beta[1,1] beta[2,1] beta[1,2] beta[2,2] psi[1,1] psi[2,1]
-#> 1  0.0058  0.0071    0.3316   -0.0198    0.0270    0.5393    1e-03    1e-04
-#> 2 -0.0028 -0.0199    0.5467   -0.0201   -0.0488    0.2975    8e-04    1e-04
-#> 3 -0.0043 -0.0017    0.5281   -0.3325    0.0109    0.3614    9e-04   -2e-04
-#> 4 -0.0131  0.0033    0.1608   -0.1218   -0.0299    0.4818    7e-04    0e+00
-#> 5 -0.0011  0.0033    0.2991    0.0349   -0.0802    0.4659    1e-03   -2e-04
-#>   psi[2,2]
-#> 1   0.0009
-#> 2   0.0011
-#> 3   0.0012
-#> 4   0.0010
-#> 5   0.0009
-# Stage 2---------------------------------------------------------------
-# Meta-analyze set point vector and matrix of lagged-effects
-stage2 <- MetaVARMx(
-  object = stage1,
-  random = FALSE,
-  effects = TRUE,
-  set_point = TRUE,
-  int_meas = FALSE,
-  int_dyn = FALSE,
-  cov_meas = FALSE,
-  cov_dyn = FALSE
-)
 #> Running Model with 6 parameters
 #> 
 #> Beginning initial fit attempt
@@ -564,8 +554,6 @@ stage2 <- MetaVARMx(
 #>  Solution found!  Final fit=-93.184957 (started at -91.256471)  (1 attempt(s): 1 valid, 0 errors)
 #>  Start values from best fit:
 #> -0.00428470046284236,-0.00406757081116166,0.386594914967842,-0.0851794164286438,-0.0234341474339058,0.444138933642437
-# Methods for the output of the MetaVARMx() function
-print(stage2)
 #> Call:
 #> MetaVARMx(object = stage1, random = FALSE, effects = TRUE, set_point = TRUE, 
 #>     int_meas = FALSE, int_dyn = FALSE, cov_meas = FALSE, cov_dyn = FALSE)
@@ -583,51 +571,6 @@ print(stage2)
 #> alpha[4,1] -0.0852 0.0426 -2.0016 0.0453 -0.1686 -0.0018
 #> alpha[5,1] -0.0234 0.0366 -0.6403 0.5220 -0.0952  0.0483
 #> alpha[6,1]  0.4441 0.0389 11.4250 0.0000  0.3679  0.5203
-summary(stage2)
-#> Call:
-#> MetaVARMx(object = stage1, random = FALSE, effects = TRUE, set_point = TRUE, 
-#>     int_meas = FALSE, int_dyn = FALSE, cov_meas = FALSE, cov_dyn = FALSE)
-#> 
-#> Status code:
-#> 0
-#> 
-#> CI type:
-#> "normal"
-#> 
-#>                est     se       z      p    2.5%   97.5%
-#> alpha[1,1] -0.0043 0.0020 -2.1572 0.0310 -0.0082 -0.0004
-#> alpha[2,1] -0.0041 0.0025 -1.6581 0.0973 -0.0089  0.0007
-#> alpha[3,1]  0.3866 0.0404  9.5726 0.0000  0.3074  0.4657
-#> alpha[4,1] -0.0852 0.0426 -2.0016 0.0453 -0.1686 -0.0018
-#> alpha[5,1] -0.0234 0.0366 -0.6403 0.5220 -0.0952  0.0483
-#> alpha[6,1]  0.4441 0.0389 11.4250 0.0000  0.3679  0.5203
-coef(stage2)
-#>    alpha_1_1    alpha_2_1    alpha_3_1    alpha_4_1    alpha_5_1    alpha_6_1 
-#> -0.004284700 -0.004067571  0.386594915 -0.085179416 -0.023434147  0.444138934 
-vcov(stage2)
-#>               alpha_1_1     alpha_2_1     alpha_3_1     alpha_4_1     alpha_5_1
-#> alpha_1_1  3.945120e-06 -9.272526e-07 -1.623657e-07 -8.465722e-08  3.101554e-07
-#> alpha_2_1 -9.272526e-07  6.018304e-06 -4.967260e-08  1.570763e-08 -4.253183e-07
-#> alpha_3_1 -1.623657e-07 -4.967260e-08  1.630982e-03 -5.152802e-05  1.278208e-04
-#> alpha_4_1 -8.465722e-08  1.570763e-08 -5.152802e-05  1.811072e-03  2.982352e-05
-#> alpha_5_1  3.101554e-07 -4.253183e-07  1.278208e-04  2.982352e-05  1.339356e-03
-#> alpha_6_1 -5.031268e-08  8.714482e-09  3.196157e-05  1.522492e-04 -4.720765e-05
-#>               alpha_6_1
-#> alpha_1_1 -5.031268e-08
-#> alpha_2_1  8.714482e-09
-#> alpha_3_1  3.196157e-05
-#> alpha_4_1  1.522492e-04
-#> alpha_5_1 -4.720765e-05
-#> alpha_6_1  1.511210e-03
-confint(stage2)
-#>                   2.5 %        97.5 %
-#> alpha[1,1] -0.008177645 -0.0003917561
-#> alpha[2,1] -0.008875800  0.0007406584
-#> alpha[3,1]  0.307440940  0.4657488899
-#> alpha[4,1] -0.168589007 -0.0017698258
-#> alpha[5,1] -0.095163377  0.0482950822
-#> alpha[6,1]  0.367946735  0.5203311320
-extract(stage2, what = "alpha")
 #>           alpha
 #> y1 -0.004284700
 #> y2 -0.004067571
