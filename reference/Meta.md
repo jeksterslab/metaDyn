@@ -366,7 +366,6 @@ Ivan Jacob Agaloos Pesigan
 ## Examples
 
 ``` r
-# \donttest{
 if (requireNamespace("simStateSpace")) {
   # Generate data using the simStateSpace package-------------------------
   library(simStateSpace)
@@ -539,5 +538,4 @@ if (requireNamespace("simStateSpace")) {
 #> y4 -0.085179416
 #> y5 -0.023434147
 #> y6  0.444138934
-# }
 ```

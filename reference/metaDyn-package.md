@@ -1,7 +1,10 @@
 # metaDyn: Multivariate Meta-Analysis of Dynamic Model Estimates
 
 Fits fixed-, random-, or mixed-effects multivariate meta-analysis models
-using dynamic model estimates from each individual.
+using dynamic model estimates from each individual building on and
+extending Lee and Gates (2023)
+[doi:10.1080/00273171.2023.2229310](https://doi.org/10.1080/00273171.2023.2229310)
+.
 
 ## See also
 
