@@ -8,9 +8,10 @@ message: 'To cite package "metaDyn" in publications use:'
 type: software
 license: MIT
 title: 'metaDyn: Multivariate Meta-Analysis of Dynamic Model Estimates'
-version: 1.0.0
+version: 1.0.1
 abstract: Fits fixed-, random-, or mixed-effects multivariate meta-analysis models
-  using dynamic model estimates from each individual.
+  using dynamic model estimates from each individual building on and extending Lee
+  and Gates (2023) <https://doi.org/10.1080/00273171.2023.2229310>.
 authors:
 - family-names: Pesigan
   given-names: Ivan Jacob Agaloos
@@ -25,7 +26,7 @@ preferred-citation:
     email: r.jeksterslab@gmail.com
     orcid: https://orcid.org/0000-0003-4818-8420
   year: '2026'
-  notes: R package version 1.0.0
+  notes: R package version 1.0.1
 repository-code: https://github.com/jeksterslab/metaDyn
 url: https://jeksterslab.github.io/metaDyn/
 contact:
