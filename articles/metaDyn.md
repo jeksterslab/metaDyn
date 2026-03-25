@@ -1,5 +1,9 @@
 # metaDyn: Multivariate Meta-Analysis of Vector Autoregressive Model Estimates
 
+[![CRAN
+Status](https://www.r-pkg.org/badges/version/metaDyn)](https://cran.r-project.org/package=metaDyn)
+[![R-Universe
+Status](https://jeksterslab.r-universe.dev/badges/metaDyn)](https://jeksterslab.r-universe.dev)
 [![Make
 Project](https://github.com/jeksterslab/metaDyn/actions/workflows/make.yml/badge.svg)](https://github.com/jeksterslab/metaDyn/actions/workflows/make.yml)
 [![R-CMD-check-standard](https://github.com/jeksterslab/metaDyn/actions/workflows/check-standard.yml/badge.svg)](https://github.com/jeksterslab/metaDyn/actions/workflows/check-standard.yml)
@@ -22,6 +26,13 @@ Fits fixed-, random-, or mixed-effects multivariate meta-analysis models
 using dynamic model estimates from each individual.
 
 ## Installation
+
+You can install the CRAN release of `metaDyn` with:
+
+``` r
+
+install.packages("metaDyn")
+```
 
 You can install the development version of `metaDyn` from
 [GitHub](https://github.com/jeksterslab/metaDyn) with:
@@ -53,6 +64,6 @@ S. M. (2015). OpenMx 2.0: Extended structural equation and statistical
 modeling. *Psychometrika*, *81*(2), 535–549.
 <https://doi.org/10.1007/s11336-014-9435-8>
 
-R Core Team. (2025). *R: A language and environment for statistical
+R Core Team. (2026). *R: A language and environment for statistical
 computing*. R Foundation for Statistical Computing.
 <https://www.R-project.org/>

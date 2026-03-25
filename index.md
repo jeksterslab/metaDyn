@@ -1,6 +1,6 @@
 # metaDyn
 
-Ivan Jacob Agaloos Pesigan 2026-03-19
+Ivan Jacob Agaloos Pesigan 2026-03-25
 
 ## Description
 
@@ -8,6 +8,13 @@ Fits fixed-, random-, or mixed-effects multivariate meta-analysis models
 using dynamic model estimates from each individual.
 
 ## Installation
+
+You can install the CRAN release of `metaDyn` with:
+
+``` r
+
+install.packages("metaDyn")
+```
 
 You can install the development version of `metaDyn` from
 [GitHub](https://github.com/jeksterslab/metaDyn) with:
