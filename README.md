@@ -85,9 +85,9 @@ modeling. *Psychometrika*, *81*(2), 535–549.
 
 </div>
 
-<div id="ref-RCoreTeam-2025" class="csl-entry">
+<div id="ref-RCoreTeam-2026" class="csl-entry">
 
-R Core Team. (2025). *R: A language and environment for statistical
+R Core Team. (2026). *R: A language and environment for statistical
 computing*. R Foundation for Statistical Computing.
 <https://www.R-project.org/>
 
