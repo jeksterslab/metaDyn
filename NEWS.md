@@ -2,7 +2,7 @@
 
 ## Patch
 
-* Edits to documentation.
+* Initial CRAN release.
 
 # metaDyn 1.0.0
 

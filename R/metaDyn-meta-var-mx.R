@@ -55,6 +55,7 @@
 #' @inherit Meta return references
 #'
 #' @examples
+#' \donttest{
 #' if (requireNamespace("simStateSpace")) {
 #'   # Generate data using the simStateSpace package-------------------------
 #'   library(simStateSpace)
@@ -115,6 +116,7 @@
 #'   vcov(stage2)
 #'   confint(stage2)
 #'   extract(stage2, what = "alpha")
+#' }
 #' }
 #'
 #' @family Meta-Analysis of VAR Functions

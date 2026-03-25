@@ -277,6 +277,7 @@ in which between-person outcomes are regressed on
 between-person covariates and the meta-analyzed parameters/effect sizes.
 }
 \examples{
+\donttest{
 if (requireNamespace("simStateSpace")) {
   # Generate data using the simStateSpace package-------------------------
   library(simStateSpace)
@@ -346,6 +347,7 @@ if (requireNamespace("simStateSpace")) {
   vcov(stage2)
   confint(stage2)
   extract(stage2, what = "alpha")
+}
 }
 
 }
