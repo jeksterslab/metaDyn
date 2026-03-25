@@ -46,7 +46,7 @@ S. M. (2015). OpenMx 2.0: Extended structural equation and statistical
 modeling. *Psychometrika*, *81*(2), 535–549.
 <https://doi.org/10.1007/s11336-014-9435-8>
 
-R Core Team. (2025). *R: A language and environment for statistical
+R Core Team. (2026). *R: A language and environment for statistical
 computing*. R Foundation for Statistical Computing.
 <https://www.R-project.org/>
 
