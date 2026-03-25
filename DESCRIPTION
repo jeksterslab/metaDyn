@@ -30,4 +30,4 @@ Suggests:
     MASS,
     metaSEM,
     expm
-RoxygenNote: 7.3.3.9000
+Config/roxygen2/version: 7.3.3.9000

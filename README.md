@@ -1,12 +1,16 @@
 metaDyn
 ================
 Ivan Jacob Agaloos Pesigan
-2026-03-19
+2026-03-25
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
 <!-- badges: start -->
 
+[![CRAN
+Status](https://www.r-pkg.org/badges/version/metaDyn)](https://cran.r-project.org/package=metaDyn)
+[![R-Universe
+Status](https://jeksterslab.r-universe.dev/badges/metaDyn)](https://jeksterslab.r-universe.dev)
 [![Make
 Project](https://github.com/jeksterslab/metaDyn/actions/workflows/make.yml/badge.svg)](https://github.com/jeksterslab/metaDyn/actions/workflows/make.yml)
 [![R-CMD-check-standard](https://github.com/jeksterslab/metaDyn/actions/workflows/check-standard.yml/badge.svg)](https://github.com/jeksterslab/metaDyn/actions/workflows/check-standard.yml)
@@ -30,6 +34,12 @@ Fits fixed-, random-, or mixed-effects multivariate meta-analysis models
 using dynamic model estimates from each individual.
 
 ## Installation
+
+You can install the CRAN release of `metaDyn` with:
+
+``` r
+install.packages("metaDyn")
+```
 
 You can install the development version of `metaDyn` from
 [GitHub](https://github.com/jeksterslab/metaDyn) with:

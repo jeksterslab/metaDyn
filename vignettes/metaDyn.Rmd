@@ -6,7 +6,7 @@ bibliography: "vignettes.bib"
 csl: https://raw.githubusercontent.com/citation-style-language/styles/master/apa.csl
 nocite: |
   @Cheung-2015
-  @RCoreTeam-2025
+  @RCoreTeam-2026
   @Neale-Hunter-Pritikin-etal-2015
   @Hunter-2017
 vignette: >
@@ -16,6 +16,8 @@ vignette: >
 ---
 
 <!-- badges: start -->
+[![CRAN Status](https://www.r-pkg.org/badges/version/metaDyn)](https://cran.r-project.org/package=metaDyn)
+[![R-Universe Status](https://jeksterslab.r-universe.dev/badges/metaDyn)](https://jeksterslab.r-universe.dev)
 [![Make Project](https://github.com/jeksterslab/metaDyn/actions/workflows/make.yml/badge.svg)](https://github.com/jeksterslab/metaDyn/actions/workflows/make.yml)
 [![R-CMD-check-standard](https://github.com/jeksterslab/metaDyn/actions/workflows/check-standard.yml/badge.svg)](https://github.com/jeksterslab/metaDyn/actions/workflows/check-standard.yml)
 [![R Package Test Coverage](https://github.com/jeksterslab/metaDyn/actions/workflows/test-coverage.yml/badge.svg)](https://github.com/jeksterslab/metaDyn/actions/workflows/test-coverage.yml)
@@ -33,7 +35,15 @@ Fits fixed-, random-, or mixed-effects multivariate meta-analysis models using d
 
 ## Installation
 
-You can install the development version of `metaDyn` from
+You can install the CRAN release of `metaDyn` with:
+
+```r
+install.packages("metaDyn")
+```
+
+You can install the development version of
+`metaDyn`
+from
 [GitHub](https://github.com/jeksterslab/metaDyn) with:
 
 ```r

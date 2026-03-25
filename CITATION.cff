@@ -9,6 +9,9 @@ type: software
 license: MIT
 title: 'metaDyn: Multivariate Meta-Analysis of Dynamic Model Estimates'
 version: 1.0.1
+identifiers:
+- type: doi
+  value: 10.32614/CRAN.package.metaDyn
 abstract: Fits fixed-, random-, or mixed-effects multivariate meta-analysis models
   using dynamic model estimates from each individual building on and extending Lee
   and Gates (2023) <https://doi.org/10.1080/00273171.2023.2229310>.
@@ -27,6 +30,7 @@ preferred-citation:
     orcid: https://orcid.org/0000-0003-4818-8420
   year: '2026'
   notes: R package version 1.0.1
+repository: https://CRAN.R-project.org/package=metaDyn
 repository-code: https://github.com/jeksterslab/metaDyn
 url: https://jeksterslab.github.io/metaDyn/
 contact:

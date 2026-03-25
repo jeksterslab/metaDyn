@@ -79,7 +79,16 @@ Fits fixed-, random-, or mixed-effects multivariate meta-analysis models using d
 
 \section*{Installation}
 
-You can install the development version of \texttt{metaDyn} from
+You can install the CRAN release of \texttt{metaDyn} with:
+
+%% begin.rcode
+% #| eval = FALSE
+% install.packages("metaDyn")
+%% end.rcode
+
+You can install the development version of
+\texttt{metaDyn}
+from
 \href{https://github.com/jeksterslab/metaDyn}{GitHub}
 with:
 
@@ -96,7 +105,7 @@ See
 for package documentation.
 
 \nocite{Cheung-2015}
-\nocite{RCoreTeam-2025}
+\nocite{RCoreTeam-2026}
 \nocite{Neale-Hunter-Pritikin-etal-2015}
 \nocite{Hunter-2017}
   

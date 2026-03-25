@@ -6,7 +6,7 @@ bibliography: "vignettes.bib"
 csl: https://raw.githubusercontent.com/citation-style-language/styles/master/apa.csl
 nocite: |
   @Cheung-2015
-  @RCoreTeam-2025
+  @RCoreTeam-2026
   @Neale-Hunter-Pritikin-etal-2015
   @Hunter-2017
 output: rmarkdown::html_vignette
