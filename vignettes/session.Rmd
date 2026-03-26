@@ -62,7 +62,12 @@ sessionInfo()
 ``` r
 installed.packages()[, c("Package", "Version")]
 #>                   Package             Version     
+#> fs                "fs"                "2.0.1"     
 #> metaDyn           "metaDyn"           "1.0.1"     
+#> ragg              "ragg"              "1.5.2"     
+#> roxygen2          "roxygen2"          "7.3.3.9000"
+#> rProject          "rProject"          "0.0.25"    
+#> tinytex           "tinytex"           "0.58.6"    
 #> abind             "abind"             "1.4-8"     
 #> Amelia            "Amelia"            "1.8.3"     
 #> arm               "arm"               "1.15-1"    
@@ -489,7 +494,7 @@ installed.packages()[, c("Package", "Version")]
 #> Socket(s):                               1
 #> Stepping:                                0
 #> Frequency boost:                         enabled
-#> CPU(s) scaling MHz:                      65%
+#> CPU(s) scaling MHz:                      53%
 #> CPU max MHz:                             5060.9761
 #> CPU min MHz:                             1219.5129
 #> BogoMIPS:                                4990.83
@@ -525,7 +530,7 @@ installed.packages()[, c("Package", "Version")]
 
 ```
 #>                total        used        free      shared  buff/cache   available
-#> Mem:            44Gi       6.6Gi        33Gi        74Mi       5.5Gi        37Gi
+#> Mem:            44Gi       7.0Gi        32Gi        14Mi       5.1Gi        37Gi
 #> Swap:           22Gi          0B        22Gi
-#> Total:          66Gi       6.6Gi        55Gi
+#> Total:          66Gi       7.0Gi        55Gi
 ```

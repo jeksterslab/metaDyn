@@ -261,7 +261,7 @@ Let the dynamic process noise $\boldsymbol{\Psi}$ be given by
   \right) .
 \end{equation}
 
-```{r}
+```{r, options}
 #| echo = FALSE
 options(scipen = 0)
 ```
