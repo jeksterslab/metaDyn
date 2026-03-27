@@ -7,6 +7,7 @@ Status](https://jeksterslab.r-universe.dev/badges/metaDyn)](https://jeksterslab.
 [![Make
 Project](https://github.com/jeksterslab/metaDyn/actions/workflows/make.yml/badge.svg)](https://github.com/jeksterslab/metaDyn/actions/workflows/make.yml)
 [![R-CMD-check-standard](https://github.com/jeksterslab/metaDyn/actions/workflows/check-standard.yml/badge.svg)](https://github.com/jeksterslab/metaDyn/actions/workflows/check-standard.yml)
+[![R-CMD-check-oldrel](https://github.com/jeksterslab/metaDyn/actions/workflows/check-oldrel.yml/badge.svg)](https://github.com/jeksterslab/metaDyn/actions/workflows/check-oldrel.yml)
 [![R Package Test
 Coverage](https://github.com/jeksterslab/metaDyn/actions/workflows/test-coverage.yml/badge.svg)](https://github.com/jeksterslab/metaDyn/actions/workflows/test-coverage.yml)
 [![Lint R
