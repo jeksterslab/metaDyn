@@ -59,7 +59,6 @@ lapply(
           y = y,
           v = v,
           random = FALSE,
-          i_sqr_univariate = FALSE,
           alpha_free = rep(
             x = TRUE,
             times = length(alpha)
@@ -106,7 +105,14 @@ lapply(
         testthat::expect_true(
           all(
             abs(
-              mxEval(v_hat, fit$output) - v_hat
+              round(
+                x = c(
+                  mxEval(v_hat, fit$output)
+                ),
+                digits = 1
+              ) - c(
+                diag(v_hat)
+              )
             ) <= tol
           )
         )
@@ -115,7 +121,6 @@ lapply(
           y = y,
           v = v,
           random = FALSE,
-          i_sqr_univariate = TRUE,
           alpha_free = rep(
             x = TRUE,
             times = length(alpha)

@@ -9,8 +9,7 @@
                            tau_sqr_l_free,
                            tau_sqr_l_values,
                            tau_sqr_l_lbound,
-                           tau_sqr_l_ubound,
-                           alpha) {
+                           tau_sqr_l_ubound) {
   name <- "tau_sqr"
   tau_sqr_d <- paste0(
     name,

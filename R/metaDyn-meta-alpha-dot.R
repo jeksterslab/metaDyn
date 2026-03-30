@@ -3,8 +3,7 @@
                        alpha_free,
                        alpha_values,
                        alpha_lbound,
-                       alpha_ubound,
-                       alpha) {
+                       alpha_ubound) {
   .MxHelperFullMxMatrix(
     m = p,
     n = 1,

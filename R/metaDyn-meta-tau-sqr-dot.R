@@ -7,8 +7,7 @@
                         tau_sqr_l_free,
                         tau_sqr_l_values,
                         tau_sqr_l_lbound,
-                        tau_sqr_l_ubound,
-                        alpha) {
+                        tau_sqr_l_ubound) {
   if (is.null(tau_sqr_d_lbound)) {
     tau_sqr_d_lbound <- -30
   }
@@ -24,8 +23,7 @@
       tau_sqr_d_values = tau_sqr_d_values,
       tau_sqr_d_lbound = tau_sqr_d_lbound,
       tau_sqr_d_ubound = tau_sqr_d_ubound,
-      tau_sqr_d_equal = FALSE,
-      alpha = alpha
+      tau_sqr_d_equal = FALSE
     )
   } else {
     out <- .MetaTauSqrSym(
@@ -39,8 +37,7 @@
       tau_sqr_l_values = tau_sqr_l_values,
       tau_sqr_l_lbound = tau_sqr_l_lbound,
       tau_sqr_l_ubound = tau_sqr_l_ubound,
-      tau_sqr_d_equal = FALSE,
-      alpha = alpha
+      tau_sqr_d_equal = FALSE
     )
   }
   out

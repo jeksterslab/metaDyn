@@ -4,8 +4,7 @@
                             tau_sqr_d_values,
                             tau_sqr_d_lbound,
                             tau_sqr_d_ubound,
-                            tau_sqr_d_equal,
-                            alpha) {
+                            tau_sqr_d_equal) {
   name <- "tau_sqr"
   tau_sqr_d <- paste0(
     name,

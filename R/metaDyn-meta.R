@@ -63,9 +63,6 @@
 #' @param tau_sqr_l_ubound Numeric matrix
 #'   with upper bounds for `tau_sqr_l`.
 #'   If `NULL`, no upper bounds are set.
-#' @param i_sqr_univariate Logical.
-#'   If `i_sqr_univariate = TRUE`, use the univariate formula for \eqn{I^2}.
-#'   If `i_sqr_univariate = FALSE`, use the multivariate formula for \eqn{I^2}.
 #' @param gamma_free Logical matrix.
 #'   Optional matrix of free (`TRUE`) parameters for `gamma`.
 #' @param gamma_values Numeric matrix.
@@ -274,7 +271,6 @@ Meta <- function(y,
                  tau_sqr_l_values = NULL,
                  tau_sqr_l_lbound = NULL,
                  tau_sqr_l_ubound = NULL,
-                 i_sqr_univariate = FALSE,
                  gamma_free = NULL,
                  gamma_values = NULL,
                  gamma_lbound = NULL,
@@ -392,7 +388,6 @@ Meta <- function(y,
     tau_sqr_l_values = tau_sqr_l_values,
     tau_sqr_l_lbound = tau_sqr_l_lbound,
     tau_sqr_l_ubound = tau_sqr_l_ubound,
-    i_sqr_univariate = i_sqr_univariate,
     gamma_free = gamma_free,
     gamma_values = gamma_values,
     gamma_lbound = gamma_lbound,
@@ -453,7 +448,6 @@ Meta <- function(y,
     tau_sqr_l_values = tau_sqr_l_values,
     tau_sqr_l_lbound = tau_sqr_l_lbound,
     tau_sqr_l_ubound = tau_sqr_l_ubound,
-    i_sqr_univariate = i_sqr_univariate,
     gamma_free = gamma_free,
     gamma_values = gamma_values,
     gamma_lbound = gamma_lbound,

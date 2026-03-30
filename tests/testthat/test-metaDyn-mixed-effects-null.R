@@ -139,9 +139,13 @@ lapply(
           all(
             abs(
               round(
-                x = mxEval(v_hat, fit$output),
+                x = c(
+                  mxEval(v_hat, fit$output)
+                ),
                 digits = 1
-              ) - v_hat
+              ) - c(
+                diag(v_hat)
+              )
             ) <= tol
           )
         )
@@ -154,7 +158,6 @@ lapply(
           v = v,
           x = x,
           random = TRUE,
-          i_sqr_univariate = TRUE,
           seed = 42
         )
         coefs <- coef(fit)

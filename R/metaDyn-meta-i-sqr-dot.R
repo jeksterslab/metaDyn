@@ -1,37 +1,14 @@
-.MetaISqr <- function(univariate,
-                      p,
-                      alpha) {
-  if (univariate) {
-    i_sqr <- list(
-      i_sqr = OpenMx::mxAlgebraFromString(
-        algString = paste0(
-          "cvectorize((diag2vec(tau_sqr)",
-          "/",
-          "(diag2vec(tau_sqr) + v_hat)))"
-        ),
-        name = "i_sqr"
-      )
-    )
-  } else {
-    i_sqr <- list(
-      i_sqr_l = OpenMx::mxAlgebraFromString(
-        algString = "chol(v_hat)",
-        name = "i_sqr_l"
+.MetaISqr <- function(p) {
+  i_sqr <- list(
+    i_sqr = OpenMx::mxAlgebraFromString(
+      algString = paste0(
+        "cvectorize((diag2vec(tau_sqr)",
+        "/",
+        "(diag2vec(tau_sqr) + v_hat)))"
       ),
-      i_sqr_h = OpenMx::mxAlgebraFromString(
-        algString = "solve(t(i_sqr_l)) %*% tau_sqr %*% solve(i_sqr_l)",
-        name = "i_sqr_h"
-      ),
-      i_sqr = OpenMx::mxAlgebraFromString(
-        algString = paste0(
-          "cvectorize(diag2vec(i_sqr_h)",
-          "/",
-          "(diag2vec(i_sqr_h) + 1))"
-        ),
-        name = "i_sqr"
-      )
+      name = "i_sqr"
     )
-  }
+  )
   idx <- seq_len(p)
   c(
     i_sqr,

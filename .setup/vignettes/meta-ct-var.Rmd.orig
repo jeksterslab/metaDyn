@@ -226,7 +226,7 @@ and covariance matrix
   \right) .
 \end{equation}
 
-Let the transition matrix $\boldsymbol{\beta}$ be normally distributed with the following means
+Let the drift matrix $\boldsymbol{\beta}$ be normally distributed with the following means
 \begin{equation}
   \left(
     \begin{array}{cc}
