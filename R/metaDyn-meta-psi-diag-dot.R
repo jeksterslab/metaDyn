@@ -4,8 +4,7 @@
                          psi_d_values,
                          psi_d_lbound,
                          psi_d_ubound,
-                         psi_d_equal,
-                         alpha) {
+                         psi_d_equal) {
   name <- "psi"
   psi_d <- paste0(
     name,

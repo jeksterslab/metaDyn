@@ -22,7 +22,6 @@ MetaVARMx(
   tau_sqr_l_values = NULL,
   tau_sqr_l_lbound = NULL,
   tau_sqr_l_ubound = NULL,
-  i_sqr_univariate = FALSE,
   gamma_free = NULL,
   gamma_values = NULL,
   gamma_lbound = NULL,
@@ -132,10 +131,6 @@ If \code{NULL}, no lower bounds are set.}
 \item{tau_sqr_l_ubound}{Numeric matrix
 with upper bounds for \code{tau_sqr_l}.
 If \code{NULL}, no upper bounds are set.}
-
-\item{i_sqr_univariate}{Logical.
-If \code{i_sqr_univariate = TRUE}, use the univariate formula for \eqn{I^2}.
-If \code{i_sqr_univariate = FALSE}, use the multivariate formula for \eqn{I^2}.}
 
 \item{gamma_free}{Logical matrix.
 Optional matrix of free (\code{TRUE}) parameters for \code{gamma}.}

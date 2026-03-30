@@ -8,8 +8,7 @@
                         psi_l_free,
                         psi_l_values,
                         psi_l_lbound,
-                        psi_l_ubound,
-                        alpha) {
+                        psi_l_ubound) {
   name <- "psi"
   psi_d <- paste0(
     name,

@@ -5,8 +5,7 @@
                        omega_free,
                        omega_values,
                        omega_lbound,
-                       omega_ubound,
-                       alpha) {
+                       omega_ubound) {
   .MxHelperFullMxMatrix(
     m = r,
     n = m,

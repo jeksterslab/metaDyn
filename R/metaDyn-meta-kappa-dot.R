@@ -3,8 +3,7 @@
                        kappa_free,
                        kappa_values,
                        kappa_lbound,
-                       kappa_ubound,
-                       alpha) {
+                       kappa_ubound) {
   .MxHelperFullMxMatrix(
     m = r,
     n = 1,

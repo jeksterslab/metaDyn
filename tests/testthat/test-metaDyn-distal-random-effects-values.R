@@ -174,9 +174,13 @@ lapply(
           all(
             abs(
               round(
-                x = mxEval(v_hat, fit$output),
+                x = c(
+                  mxEval(v_hat, fit$output)
+                ),
                 digits = 1
-              ) - v_hat
+              ) - c(
+                diag(v_hat)
+              )
             ) <= tol
           )
         )

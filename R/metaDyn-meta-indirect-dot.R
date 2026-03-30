@@ -1,7 +1,6 @@
 .MetaIndirect <- function(ynames,
                           xnames,
-                          znames,
-                          alpha) {
+                          znames) {
   p <- length(ynames)
   m <- length(xnames)
   r <- length(znames)

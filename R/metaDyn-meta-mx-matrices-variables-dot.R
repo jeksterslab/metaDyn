@@ -6,8 +6,7 @@
                                      xnames,
                                      vnames,
                                      random,
-                                     covariate,
-                                     v_hat_univariate) {
+                                     covariate) {
   if (covariate) {
     x_labels <- matrix(
       data = paste0(
@@ -32,8 +31,7 @@
     v_hat <- .VHat(
       v = v,
       p = p,
-      n = n,
-      univariate = v_hat_univariate
+      n = n
     )
   } else {
     v_hat <- NULL

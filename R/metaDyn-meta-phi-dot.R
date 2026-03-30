@@ -5,8 +5,7 @@
                      phi_free,
                      phi_values,
                      phi_lbound,
-                     phi_ubound,
-                     alpha) {
+                     phi_ubound) {
   .MxHelperFullMxMatrix(
     m = r,
     n = p,

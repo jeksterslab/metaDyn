@@ -22,7 +22,6 @@
                        tau_sqr_l_values,
                        tau_sqr_l_lbound,
                        tau_sqr_l_ubound,
-                       i_sqr_univariate,
                        gamma_free,
                        gamma_values,
                        gamma_lbound,
@@ -59,7 +58,6 @@
     znames <- NULL
     dimnames <- c()
   }
-  v_hat_univariate <- i_sqr_univariate
   idx <- seq_len(p)
   ynames <- paste0(
     "y",
@@ -111,8 +109,7 @@
     xnames = xnames,
     vnames = vnames,
     random = random,
-    covariate = covariate,
-    v_hat_univariate = v_hat_univariate
+    covariate = covariate
   )
   starts <- .MetaStarts(
     raw_data = raw_data,
@@ -161,7 +158,6 @@
     tau_sqr_l_values = tau_sqr_l_values,
     tau_sqr_l_lbound = tau_sqr_l_lbound,
     tau_sqr_l_ubound = tau_sqr_l_ubound,
-    i_sqr_univariate = i_sqr_univariate,
     gamma_free = gamma_free,
     gamma_values = gamma_values,
     gamma_lbound = gamma_lbound,
@@ -186,8 +182,7 @@
     psi_l_free = psi_l_free,
     psi_l_values = psi_l_values,
     psi_l_lbound = psi_l_lbound,
-    psi_l_ubound = psi_l_ubound,
-    alpha = alpha
+    psi_l_ubound = psi_l_ubound
   )
   OpenMx::mxModel(
     model = "Model",

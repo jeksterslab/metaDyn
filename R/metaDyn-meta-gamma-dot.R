@@ -5,8 +5,7 @@
                        gamma_free,
                        gamma_values,
                        gamma_lbound,
-                       gamma_ubound,
-                       alpha) {
+                       gamma_ubound) {
   .MxHelperFullMxMatrix(
     m = p,
     n = m,
