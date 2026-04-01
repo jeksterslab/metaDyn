@@ -1,5 +1,11 @@
 # Changelog
 
+## metaDyn 1.0.2
+
+### Patch
+
+- Latest development version.
+
 ## metaDyn 1.0.1
 
 CRAN release: 2026-03-24

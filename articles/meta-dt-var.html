@@ -24,7 +24,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">metaDyn</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.0.1</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.0.2</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -60,7 +60,7 @@
                         <h4 data-toc-skip class="author">Ivan Jacob
 Agaloos Pesigan</h4>
             
-            <h4 data-toc-skip class="date">2026-03-30</h4>
+            <h4 data-toc-skip class="date">2026-04-01</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/jeksterslab/metaDyn/blob/main/vignettes/meta-dt-var.Rmd"><code>vignettes/meta-dt-var.Rmd</code></a></small>
       <div class="d-none name"><code>meta-dt-var.Rmd</code></div>
@@ -424,7 +424,7 @@ to zero, simplifies the random effects.</p>
 <span><span class="co">#&gt; alpha[4,1]   -0.0659 0.0106   -6.2428 0.0000 -0.0866 -0.0452</span></span>
 <span><span class="co">#&gt; alpha[5,1]   -0.0545 0.0047  -11.6738 0.0000 -0.0636 -0.0453</span></span>
 <span><span class="co">#&gt; alpha[6,1]    0.2401 0.0150   16.0294 0.0000  0.2107  0.2694</span></span>
-<span><span class="co">#&gt; tau_sqr[1,1]  1.2396 0.1757    7.0561 0.0000  0.8952  1.5839</span></span>
+<span><span class="co">#&gt; tau_sqr[1,1]  1.2396 0.1757    7.0559 0.0000  0.8952  1.5839</span></span>
 <span><span class="co">#&gt; tau_sqr[2,1]  0.5389 0.1291    4.1756 0.0000  0.2859  0.7918</span></span>
 <span><span class="co">#&gt; tau_sqr[2,2]  1.1040 0.1566    7.0514 0.0000  0.7971  1.4108</span></span>
 <span><span class="co">#&gt; tau_sqr[3,3]  0.0138 0.0021    6.6038 0.0000  0.0097  0.0179</span></span>
@@ -437,71 +437,71 @@ to zero, simplifies the random effects.</p>
 <span><span class="co">#&gt; tau_sqr[5,5]  0.0013 0.0003    4.2040 0.0000  0.0007  0.0019</span></span>
 <span><span class="co">#&gt; tau_sqr[6,5]  0.0023 0.0007    3.1304 0.0017  0.0008  0.0037</span></span>
 <span><span class="co">#&gt; tau_sqr[6,6]  0.0214 0.0032    6.7778 0.0000  0.0152  0.0276</span></span>
-<span><span class="co">#&gt; i_sqr[1,1]    0.9982 0.0003 3860.6090 0.0000  0.9977  0.9987</span></span>
-<span><span class="co">#&gt; i_sqr[2,1]    0.9978 0.0003 3177.0180 0.0000  0.9972  0.9984</span></span>
+<span><span class="co">#&gt; i_sqr[1,1]    0.9982 0.0003 3860.4969 0.0000  0.9977  0.9987</span></span>
+<span><span class="co">#&gt; i_sqr[2,1]    0.9978 0.0003 3177.0151 0.0000  0.9972  0.9984</span></span>
 <span><span class="co">#&gt; i_sqr[3,1]    0.9293 0.0100   93.3768 0.0000  0.9098  0.9488</span></span>
 <span><span class="co">#&gt; i_sqr[4,1]    0.8879 0.0159   55.9008 0.0000  0.8568  0.9190</span></span>
 <span><span class="co">#&gt; i_sqr[5,1]    0.5975 0.0572   10.4451 0.0000  0.4854  0.7096</span></span>
-<span><span class="co">#&gt; i_sqr[6,1]    0.9537 0.0065  146.4235 0.0000  0.9409  0.9665</span></span></code></pre></div>
+<span><span class="co">#&gt; i_sqr[6,1]    0.9537 0.0065  146.4238 0.0000  0.9409  0.9665</span></span></code></pre></div>
 <div class="section level3">
 <h3 id="normal-theory-confidence-intervals">Normal Theory Confidence Intervals<a class="anchor" aria-label="anchor" href="#normal-theory-confidence-intervals"></a>
 </h3>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/stats/confint.html" class="external-link">confint</a></span><span class="op">(</span><span class="va">metavar</span>, level <span class="op">=</span> <span class="fl">0.95</span><span class="op">)</span></span>
 <span><span class="co">#&gt;                      2.5 %       97.5 %</span></span>
-<span><span class="co">#&gt; alpha[1,1]    2.754884e+00  3.191767638</span></span>
-<span><span class="co">#&gt; alpha[2,1]    1.978128e+00  2.390593248</span></span>
-<span><span class="co">#&gt; alpha[3,1]    2.481422e-01  0.295927253</span></span>
-<span><span class="co">#&gt; alpha[4,1]   -8.662880e-02 -0.045230624</span></span>
-<span><span class="co">#&gt; alpha[5,1]   -6.361185e-02 -0.045322473</span></span>
-<span><span class="co">#&gt; alpha[6,1]    2.107037e-01  0.269408553</span></span>
-<span><span class="co">#&gt; tau_sqr[1,1]  8.952441e-01  1.583868075</span></span>
-<span><span class="co">#&gt; tau_sqr[2,1]  2.859478e-01  0.791840363</span></span>
-<span><span class="co">#&gt; tau_sqr[2,2]  7.971056e-01  1.410796939</span></span>
-<span><span class="co">#&gt; tau_sqr[3,3]  9.704779e-03  0.017896782</span></span>
-<span><span class="co">#&gt; tau_sqr[4,3] -4.944528e-04  0.004622891</span></span>
-<span><span class="co">#&gt; tau_sqr[5,3]  2.204790e-04  0.002465305</span></span>
-<span><span class="co">#&gt; tau_sqr[6,3]  8.943344e-05  0.007368227</span></span>
-<span><span class="co">#&gt; tau_sqr[4,4]  6.796441e-03  0.012984100</span></span>
-<span><span class="co">#&gt; tau_sqr[5,4] -2.307948e-04  0.001705876</span></span>
-<span><span class="co">#&gt; tau_sqr[6,4]  2.085994e-03  0.008571929</span></span>
-<span><span class="co">#&gt; tau_sqr[5,5]  6.881569e-04  0.001890223</span></span>
-<span><span class="co">#&gt; tau_sqr[6,5]  8.491095e-04  0.003692927</span></span>
-<span><span class="co">#&gt; tau_sqr[6,6]  1.519138e-02  0.027551428</span></span>
-<span><span class="co">#&gt; i_sqr[1,1]    9.976655e-01  0.998679014</span></span>
-<span><span class="co">#&gt; i_sqr[2,1]    9.971649e-01  0.998395985</span></span>
-<span><span class="co">#&gt; i_sqr[3,1]    9.097638e-01  0.948774226</span></span>
-<span><span class="co">#&gt; i_sqr[4,1]    8.567712e-01  0.919033610</span></span>
-<span><span class="co">#&gt; i_sqr[5,1]    4.853548e-01  0.709577496</span></span>
-<span><span class="co">#&gt; i_sqr[6,1]    9.409422e-01  0.966474091</span></span></code></pre></div>
+<span><span class="co">#&gt; alpha[1,1]    2.7548840130  3.191767598</span></span>
+<span><span class="co">#&gt; alpha[2,1]    1.9781275976  2.390593226</span></span>
+<span><span class="co">#&gt; alpha[3,1]    0.2481422065  0.295927269</span></span>
+<span><span class="co">#&gt; alpha[4,1]   -0.0866287758 -0.045230607</span></span>
+<span><span class="co">#&gt; alpha[5,1]   -0.0636118759 -0.045322487</span></span>
+<span><span class="co">#&gt; alpha[6,1]    0.2107036915  0.269408544</span></span>
+<span><span class="co">#&gt; tau_sqr[1,1]  0.8952340791  1.583878123</span></span>
+<span><span class="co">#&gt; tau_sqr[2,1]  0.2859461519  0.791842021</span></span>
+<span><span class="co">#&gt; tau_sqr[2,2]  0.7971048330  1.410797663</span></span>
+<span><span class="co">#&gt; tau_sqr[3,3]  0.0097047686  0.017896770</span></span>
+<span><span class="co">#&gt; tau_sqr[4,3] -0.0004944567  0.004622886</span></span>
+<span><span class="co">#&gt; tau_sqr[5,3]  0.0002204809  0.002465308</span></span>
+<span><span class="co">#&gt; tau_sqr[6,3]  0.0000894128  0.007368261</span></span>
+<span><span class="co">#&gt; tau_sqr[4,4]  0.0067964394  0.012984098</span></span>
+<span><span class="co">#&gt; tau_sqr[5,4] -0.0002307961  0.001705876</span></span>
+<span><span class="co">#&gt; tau_sqr[6,4]  0.0020859982  0.008571934</span></span>
+<span><span class="co">#&gt; tau_sqr[5,5]  0.0006881582  0.001890227</span></span>
+<span><span class="co">#&gt; tau_sqr[6,5]  0.0008491006  0.003692931</span></span>
+<span><span class="co">#&gt; tau_sqr[6,6]  0.0151913841  0.027551416</span></span>
+<span><span class="co">#&gt; i_sqr[1,1]    0.9976654900  0.998679029</span></span>
+<span><span class="co">#&gt; i_sqr[2,1]    0.9971648879  0.998395989</span></span>
+<span><span class="co">#&gt; i_sqr[3,1]    0.9097638232  0.948774245</span></span>
+<span><span class="co">#&gt; i_sqr[4,1]    0.8567713523  0.919033674</span></span>
+<span><span class="co">#&gt; i_sqr[5,1]    0.4853556950  0.709578194</span></span>
+<span><span class="co">#&gt; i_sqr[6,1]    0.9409422848  0.966474114</span></span></code></pre></div>
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/stats/confint.html" class="external-link">confint</a></span><span class="op">(</span><span class="va">metavar</span>, level <span class="op">=</span> <span class="fl">0.99</span><span class="op">)</span></span>
 <span><span class="co">#&gt;                      0.5 %       99.5 %</span></span>
-<span><span class="co">#&gt; alpha[1,1]    2.6862445741  3.260407036</span></span>
-<span><span class="co">#&gt; alpha[2,1]    1.9133245052  2.455396304</span></span>
-<span><span class="co">#&gt; alpha[3,1]    0.2406345905  0.303434833</span></span>
-<span><span class="co">#&gt; alpha[4,1]   -0.0931329243 -0.038726499</span></span>
-<span><span class="co">#&gt; alpha[5,1]   -0.0664853240 -0.042449003</span></span>
-<span><span class="co">#&gt; alpha[6,1]    0.2014804999  0.278631753</span></span>
-<span><span class="co">#&gt; tau_sqr[1,1]  0.7870534629  1.692058739</span></span>
-<span><span class="co">#&gt; tau_sqr[2,1]  0.2064663286  0.871321844</span></span>
-<span><span class="co">#&gt; tau_sqr[2,2]  0.7006877195  1.507214834</span></span>
-<span><span class="co">#&gt; tau_sqr[3,3]  0.0084177218  0.019183839</span></span>
-<span><span class="co">#&gt; tau_sqr[4,3] -0.0012984457  0.005426884</span></span>
-<span><span class="co">#&gt; tau_sqr[5,3] -0.0001322087  0.002817992</span></span>
-<span><span class="co">#&gt; tau_sqr[6,3] -0.0010541479  0.008511808</span></span>
-<span><span class="co">#&gt; tau_sqr[4,4]  0.0058242889  0.013956252</span></span>
-<span><span class="co">#&gt; tau_sqr[5,4] -0.0005350678  0.002010149</span></span>
-<span><span class="co">#&gt; tau_sqr[6,4]  0.0010669799  0.009590944</span></span>
-<span><span class="co">#&gt; tau_sqr[5,5]  0.0004992986  0.002079081</span></span>
-<span><span class="co">#&gt; tau_sqr[6,5]  0.0004023135  0.004139723</span></span>
-<span><span class="co">#&gt; tau_sqr[6,6]  0.0132494744  0.029493332</span></span>
-<span><span class="co">#&gt; i_sqr[1,1]    0.9975062706  0.998838248</span></span>
-<span><span class="co">#&gt; i_sqr[2,1]    0.9969714652  0.998589405</span></span>
-<span><span class="co">#&gt; i_sqr[3,1]    0.9036348435  0.954903205</span></span>
-<span><span class="co">#&gt; i_sqr[4,1]    0.8469891220  0.928815736</span></span>
-<span><span class="co">#&gt; i_sqr[5,1]    0.4501269113  0.744805428</span></span>
-<span><span class="co">#&gt; i_sqr[6,1]    0.9369308516  0.970485441</span></span></code></pre></div>
+<span><span class="co">#&gt; alpha[1,1]    2.6862446272  3.260406983</span></span>
+<span><span class="co">#&gt; alpha[2,1]    1.9133245508  2.455396273</span></span>
+<span><span class="co">#&gt; alpha[3,1]    0.2406346291  0.303434846</span></span>
+<span><span class="co">#&gt; alpha[4,1]   -0.0931328995 -0.038726484</span></span>
+<span><span class="co">#&gt; alpha[5,1]   -0.0664853471 -0.042449016</span></span>
+<span><span class="co">#&gt; alpha[6,1]    0.2014804908  0.278631744</span></span>
+<span><span class="co">#&gt; tau_sqr[1,1]  0.7870402584  1.692071944</span></span>
+<span><span class="co">#&gt; tau_sqr[2,1]  0.2064641504  0.871324022</span></span>
+<span><span class="co">#&gt; tau_sqr[2,2]  0.7006867015  1.507215794</span></span>
+<span><span class="co">#&gt; tau_sqr[3,3]  0.0084177119  0.019183827</span></span>
+<span><span class="co">#&gt; tau_sqr[4,3] -0.0012984495  0.005426879</span></span>
+<span><span class="co">#&gt; tau_sqr[5,3] -0.0001322070  0.002817996</span></span>
+<span><span class="co">#&gt; tau_sqr[6,3] -0.0010541771  0.008511851</span></span>
+<span><span class="co">#&gt; tau_sqr[4,4]  0.0058242878  0.013956250</span></span>
+<span><span class="co">#&gt; tau_sqr[5,4] -0.0005350693  0.002010149</span></span>
+<span><span class="co">#&gt; tau_sqr[6,4]  0.0010669838  0.009590948</span></span>
+<span><span class="co">#&gt; tau_sqr[5,5]  0.0004992996  0.002079085</span></span>
+<span><span class="co">#&gt; tau_sqr[6,5]  0.0004023024  0.004139730</span></span>
+<span><span class="co">#&gt; tau_sqr[6,6]  0.0132494824  0.029493317</span></span>
+<span><span class="co">#&gt; i_sqr[1,1]    0.9975062516  0.998838267</span></span>
+<span><span class="co">#&gt; i_sqr[2,1]    0.9969714679  0.998589409</span></span>
+<span><span class="co">#&gt; i_sqr[3,1]    0.9036348417  0.954903227</span></span>
+<span><span class="co">#&gt; i_sqr[4,1]    0.8469892326  0.928815794</span></span>
+<span><span class="co">#&gt; i_sqr[5,1]    0.4501277873  0.744806102</span></span>
+<span><span class="co">#&gt; i_sqr[6,1]    0.9369309437  0.970485455</span></span></code></pre></div>
 </div>
 <div class="section level3">
 <h3 id="robust-confidence-intervals">Robust Confidence Intervals<a class="anchor" aria-label="anchor" href="#robust-confidence-intervals"></a>
@@ -509,59 +509,59 @@ to zero, simplifies the random effects.</p>
 <div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/stats/confint.html" class="external-link">confint</a></span><span class="op">(</span><span class="va">metavar</span>, level <span class="op">=</span> <span class="fl">0.95</span>, robust <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
 <span><span class="co">#&gt;                      2.5 %       97.5 %</span></span>
-<span><span class="co">#&gt; alpha[1,1]    2.7537805743  3.192871036</span></span>
-<span><span class="co">#&gt; alpha[2,1]    1.9770924664  2.391628343</span></span>
-<span><span class="co">#&gt; alpha[3,1]    0.2480753759  0.295994048</span></span>
-<span><span class="co">#&gt; alpha[4,1]   -0.0867440546 -0.045115369</span></span>
-<span><span class="co">#&gt; alpha[5,1]   -0.0636813634 -0.045252964</span></span>
-<span><span class="co">#&gt; alpha[6,1]    0.2105511499  0.269561103</span></span>
-<span><span class="co">#&gt; tau_sqr[1,1]  0.9014201656  1.577692036</span></span>
-<span><span class="co">#&gt; tau_sqr[2,1]  0.2794454598  0.798342713</span></span>
-<span><span class="co">#&gt; tau_sqr[2,2]  0.8278262475  1.380076306</span></span>
-<span><span class="co">#&gt; tau_sqr[3,3]  0.0091150814  0.018486479</span></span>
-<span><span class="co">#&gt; tau_sqr[4,3] -0.0002357302  0.004364168</span></span>
-<span><span class="co">#&gt; tau_sqr[5,3]  0.0003160426  0.002369741</span></span>
-<span><span class="co">#&gt; tau_sqr[6,3] -0.0005934771  0.008051138</span></span>
-<span><span class="co">#&gt; tau_sqr[4,4]  0.0072591202  0.012521421</span></span>
-<span><span class="co">#&gt; tau_sqr[5,4] -0.0001960138  0.001671095</span></span>
-<span><span class="co">#&gt; tau_sqr[6,4]  0.0023413352  0.008316588</span></span>
-<span><span class="co">#&gt; tau_sqr[5,5]  0.0007204302  0.001857950</span></span>
-<span><span class="co">#&gt; tau_sqr[6,5]  0.0011175500  0.003424486</span></span>
-<span><span class="co">#&gt; tau_sqr[6,6]  0.0134984363  0.029244370</span></span>
-<span><span class="co">#&gt; i_sqr[1,1]    0.9976745943  0.998669924</span></span>
-<span><span class="co">#&gt; i_sqr[2,1]    0.9972265125  0.998334358</span></span>
-<span><span class="co">#&gt; i_sqr[3,1]    0.9069556774  0.951582371</span></span>
-<span><span class="co">#&gt; i_sqr[4,1]    0.8614268937  0.914377964</span></span>
-<span><span class="co">#&gt; i_sqr[5,1]    0.4913749801  0.703557359</span></span>
-<span><span class="co">#&gt; i_sqr[6,1]    0.9374452453  0.969971047</span></span></code></pre></div>
+<span><span class="co">#&gt; alpha[1,1]    2.7537803903  3.192871220</span></span>
+<span><span class="co">#&gt; alpha[2,1]    1.9770923273  2.391628496</span></span>
+<span><span class="co">#&gt; alpha[3,1]    0.2480754094  0.295994066</span></span>
+<span><span class="co">#&gt; alpha[4,1]   -0.0867440323 -0.045115351</span></span>
+<span><span class="co">#&gt; alpha[5,1]   -0.0636813829 -0.045252980</span></span>
+<span><span class="co">#&gt; alpha[6,1]    0.2105511338  0.269561101</span></span>
+<span><span class="co">#&gt; tau_sqr[1,1]  0.9013971675  1.577715034</span></span>
+<span><span class="co">#&gt; tau_sqr[2,1]  0.2794426273  0.798345545</span></span>
+<span><span class="co">#&gt; tau_sqr[2,2]  0.8278232911  1.380079204</span></span>
+<span><span class="co">#&gt; tau_sqr[3,3]  0.0091150653  0.018486474</span></span>
+<span><span class="co">#&gt; tau_sqr[4,3] -0.0002357525  0.004364182</span></span>
+<span><span class="co">#&gt; tau_sqr[5,3]  0.0003160392  0.002369750</span></span>
+<span><span class="co">#&gt; tau_sqr[6,3] -0.0005935359  0.008051209</span></span>
+<span><span class="co">#&gt; tau_sqr[4,4]  0.0072591176  0.012521420</span></span>
+<span><span class="co">#&gt; tau_sqr[5,4] -0.0001960170  0.001671097</span></span>
+<span><span class="co">#&gt; tau_sqr[6,4]  0.0023413351  0.008316597</span></span>
+<span><span class="co">#&gt; tau_sqr[5,5]  0.0007204290  0.001857956</span></span>
+<span><span class="co">#&gt; tau_sqr[6,5]  0.0011175412  0.003424491</span></span>
+<span><span class="co">#&gt; tau_sqr[6,6]  0.0134984518  0.029244348</span></span>
+<span><span class="co">#&gt; i_sqr[1,1]    0.9976745608  0.998669958</span></span>
+<span><span class="co">#&gt; i_sqr[2,1]    0.9972265109  0.998334366</span></span>
+<span><span class="co">#&gt; i_sqr[3,1]    0.9069556478  0.951582421</span></span>
+<span><span class="co">#&gt; i_sqr[4,1]    0.8614269820  0.914378044</span></span>
+<span><span class="co">#&gt; i_sqr[5,1]    0.4913753405  0.703558549</span></span>
+<span><span class="co">#&gt; i_sqr[6,1]    0.9374453527  0.969971046</span></span></code></pre></div>
 <div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/stats/confint.html" class="external-link">confint</a></span><span class="op">(</span><span class="va">metavar</span>, level <span class="op">=</span> <span class="fl">0.99</span>, robust <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
 <span><span class="co">#&gt;                      0.5 %       99.5 %</span></span>
-<span><span class="co">#&gt; alpha[1,1]    2.684794e+00  3.261857148</span></span>
-<span><span class="co">#&gt; alpha[2,1]    1.911964e+00  2.456756649</span></span>
-<span><span class="co">#&gt; alpha[3,1]    2.405468e-01  0.303522617</span></span>
-<span><span class="co">#&gt; alpha[4,1]   -9.328440e-02 -0.038575028</span></span>
-<span><span class="co">#&gt; alpha[5,1]   -6.657667e-02 -0.042357652</span></span>
+<span><span class="co">#&gt; alpha[1,1]    2.684794e+00  3.261857389</span></span>
+<span><span class="co">#&gt; alpha[2,1]    1.911964e+00  2.456756848</span></span>
+<span><span class="co">#&gt; alpha[3,1]    2.405468e-01  0.303522632</span></span>
+<span><span class="co">#&gt; alpha[4,1]   -9.328437e-02 -0.038575011</span></span>
+<span><span class="co">#&gt; alpha[5,1]   -6.657669e-02 -0.042357668</span></span>
 <span><span class="co">#&gt; alpha[6,1]    2.012800e-01  0.278832239</span></span>
-<span><span class="co">#&gt; tau_sqr[1,1]  7.951702e-01  1.683942048</span></span>
-<span><span class="co">#&gt; tau_sqr[2,1]  1.979208e-01  0.879867380</span></span>
-<span><span class="co">#&gt; tau_sqr[2,2]  7.410615e-01  1.466841078</span></span>
-<span><span class="co">#&gt; tau_sqr[3,3]  7.642728e-03  0.019958833</span></span>
-<span><span class="co">#&gt; tau_sqr[4,3] -9.584266e-04  0.005086865</span></span>
-<span><span class="co">#&gt; tau_sqr[5,3] -6.616841e-06  0.002692401</span></span>
-<span><span class="co">#&gt; tau_sqr[6,3] -1.951645e-03  0.009409305</span></span>
-<span><span class="co">#&gt; tau_sqr[4,4]  6.432353e-03  0.013348188</span></span>
-<span><span class="co">#&gt; tau_sqr[5,4] -4.893578e-04  0.001964439</span></span>
-<span><span class="co">#&gt; tau_sqr[6,4]  1.402555e-03  0.009255369</span></span>
-<span><span class="co">#&gt; tau_sqr[5,5]  5.417129e-04  0.002036667</span></span>
-<span><span class="co">#&gt; tau_sqr[6,5]  7.551041e-04  0.003786932</span></span>
-<span><span class="co">#&gt; tau_sqr[6,6]  1.102457e-02  0.031718236</span></span>
-<span><span class="co">#&gt; i_sqr[1,1]    9.975182e-01  0.998826302</span></span>
-<span><span class="co">#&gt; i_sqr[2,1]    9.970525e-01  0.998508413</span></span>
-<span><span class="co">#&gt; i_sqr[3,1]    8.999443e-01  0.958593733</span></span>
-<span><span class="co">#&gt; i_sqr[4,1]    8.531077e-01  0.922697181</span></span>
-<span><span class="co">#&gt; i_sqr[5,1]    4.580387e-01  0.736893627</span></span>
-<span><span class="co">#&gt; i_sqr[6,1]    9.323351e-01  0.975081221</span></span></code></pre></div>
+<span><span class="co">#&gt; tau_sqr[1,1]  7.951399e-01  1.683972272</span></span>
+<span><span class="co">#&gt; tau_sqr[2,1]  1.979171e-01  0.879871102</span></span>
+<span><span class="co">#&gt; tau_sqr[2,2]  7.410576e-01  1.466844897</span></span>
+<span><span class="co">#&gt; tau_sqr[3,3]  7.642710e-03  0.019958829</span></span>
+<span><span class="co">#&gt; tau_sqr[4,3] -9.584545e-04  0.005086884</span></span>
+<span><span class="co">#&gt; tau_sqr[5,3] -6.622135e-06  0.002692411</span></span>
+<span><span class="co">#&gt; tau_sqr[6,3] -1.951724e-03  0.009409397</span></span>
+<span><span class="co">#&gt; tau_sqr[4,4]  6.432350e-03  0.013348187</span></span>
+<span><span class="co">#&gt; tau_sqr[5,4] -4.893618e-04  0.001964442</span></span>
+<span><span class="co">#&gt; tau_sqr[6,4]  1.402553e-03  0.009255379</span></span>
+<span><span class="co">#&gt; tau_sqr[5,5]  5.417105e-04  0.002036674</span></span>
+<span><span class="co">#&gt; tau_sqr[6,5]  7.550931e-04  0.003786939</span></span>
+<span><span class="co">#&gt; tau_sqr[6,6]  1.102459e-02  0.031718208</span></span>
+<span><span class="co">#&gt; i_sqr[1,1]    9.975182e-01  0.998826346</span></span>
+<span><span class="co">#&gt; i_sqr[2,1]    9.970525e-01  0.998508423</span></span>
+<span><span class="co">#&gt; i_sqr[3,1]    8.999443e-01  0.958593795</span></span>
+<span><span class="co">#&gt; i_sqr[4,1]    8.531078e-01  0.922697259</span></span>
+<span><span class="co">#&gt; i_sqr[5,1]    4.580389e-01  0.736894947</span></span>
+<span><span class="co">#&gt; i_sqr[6,1]    9.323352e-01  0.975081203</span></span></code></pre></div>
 <ul>
 <li>The fixed part of the random-effects model gives pooled means
 <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="bold-italic">𝜶</mi><mo>=</mo><mi mathvariant="double-struck">𝔼</mi><mrow><mo stretchy="true" form="prefix">[</mo><mrow><mi mathvariant="normal">V</mi><mi mathvariant="normal">e</mi><mi mathvariant="normal">c</mi></mrow><mrow><mo stretchy="true" form="prefix">(</mo><mi mathvariant="bold-italic">𝝁</mi><mo>,</mo><mi mathvariant="bold-italic">𝜷</mi><mo stretchy="true" form="postfix">)</mo></mrow><mo stretchy="true" form="postfix">]</mo></mrow></mrow><annotation encoding="application/x-tex">\boldsymbol{\alpha} = \mathbb{E} \left[ \mathrm{Vec} \left( \boldsymbol{\mu}, \boldsymbol{\beta} \right)  \right]</annotation></semantics></math>.</li>
@@ -578,20 +578,20 @@ across individuals.</li>
 <span><span class="va">means</span></span>
 <span><span class="co">#&gt;          alpha</span></span>
 <span><span class="co">#&gt; y1  2.97332581</span></span>
-<span><span class="co">#&gt; y2  2.18436040</span></span>
-<span><span class="co">#&gt; y3  0.27203471</span></span>
-<span><span class="co">#&gt; y4 -0.06592971</span></span>
-<span><span class="co">#&gt; y5 -0.05446716</span></span>
-<span><span class="co">#&gt; y6  0.24005613</span></span>
+<span><span class="co">#&gt; y2  2.18436041</span></span>
+<span><span class="co">#&gt; y3  0.27203474</span></span>
+<span><span class="co">#&gt; y4 -0.06592969</span></span>
+<span><span class="co">#&gt; y5 -0.05446718</span></span>
+<span><span class="co">#&gt; y6  0.24005612</span></span>
 <span><span class="va">covariances</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/extract.html">extract</a></span><span class="op">(</span><span class="va">metavar</span>, what <span class="op">=</span> <span class="st">"tau_sqr"</span><span class="op">)</span></span>
 <span><span class="va">covariances</span></span>
-<span><span class="co">#&gt;           y1        y2          y3           y4           y5          y6</span></span>
-<span><span class="co">#&gt; y1 1.2395561 0.5388941 0.000000000 0.0000000000 0.0000000000 0.000000000</span></span>
-<span><span class="co">#&gt; y2 0.5388941 1.1039513 0.000000000 0.0000000000 0.0000000000 0.000000000</span></span>
-<span><span class="co">#&gt; y3 0.0000000 0.0000000 0.013800780 0.0020642191 0.0013428919 0.003728830</span></span>
-<span><span class="co">#&gt; y4 0.0000000 0.0000000 0.002064219 0.0098902705 0.0007375405 0.005328962</span></span>
-<span><span class="co">#&gt; y5 0.0000000 0.0000000 0.001342892 0.0007375405 0.0012891900 0.002271018</span></span>
-<span><span class="co">#&gt; y6 0.0000000 0.0000000 0.003728830 0.0053289618 0.0022710181 0.021371403</span></span></code></pre></div>
+<span><span class="co">#&gt;           y1        y2          y3          y4          y5          y6</span></span>
+<span><span class="co">#&gt; y1 1.2395561 0.5388941 0.000000000 0.000000000 0.000000000 0.000000000</span></span>
+<span><span class="co">#&gt; y2 0.5388941 1.1039512 0.000000000 0.000000000 0.000000000 0.000000000</span></span>
+<span><span class="co">#&gt; y3 0.0000000 0.0000000 0.013800769 0.002064215 0.001342895 0.003728837</span></span>
+<span><span class="co">#&gt; y4 0.0000000 0.0000000 0.002064215 0.009890269 0.000737540 0.005328966</span></span>
+<span><span class="co">#&gt; y5 0.0000000 0.0000000 0.001342895 0.000737540 0.001289192 0.002271016</span></span>
+<span><span class="co">#&gt; y6 0.0000000 0.0000000 0.003728837 0.005328966 0.002271016 0.021371400</span></span></code></pre></div>
 </div>
 </div>
 <div class="section level2">
