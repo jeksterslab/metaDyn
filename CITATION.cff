@@ -8,7 +8,7 @@ message: 'To cite package "metaDyn" in publications use:'
 type: software
 license: MIT
 title: 'metaDyn: Multivariate Meta-Analysis of Dynamic Model Estimates'
-version: 1.0.1
+version: 1.0.2
 identifiers:
 - type: doi
   value: 10.32614/CRAN.package.metaDyn
@@ -29,7 +29,7 @@ preferred-citation:
     email: r.jeksterslab@gmail.com
     orcid: https://orcid.org/0000-0003-4818-8420
   year: '2026'
-  notes: R package version 1.0.1
+  notes: R package version 1.0.2
 repository: https://CRAN.R-project.org/package=metaDyn
 repository-code: https://github.com/jeksterslab/metaDyn
 url: https://jeksterslab.github.io/metaDyn/
