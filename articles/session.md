@@ -116,7 +116,7 @@ installed.packages()[, c("Package", "Version")]
 #> deSolve           "deSolve"           "1.42"      
 #> devtools          "devtools"          "2.5.0.9000"
 #> diagram           "diagram"           "1.6.5"     
-#> dials             "dials"             "1.4.2"     
+#> dials             "dials"             "1.4.3"     
 #> DiceDesign        "DiceDesign"        "1.10"      
 #> diffobj           "diffobj"           "0.3.6"     
 #> digest            "digest"            "0.6.39"    
@@ -264,17 +264,17 @@ installed.packages()[, c("Package", "Version")]
 #> openxlsx          "openxlsx"          "4.2.8.1"   
 #> ordinal           "ordinal"           "2025.12-29"
 #> otel              "otel"              "0.2.0"     
-#> pak               "pak"               "0.9.2"     
+#> pak               "pak"               "0.9.3"     
 #> pan               "pan"               "1.9"       
 #> pander            "pander"            "0.6.6"     
 #> parallelly        "parallelly"        "1.46.1"    
-#> parsnip           "parsnip"           "1.4.1"     
+#> parsnip           "parsnip"           "1.5.0"     
 #> patchwork         "patchwork"         "1.3.2"     
 #> pbapply           "pbapply"           "1.7-4"     
 #> pbivnorm          "pbivnorm"          "0.6.0"     
 #> pbkrtest          "pbkrtest"          "0.5.5"     
 #> pcaPP             "pcaPP"             "2.0-5"     
-#> pdftools          "pdftools"          "3.7.0"     
+#> pdftools          "pdftools"          "3.8.0"     
 #> pillar            "pillar"            "1.11.1"    
 #> pkgbuild          "pkgbuild"          "1.4.8"     
 #> pkgconfig         "pkgconfig"         "2.0.3"     
@@ -296,13 +296,13 @@ installed.packages()[, c("Package", "Version")]
 #> proto             "proto"             "1.0.0"     
 #> ps                "ps"                "1.9.2"     
 #> psych             "psych"             "2.6.3"     
-#> purrr             "purrr"             "1.2.1"     
+#> purrr             "purrr"             "1.2.2"     
 #> qgraph            "qgraph"            "1.9.8"     
 #> qpdf              "qpdf"              "1.4.1"     
 #> quadprog          "quadprog"          "1.5-8"     
 #> quantreg          "quantreg"          "6.1"       
 #> quarto            "quarto"            "1.5.1"     
-#> QuickJSR          "QuickJSR"          "1.9.0"     
+#> QuickJSR          "QuickJSR"          "1.9.1"     
 #> R.cache           "R.cache"           "0.17.0"    
 #> R.methodsS3       "R.methodsS3"       "1.8.2"     
 #> R.oo              "R.oo"              "1.27.1"    
@@ -334,7 +334,7 @@ installed.packages()[, c("Package", "Version")]
 #> remotes           "remotes"           "2.5.0"     
 #> reprex            "reprex"            "2.1.1"     
 #> reshape2          "reshape2"          "1.4.5"     
-#> reticulate        "reticulate"        "1.45.0"    
+#> reticulate        "reticulate"        "1.46.0"    
 #> rex               "rex"               "1.2.2"     
 #> rhdf5             "rhdf5"             "2.54.1"    
 #> rhdf5filters      "rhdf5filters"      "1.22.0"    
@@ -408,8 +408,8 @@ installed.packages()[, c("Package", "Version")]
 #> usethis           "usethis"           "3.2.1"     
 #> utf8              "utf8"              "1.2.6"     
 #> uuid              "uuid"              "1.2-2"     
-#> V8                "V8"                "8.0.1"     
-#> vctrs             "vctrs"             "0.7.2"     
+#> V8                "V8"                "8.1.0"     
+#> vctrs             "vctrs"             "0.7.3"     
 #> viridisLite       "viridisLite"       "0.4.3"     
 #> vroom             "vroom"             "1.7.1"     
 #> waldo             "waldo"             "0.6.2"     
@@ -477,10 +477,10 @@ installed.packages()[, c("Package", "Version")]
     #> Socket(s):                               1
     #> Stepping:                                0
     #> Frequency boost:                         enabled
-    #> CPU(s) scaling MHz:                      54%
+    #> CPU(s) scaling MHz:                      53%
     #> CPU max MHz:                             5060.9761
     #> CPU min MHz:                             1219.5129
-    #> BogoMIPS:                                4990.23
+    #> BogoMIPS:                                4990.49
     #> Flags:                                   fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush mmx fxsr sse sse2 ht syscall nx mmxext fxsr_opt pdpe1gb rdtscp lm constant_tsc rep_good amd_lbr_v2 nopl xtopology nonstop_tsc cpuid extd_apicid aperfmperf rapl pni pclmulqdq monitor ssse3 fma cx16 sse4_1 sse4_2 movbe popcnt aes xsave avx f16c rdrand lahf_lm cmp_legacy svm extapic cr8_legacy abm sse4a misalignsse 3dnowprefetch osvw ibs skinit wdt tce topoext perfctr_core perfctr_nb bpext perfctr_llc mwaitx cpb cat_l3 cdp_l3 hw_pstate ssbd mba perfmon_v2 ibrs ibpb stibp ibrs_enhanced vmmcall fsgsbase tsc_adjust bmi1 avx2 smep bmi2 erms invpcid cqm rdt_a avx512f avx512dq rdseed adx smap avx512ifma clflushopt clwb avx512cd sha_ni avx512bw avx512vl xsaveopt xsavec xgetbv1 xsaves cqm_llc cqm_occup_llc cqm_mbm_total cqm_mbm_local user_shstk avx_vnni avx512_bf16 clzero irperf xsaveerptr rdpru wbnoinvd cppc arat npt lbrv svm_lock nrip_save tsc_scale vmcb_clean flushbyasid decodeassists pausefilter pfthreshold v_vmsave_vmload vgif x2avic v_spec_ctrl vnmi avx512vbmi umip pku ospke avx512_vbmi2 gfni vaes vpclmulqdq avx512_vnni avx512_bitalg avx512_vpopcntdq rdpid bus_lock_detect movdiri movdir64b overflow_recov succor smca fsrm avx512_vp2intersect flush_l1d amd_lbr_pmc_freeze
     #> Virtualization:                          AMD-V
     #> L1d cache:                               768 KiB (16 instances)
@@ -510,6 +510,6 @@ installed.packages()[, c("Package", "Version")]
 ## Memory
 
     #>                total        used        free      shared  buff/cache   available
-    #> Mem:            44Gi       5.4Gi        23Gi        14Mi        16Gi        39Gi
+    #> Mem:            44Gi       6.9Gi        26Gi        48Mi        11Gi        37Gi
     #> Swap:           22Gi          0B        22Gi
-    #> Total:          66Gi       5.4Gi        45Gi
+    #> Total:          66Gi       6.9Gi        49Gi
