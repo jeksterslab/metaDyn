@@ -1,6 +1,7 @@
 library(testthat)
 library(OpenMx)
-library(metaSEM)
+if (requireNamespace("metaSEM")) {
+  library(metaSEM)
+}
 library(metaDyn)
-
 test_check("metaDyn")
