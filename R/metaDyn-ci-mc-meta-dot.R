@@ -23,17 +23,23 @@
 
     out_vec <- c(out)
 
-    out_names <- rownames(out)
-    if (is.null(out_names) || length(out_names) != length(out_vec)) {
-      out_names <- names(out_vec)
-    }
-    if (is.null(out_names) || anyNA(out_names) || any(!nzchar(out_names))) {
-      out_names <- paste0(
-        name,
-        "[",
-        seq_along(out_vec),
-        "]"
-      )
+    if (grepl(pattern = "^ie_", x = name) && length(out_vec) == 1L) {
+      out_names <- name
+    } else {
+      out_names <- rownames(out)
+
+      if (is.null(out_names) || length(out_names) != length(out_vec)) {
+        out_names <- names(out_vec)
+      }
+
+      if (is.null(out_names) || anyNA(out_names) || any(!nzchar(out_names))) {
+        out_names <- paste0(
+          name,
+          "[",
+          seq_along(out_vec),
+          "]"
+        )
+      }
     }
 
     names(out_vec) <- out_names
@@ -329,7 +335,8 @@
     X = draws_list,
     FUN = function(x) {
       x[
-        ok, ,
+        ok,
+        ,
         drop = FALSE
       ]
     }
