@@ -1,4 +1,4 @@
-## ---- test-metaDyn-distal-mixed-effects-null
+## ---- test-metaDyn-distal-mixed-effects-stochastic-x
 lapply(
   X = 1,
   FUN = function(i,
@@ -6,6 +6,8 @@ lapply(
                  alpha,
                  tau_sqr,
                  v_hat,
+                 mu_x,
+                 sigma_x,
                  gamma,
                  kappa,
                  phi,
@@ -15,9 +17,7 @@ lapply(
     set.seed(42)
     if (!identical(Sys.getenv("NOT_CRAN"), "true") && !interactive()) {
       message("CRAN: tests skipped.")
-      # nolint start
       return(invisible(NULL))
-      # nolint end
     }
     if (identical(Sys.getenv("GITHUB_TEST"), "true")) {
       ci <- TRUE
@@ -49,7 +49,13 @@ lapply(
         x <- lapply(
           X = seq_len(n),
           FUN = function(i) {
-            rnorm(n = 3)
+            c(
+              MASS::mvrnorm(
+                n = 1,
+                mu = mu_x,
+                Sigma = sigma_x
+              )
+            )
           }
         )
         eta <- lapply(
@@ -83,7 +89,7 @@ lapply(
           FUN = function(i) {
             delta <- MASS::mvrnorm(
               n = 1,
-              mu = c(0, 0, 0, 0),
+              mu = rep(0, length(kappa)),
               Sigma = psi
             )
             c(
@@ -97,7 +103,8 @@ lapply(
           x = x,
           z = z,
           random = TRUE,
-          fixed_x = TRUE,
+          fixed_x = FALSE,
+          robust = robust,
           seed = 42
         )
         if (ci) {
@@ -111,14 +118,20 @@ lapply(
           confint(fit, robust = TRUE)
           summary(fit, robust = TRUE)
         }
-        coefs <- coef(fit)
+        extracted <- extract(fit)
+        testthat::expect_false(
+          is.null(extracted$mu_x)
+        )
+        testthat::expect_false(
+          is.null(extracted$sigma_x)
+        )
         testthat::expect_true(
           all(
             abs(
               round(
-                x = coefs[grep("^alpha", names(coefs))],
+                x = c(extracted$mu_x),
                 digits = 0
-              ) - alpha
+              ) - mu_x
             ) <= tol
           )
         )
@@ -126,19 +139,9 @@ lapply(
           all(
             abs(
               round(
-                x = c(mxEval(alpha, fit$output)),
-                digits = 0
-              ) - alpha
-            ) <= tol
-          )
-        )
-        testthat::expect_true(
-          all(
-            abs(
-              round(
-                x = mxEval(tau_sqr, fit$output),
+                x = extracted$sigma_x,
                 digits = 1
-              ) - tau_sqr
+              ) - sigma_x
             ) <= tol
           )
         )
@@ -146,43 +149,9 @@ lapply(
           all(
             abs(
               round(
-                x = c(
-                  mxEval(v_hat, fit$output)
-                ),
+                x = mxEval(gamma, fit$output),
                 digits = 1
-              ) - c(
-                diag(v_hat)
-              )
-            ) <= tol
-          )
-        )
-        testthat::expect_true(
-          all(
-            abs(
-              round(
-                x = coefs[grep("^kappa", names(coefs))],
-                digits = 0
-              ) - kappa
-            ) <= tol
-          )
-        )
-        testthat::expect_true(
-          all(
-            abs(
-              round(
-                x = c(mxEval(kappa, fit$output)),
-                digits = 0
-              ) - kappa
-            ) <= tol
-          )
-        )
-        testthat::expect_true(
-          all(
-            abs(
-              round(
-                x = coefs[grep("^phi", names(coefs))],
-                digits = 0
-              ) - c(phi)
+              ) - gamma
             ) <= tol
           )
         )
@@ -200,38 +169,8 @@ lapply(
           all(
             abs(
               round(
-                x = coefs[grep("^omega", names(coefs))],
-                digits = 1
-              ) - c(omega)
-            ) <= tol
-          )
-        )
-        testthat::expect_true(
-          all(
-            abs(
-              round(
                 x = mxEval(omega, fit$output),
                 digits = 1
-              ) - omega
-            ) <= tol
-          )
-        )
-        testthat::expect_true(
-          all(
-            abs(
-              round(
-                x = mxEval(psi, fit$output),
-                digits = 1
-              ) - psi
-            ) <= tol
-          )
-        )
-        testthat::expect_true(
-          all(
-            abs(
-              round(
-                x = mxEval(direct, fit$output),
-                digits = 2
               ) - omega
             ) <= tol
           )
@@ -259,10 +198,12 @@ lapply(
       }
     )
   },
-  text = "test-metaDyn-distal-mixed-effects-null",
+  text = "test-metaDyn-distal-mixed-effects-stochastic-x",
   alpha = rep(x = 0.50, times = 2),
   tau_sqr = 0.50 * diag(2),
   v_hat = 0.10 * diag(2),
+  mu_x = c(0.25, -0.25, 0.50),
+  sigma_x = diag(c(0.50, 0.75, 1.00)),
   gamma = matrix(
     data = 0.50,
     nrow = 2,

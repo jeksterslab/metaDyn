@@ -59,6 +59,7 @@ lapply(
           y = y,
           v = v,
           random = FALSE,
+          fixed_x = TRUE,
           seed = 42
         )
         if (ci) {
@@ -114,6 +115,7 @@ lapply(
             y = y,
             v = v,
             random = FALSE,
+            fixed_x = TRUE,
             seed = 42
           )
           coefs <- coef(fit)

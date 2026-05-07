@@ -24,6 +24,9 @@
 #'   estimates random effects.
 #'   If `random = FALSE`,
 #'   `tau_sqr` is a null matrix.
+#' @param fixed_x Logical.
+#'   If `fixed_x = TRUE` covariates are treated as fixed.
+#'   If `fixed_x = FALSE` covariates are treated as stochastic.
 #' @param alpha_free Logical vector.
 #'   Optional vector of free (`TRUE`) parameters for `alpha`.
 #' @param alpha_values Numeric vector.
@@ -62,6 +65,40 @@
 #'   If `NULL`, no lower bounds are set.
 #' @param tau_sqr_l_ubound Numeric matrix
 #'   with upper bounds for `tau_sqr_l`.
+#'   If `NULL`, no upper bounds are set.
+#' @param mu_x_free Logical vector.
+#'   Optional vector of free (`TRUE`) parameters for `mu_x`.
+#' @param mu_x_values Numeric vector.
+#'   Optional vector of starting values for `mu_x`.
+#' @param mu_x_lbound Numeric vector.
+#'   Optional vector of lower bound values for `mu_x`.
+#' @param mu_x_ubound Numeric vector.
+#'   Optional vector of upper bound values for `mu_x`.
+#' @param sigma_x_d_free Logical vector
+#'   indicating free/fixed status of the elements of `sigma_x_d`.
+#'   If `NULL`, all element of `sigma_x_d` are free.
+#' @param sigma_x_d_values Numeric vector
+#'   with starting values for `sigma_x_d`.
+#'   If `NULL`, defaults to a vector of ones.
+#' @param sigma_x_d_lbound Numeric vector
+#'   with lower bounds for `sigma_x_d`.
+#'   If `NULL`, no lower bounds are set.
+#' @param sigma_x_d_ubound Numeric vector
+#'   with upper bounds for `sigma_x_d`.
+#'   If `NULL`, no upper bounds are set.
+#' @param sigma_x_l_free Logical matrix
+#'   indicating which strictly-lower-triangular elements
+#'   of `sigma_x_l` are free.
+#'   Ignored if `sigma_x_diag = TRUE`.
+#' @param sigma_x_l_values Numeric matrix
+#'   of starting values for the strictly-lower-triangular elements
+#'   of `sigma_x_l`.
+#'   If `NULL`, defaults to a null matrix.
+#' @param sigma_x_l_lbound Numeric matrix
+#'   with lower bounds for `sigma_x_l`.
+#'   If `NULL`, no lower bounds are set.
+#' @param sigma_x_l_ubound Numeric matrix
+#'   with upper bounds for `sigma_x_l`.
 #'   If `NULL`, no upper bounds are set.
 #' @param gamma_free Logical matrix.
 #'   Optional matrix of free (`TRUE`) parameters for `gamma`.
@@ -258,6 +295,7 @@ Meta <- function(y,
                  x = NULL,
                  z = NULL,
                  random = TRUE,
+                 fixed_x = TRUE,
                  alpha_free = NULL,
                  alpha_values = NULL,
                  alpha_lbound = NULL,
@@ -271,6 +309,18 @@ Meta <- function(y,
                  tau_sqr_l_values = NULL,
                  tau_sqr_l_lbound = NULL,
                  tau_sqr_l_ubound = NULL,
+                 mu_x_free = NULL,
+                 mu_x_values = NULL,
+                 mu_x_lbound = NULL,
+                 mu_x_ubound = NULL,
+                 sigma_x_d_free = NULL,
+                 sigma_x_d_values = NULL,
+                 sigma_x_d_lbound = NULL,
+                 sigma_x_d_ubound = NULL,
+                 sigma_x_l_free = NULL,
+                 sigma_x_l_values = NULL,
+                 sigma_x_l_lbound = NULL,
+                 sigma_x_l_ubound = NULL,
                  gamma_free = NULL,
                  gamma_values = NULL,
                  gamma_lbound = NULL,
@@ -305,6 +355,21 @@ Meta <- function(y,
                  max_attempts = 10,
                  silent = FALSE,
                  ncores = NULL) {
+  if (!is.null(x) && fixed_x) {
+    x_mat <- do.call(
+      what = "rbind",
+      args = x
+    )
+    if (anyNA(x_mat)) {
+      stop(
+        paste(
+          "There are missing values in x.",
+          "Try `fixed_x = FALSE`."
+        ),
+        call. = FALSE
+      )
+    }
+  }
   .MetaCheckFree(
     alpha_free = alpha_free,
     alpha_values = alpha_values,
@@ -313,6 +378,12 @@ Meta <- function(y,
     tau_sqr_d_values = tau_sqr_d_values,
     tau_sqr_l_free = tau_sqr_l_free,
     tau_sqr_l_values = tau_sqr_l_values,
+    mu_x_free = mu_x_free,
+    mu_x_values = mu_x_values,
+    sigma_x_d_free = sigma_x_d_free,
+    sigma_x_d_values = sigma_x_d_values,
+    sigma_x_l_free = sigma_x_l_free,
+    sigma_x_l_values = sigma_x_l_values,
     gamma_free = gamma_free,
     gamma_values = gamma_values,
     kappa_free = kappa_free,
@@ -373,6 +444,7 @@ Meta <- function(y,
     r = r,
     n = n,
     random = random,
+    fixed_x = fixed_x,
     covariate = covariate,
     distal = distal,
     alpha_free = alpha_free,
@@ -388,6 +460,18 @@ Meta <- function(y,
     tau_sqr_l_values = tau_sqr_l_values,
     tau_sqr_l_lbound = tau_sqr_l_lbound,
     tau_sqr_l_ubound = tau_sqr_l_ubound,
+    mu_x_free = mu_x_free,
+    mu_x_values = mu_x_values,
+    mu_x_lbound = mu_x_lbound,
+    mu_x_ubound = mu_x_ubound,
+    sigma_x_d_free = sigma_x_d_free,
+    sigma_x_d_values = sigma_x_d_values,
+    sigma_x_d_lbound = sigma_x_d_lbound,
+    sigma_x_d_ubound = sigma_x_d_ubound,
+    sigma_x_l_free = sigma_x_l_free,
+    sigma_x_l_values = sigma_x_l_values,
+    sigma_x_l_lbound = sigma_x_l_lbound,
+    sigma_x_l_ubound = sigma_x_l_ubound,
     gamma_free = gamma_free,
     gamma_values = gamma_values,
     gamma_lbound = gamma_lbound,
@@ -435,6 +519,7 @@ Meta <- function(y,
     random = random,
     covariate = covariate,
     distal = distal,
+    fixed_x = fixed_x,
     alpha_free = alpha_free,
     alpha_values = alpha_values,
     alpha_lbound = alpha_lbound,
@@ -448,6 +533,18 @@ Meta <- function(y,
     tau_sqr_l_values = tau_sqr_l_values,
     tau_sqr_l_lbound = tau_sqr_l_lbound,
     tau_sqr_l_ubound = tau_sqr_l_ubound,
+    mu_x_free = mu_x_free,
+    mu_x_values = mu_x_values,
+    mu_x_lbound = mu_x_lbound,
+    mu_x_ubound = mu_x_ubound,
+    sigma_x_d_free = sigma_x_d_free,
+    sigma_x_d_values = sigma_x_d_values,
+    sigma_x_d_lbound = sigma_x_d_lbound,
+    sigma_x_d_ubound = sigma_x_d_ubound,
+    sigma_x_l_free = sigma_x_l_free,
+    sigma_x_l_values = sigma_x_l_values,
+    sigma_x_l_lbound = sigma_x_l_lbound,
+    sigma_x_l_ubound = sigma_x_l_ubound,
     gamma_free = gamma_free,
     gamma_values = gamma_values,
     gamma_lbound = gamma_lbound,

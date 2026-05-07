@@ -52,6 +52,19 @@ lapply(
             rnorm(n = 3)
           }
         )
+        eta <- lapply(
+          X = seq_len(n),
+          FUN = function(i) {
+            upsilon <- MASS::mvrnorm(
+              n = 1,
+              mu = c(0, 0),
+              Sigma = tau_sqr
+            )
+            c(
+              alpha + gamma %*% x[[i]] + upsilon
+            )
+          }
+        )
         y <- lapply(
           X = seq_len(n),
           FUN = function(i) {
@@ -60,13 +73,8 @@ lapply(
               mu = c(0, 0),
               Sigma = v[[i]]
             )
-            upsilon <- MASS::mvrnorm(
-              n = 1,
-              mu = c(0, 0),
-              Sigma = tau_sqr
-            )
             c(
-              alpha + gamma %*% x[[i]] + upsilon + epsilon
+              eta[[i]] + epsilon
             )
           }
         )
@@ -79,7 +87,7 @@ lapply(
               Sigma = psi
             )
             c(
-              kappa + phi %*% y[[i]] + omega %*% x[[i]] + delta
+              kappa + phi %*% eta[[i]] + omega %*% x[[i]] + delta
             )
           }
         )
@@ -90,6 +98,7 @@ lapply(
             x = x,
             z = z,
             random = TRUE,
+            fixed_x = TRUE,
             seed = 42,
             alpha_free = rep(
               x = FALSE,
@@ -104,6 +113,7 @@ lapply(
             x = x,
             z = z,
             random = TRUE,
+            fixed_x = TRUE,
             seed = 42,
             tau_sqr_d_free = rep(
               x = FALSE,
@@ -118,6 +128,7 @@ lapply(
             x = x,
             z = z,
             random = TRUE,
+            fixed_x = TRUE,
             seed = 42,
             tau_sqr_l_free = rep(
               x = FALSE,
@@ -132,6 +143,7 @@ lapply(
             x = x,
             z = z,
             random = TRUE,
+            fixed_x = TRUE,
             seed = 42,
             gamma_free = rep(
               x = FALSE,
@@ -146,6 +158,7 @@ lapply(
             x = x,
             z = z,
             random = TRUE,
+            fixed_x = TRUE,
             seed = 42,
             phi_free = rep(
               x = FALSE,
@@ -160,6 +173,7 @@ lapply(
             x = x,
             z = z,
             random = TRUE,
+            fixed_x = TRUE,
             seed = 42,
             omega_free = rep(
               x = FALSE,
@@ -174,6 +188,7 @@ lapply(
             x = x,
             z = z,
             random = TRUE,
+            fixed_x = TRUE,
             seed = 42,
             psi_d_free = rep(
               x = FALSE,
@@ -188,6 +203,7 @@ lapply(
             x = x,
             z = z,
             random = TRUE,
+            fixed_x = TRUE,
             seed = 42,
             psi_diag = FALSE,
             psi_l_free = rep(
@@ -195,6 +211,70 @@ lapply(
               times = 4 * 4
             )
           )
+        )
+        testthat::expect_error(
+          Meta(
+            y = y,
+            v = v,
+            x = x,
+            z = z,
+            random = TRUE,
+            fixed_x = FALSE,
+            seed = 42,
+            mu_x_free = rep(
+              x = FALSE,
+              times = 3
+            )
+          )
+        )
+        testthat::expect_error(
+          Meta(
+            y = y,
+            v = v,
+            x = x,
+            z = z,
+            random = TRUE,
+            fixed_x = FALSE,
+            seed = 42,
+            sigma_x_d_free = rep(
+              x = FALSE,
+              times = 3
+            )
+          )
+        )
+        testthat::expect_error(
+          Meta(
+            y = y,
+            v = v,
+            x = x,
+            z = z,
+            random = TRUE,
+            fixed_x = FALSE,
+            seed = 42,
+            sigma_x_l_free = matrix(
+              data = FALSE,
+              nrow = 3,
+              ncol = 3
+            )
+          )
+        )
+        testthat::expect_error(
+          Meta(
+            y = y,
+            v = v,
+            x = lapply(
+              X = x,
+              FUN = function(xi) {
+                xi[1] <- NA_real_
+                xi
+              }
+            ),
+            z = z,
+            random = TRUE,
+            fixed_x = TRUE,
+            seed = 42
+          ),
+          regexp = "missing values in x"
         )
       }
     )

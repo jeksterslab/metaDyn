@@ -6,24 +6,30 @@
                                      xnames,
                                      vnames,
                                      random,
-                                     covariate) {
+                                     covariate,
+                                     fixed_x) {
   if (covariate) {
-    x_labels <- matrix(
-      data = paste0(
-        "data.",
-        xnames
-      ),
-      nrow = m,
-      ncol = 1
-    )
-    x <- OpenMx::mxMatrix(
-      type = "Full",
-      nrow = m,
-      ncol = 1,
-      free = FALSE,
-      labels = x_labels,
-      name = "x"
-    )
+    if (fixed_x) {
+      x_labels <- matrix(
+        data = paste0(
+          "data.",
+          xnames
+        ),
+        nrow = m,
+        ncol = 1
+      )
+      x <- OpenMx::mxMatrix(
+        type = "Full",
+        nrow = m,
+        ncol = 1,
+        free = FALSE,
+        labels = x_labels,
+        name = "x"
+      )
+    } else {
+      # no need to define data.x if fixed_x = FALSE
+      x <- NULL
+    }
   } else {
     x <- NULL
   }

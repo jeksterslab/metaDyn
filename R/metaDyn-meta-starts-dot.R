@@ -1,8 +1,12 @@
 .MetaStarts <- function(raw_data,
+                        fixed_x,
                         xnames,
                         ynames,
                         znames,
                         alpha_values,
+                        mu_x_values,
+                        sigma_x_d_values,
+                        sigma_x_l_values,
                         gamma_values,
                         kappa_values,
                         phi_values,
@@ -11,6 +15,38 @@
                         tau_sqr_l_values,
                         psi_d_values,
                         psi_l_values) {
+  .CovStartValues <- function(sigma,
+                              min_diag = 0.001) {
+    if (is.null(dim(sigma))) {
+      sigma <- matrix(
+        data = sigma,
+        nrow = 1,
+        ncol = 1
+      )
+    }
+    sigma_diag <- diag(sigma)
+    sigma_diag <- ifelse(
+      test = is.na(sigma_diag) | sigma_diag <= min_diag,
+      yes = min_diag,
+      no = sigma_diag
+    )
+    diag(sigma) <- sigma_diag
+    if (ncol(sigma) == 1) {
+      out <- list(
+        d_values = .MxHelperInvSoftplus(c(sigma)),
+        l_values = NULL
+      )
+    } else {
+      ldl_sigma <- .MxHelperLDL(
+        x = sigma
+      )
+      out <- list(
+        d_values = ldl_sigma$uc_d,
+        l_values = ldl_sigma$s_l
+      )
+    }
+    out
+  }
   complete <- stats::complete.cases(raw_data)
   if (!any(complete)) {
     message(
@@ -26,69 +62,95 @@
         drop = FALSE
       ]
     )
-    # y on x
+    y_obs <- raw_data_complete[
+      ,
+      ynames,
+      drop = FALSE
+    ]
+    if (!is.null(xnames)) {
+      x_obs <- raw_data_complete[
+        ,
+        xnames,
+        drop = FALSE
+      ]
+    } else {
+      x_obs <- NULL
+    }
+    # Stochastic x starts.
+    # These are independent of whether alpha/gamma starts were supplied.
+    if (!fixed_x && !is.null(xnames)) {
+      if (is.null(mu_x_values)) {
+        mu_x_values <- colMeans(
+          x_obs
+        )
+      }
+      if (is.null(sigma_x_d_values) || is.null(sigma_x_l_values)) {
+        sigma_x <- stats::var(
+          x = x_obs
+        )
+        sigma_x_starts <- .CovStartValues(
+          sigma = sigma_x
+        )
+        if (is.null(sigma_x_d_values)) {
+          sigma_x_d_values <- sigma_x_starts$d_values
+        }
+        if (is.null(sigma_x_l_values)) {
+          sigma_x_l_values <- sigma_x_starts$l_values
+        }
+      }
+    }
+    # y on x, or y intercept only when no x is available.
     if (is.null(xnames)) {
       if (is.null(alpha_values)) {
-        y_mat <- raw_data_complete[
-          ,
-          ynames,
-          drop = FALSE
-        ]
         alpha_values <- colMeans(
-          y_mat
+          y_obs
         )
-        tau_sqr <- stats::var(y_mat)
-        # check if diag is lower than epsilon
-        tau_sqr_diag <- diag(tau_sqr)
-        tau_sqr_diag <- ifelse(
-          test = tau_sqr_diag <= 0.001,
-          yes = 0.001,
-          no = tau_sqr_diag
+      }
+      if (is.null(tau_sqr_d_values) || is.null(tau_sqr_l_values)) {
+        tau_sqr <- stats::var(
+          x = y_obs
         )
-        diag(tau_sqr) <- tau_sqr_diag
-        if (length(ynames) == 1) {
-          d_values <- .MxHelperInvSoftplus(c(tau_sqr))
-          l_values <- NULL
-        } else {
-          ldl_tau_sqr <- .MxHelperLDL(
-            x = tau_sqr
-          )
-          d_values <- ldl_tau_sqr$uc_d
-          l_values <- ldl_tau_sqr$s_l
-        }
+        tau_sqr_starts <- .CovStartValues(
+          sigma = tau_sqr
+        )
         if (is.null(tau_sqr_d_values)) {
-          tau_sqr_d_values <- d_values
+          tau_sqr_d_values <- tau_sqr_starts$d_values
         }
         if (is.null(tau_sqr_l_values)) {
-          tau_sqr_l_values <- l_values
+          tau_sqr_l_values <- tau_sqr_starts$l_values
         }
       }
     } else {
-      if (is.null(alpha_values) || is.null(gamma_values)) {
+      need_y_ols <- (
+        is.null(alpha_values) ||
+          is.null(gamma_values) ||
+          is.null(tau_sqr_d_values) ||
+          is.null(tau_sqr_l_values)
+      )
+      if (need_y_ols) {
         x_mat <- cbind(
           1,
-          raw_data_complete[
-            ,
-            xnames,
-            drop = FALSE
-          ]
+          x_obs
         )
-        y_mat <- raw_data_complete[
-          ,
-          ynames,
-          drop = FALSE
-        ]
+        colnames(x_mat) <- c(
+          "intercept",
+          xnames
+        )
         qrx <- qr(
           x = x_mat
         )
         gamma_hat <- t(
           qr.coef(
             qr = qrx,
-            y = y_mat
+            y = y_obs
           )
         )
         if (is.null(alpha_values)) {
-          alpha_values <- gamma_hat[, 1]
+          alpha_values <- gamma_hat[
+            ,
+            "intercept",
+            drop = TRUE
+          ]
         }
         if (is.null(gamma_values)) {
           gamma_values <- gamma_hat[
@@ -97,67 +159,66 @@
             drop = FALSE
           ]
         }
-        tau_sqr <- (
-          crossprod(
-            y_mat - x_mat %*% t(gamma_hat)
-          ) / (
-            nrow(y_mat) - qr(x_mat)$rank
+        if (is.null(tau_sqr_d_values) || is.null(tau_sqr_l_values)) {
+          tau_sqr <- (
+            crossprod(
+              y_obs - x_mat %*% t(gamma_hat)
+            ) / (
+              nrow(y_obs) - qrx$rank
+            )
           )
-        )
-        # check if diag is lower than epsilon
-        tau_sqr_diag <- diag(tau_sqr)
-        tau_sqr_diag <- ifelse(
-          test = tau_sqr_diag <= 0.001,
-          yes = 0.001,
-          no = tau_sqr_diag
-        )
-        diag(tau_sqr) <- tau_sqr_diag
-        if (length(ynames) == 1) {
-          d_values <- .MxHelperInvSoftplus(c(tau_sqr))
-          l_values <- NULL
-        } else {
-          ldl_tau_sqr <- .MxHelperLDL(
-            x = tau_sqr
+          tau_sqr_starts <- .CovStartValues(
+            sigma = tau_sqr
           )
-          d_values <- ldl_tau_sqr$uc_d
-          l_values <- ldl_tau_sqr$s_l
-        }
-        if (is.null(tau_sqr_d_values)) {
-          tau_sqr_d_values <- d_values
-        }
-        if (is.null(tau_sqr_l_values)) {
-          tau_sqr_l_values <- l_values
+          if (is.null(tau_sqr_d_values)) {
+            tau_sqr_d_values <- tau_sqr_starts$d_values
+          }
+          if (is.null(tau_sqr_l_values)) {
+            tau_sqr_l_values <- tau_sqr_starts$l_values
+          }
         }
       }
     }
-    # z on x + y
-    if (isFALSE(is.null(znames))) {
+    # z on y, or z on x + y.
+    # These are pragmatic OLS starts; the fitted model still uses
+    # latent effect sizes to predict z.
+    if (!is.null(znames)) {
+      z_obs <- raw_data_complete[
+        ,
+        znames,
+        drop = FALSE
+      ]
       if (is.null(xnames)) {
-        if (is.null(kappa_values) || is.null(phi_values)) {
+        need_z_ols <- (
+          is.null(kappa_values) ||
+            is.null(phi_values) ||
+            is.null(psi_d_values) ||
+            is.null(psi_l_values)
+        )
+        if (need_z_ols) {
           y_mat <- cbind(
             1,
-            raw_data_complete[
-              ,
-              ynames,
-              drop = FALSE
-            ]
+            y_obs
           )
-          z_mat <- raw_data_complete[
-            ,
-            znames,
-            drop = FALSE
-          ]
+          colnames(y_mat) <- c(
+            "intercept",
+            ynames
+          )
           qry <- qr(
             x = y_mat
           )
           phi_hat <- t(
             qr.coef(
               qr = qry,
-              y = z_mat
+              y = z_obs
             )
           )
           if (is.null(kappa_values)) {
-            kappa_values <- phi_hat[, 1]
+            kappa_values <- phi_hat[
+              ,
+              "intercept",
+              drop = TRUE
+            ]
           }
           if (is.null(phi_values)) {
             phi_values <- phi_hat[
@@ -166,68 +227,59 @@
               drop = FALSE
             ]
           }
-          psi <- (
-            crossprod(
-              z_mat - y_mat %*% t(phi_hat)
-            ) / (
-              nrow(z_mat) - qr(y_mat)$rank
+          if (is.null(psi_d_values) || is.null(psi_l_values)) {
+            psi <- (
+              crossprod(
+                z_obs - y_mat %*% t(phi_hat)
+              ) / (
+                nrow(z_obs) - qry$rank
+              )
             )
-          )
-          # check if diag is lower than epsilon
-          psi_diag <- diag(psi)
-          psi_diag <- ifelse(
-            test = psi_diag <= 0.001,
-            yes = 0.001,
-            no = psi_diag
-          )
-          diag(psi) <- psi_diag
-          if (length(znames) == 1) {
-            d_values <- .MxHelperInvSoftplus(c(psi))
-            l_values <- NULL
-          } else {
-            ldl_psi <- .MxHelperLDL(
-              x = psi
+            psi_starts <- .CovStartValues(
+              sigma = psi
             )
-            d_values <- ldl_psi$uc_d
-            l_values <- ldl_psi$s_l
-          }
-          if (is.null(psi_d_values)) {
-            psi_d_values <- d_values
-          }
-          if (is.null(psi_l_values)) {
-            psi_l_values <- l_values
+            if (is.null(psi_d_values)) {
+              psi_d_values <- psi_starts$d_values
+            }
+            if (is.null(psi_l_values)) {
+              psi_l_values <- psi_starts$l_values
+            }
           }
         }
       } else {
-        if (is.null(kappa_values) || is.null(phi_values)) {
+        need_z_ols <- (
+          is.null(kappa_values) ||
+            is.null(omega_values) ||
+            is.null(phi_values) ||
+            is.null(psi_d_values) ||
+            is.null(psi_l_values)
+        )
+        if (need_z_ols) {
           xy_mat <- cbind(
             1,
-            raw_data_complete[
-              ,
-              c(xnames, ynames),
-              drop = FALSE
-            ]
+            x_obs,
+            y_obs
           )
-          z_mat <- raw_data_complete[
-            ,
-            znames,
-            drop = FALSE
-          ]
+          colnames(xy_mat) <- c(
+            "intercept",
+            xnames,
+            ynames
+          )
           qrxy <- qr(
             x = xy_mat
           )
           phi_hat <- t(
             qr.coef(
               qr = qrxy,
-              y = raw_data_complete[
-                ,
-                znames,
-                drop = FALSE
-              ]
+              y = z_obs
             )
           )
           if (is.null(kappa_values)) {
-            kappa_values <- phi_hat[, 1]
+            kappa_values <- phi_hat[
+              ,
+              "intercept",
+              drop = TRUE
+            ]
           }
           if (is.null(omega_values)) {
             omega_values <- phi_hat[
@@ -243,31 +295,23 @@
               drop = FALSE
             ]
           }
-          psi <- (
-            crossprod(
-              z_mat - xy_mat %*% t(phi_hat)
-            ) / (
-              nrow(z_mat) - qr(xy_mat)$rank
+          if (is.null(psi_d_values) || is.null(psi_l_values)) {
+            psi <- (
+              crossprod(
+                z_obs - xy_mat %*% t(phi_hat)
+              ) / (
+                nrow(z_obs) - qrxy$rank
+              )
             )
-          )
-          # check if diag is lower than epsilon
-          psi_diag <- diag(psi)
-          psi_diag <- ifelse(
-            test = psi_diag <= 0.001,
-            yes = 0.001,
-            no = psi_diag
-          )
-          diag(psi) <- psi_diag
-          ldl_psi <- .MxHelperLDL(
-            x = psi
-          )
-          d_values <- ldl_psi$uc_d
-          l_values <- ldl_psi$s_l
-          if (is.null(psi_d_values)) {
-            psi_d_values <- d_values
-          }
-          if (is.null(psi_l_values)) {
-            psi_l_values <- l_values
+            psi_starts <- .CovStartValues(
+              sigma = psi
+            )
+            if (is.null(psi_d_values)) {
+              psi_d_values <- psi_starts$d_values
+            }
+            if (is.null(psi_l_values)) {
+              psi_l_values <- psi_starts$l_values
+            }
           }
         }
       }
@@ -275,6 +319,9 @@
   }
   list(
     alpha_values = alpha_values,
+    mu_x_values = mu_x_values,
+    sigma_x_d_values = sigma_x_d_values,
+    sigma_x_l_values = sigma_x_l_values,
     gamma_values = gamma_values,
     kappa_values = kappa_values,
     phi_values = phi_values,
