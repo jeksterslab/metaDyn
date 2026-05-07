@@ -11,6 +11,8 @@
 #' @param nrep Positive integer.
 #'   Number of replications for `ci_type = "mc"`.
 #' @param seed Random seed for `ci_type = "mc"`.
+#' @param ncores Positive integer.
+#'   Number of cores to use for `ci_type = "mc"`.
 #' @param digits Integer indicating the number of decimal places to display.
 #' @param robust Logical.
 #'   If `TRUE`, use robust (sandwich) sampling variance-covariance matrix.
@@ -37,6 +39,7 @@ summary.metadynmeta <- function(object,
                                 robust = NULL,
                                 nrep = 20000L,
                                 seed = NULL,
+                                ncores = NULL,
                                 digits = 4,
                                 ...) {
   code <- .CheckStatusCode(
@@ -85,7 +88,8 @@ summary.metadynmeta <- function(object,
       object = object,
       alpha = alpha,
       nrep = nrep,
-      seed = seed
+      seed = seed,
+      ncores = ncores
     )
   )
   print_summary <- round(
@@ -151,12 +155,9 @@ print.summary.metadynmeta <- function(x,
     cat(
       paste0(
         "\n",
-        "Wald CI ",
-        "type:\n",
-        "\"",
-        type,
-        "\"",
-        "\n\n"
+        "Confidence intervals type:\n",
+        "Wald",
+        "\n"
       )
     )
   }
@@ -164,11 +165,28 @@ print.summary.metadynmeta <- function(x,
     cat(
       paste0(
         "\n",
-        "Monte Carlo CI ",
-        "type:\n",
-        "\"",
-        type,
-        "\"",
+        "Confidence intervals type:\n",
+        "Monte Carlo",
+        "\n"
+      )
+    )
+  }
+  if (type == "normal") {
+    cat(
+      paste0(
+        "\n",
+        "Sampling covariance matrix type:\n",
+        "Normal",
+        "\n\n"
+      )
+    )
+  }
+  if (type == "robust") {
+    cat(
+      paste0(
+        "\n",
+        "Sampling covariance matrix type:\n",
+        "Sandwich",
         "\n\n"
       )
     )
@@ -295,6 +313,7 @@ confint.metadynmeta <- function(object,
                                 robust = NULL,
                                 nrep = 20000L,
                                 seed = NULL,
+                                ncores = NULL,
                                 ...) {
   stopifnot(
     length(level) == 1
@@ -336,7 +355,8 @@ confint.metadynmeta <- function(object,
       object = object,
       alpha = 1 - level,
       nrep = nrep,
-      seed = seed
+      seed = seed,
+      ncores = ncores
     )[, 4:5, drop = FALSE]
   )
   if (is.null(parm)) {
