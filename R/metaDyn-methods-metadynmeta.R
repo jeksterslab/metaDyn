@@ -79,7 +79,8 @@ summary.metadynmeta <- function(object,
   } else {
     type <- "normal"
   }
-  ci <- switch(ci_type,
+  ci <- switch(
+    ci_type,
     wald = .CIWaldMeta(
       object = object,
       alpha = alpha
@@ -155,12 +156,9 @@ print.summary.metadynmeta <- function(x,
     cat(
       paste0(
         "\n",
-        "Wald CI ",
-        "type:\n",
-        "\"",
-        type,
-        "\"",
-        "\n\n"
+        "Confidence intervals type:\n",
+        "Wald",
+        "\n"
       )
     )
   }
@@ -168,11 +166,28 @@ print.summary.metadynmeta <- function(x,
     cat(
       paste0(
         "\n",
-        "Monte Carlo CI ",
-        "type:\n",
-        "\"",
-        type,
-        "\"",
+        "Confidence intervals type:\n",
+        "Monte Carlo",
+        "\n"
+      )
+    )
+  }
+  if (type == "normal") {
+    cat(
+      paste0(
+        "\n",
+        "Sampling covariance matrix type:\n",
+        "Normal",
+        "\n\n"
+      )
+    )
+  }
+  if (type == "robust") {
+    cat(
+      paste0(
+        "\n",
+        "Sampling covariance matrix type:\n",
+        "Sandwich",
         "\n\n"
       )
     )
@@ -300,7 +315,7 @@ confint.metadynmeta <- function(object,
                                 nrep = 20000L,
                                 seed = NULL,
                                 ncores = NULL,
-                                ...) {
+                                ...) {           
   stopifnot(
     length(level) == 1
   )
@@ -332,7 +347,8 @@ confint.metadynmeta <- function(object,
     object$output@output$vcov <- sandwich$cov
     object$output@output$standardErrors <- sandwich$SE
   }
-  ci <- switch(ci_type,
+  ci <- switch(
+    ci_type,
     wald = .CIWaldMeta(
       object = object,
       alpha = 1 - level
