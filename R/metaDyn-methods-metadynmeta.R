@@ -37,7 +37,7 @@ summary.metadynmeta <- function(object,
                                 alpha = NULL,
                                 ci_type = "wald",
                                 robust = NULL,
-                                nrep = 20000L,
+                                nrep = 1000L,
                                 seed = NULL,
                                 ncores = NULL,
                                 digits = 4,
@@ -133,10 +133,6 @@ print.summary.metadynmeta <- function(x,
     x = x,
     which = "ci_type"
   )
-  nrep <- attr(
-    x = x,
-    which = "nrep"
-  )
   code <- attr(
     x = x,
     which = "code"
@@ -210,7 +206,7 @@ print.metadynmeta <- function(x,
                               alpha = NULL,
                               ci_type = "wald",
                               robust = NULL,
-                              nrep = 20000L,
+                              nrep = 1000L,
                               seed = NULL,
                               digits = 4,
                               ...) {
@@ -311,7 +307,7 @@ confint.metadynmeta <- function(object,
                                 level = 0.95,
                                 ci_type = "wald",
                                 robust = NULL,
-                                nrep = 20000L,
+                                nrep = 1000L,
                                 seed = NULL,
                                 ncores = NULL,
                                 ...) {
