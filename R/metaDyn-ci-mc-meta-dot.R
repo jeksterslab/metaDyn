@@ -329,8 +329,7 @@
     X = draws_list,
     FUN = function(x) {
       x[
-        ok,
-        ,
+        ok, ,
         drop = FALSE
       ]
     }
