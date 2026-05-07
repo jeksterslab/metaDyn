@@ -58,6 +58,33 @@
   } else {
     y1 <- NULL
   }
+  if ("mu_x_vec" %in% mat_names) {
+    mu_x_vec <- OpenMx::mxEvalByName(
+      name = "mu_x_vec",
+      model = object$output,
+      compute = TRUE
+    )
+    names_mu_x_vec <- rownames(mu_x_vec)
+    mu_x_vec <- c(mu_x_vec)
+    names(mu_x_vec) <- names_mu_x_vec
+    se_mu_x_vec <- c(
+      OpenMx::mxSE(
+        x = "mu_x_vec",
+        model = object$output,
+        silent = TRUE
+      )
+    )
+    x0 <- .CIWald(
+      est = mu_x_vec,
+      se = se_mu_x_vec,
+      theta = 0,
+      alpha = alpha,
+      z = TRUE,
+      test = FALSE
+    )
+  } else {
+    x0 <- NULL
+  }
   if ("beta_vec" %in% mat_names) {
     beta_vec <- OpenMx::mxEvalByName(
       name = "beta_vec",
@@ -192,6 +219,33 @@
     )
   } else {
     psi <- NULL
+  }
+  if ("sigma_x_vec" %in% mat_names) {
+    sigma_x_vec <- OpenMx::mxEvalByName(
+      name = "sigma_x_vec",
+      model = object$output,
+      compute = TRUE
+    )
+    names_sigma_x_vec <- rownames(sigma_x_vec)
+    sigma_x_vec <- c(sigma_x_vec)
+    names(sigma_x_vec) <- names_sigma_x_vec
+    se_sigma_x_vec <- c(
+      OpenMx::mxSE(
+        x = "sigma_x_vec",
+        model = object$output,
+        silent = TRUE
+      )
+    )
+    sx <- .CIWald(
+      est = sigma_x_vec,
+      se = se_sigma_x_vec,
+      theta = 0,
+      alpha = alpha,
+      z = TRUE,
+      test = FALSE
+    )
+  } else {
+    sx <- NULL
   }
   if ("tau_sqr_vec" %in% mat_names) {
     tau_sqr_vec <- OpenMx::mxEvalByName(
@@ -375,6 +429,8 @@
     z1 = z1,
     zx = zx,
     psi = psi,
+    x0 = x0,
+    sx = sx,
     t2 = t2,
     i2 = i2,
     direct_vec = direct_vec,

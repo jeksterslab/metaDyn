@@ -1,7 +1,7 @@
 ---
 title: "Meta-Analysis of Continuous-Time Vector Autoregressive Model Estimates"
 author: Ivan Jacob Agaloos Pesigan
-date: "2026-04-16"
+date: "2026-05-07"
 bibliography: "vignettes.bib"
 csl: https://raw.githubusercontent.com/citation-style-language/styles/master/apa.csl
 nocite: |
@@ -322,7 +322,7 @@ summary(metavar)
 #> Status code:
 #> 0
 #> 
-#> CI type:
+#> Wald CI type:
 #> "normal"
 #> 
 #>                  est     se         z      p    2.5%   97.5%

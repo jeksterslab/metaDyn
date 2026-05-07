@@ -71,6 +71,7 @@ lapply(
           v = v,
           x = x,
           random = TRUE,
+          fixed_x = TRUE,
           seed = 42
         )
         if (ci) {
@@ -159,6 +160,7 @@ lapply(
             v = v,
             x = x,
             random = TRUE,
+            fixed_x = TRUE,
             seed = 42
           )
           coefs <- coef(fit)

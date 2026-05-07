@@ -30,6 +30,27 @@
   } else {
     gamma <- NULL
   }
+  if ("mu_x" %in% mat_names) {
+    mu_x <- OpenMx::mxEvalByName(
+      name = "mu_x",
+      model = object$output,
+      compute = TRUE
+    )
+  } else {
+    mu_x <- NULL
+  }
+  if ("sigma_x" %in% mat_names) {
+    sigma_x <- OpenMx::mxEvalByName(
+      name = "sigma_x",
+      model = object$output,
+      compute = TRUE
+    )
+    if (!is.null(mu_x)) {
+      colnames(sigma_x) <- rownames(sigma_x) <- rownames(mu_x)
+    }
+  } else {
+    sigma_x <- NULL
+  }
   if ("kappa" %in% mat_names) {
     kappa <- OpenMx::mxEvalByName(
       name = "kappa",
@@ -91,6 +112,8 @@
     alpha = alpha,
     beta = beta,
     gamma = gamma,
+    mu_x = mu_x,
+    sigma_x = sigma_x,
     kappa = kappa,
     phi = phi,
     omega = omega,

@@ -10,6 +10,7 @@ Meta(
   x = NULL,
   z = NULL,
   random = TRUE,
+  fixed_x = TRUE,
   alpha_free = NULL,
   alpha_values = NULL,
   alpha_lbound = NULL,
@@ -23,6 +24,18 @@ Meta(
   tau_sqr_l_values = NULL,
   tau_sqr_l_lbound = NULL,
   tau_sqr_l_ubound = NULL,
+  mu_x_free = NULL,
+  mu_x_values = NULL,
+  mu_x_lbound = NULL,
+  mu_x_ubound = NULL,
+  sigma_x_d_free = NULL,
+  sigma_x_d_values = NULL,
+  sigma_x_d_lbound = NULL,
+  sigma_x_d_ubound = NULL,
+  sigma_x_l_free = NULL,
+  sigma_x_l_values = NULL,
+  sigma_x_l_lbound = NULL,
+  sigma_x_l_ubound = NULL,
   gamma_free = NULL,
   gamma_values = NULL,
   gamma_lbound = NULL,
@@ -80,6 +93,10 @@ estimates random effects.
 If \code{random = FALSE},
 \code{tau_sqr} is a null matrix.}
 
+\item{fixed_x}{Logical.
+If \code{fixed_x = TRUE} covariates are treated as fixed.
+If \code{fixed_x = FALSE} covariates are treated as stochastic.}
+
 \item{alpha_free}{Logical vector.
 Optional vector of free (\code{TRUE}) parameters for \code{alpha}.}
 
@@ -130,6 +147,52 @@ If \code{NULL}, no lower bounds are set.}
 
 \item{tau_sqr_l_ubound}{Numeric matrix
 with upper bounds for \code{tau_sqr_l}.
+If \code{NULL}, no upper bounds are set.}
+
+\item{mu_x_free}{Logical vector.
+Optional vector of free (\code{TRUE}) parameters for \code{mu_x}.}
+
+\item{mu_x_values}{Numeric vector.
+Optional vector of starting values for \code{mu_x}.}
+
+\item{mu_x_lbound}{Numeric vector.
+Optional vector of lower bound values for \code{mu_x}.}
+
+\item{mu_x_ubound}{Numeric vector.
+Optional vector of upper bound values for \code{mu_x}.}
+
+\item{sigma_x_d_free}{Logical vector
+indicating free/fixed status of the elements of \code{sigma_x_d}.
+If \code{NULL}, all element of \code{sigma_x_d} are free.}
+
+\item{sigma_x_d_values}{Numeric vector
+with starting values for \code{sigma_x_d}.
+If \code{NULL}, defaults to a vector of ones.}
+
+\item{sigma_x_d_lbound}{Numeric vector
+with lower bounds for \code{sigma_x_d}.
+If \code{NULL}, no lower bounds are set.}
+
+\item{sigma_x_d_ubound}{Numeric vector
+with upper bounds for \code{sigma_x_d}.
+If \code{NULL}, no upper bounds are set.}
+
+\item{sigma_x_l_free}{Logical matrix
+indicating which strictly-lower-triangular elements
+of \code{sigma_x_l} are free.
+Ignored if \code{sigma_x_diag = TRUE}.}
+
+\item{sigma_x_l_values}{Numeric matrix
+of starting values for the strictly-lower-triangular elements
+of \code{sigma_x_l}.
+If \code{NULL}, defaults to a null matrix.}
+
+\item{sigma_x_l_lbound}{Numeric matrix
+with lower bounds for \code{sigma_x_l}.
+If \code{NULL}, no lower bounds are set.}
+
+\item{sigma_x_l_ubound}{Numeric matrix
+with upper bounds for \code{sigma_x_l}.
 If \code{NULL}, no upper bounds are set.}
 
 \item{gamma_free}{Logical matrix.

@@ -44,6 +44,19 @@ lapply(
             )
           }
         )
+        eta <- lapply(
+          X = seq_len(n),
+          FUN = function(i) {
+            upsilon <- MASS::mvrnorm(
+              n = 1,
+              mu = c(0, 0),
+              Sigma = tau_sqr
+            )
+            c(
+              alpha + upsilon
+            )
+          }
+        )
         y <- lapply(
           X = seq_len(n),
           FUN = function(i) {
@@ -52,13 +65,8 @@ lapply(
               mu = c(0, 0),
               Sigma = v[[i]]
             )
-            upsilon <- MASS::mvrnorm(
-              n = 1,
-              mu = c(0, 0),
-              Sigma = tau_sqr
-            )
             c(
-              alpha + upsilon + epsilon
+              eta[[i]] + epsilon
             )
           }
         )
@@ -71,7 +79,7 @@ lapply(
               Sigma = psi
             )
             c(
-              kappa + phi %*% y[[i]] + delta
+              kappa + phi %*% eta[[i]] + delta
             )
           }
         )
@@ -86,6 +94,7 @@ lapply(
           v = v,
           z = z,
           random = TRUE,
+          fixed_x = TRUE,
           alpha_free = rep(
             x = TRUE,
             times = length(alpha)

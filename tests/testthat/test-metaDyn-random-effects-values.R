@@ -63,6 +63,7 @@ lapply(
           y = y,
           v = v,
           random = TRUE,
+          fixed_x = TRUE,
           robust = robust,
           seed = 42
         )
@@ -131,6 +132,7 @@ lapply(
             y = y,
             v = v,
             random = TRUE,
+            fixed_x = TRUE,
             alpha_free = rep(
               x = TRUE,
               times = length(alpha)

@@ -9,6 +9,7 @@
                        random,
                        covariate,
                        distal,
+                       fixed_x,
                        alpha_free,
                        alpha_values,
                        alpha_lbound,
@@ -22,6 +23,18 @@
                        tau_sqr_l_values,
                        tau_sqr_l_lbound,
                        tau_sqr_l_ubound,
+                       mu_x_free,
+                       mu_x_values,
+                       mu_x_lbound,
+                       mu_x_ubound,
+                       sigma_x_d_free,
+                       sigma_x_d_values,
+                       sigma_x_d_lbound,
+                       sigma_x_d_ubound,
+                       sigma_x_l_free,
+                       sigma_x_l_values,
+                       sigma_x_l_lbound,
+                       sigma_x_l_ubound,
                        gamma_free,
                        gamma_values,
                        gamma_lbound,
@@ -88,6 +101,12 @@
   } else {
     xnames <- NULL
   }
+  if (covariate && !fixed_x) {
+    dimnames <- c(
+      dimnames,
+      xnames
+    )
+  }
   raw_data <- .PrepData(
     y = y,
     v = v,
@@ -109,14 +128,19 @@
     xnames = xnames,
     vnames = vnames,
     random = random,
-    covariate = covariate
+    covariate = covariate,
+    fixed_x = fixed_x
   )
   starts <- .MetaStarts(
     raw_data = raw_data,
+    fixed_x = fixed_x,
     xnames = xnames,
     ynames = ynames,
     znames = znames,
     alpha_values = alpha_values,
+    mu_x_values = mu_x_values,
+    sigma_x_d_values = sigma_x_d_values,
+    sigma_x_l_values = sigma_x_l_values,
     gamma_values = gamma_values,
     kappa_values = kappa_values,
     phi_values = phi_values,
@@ -129,6 +153,9 @@
   alpha_values <- starts$alpha_values
   tau_sqr_d_values <- starts$tau_sqr_d_values
   tau_sqr_l_values <- starts$tau_sqr_l_values
+  mu_x_values <- starts$mu_x_values
+  sigma_x_d_values <- starts$sigma_x_d_values
+  sigma_x_l_values <- starts$sigma_x_l_values
   gamma_values <- starts$gamma_values
   kappa_values <- starts$kappa_values
   phi_values <- starts$phi_values
@@ -145,6 +172,7 @@
     random = random,
     covariate = covariate,
     distal = distal,
+    fixed_x = fixed_x,
     alpha_free = alpha_free,
     alpha_values = alpha_values,
     alpha_lbound = alpha_lbound,
@@ -158,6 +186,18 @@
     tau_sqr_l_values = tau_sqr_l_values,
     tau_sqr_l_lbound = tau_sqr_l_lbound,
     tau_sqr_l_ubound = tau_sqr_l_ubound,
+    mu_x_free = mu_x_free,
+    mu_x_values = mu_x_values,
+    mu_x_lbound = mu_x_lbound,
+    mu_x_ubound = mu_x_ubound,
+    sigma_x_d_free = sigma_x_d_free,
+    sigma_x_d_values = sigma_x_d_values,
+    sigma_x_d_lbound = sigma_x_d_lbound,
+    sigma_x_d_ubound = sigma_x_d_ubound,
+    sigma_x_l_free = sigma_x_l_free,
+    sigma_x_l_values = sigma_x_l_values,
+    sigma_x_l_lbound = sigma_x_l_lbound,
+    sigma_x_l_ubound = sigma_x_l_ubound,
     gamma_free = gamma_free,
     gamma_values = gamma_values,
     gamma_lbound = gamma_lbound,
@@ -184,6 +224,7 @@
     psi_l_lbound = psi_l_lbound,
     psi_l_ubound = psi_l_ubound
   )
+
   OpenMx::mxModel(
     model = "Model",
     variables,
@@ -191,12 +232,16 @@
     .MetaExpectedMeans(
       covariate = covariate,
       distal = distal,
+      fixed_x = fixed_x,
+      xnames = xnames,
       ynames = ynames,
       znames = znames
     ),
     .MetaExpectedCovariances(
       random = random,
       distal = distal,
+      fixed_x = fixed_x,
+      xnames = xnames,
       ynames = ynames,
       znames = znames
     ),

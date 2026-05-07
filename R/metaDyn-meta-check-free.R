@@ -5,6 +5,12 @@
                            tau_sqr_d_values,
                            tau_sqr_l_free,
                            tau_sqr_l_values,
+                           mu_x_free,
+                           mu_x_values,
+                           sigma_x_d_free,
+                           sigma_x_d_values,
+                           sigma_x_l_free,
+                           sigma_x_l_values,
                            gamma_free,
                            gamma_values,
                            kappa_free,
@@ -26,6 +32,19 @@
           "`alpha_values`",
           "required for fixed and free parameters in",
           "`alpha`.",
+          "\n"
+        )
+      )
+    }
+  }
+  if (is.null(mu_x_values) && isFALSE(is.null(mu_x_free))) {
+    if (any(!c(mu_x_free))) {
+      stop(
+        paste(
+          "\nFixed and starting values",
+          "`mu_x_values`",
+          "required for fixed and free parameters in",
+          "`mu_x`.",
           "\n"
         )
       )
@@ -109,6 +128,32 @@
           )
         )
       }
+    }
+  }
+  if (is.null(sigma_x_d_values) && isFALSE(is.null(sigma_x_d_free))) {
+    if (any(!c(sigma_x_d_free))) {
+      stop(
+        paste(
+          "\nFixed and starting values",
+          "`sigma_x_d_values`",
+          "required for fixed and free parameters in",
+          "`sigma_x_d`.",
+          "\n"
+        )
+      )
+    }
+  }
+  if (is.null(sigma_x_l_values) && isFALSE(is.null(sigma_x_l_free))) {
+    if (any(!c(sigma_x_l_free))) {
+      stop(
+        paste(
+          "\nFixed and starting values",
+          "`sigma_x_l_values`",
+          "required for fixed and free parameters in",
+          "`sigma_x_l`.",
+          "\n"
+        )
+      )
     }
   }
   if (is.null(psi_d_values) && isFALSE(is.null(psi_d_free))) {

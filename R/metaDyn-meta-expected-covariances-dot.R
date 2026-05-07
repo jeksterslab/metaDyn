@@ -1,76 +1,45 @@
 .MetaExpectedCovariances <- function(random,
                                      distal,
+                                     fixed_x,
+                                     xnames,
                                      ynames,
                                      znames) {
+  stochastic_x <- (
+    !fixed_x &&
+      !is.null(xnames)
+  )
   if (random) {
-    yy <- "v + tau_sqr"
+    etaeta <- "tau_sqr"
   } else {
-    yy <- "v"
+    etaeta <- "0 * v"
   }
-  if (distal) {
-    out <- list(
-      OpenMx::mxAlgebraFromString(
-        algString = yy,
-        name = "expected_covariance_yy",
-        dimnames = list(
-          ynames,
-          ynames
-        )
-      ),
-      OpenMx::mxAlgebraFromString(
-        algString = "phi %*% expected_covariance_yy",
-        name = "expected_covariance_zy",
-        dimnames = list(
-          znames,
-          ynames
-        )
-      ),
-      OpenMx::mxAlgebraFromString(
-        algString = "expected_covariance_yy %*% t(phi)",
-        name = "expected_covariance_yz",
-        dimnames = list(
-          ynames,
-          znames
-        )
-      ),
-      OpenMx::mxAlgebraFromString(
-        algString = paste0(
-          "phi %*% expected_covariance_yy %*% t(phi)",
-          " + ",
-          "psi"
-        ),
-        name = "expected_covariance_zz",
-        dimnames = list(
-          znames,
-          znames
-        )
-      ),
-      OpenMx::mxAlgebraFromString(
-        algString = paste0(
-          "rbind(",
-          "cbind(expected_covariance_zz, expected_covariance_zy)",
-          ",",
-          "cbind(expected_covariance_yz, expected_covariance_yy)",
-          ")"
-        ),
-        name = "expected_covariance",
-        dimnames = list(
-          c(znames, ynames),
-          c(znames, ynames)
-        )
+  if (stochastic_x) {
+    if (distal) {
+      .MetaExpectedCovariancesStochasticXDistal(
+        etaeta = etaeta,
+        xnames = xnames,
+        ynames = ynames,
+        znames = znames
       )
-    )
+    } else {
+      .MetaExpectedCovariancesStochasticXNoDistal(
+        etaeta = etaeta,
+        xnames = xnames,
+        ynames = ynames
+      )
+    }
   } else {
-    out <- list(
-      OpenMx::mxAlgebraFromString(
-        algString = yy,
-        name = "expected_covariance",
-        dimnames = list(
-          ynames,
-          ynames
-        )
+    if (distal) {
+      .MetaExpectedCovariancesFixedXDistal(
+        etaeta = etaeta,
+        ynames = ynames,
+        znames = znames
       )
-    )
+    } else {
+      .MetaExpectedCovariancesFixedXNoDistal(
+        etaeta = etaeta,
+        ynames = ynames
+      )
+    }
   }
-  out
 }

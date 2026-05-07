@@ -7,6 +7,7 @@
                                       random,
                                       covariate,
                                       distal,
+                                      fixed_x,
                                       alpha_free,
                                       alpha_values,
                                       alpha_lbound,
@@ -20,6 +21,18 @@
                                       tau_sqr_l_values,
                                       tau_sqr_l_lbound,
                                       tau_sqr_l_ubound,
+                                      mu_x_free,
+                                      mu_x_values,
+                                      mu_x_lbound,
+                                      mu_x_ubound,
+                                      sigma_x_d_free,
+                                      sigma_x_d_values,
+                                      sigma_x_d_lbound,
+                                      sigma_x_d_ubound,
+                                      sigma_x_l_free,
+                                      sigma_x_l_values,
+                                      sigma_x_l_lbound,
+                                      sigma_x_l_ubound,
                                       gamma_free,
                                       gamma_values,
                                       gamma_lbound,
@@ -84,8 +97,34 @@
       gamma_lbound = gamma_lbound,
       gamma_ubound = gamma_ubound
     )
+    if (fixed_x) {
+      mat_mu_x <- NULL
+      mat_sigma_x <- NULL
+    } else {
+      mat_mu_x <- .MetaMuX(
+        m = m,
+        xnames = xnames,
+        mu_x_free = mu_x_free,
+        mu_x_values = mu_x_values,
+        mu_x_lbound = mu_x_lbound,
+        mu_x_ubound = mu_x_ubound
+      )
+      mat_sigma_x <- .MetaSigmaX(
+        m = m,
+        sigma_x_d_free = sigma_x_d_free,
+        sigma_x_d_values = sigma_x_d_values,
+        sigma_x_d_lbound = sigma_x_d_lbound,
+        sigma_x_d_ubound = sigma_x_d_ubound,
+        sigma_x_l_free = sigma_x_l_free,
+        sigma_x_l_values = sigma_x_l_values,
+        sigma_x_l_lbound = sigma_x_l_lbound,
+        sigma_x_l_ubound = sigma_x_l_ubound
+      )
+    }
   } else {
     mat_gamma <- NULL
+    mat_mu_x <- NULL
+    mat_sigma_x <- NULL
   }
   if (distal) {
     mat_kappa <- .MetaKappa(
@@ -151,6 +190,8 @@
     mat_alpha,
     mat_tau_sqr,
     mat_i_sqr,
+    mat_mu_x,
+    mat_sigma_x,
     mat_gamma,
     mat_kappa,
     mat_phi,

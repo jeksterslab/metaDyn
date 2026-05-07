@@ -6,6 +6,11 @@
 #'   Significance level \eqn{\alpha}.
 #'   If `NULL`, the function will check `object`
 #'   for `alpha` used in model fitting.
+#' @param ci_type Character string.
+#'   Valid values are `"wald"` and `"mc"`.
+#' @param nrep Positive integer.
+#'   Number of replications for `ci_type = "mc"`.
+#' @param seed Random seed for `ci_type = "mc"`.
 #' @param digits Integer indicating the number of decimal places to display.
 #' @param robust Logical.
 #'   If `TRUE`, use robust (sandwich) sampling variance-covariance matrix.
@@ -28,7 +33,10 @@
 #' @export
 summary.metadynmeta <- function(object,
                                 alpha = NULL,
+                                ci_type = "wald",
                                 robust = NULL,
+                                nrep = 20000L,
+                                seed = NULL,
                                 digits = 4,
                                 ...) {
   code <- .CheckStatusCode(
@@ -65,9 +73,17 @@ summary.metadynmeta <- function(object,
   } else {
     type <- "normal"
   }
-  ci <- .CIWaldMeta(
-    object = object,
-    alpha = alpha
+  ci <- switch(ci_type,
+    wald = .CIWaldMeta(
+      object = object,
+      alpha = alpha
+    ),
+    mc = .CIMCMeta(
+      object = object,
+      alpha = alpha,
+      nrep = nrep,
+      seed = seed
+    )
   )
   print_summary <- round(
     x = ci,
@@ -81,6 +97,8 @@ summary.metadynmeta <- function(object,
   attr(ci, "alpha") <- alpha
   attr(ci, "digits") <- digits
   attr(ci, "type") <- type
+  attr(ci, "ci_type") <- ci_type
+  attr(ci, "nrep") <- nrep
   attr(ci, "code") <- code
   attr(ci, "print_summary") <- print_summary
   ci
@@ -103,6 +121,14 @@ print.summary.metadynmeta <- function(x,
     x = x,
     which = "type"
   )
+  ci_type <- attr(
+    x = x,
+    which = "ci_type"
+  )
+  nrep <- attr(
+    x = x,
+    which = "nrep"
+  )
   code <- attr(
     x = x,
     which = "code"
@@ -117,17 +143,33 @@ print.summary.metadynmeta <- function(x,
       "\n"
     )
   )
-  cat(
-    paste0(
-      "\n",
-      "CI ",
-      "type:\n",
-      "\"",
-      type,
-      "\"",
-      "\n\n"
+  if (ci_type == "wald") {
+    cat(
+      paste0(
+        "\n",
+        "Wald CI ",
+        "type:\n",
+        "\"",
+        type,
+        "\"",
+        "\n\n"
+      )
     )
-  )
+  }
+  if (ci_type == "mc") {
+    cat(
+      paste0(
+        "\n",
+        "Monte Carlo CI ",
+        "(R = ", nrep, ") ",
+        "type:\n",
+        "\"",
+        type,
+        "\"",
+        "\n\n"
+      )
+    )
+  }
   print(print_summary)
   invisible(object)
 }
@@ -145,15 +187,21 @@ print.summary.metadynmeta <- function(x,
 #' @export
 print.metadynmeta <- function(x,
                               alpha = NULL,
+                              ci_type = "wald",
                               robust = NULL,
+                              nrep = 20000L,
+                              seed = NULL,
                               digits = 4,
                               ...) {
   print.summary.metadynmeta(
     summary.metadynmeta(
       object = x,
       alpha = alpha,
-      digits = digits,
-      robust = robust
+      ci_type = ci_type,
+      robust = robust,
+      nrep = nrep,
+      seed = seed,
+      digits = digits
     )
   )
 }
@@ -237,7 +285,10 @@ vcov.metadynmeta <- function(object,
 confint.metadynmeta <- function(object,
                                 parm = NULL,
                                 level = 0.95,
+                                ci_type = "wald",
                                 robust = NULL,
+                                nrep = 20000L,
+                                seed = NULL,
                                 ...) {
   stopifnot(
     length(level) == 1
@@ -267,10 +318,19 @@ confint.metadynmeta <- function(object,
     object$output@output$vcov <- sandwich$cov
     object$output@output$standardErrors <- sandwich$SE
   }
-  ci <- .CIWaldMeta(
-    object = object,
-    alpha = 1 - level
-  )[, 5:6, drop = FALSE]
+  ci <- switch(ci_type,
+    wald = .CIWaldMeta(
+      object = object,
+      alpha = 1 - level
+    ),
+    mc = .CIMCMeta(
+      object = object,
+      alpha = 1 - level,
+      nrep = nrep,
+      seed = seed
+    )
+  )
+  ci <- ci[, 5:6, drop = FALSE]
   if (is.null(parm)) {
     parameters <- rownames(
       ci
@@ -331,6 +391,8 @@ extract.metadynmeta <- function(object,
         "alpha",
         "beta",
         "gamma",
+        "mu_x",
+        "sigma_x",
         "tau_sqr",
         "tau_sqr_l",
         "tau_sqr_d",
