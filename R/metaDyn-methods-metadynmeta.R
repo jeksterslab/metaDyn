@@ -42,6 +42,9 @@ summary.metadynmeta <- function(object,
   code <- .CheckStatusCode(
     model = object$output
   )
+  stopifnot(
+    ci_type %in% c("wald", "mc")
+  )
   if (is.null(alpha)) {
     alpha <- object$args$alpha
   }
@@ -193,6 +196,9 @@ print.metadynmeta <- function(x,
                               seed = NULL,
                               digits = 4,
                               ...) {
+  stopifnot(
+    ci_type %in% c("wald", "mc")
+  )
   print.summary.metadynmeta(
     summary.metadynmeta(
       object = x,
@@ -292,6 +298,9 @@ confint.metadynmeta <- function(object,
                                 ...) {
   stopifnot(
     length(level) == 1
+  )
+  stopifnot(
+    ci_type %in% c("wald", "mc")
   )
   if (is.null(robust)) {
     if (is.null(object$robust)) {

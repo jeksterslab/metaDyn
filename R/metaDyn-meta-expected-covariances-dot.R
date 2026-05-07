@@ -15,14 +15,14 @@
   }
   if (stochastic_x) {
     if (distal) {
-      .MetaExpectedCovariancesStochasticXDistal(
+      .MetaCovJointXZ(
         etaeta = etaeta,
         xnames = xnames,
         ynames = ynames,
         znames = znames
       )
     } else {
-      .MetaExpectedCovariancesStochasticXNoDistal(
+      .MetaCovJointXY(
         etaeta = etaeta,
         xnames = xnames,
         ynames = ynames
@@ -30,13 +30,13 @@
     }
   } else {
     if (distal) {
-      .MetaExpectedCovariancesFixedXDistal(
+      .MetaCovCondZ(
         etaeta = etaeta,
         ynames = ynames,
         znames = znames
       )
     } else {
-      .MetaExpectedCovariancesFixedXNoDistal(
+      .MetaCovCondY(
         etaeta = etaeta,
         ynames = ynames
       )

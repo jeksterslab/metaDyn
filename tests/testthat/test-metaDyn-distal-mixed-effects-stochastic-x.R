@@ -115,8 +115,8 @@ lapply(
           confint(fit)
           extract(fit)
           vcov(fit, robust = TRUE)
-          confint(fit, robust = TRUE)
-          summary(fit, robust = TRUE)
+          confint(fit, robust = TRUE, ci_type = "mc")
+          summary(fit, robust = TRUE, ci_type = "mc")
         }
         extracted <- extract(fit)
         testthat::expect_false(

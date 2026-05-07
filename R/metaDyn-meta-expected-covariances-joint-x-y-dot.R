@@ -1,6 +1,6 @@
-.MetaExpectedCovariancesStochasticXNoDistal <- function(etaeta,
-                                                        xnames,
-                                                        ynames) {
+.MetaCovJointXY <- function(etaeta,
+                            xnames,
+                            ynames) {
   list(
     OpenMx::mxAlgebraFromString(
       algString = etaeta,

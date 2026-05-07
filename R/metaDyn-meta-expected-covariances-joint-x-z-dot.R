@@ -1,7 +1,7 @@
-.MetaExpectedCovariancesStochasticXDistal <- function(etaeta,
-                                                      xnames,
-                                                      ynames,
-                                                      znames) {
+.MetaCovJointXZ <- function(etaeta,
+                            xnames,
+                            ynames,
+                            znames) {
   list(
     OpenMx::mxAlgebraFromString(
       algString = etaeta,
@@ -118,11 +118,17 @@
     OpenMx::mxAlgebraFromString(
       algString = paste0(
         "rbind(",
-        "cbind(expected_covariance_zz, expected_covariance_zy, expected_covariance_zx)",
+        "cbind(",
+        "expected_covariance_zz, expected_covariance_zy, expected_covariance_zx",
+        ")",
         ",",
-        "cbind(expected_covariance_yz, expected_covariance_yy, expected_covariance_yx)",
+        "cbind(",
+        "expected_covariance_yz, expected_covariance_yy, expected_covariance_yx",
+        ")",
         ",",
-        "cbind(expected_covariance_xz, expected_covariance_xy, expected_covariance_xx)",
+        "cbind(",
+        "expected_covariance_xz, expected_covariance_xy, expected_covariance_xx",
+        ")",
         ")"
       ),
       name = "expected_covariance",
