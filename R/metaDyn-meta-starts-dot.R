@@ -58,8 +58,7 @@
   } else {
     raw_data_complete <- as.matrix(
       raw_data[
-        complete,
-        ,
+        complete, ,
         drop = FALSE
       ]
     )

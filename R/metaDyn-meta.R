@@ -200,74 +200,74 @@
 #' @examples
 #' \donttest{
 #' if (requireNamespace("simStateSpace")) {
-#' # Generate data using the simStateSpace package-------------------------
-#' library(simStateSpace)
-#' set.seed(42)
-#' n <- 5
-#' time <- 100
-#' p <- 2
-#' alpha <- rep(x = 0, times = p)
-#' beta <- 0.50 * diag(p)
-#' psi <- 0.001 * diag(p)
-#' psi_l <- t(chol(psi))
-#' mu0 <- SSMMeanEta(
-#'   beta = beta,
-#'   alpha = alpha
-#' )
-#' sigma0 <- SSMCovEta(
-#'   beta = beta,
-#'   psi = psi
-#' )
-#' sigma0_l <- t(chol(sigma0))
-#' sim <- SimSSMVARFixed(
-#'   n = n,
-#'   time = time,
-#'   mu0 = mu0,
-#'   sigma0_l = sigma0_l,
-#'   alpha = alpha,
-#'   beta = beta,
-#'   psi_l = psi_l
-#' )
-#' data <- as.data.frame(sim)
+#'   # Generate data using the simStateSpace package-------------------------
+#'   library(simStateSpace)
+#'   set.seed(42)
+#'   n <- 5
+#'   time <- 100
+#'   p <- 2
+#'   alpha <- rep(x = 0, times = p)
+#'   beta <- 0.50 * diag(p)
+#'   psi <- 0.001 * diag(p)
+#'   psi_l <- t(chol(psi))
+#'   mu0 <- SSMMeanEta(
+#'     beta = beta,
+#'     alpha = alpha
+#'   )
+#'   sigma0 <- SSMCovEta(
+#'     beta = beta,
+#'     psi = psi
+#'   )
+#'   sigma0_l <- t(chol(sigma0))
+#'   sim <- SimSSMVARFixed(
+#'     n = n,
+#'     time = time,
+#'     mu0 = mu0,
+#'     sigma0_l = sigma0_l,
+#'     alpha = alpha,
+#'     beta = beta,
+#'     psi_l = psi_l
+#'   )
+#'   data <- as.data.frame(sim)
 #'
-#' # Stage 1---------------------------------------------------------------
-#' library(fitVARMxID)
-#' stage1 <- FitVARMxID(
-#'   data = data,
-#'   observed = paste0("y", seq_len(p)),
-#'   id = "id",
-#'   center = TRUE
-#' )
-#' summary(stage1)
-#' # Stage 2---------------------------------------------------------------
-#' # Meta-analyze set point vector and matrix of lagged-effects
-#' y <- coef(
-#'   object = stage1,
-#'   mu = TRUE,
-#'   beta = TRUE,
-#'   alpha = FALSE,
-#'   nu = FALSE,
-#'   psi = FALSE,
-#'   theta = FALSE
-#' )
-#' v <- vcov(
-#'   object = stage1,
-#'   mu = TRUE,
-#'   beta = TRUE,
-#'   alpha = FALSE,
-#'   nu = FALSE,
-#'   psi = FALSE,
-#'   theta = FALSE
-#' )
-#' library(metaDyn)
-#' stage2 <- Meta(y = y, v = v, random = FALSE)
-#' # Methods for the output of the Meta() function
-#' print(stage2)
-#' summary(stage2)
-#' coef(stage2)
-#' vcov(stage2)
-#' confint(stage2)
-#' extract(stage2, what = "alpha")
+#'   # Stage 1---------------------------------------------------------------
+#'   library(fitVARMxID)
+#'   stage1 <- FitVARMxID(
+#'     data = data,
+#'     observed = paste0("y", seq_len(p)),
+#'     id = "id",
+#'     center = TRUE
+#'   )
+#'   summary(stage1)
+#'   # Stage 2---------------------------------------------------------------
+#'   # Meta-analyze set point vector and matrix of lagged-effects
+#'   y <- coef(
+#'     object = stage1,
+#'     mu = TRUE,
+#'     beta = TRUE,
+#'     alpha = FALSE,
+#'     nu = FALSE,
+#'     psi = FALSE,
+#'     theta = FALSE
+#'   )
+#'   v <- vcov(
+#'     object = stage1,
+#'     mu = TRUE,
+#'     beta = TRUE,
+#'     alpha = FALSE,
+#'     nu = FALSE,
+#'     psi = FALSE,
+#'     theta = FALSE
+#'   )
+#'   library(metaDyn)
+#'   stage2 <- Meta(y = y, v = v, random = FALSE)
+#'   # Methods for the output of the Meta() function
+#'   print(stage2)
+#'   summary(stage2)
+#'   coef(stage2)
+#'   vcov(stage2)
+#'   confint(stage2)
+#'   extract(stage2, what = "alpha")
 #' }
 #' }
 #'

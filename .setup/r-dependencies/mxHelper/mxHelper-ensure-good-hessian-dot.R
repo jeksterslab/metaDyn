@@ -106,11 +106,21 @@
   }
 
   .Rank <- function(chk) {
-    if (isTRUE(chk$ok)) return(0L) # nolint
-    if (isTRUE(chk$good_fit) && isTRUE(chk$pd_hessian)) return(1L) # nolint
-    if (isTRUE(chk$good_fit)) return(2L) # nolint
-    if (isTRUE(chk$pd_hessian)) return(3L) # nolint
-    if (is.finite(chk$fit)) return(4L) # nolint
+    if (isTRUE(chk$ok)) {
+      return(0L)
+    } # nolint
+    if (isTRUE(chk$good_fit) && isTRUE(chk$pd_hessian)) {
+      return(1L)
+    } # nolint
+    if (isTRUE(chk$good_fit)) {
+      return(2L)
+    } # nolint
+    if (isTRUE(chk$pd_hessian)) {
+      return(3L)
+    } # nolint
+    if (is.finite(chk$fit)) {
+      return(4L)
+    } # nolint
     5L
   }
 

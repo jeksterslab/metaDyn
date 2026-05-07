@@ -17,7 +17,7 @@
       name = name,
       model = model,
       compute = TRUE
-    ) 
+    )
     out_vec <- c(out)
     if (grepl(pattern = "^ie_", x = name) && length(out_vec) == 1L) {
       out_names <- name
@@ -267,7 +267,7 @@
     OpenMx::mxOption(
       key = "Number of Threads",
       value = 1L
-    ) 
+    )
     os_type <- Sys.info()["sysname"]
     if (os_type == "Darwin") {
       fork <- TRUE
@@ -285,7 +285,7 @@
       par_draws[i, ]
     )
     names(values_i) <- names(pars)
-    
+
     model_i <- tryCatch(
       expr = OpenMx::omxSetParameters(
         model = model,
@@ -295,7 +295,7 @@
       error = function(e) {
         NULL
       }
-    ) 
+    )
     if (is.null(model_i)) {
       return(
         list(
@@ -369,7 +369,7 @@
   }
   for (j in seq_along(target_names)) {
     target_name <- target_names[j]
-    
+
     for (i in seq_len(nrep)) {
       if (ok[i]) {
         draws_list[[j]][i, ] <- draw_results[[i]]$values[[target_name]]
@@ -380,8 +380,7 @@
     X = draws_list,
     FUN = function(x) {
       x[
-        ok,
-        ,
+        ok, ,
         drop = FALSE
       ]
     }

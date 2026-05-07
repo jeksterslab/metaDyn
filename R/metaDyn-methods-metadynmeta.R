@@ -79,8 +79,7 @@ summary.metadynmeta <- function(object,
   } else {
     type <- "normal"
   }
-  ci <- switch(
-    ci_type,
+  ci <- switch(ci_type,
     wald = .CIWaldMeta(
       object = object,
       alpha = alpha
@@ -315,7 +314,7 @@ confint.metadynmeta <- function(object,
                                 nrep = 20000L,
                                 seed = NULL,
                                 ncores = NULL,
-                                ...) {           
+                                ...) {
   stopifnot(
     length(level) == 1
   )
@@ -347,8 +346,7 @@ confint.metadynmeta <- function(object,
     object$output@output$vcov <- sandwich$cov
     object$output@output$standardErrors <- sandwich$SE
   }
-  ci <- switch(
-    ci_type,
+  ci <- switch(ci_type,
     wald = .CIWaldMeta(
       object = object,
       alpha = 1 - level
