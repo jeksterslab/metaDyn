@@ -84,7 +84,11 @@
             )
           ),
           OpenMx::mxAlgebraFromString(
-            algString = "cbind(expected_mean_z, expected_mean_y, expected_mean_x)",
+            algString = paste0(
+              "cbind(",
+              "expected_mean_z, expected_mean_y, expected_mean_x",
+              ")"
+            ),
             name = "expected_mean",
             dimnames = list(
               "1",

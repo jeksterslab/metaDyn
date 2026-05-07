@@ -1,5 +1,5 @@
-.MetaExpectedCovariancesFixedXNoDistal <- function(etaeta,
-                                                   ynames) {
+.MetaCovCondY <- function(etaeta,
+                          ynames) {
   list(
     OpenMx::mxAlgebraFromString(
       algString = etaeta,
