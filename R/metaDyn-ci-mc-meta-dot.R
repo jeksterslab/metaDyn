@@ -104,40 +104,6 @@
       na.rm = TRUE
     )
 
-    stat <- (
-      est - theta
-    ) / se
-
-    p_lower <- colMeans(
-      x = sweep(
-        x = draws,
-        MARGIN = 2,
-        STATS = theta,
-        FUN = "<="
-      ),
-      na.rm = TRUE
-    )
-
-    p_upper <- colMeans(
-      x = sweep(
-        x = draws,
-        MARGIN = 2,
-        STATS = theta,
-        FUN = ">="
-      ),
-      na.rm = TRUE
-    )
-
-    p <- 2 * pmin(
-      p_lower,
-      p_upper
-    )
-
-    p <- pmin(
-      p,
-      1
-    )
-
     ci <- apply(
       X = draws,
       MARGIN = 2,
@@ -152,16 +118,14 @@
     out <- cbind(
       est = est,
       se = se,
-      z = stat,
-      p = p,
+      R = sum(!is.na(c(draws))),
       ci
     )
 
     colnames(out) <- c(
       "est",
       "se",
-      "z",
-      "p",
+      "R",
       paste0(
         probs * 100,
         "%"
@@ -329,7 +293,6 @@
       }
     }
   }
-  # -------------------------------------------------------------
 
   draws_list <- lapply(
     X = draws_list,

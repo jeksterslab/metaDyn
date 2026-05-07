@@ -102,6 +102,7 @@ summary.metadynmeta <- function(object,
   attr(ci, "type") <- type
   attr(ci, "ci_type") <- ci_type
   attr(ci, "nrep") <- nrep
+  attr(ci, "seed") <- seed
   attr(ci, "code") <- code
   attr(ci, "print_summary") <- print_summary
   ci
@@ -164,7 +165,6 @@ print.summary.metadynmeta <- function(x,
       paste0(
         "\n",
         "Monte Carlo CI ",
-        "(R = ", nrep, ") ",
         "type:\n",
         "\"",
         type,
@@ -331,15 +331,14 @@ confint.metadynmeta <- function(object,
     wald = .CIWaldMeta(
       object = object,
       alpha = 1 - level
-    ),
+    )[, 5:6, drop = FALSE],
     mc = .CIMCMeta(
       object = object,
       alpha = 1 - level,
       nrep = nrep,
       seed = seed
-    )
+    )[, 4:5, drop = FALSE]
   )
-  ci <- ci[, 5:6, drop = FALSE]
   if (is.null(parm)) {
     parameters <- rownames(
       ci
