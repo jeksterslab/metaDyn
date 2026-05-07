@@ -15,6 +15,7 @@ Meta(
   x = NULL,
   z = NULL,
   random = TRUE,
+  fixed_x = TRUE,
   alpha_free = NULL,
   alpha_values = NULL,
   alpha_lbound = NULL,
@@ -28,6 +29,18 @@ Meta(
   tau_sqr_l_values = NULL,
   tau_sqr_l_lbound = NULL,
   tau_sqr_l_ubound = NULL,
+  mu_x_free = NULL,
+  mu_x_values = NULL,
+  mu_x_lbound = NULL,
+  mu_x_ubound = NULL,
+  sigma_x_d_free = NULL,
+  sigma_x_d_values = NULL,
+  sigma_x_d_lbound = NULL,
+  sigma_x_d_ubound = NULL,
+  sigma_x_l_free = NULL,
+  sigma_x_l_values = NULL,
+  sigma_x_l_lbound = NULL,
+  sigma_x_l_ubound = NULL,
   gamma_free = NULL,
   gamma_values = NULL,
   gamma_lbound = NULL,
@@ -92,6 +105,11 @@ Meta(
   Logical. If `random = TRUE`, estimates random effects. If
   `random = FALSE`, `tau_sqr` is a null matrix.
 
+- fixed_x:
+
+  Logical. If `fixed_x = TRUE` covariates are treated as fixed. If
+  `fixed_x = FALSE` covariates are treated as stochastic.
+
 - alpha_free:
 
   Logical vector. Optional vector of free (`TRUE`) parameters for
@@ -152,6 +170,63 @@ Meta(
 - tau_sqr_l_ubound:
 
   Numeric matrix with upper bounds for `tau_sqr_l`. If `NULL`, no upper
+  bounds are set.
+
+- mu_x_free:
+
+  Logical vector. Optional vector of free (`TRUE`) parameters for
+  `mu_x`.
+
+- mu_x_values:
+
+  Numeric vector. Optional vector of starting values for `mu_x`.
+
+- mu_x_lbound:
+
+  Numeric vector. Optional vector of lower bound values for `mu_x`.
+
+- mu_x_ubound:
+
+  Numeric vector. Optional vector of upper bound values for `mu_x`.
+
+- sigma_x_d_free:
+
+  Logical vector indicating free/fixed status of the elements of
+  `sigma_x_d`. If `NULL`, all element of `sigma_x_d` are free.
+
+- sigma_x_d_values:
+
+  Numeric vector with starting values for `sigma_x_d`. If `NULL`,
+  defaults to a vector of ones.
+
+- sigma_x_d_lbound:
+
+  Numeric vector with lower bounds for `sigma_x_d`. If `NULL`, no lower
+  bounds are set.
+
+- sigma_x_d_ubound:
+
+  Numeric vector with upper bounds for `sigma_x_d`. If `NULL`, no upper
+  bounds are set.
+
+- sigma_x_l_free:
+
+  Logical matrix indicating which strictly-lower-triangular elements of
+  `sigma_x_l` are free. Ignored if `sigma_x_diag = TRUE`.
+
+- sigma_x_l_values:
+
+  Numeric matrix of starting values for the strictly-lower-triangular
+  elements of `sigma_x_l`. If `NULL`, defaults to a null matrix.
+
+- sigma_x_l_lbound:
+
+  Numeric matrix with lower bounds for `sigma_x_l`. If `NULL`, no lower
+  bounds are set.
+
+- sigma_x_l_ubound:
+
+  Numeric matrix with upper bounds for `sigma_x_l`. If `NULL`, no upper
   bounds are set.
 
 - gamma_free:
@@ -515,7 +590,7 @@ if (requireNamespace("simStateSpace")) {
 #> Status code:
 #> 0
 #> 
-#> CI type:
+#> Wald CI type:
 #> "normal"
 #> 
 #>                est     se       z      p    2.5%   97.5%

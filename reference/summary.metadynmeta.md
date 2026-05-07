@@ -6,7 +6,16 @@ Summary Method for Object of Class `metadynmeta`
 
 ``` r
 # S3 method for class 'metadynmeta'
-summary(object, alpha = NULL, robust = NULL, digits = 4, ...)
+summary(
+  object,
+  alpha = NULL,
+  ci_type = "wald",
+  robust = NULL,
+  nrep = 20000L,
+  seed = NULL,
+  digits = 4,
+  ...
+)
 ```
 
 ## Arguments
@@ -20,12 +29,24 @@ summary(object, alpha = NULL, robust = NULL, digits = 4, ...)
   Numeric vector. Significance level \\\alpha\\. If `NULL`, the function
   will check `object` for `alpha` used in model fitting.
 
+- ci_type:
+
+  Character string. Valid values are `"wald"` and `"mc"`.
+
 - robust:
 
   Logical. If `TRUE`, use robust (sandwich) sampling variance-covariance
   matrix. If `FALSE`, use normal theory sampling variance-covariance
   matrix. If `NULL`, the function will check `object` if robust standard
   errors are available.
+
+- nrep:
+
+  Positive integer. Number of replications for `ci_type = "mc"`.
+
+- seed:
+
+  Random seed for `ci_type = "mc"`.
 
 - digits:
 

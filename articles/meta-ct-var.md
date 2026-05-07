@@ -358,7 +358,7 @@ summary(metavar)
 #> Status code:
 #> 0
 #> 
-#> CI type:
+#> Wald CI type:
 #> "normal"
 #> 
 #>                  est     se         z      p    2.5%   97.5%

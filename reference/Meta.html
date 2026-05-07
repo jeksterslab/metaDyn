@@ -62,6 +62,7 @@ between-person covariates and the meta-analyzed parameters/effect sizes.</p>
 <span>  x <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  z <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  random <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>  fixed_x <span class="op">=</span> <span class="cn">TRUE</span>,</span>
 <span>  alpha_free <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  alpha_values <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  alpha_lbound <span class="op">=</span> <span class="cn">NULL</span>,</span>
@@ -75,6 +76,18 @@ between-person covariates and the meta-analyzed parameters/effect sizes.</p>
 <span>  tau_sqr_l_values <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  tau_sqr_l_lbound <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  tau_sqr_l_ubound <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  mu_x_free <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  mu_x_values <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  mu_x_lbound <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  mu_x_ubound <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  sigma_x_d_free <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  sigma_x_d_values <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  sigma_x_d_lbound <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  sigma_x_d_ubound <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  sigma_x_l_free <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  sigma_x_l_values <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  sigma_x_l_lbound <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  sigma_x_l_ubound <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  gamma_free <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  gamma_values <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  gamma_lbound <span class="op">=</span> <span class="cn">NULL</span>,</span>
@@ -144,6 +157,12 @@ If <code>random = TRUE</code>,
 estimates random effects.
 If <code>random = FALSE</code>,
 <code>tau_sqr</code> is a null matrix.</p></dd>
+
+
+<dt id="arg-fixed-x">fixed_x<a class="anchor" aria-label="anchor" href="#arg-fixed-x"></a></dt>
+<dd><p>Logical.
+If <code>fixed_x = TRUE</code> covariates are treated as fixed.
+If <code>fixed_x = FALSE</code> covariates are treated as stochastic.</p></dd>
 
 
 <dt id="arg-alpha-free">alpha_free<a class="anchor" aria-label="anchor" href="#arg-alpha-free"></a></dt>
@@ -221,6 +240,76 @@ If <code>NULL</code>, no lower bounds are set.</p></dd>
 <dt id="arg-tau-sqr-l-ubound">tau_sqr_l_ubound<a class="anchor" aria-label="anchor" href="#arg-tau-sqr-l-ubound"></a></dt>
 <dd><p>Numeric matrix
 with upper bounds for <code>tau_sqr_l</code>.
+If <code>NULL</code>, no upper bounds are set.</p></dd>
+
+
+<dt id="arg-mu-x-free">mu_x_free<a class="anchor" aria-label="anchor" href="#arg-mu-x-free"></a></dt>
+<dd><p>Logical vector.
+Optional vector of free (<code>TRUE</code>) parameters for <code>mu_x</code>.</p></dd>
+
+
+<dt id="arg-mu-x-values">mu_x_values<a class="anchor" aria-label="anchor" href="#arg-mu-x-values"></a></dt>
+<dd><p>Numeric vector.
+Optional vector of starting values for <code>mu_x</code>.</p></dd>
+
+
+<dt id="arg-mu-x-lbound">mu_x_lbound<a class="anchor" aria-label="anchor" href="#arg-mu-x-lbound"></a></dt>
+<dd><p>Numeric vector.
+Optional vector of lower bound values for <code>mu_x</code>.</p></dd>
+
+
+<dt id="arg-mu-x-ubound">mu_x_ubound<a class="anchor" aria-label="anchor" href="#arg-mu-x-ubound"></a></dt>
+<dd><p>Numeric vector.
+Optional vector of upper bound values for <code>mu_x</code>.</p></dd>
+
+
+<dt id="arg-sigma-x-d-free">sigma_x_d_free<a class="anchor" aria-label="anchor" href="#arg-sigma-x-d-free"></a></dt>
+<dd><p>Logical vector
+indicating free/fixed status of the elements of <code>sigma_x_d</code>.
+If <code>NULL</code>, all element of <code>sigma_x_d</code> are free.</p></dd>
+
+
+<dt id="arg-sigma-x-d-values">sigma_x_d_values<a class="anchor" aria-label="anchor" href="#arg-sigma-x-d-values"></a></dt>
+<dd><p>Numeric vector
+with starting values for <code>sigma_x_d</code>.
+If <code>NULL</code>, defaults to a vector of ones.</p></dd>
+
+
+<dt id="arg-sigma-x-d-lbound">sigma_x_d_lbound<a class="anchor" aria-label="anchor" href="#arg-sigma-x-d-lbound"></a></dt>
+<dd><p>Numeric vector
+with lower bounds for <code>sigma_x_d</code>.
+If <code>NULL</code>, no lower bounds are set.</p></dd>
+
+
+<dt id="arg-sigma-x-d-ubound">sigma_x_d_ubound<a class="anchor" aria-label="anchor" href="#arg-sigma-x-d-ubound"></a></dt>
+<dd><p>Numeric vector
+with upper bounds for <code>sigma_x_d</code>.
+If <code>NULL</code>, no upper bounds are set.</p></dd>
+
+
+<dt id="arg-sigma-x-l-free">sigma_x_l_free<a class="anchor" aria-label="anchor" href="#arg-sigma-x-l-free"></a></dt>
+<dd><p>Logical matrix
+indicating which strictly-lower-triangular elements
+of <code>sigma_x_l</code> are free.
+Ignored if <code>sigma_x_diag = TRUE</code>.</p></dd>
+
+
+<dt id="arg-sigma-x-l-values">sigma_x_l_values<a class="anchor" aria-label="anchor" href="#arg-sigma-x-l-values"></a></dt>
+<dd><p>Numeric matrix
+of starting values for the strictly-lower-triangular elements
+of <code>sigma_x_l</code>.
+If <code>NULL</code>, defaults to a null matrix.</p></dd>
+
+
+<dt id="arg-sigma-x-l-lbound">sigma_x_l_lbound<a class="anchor" aria-label="anchor" href="#arg-sigma-x-l-lbound"></a></dt>
+<dd><p>Numeric matrix
+with lower bounds for <code>sigma_x_l</code>.
+If <code>NULL</code>, no lower bounds are set.</p></dd>
+
+
+<dt id="arg-sigma-x-l-ubound">sigma_x_l_ubound<a class="anchor" aria-label="anchor" href="#arg-sigma-x-l-ubound"></a></dt>
+<dd><p>Numeric matrix
+with upper bounds for <code>sigma_x_l</code>.
 If <code>NULL</code>, no upper bounds are set.</p></dd>
 
 
@@ -614,7 +703,7 @@ OpenMx 2.0: Extended structural equation and statistical modeling.
 <span class="r-out co"><span class="r-pr">#&gt;</span> Status code:</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 0</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> CI type:</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Wald CI type:</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> "normal"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>                est     se       z      p    2.5%   97.5%</span>
