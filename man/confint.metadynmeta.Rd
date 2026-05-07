@@ -12,6 +12,7 @@
   robust = NULL,
   nrep = 20000L,
   seed = NULL,
+  ncores = NULL,
   ...
 )
 }
@@ -38,6 +39,9 @@ if robust standard errors are available.}
 Number of replications for \code{ci_type = "mc"}.}
 
 \item{seed}{Random seed for \code{ci_type = "mc"}.}
+
+\item{ncores}{Positive integer.
+Number of cores to use for \code{ci_type = "mc"}.}
 
 \item{...}{further arguments.}
 }

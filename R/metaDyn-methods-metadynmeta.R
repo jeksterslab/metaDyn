@@ -11,6 +11,8 @@
 #' @param nrep Positive integer.
 #'   Number of replications for `ci_type = "mc"`.
 #' @param seed Random seed for `ci_type = "mc"`.
+#' @param ncores Positive integer.
+#'   Number of cores to use for `ci_type = "mc"`.
 #' @param digits Integer indicating the number of decimal places to display.
 #' @param robust Logical.
 #'   If `TRUE`, use robust (sandwich) sampling variance-covariance matrix.
@@ -37,6 +39,7 @@ summary.metadynmeta <- function(object,
                                 robust = NULL,
                                 nrep = 20000L,
                                 seed = NULL,
+                                ncores = NULL,
                                 digits = 4,
                                 ...) {
   code <- .CheckStatusCode(
@@ -85,7 +88,8 @@ summary.metadynmeta <- function(object,
       object = object,
       alpha = alpha,
       nrep = nrep,
-      seed = seed
+      seed = seed,
+      ncores = ncores
     )
   )
   print_summary <- round(
@@ -295,6 +299,7 @@ confint.metadynmeta <- function(object,
                                 robust = NULL,
                                 nrep = 20000L,
                                 seed = NULL,
+                                ncores = NULL,
                                 ...) {
   stopifnot(
     length(level) == 1
@@ -336,7 +341,8 @@ confint.metadynmeta <- function(object,
       object = object,
       alpha = 1 - level,
       nrep = nrep,
-      seed = seed
+      seed = seed,
+      ncores = ncores
     )[, 4:5, drop = FALSE]
   )
   if (is.null(parm)) {

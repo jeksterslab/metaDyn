@@ -1,7 +1,8 @@
 .CIMCMeta <- function(object,
                       alpha,
                       nrep = 20000L,
-                      seed = NULL) {
+                      seed = NULL,
+                      ncores = NULL) {
   if (!is.null(seed)) {
     set.seed(seed)
   }
@@ -97,20 +98,39 @@
       alpha = alpha
     )
 
+    r <- colSums(
+      !is.na(draws)
+    )
+
     se <- apply(
       X = draws,
       MARGIN = 2,
-      FUN = stats::sd,
-      na.rm = TRUE
+      FUN = function(x) {
+        stats::sd(
+          x = x,
+          na.rm = TRUE
+        )
+      }
     )
 
     ci <- apply(
       X = draws,
       MARGIN = 2,
-      FUN = stats::quantile,
-      probs = probs,
-      na.rm = TRUE,
-      names = FALSE
+      FUN = function(x) {
+        if (all(is.na(x))) {
+          rep(
+            x = NA_real_,
+            times = length(probs)
+          )
+        } else {
+          stats::quantile(
+            x = x,
+            probs = probs,
+            na.rm = TRUE,
+            names = FALSE
+          )
+        }
+      }
     )
 
     ci <- t(ci)
@@ -118,7 +138,7 @@
     out <- cbind(
       est = est,
       se = se,
-      R = sum(!is.na(c(draws))),
+      R = r,
       ci
     )
 
@@ -169,6 +189,17 @@
     target_names %in% mat_names
   ]
 
+  if (length(target_names) == 0L) {
+    stop(
+      paste(
+        "No Monte Carlo confidence interval targets were found.",
+        "Check that the fitted OpenMx model contains the expected",
+        "matrices or algebras."
+      ),
+      call. = FALSE
+    )
+  }
+
   est_list <- lapply(
     X = target_names,
     FUN = .EvalByNameVec,
@@ -201,7 +232,7 @@
     y = rownames(vcov_pars)
   )
 
-  if (length(missing_pars) > 0) {
+  if (length(missing_pars) > 0L) {
     stop(
       paste(
         "The parameter covariance matrix is missing the following parameters:",
@@ -250,12 +281,53 @@
     }
   )
 
-  ok <- rep(
-    x = TRUE,
-    times = nrep
-  )
+  names(draws_list) <- target_names
 
-  for (i in seq_len(nrep)) {
+  if (is.null(ncores)) {
+    ncores <- 1L
+  } else {
+    ncores <- as.integer(ncores)
+    if (is.na(ncores) || ncores < 1L) {
+      ncores <- 1L
+    }
+    ncores <- min(
+      ncores,
+      parallel::detectCores(),
+      nrep
+    )
+  }
+
+  if (ncores > 1L) {
+    # nocov start
+    threads <- OpenMx::mxOption(
+      key = "Number of Threads"
+    )
+    on.exit(
+      OpenMx::mxOption(
+        key = "Number of Threads",
+        value = threads
+      ),
+      add = TRUE
+    )
+    OpenMx::mxOption(
+      key = "Number of Threads",
+      value = 1L
+    )
+
+    os_type <- Sys.info()["sysname"]
+    if (os_type == "Darwin") {
+      fork <- TRUE
+    } else if (os_type == "Linux") {
+      fork <- TRUE
+    } else {
+      fork <- FALSE
+    }
+    # nocov end
+  } else {
+    fork <- FALSE
+  }
+
+  .OneDraw <- function(i) {
     values_i <- as.numeric(
       par_draws[i, ]
     )
@@ -273,23 +345,89 @@
     )
 
     if (is.null(model_i)) {
-      ok[i] <- FALSE
-    } else {
-      for (j in seq_along(target_names)) {
-        val <- tryCatch(
+      return(
+        list(
+          ok = FALSE,
+          values = NULL
+        )
+      )
+    }
+
+    values <- lapply(
+      X = target_names,
+      FUN = function(name) {
+        tryCatch(
           expr = .EvalByNameVec(
-            name = target_names[j],
+            name = name,
             model = model_i
           ),
           error = function(e) {
             rep(
               x = NA_real_,
-              times = length(est_list[[j]])
+              times = length(est_list[[name]])
             )
           }
         )
+      }
+    )
 
-        draws_list[[j]][i, ] <- val
+    names(values) <- target_names
+
+    list(
+      ok = TRUE,
+      values = values
+    )
+  }
+
+  if (ncores > 1L) {
+    # nocov start
+    if (fork) {
+      draw_results <- parallel::mclapply(
+        X = seq_len(nrep),
+        FUN = .OneDraw,
+        mc.cores = ncores
+      )
+    } else {
+      cl <- parallel::makeCluster(ncores)
+      on.exit(
+        parallel::stopCluster(cl = cl),
+        add = TRUE
+      )
+      draw_results <- parallel::parLapply(
+        cl = cl,
+        X = seq_len(nrep),
+        fun = .OneDraw
+      )
+    }
+    # nocov end
+  } else {
+    draw_results <- lapply(
+      X = seq_len(nrep),
+      FUN = .OneDraw
+    )
+  }
+
+  ok <- vapply(
+    X = draw_results,
+    FUN = function(x) {
+      isTRUE(x$ok)
+    },
+    FUN.VALUE = logical(1)
+  )
+
+  if (!any(ok)) {
+    stop(
+      "No valid Monte Carlo draws were generated.",
+      call. = FALSE
+    )
+  }
+
+  for (j in seq_along(target_names)) {
+    target_name <- target_names[j]
+
+    for (i in seq_len(nrep)) {
+      if (ok[i]) {
+        draws_list[[j]][i, ] <- draw_results[[i]]$values[[target_name]]
       }
     }
   }
@@ -303,13 +441,6 @@
       ]
     }
   )
-
-  if (!any(ok)) {
-    stop(
-      "No valid Monte Carlo draws were generated.",
-      call. = FALSE
-    )
-  }
 
   out <- list()
 
@@ -425,7 +556,7 @@
     )
   }
 
-  if (length(ie_xyz) > 0) {
+  if (length(ie_xyz) > 0L) {
     out$ie_xyz <- do.call(
       what = "rbind",
       args = lapply(
@@ -448,8 +579,19 @@
     )
   ]
 
-  do.call(
+  if (length(out) == 0L) {
+    stop(
+      "No Monte Carlo confidence interval results were generated.",
+      call. = FALSE
+    )
+  }
+
+  out <- do.call(
     what = "rbind",
     args = out
   )
+
+  storage.mode(out) <- "numeric"
+
+  out
 }
