@@ -4,7 +4,7 @@
   p <- length(ynames)
   m <- length(xnames)
   r <- length(znames)
-  # Direct effect: x -> z
+  # Direct effect: x to z
   direct <- OpenMx::mxAlgebraFromString(
     algString = "omega",
     name = "direct",
@@ -43,7 +43,7 @@
     direct_vec = direct_vec
   )
   # Total indirect effect through all latent effect-size mediators:
-  # x_j -> eta_1, ..., eta_p -> z_i
+  # x_j to eta_1, ..., eta_p to z_i
   # Element (i, j) is sum_k phi[i, k] * gamma[k, j].
   # Assumes beta = 0, so indirect = phi %*% gamma.
   indirect <- OpenMx::mxAlgebraFromString(
@@ -122,7 +122,7 @@
     total_vec = total_vec
   )
   # Specific indirect effects:
-  # x_j -> eta_k -> z_i
+  # x_j to eta_k to z_i
   # Element is phi[i, k] * gamma[k, j].
   grid_xyz <- expand.grid(
     z = seq_len(r),
