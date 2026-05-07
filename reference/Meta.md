@@ -590,8 +590,11 @@ if (requireNamespace("simStateSpace")) {
 #> Status code:
 #> 0
 #> 
-#> Wald CI type:
-#> "normal"
+#> Confidence intervals type:
+#> Wald
+#> 
+#> Sampling covariance matrix type:
+#> Normal
 #> 
 #>                est     se       z      p    2.5%   97.5%
 #> alpha[1,1] -0.0043 0.0020 -2.1572 0.0310 -0.0082 -0.0004

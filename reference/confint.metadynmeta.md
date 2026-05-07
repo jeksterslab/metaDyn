@@ -14,6 +14,7 @@ confint(
   robust = NULL,
   nrep = 20000L,
   seed = NULL,
+  ncores = NULL,
   ...
 )
 ```
@@ -52,6 +53,10 @@ confint(
 - seed:
 
   Random seed for `ci_type = "mc"`.
+
+- ncores:
+
+  Positive integer. Number of cores to use for `ci_type = "mc"`.
 
 - ...:
 
