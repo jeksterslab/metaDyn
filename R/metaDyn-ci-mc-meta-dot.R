@@ -1,6 +1,6 @@
 .CIMCMeta <- function(object,
                       alpha,
-                      nrep = 20000,
+                      nrep = 20000L,
                       seed = NULL) {
   if (!is.null(seed)) {
     set.seed(seed)
@@ -9,8 +9,8 @@
   model <- object$output
 
   mat_names <- c(
-    names(model$output$algebras),
-    names(model$output$matrices)
+    names(model$algebras),
+    names(model$matrices)
   )
 
   .EvalByNameVec <- function(name,
@@ -323,6 +323,7 @@
       }
     }
   }
+  # -------------------------------------------------------------
 
   draws_list <- lapply(
     X = draws_list,
