@@ -9,7 +9,7 @@
   alpha = NULL,
   ci_type = "wald",
   robust = NULL,
-  nrep = 20000L,
+  nrep = 1000L,
   seed = NULL,
   digits = 4,
   ...
