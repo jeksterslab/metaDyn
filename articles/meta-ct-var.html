@@ -60,7 +60,7 @@
                         <h4 data-toc-skip class="author">Ivan Jacob
 Agaloos Pesigan</h4>
             
-            <h4 data-toc-skip class="date">2026-05-07</h4>
+            <h4 data-toc-skip class="date">2026-05-08</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/jeksterslab/metaDyn/blob/main/vignettes/meta-ct-var.Rmd"><code>vignettes/meta-ct-var.Rmd</code></a></small>
       <div class="d-none name"><code>meta-ct-var.Rmd</code></div>
@@ -347,16 +347,24 @@ individual
 <span>  time <span class="op">=</span> <span class="st">"time"</span>,</span>
 <span>  center <span class="op">=</span> <span class="cn">TRUE</span>,</span>
 <span>  ncores <span class="op">=</span> <span class="fu">parallel</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/r/parallel/detectCores.html" class="external-link">detectCores</a></span><span class="op">(</span><span class="op">)</span></span>
-<span><span class="op">)</span></span>
-<span><span class="co">#&gt; Error in `model$output`:</span></span>
-<span><span class="co">#&gt; ! $ operator is invalid for atomic vectors</span></span></code></pre></div>
+<span><span class="op">)</span></span></code></pre></div>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span></span>
 <span>  <span class="va">fit</span>,</span>
 <span>  means <span class="op">=</span> <span class="cn">TRUE</span></span>
 <span><span class="op">)</span></span>
-<span><span class="co">#&gt; Error:</span></span>
-<span><span class="co">#&gt; ! object 'fit' not found</span></span></code></pre></div>
+<span><span class="co">#&gt; Call:</span></span>
+<span><span class="co">#&gt; FitVARMxID(data = data, observed = c("y1", "y2"), id = "id", </span></span>
+<span><span class="co">#&gt;     time = "time", ct = TRUE, center = TRUE, ncores = parallel::detectCores())</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; Convergence:</span></span>
+<span><span class="co">#&gt; 100.0%</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; Means of the estimated paramaters per individual.</span></span>
+<span><span class="co">#&gt;   mu[1,1]   mu[2,1] beta[1,1] beta[2,1] beta[1,2] beta[2,2]  psi[1,1]  psi[2,1] </span></span>
+<span><span class="co">#&gt;    2.9743    2.1847   -1.3528   -0.1673   -0.1959   -1.4373    1.3040    0.5685 </span></span>
+<span><span class="co">#&gt;  psi[2,2] </span></span>
+<span><span class="co">#&gt;    1.5566</span></span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="stage-2-random-effects-meta-analysis-of-person-specific-set-points-and-dynamics">Stage 2: Random-Effects Meta-Analysis of Person-Specific Set Points
@@ -404,36 +412,167 @@ simplifies the random effects.</p>
 <span>  tau_sqr_l_values <span class="op">=</span> <span class="va">tau_sqr_l_values</span>,</span>
 <span>  cov_dyn <span class="op">=</span> <span class="cn">FALSE</span>,</span>
 <span>  ncores <span class="op">=</span> <span class="fu">parallel</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/r/parallel/detectCores.html" class="external-link">detectCores</a></span><span class="op">(</span><span class="op">)</span></span>
-<span><span class="op">)</span></span>
-<span><span class="co">#&gt; Error:</span></span>
-<span><span class="co">#&gt; ! object 'fit' not found</span></span></code></pre></div>
+<span><span class="op">)</span></span></code></pre></div>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">metavar</span><span class="op">)</span></span>
-<span><span class="co">#&gt; Error:</span></span>
-<span><span class="co">#&gt; ! object 'metavar' not found</span></span></code></pre></div>
+<span><span class="co">#&gt; Call:</span></span>
+<span><span class="co">#&gt; MetaVARMx(object = fit, tau_sqr_l_free = tau_sqr_l_free, tau_sqr_l_values = tau_sqr_l_values, </span></span>
+<span><span class="co">#&gt;     cov_dyn = FALSE, ncores = parallel::detectCores())</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; Status code:</span></span>
+<span><span class="co">#&gt; 0</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; Confidence intervals type:</span></span>
+<span><span class="co">#&gt; Wald</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; Sampling covariance matrix type:</span></span>
+<span><span class="co">#&gt; Normal</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt;                  est     se         z      p    2.5%   97.5%</span></span>
+<span><span class="co">#&gt; alpha[1,1]    2.9742 0.1120   26.5554 0.0000  2.7547  3.1937</span></span>
+<span><span class="co">#&gt; alpha[2,1]    2.1845 0.1062   20.5783 0.0000  1.9765  2.3926</span></span>
+<span><span class="co">#&gt; alpha[3,1]   -1.3129 0.0238  -55.2208 0.0000 -1.3595 -1.2663</span></span>
+<span><span class="co">#&gt; alpha[4,1]   -0.1670 0.0225   -7.4224 0.0000 -0.2111 -0.1229</span></span>
+<span><span class="co">#&gt; alpha[5,1]   -0.1943 0.0186  -10.4593 0.0000 -0.2307 -0.1579</span></span>
+<span><span class="co">#&gt; alpha[6,1]   -1.3984 0.0251  -55.8092 0.0000 -1.4475 -1.3492</span></span>
+<span><span class="co">#&gt; tau_sqr[1,1]  1.2471 0.1775    7.0246 0.0000  0.8991  1.5950</span></span>
+<span><span class="co">#&gt; tau_sqr[2,1]  0.5434 0.1307    4.1582 0.0000  0.2873  0.7996</span></span>
+<span><span class="co">#&gt; tau_sqr[2,2]  1.1190 0.1593    7.0227 0.0000  0.8067  1.4313</span></span>
+<span><span class="co">#&gt; tau_sqr[3,3]  0.0209 0.0072    2.8950 0.0038  0.0068  0.0351</span></span>
+<span><span class="co">#&gt; tau_sqr[4,3]  0.0012 0.0048    0.2575 0.7968 -0.0083  0.0107</span></span>
+<span><span class="co">#&gt; tau_sqr[5,3]  0.0005 0.0041    0.1157 0.9079 -0.0075  0.0084</span></span>
+<span><span class="co">#&gt; tau_sqr[6,3] -0.0046 0.0058   -0.7890 0.4301 -0.0159  0.0068</span></span>
+<span><span class="co">#&gt; tau_sqr[4,4]  0.0088 0.0063    1.3975 0.1623 -0.0036  0.0212</span></span>
+<span><span class="co">#&gt; tau_sqr[5,4]  0.0045 0.0032    1.4271 0.1535 -0.0017  0.0107</span></span>
+<span><span class="co">#&gt; tau_sqr[6,4] -0.0038 0.0056   -0.6875 0.4918 -0.0147  0.0071</span></span>
+<span><span class="co">#&gt; tau_sqr[5,5]  0.0035 0.0036    0.9687 0.3327 -0.0036  0.0106</span></span>
+<span><span class="co">#&gt; tau_sqr[6,5]  0.0032 0.0042    0.7705 0.4410 -0.0050  0.0114</span></span>
+<span><span class="co">#&gt; tau_sqr[6,6]  0.0251 0.0079    3.1577 0.0016  0.0095  0.0406</span></span>
+<span><span class="co">#&gt; i_sqr[1,1]    0.9948 0.0007 1339.1718 0.0000  0.9933  0.9962</span></span>
+<span><span class="co">#&gt; i_sqr[2,1]    0.9937 0.0009 1110.1015 0.0000  0.9919  0.9954</span></span>
+<span><span class="co">#&gt; i_sqr[3,1]    0.3830 0.0816    4.6925 0.0000  0.2231  0.5430</span></span>
+<span><span class="co">#&gt; i_sqr[4,1]    0.1798 0.1055    1.7040 0.0884 -0.0270  0.3867</span></span>
+<span><span class="co">#&gt; i_sqr[5,1]    0.1045 0.0966    1.0817 0.2794 -0.0848  0.2939</span></span>
+<span><span class="co">#&gt; i_sqr[6,1]    0.4128 0.0768    5.3787 0.0000  0.2624  0.5633</span></span></code></pre></div>
 <div class="section level3">
 <h3 id="normal-theory-confidence-intervals">Normal Theory Confidence Intervals<a class="anchor" aria-label="anchor" href="#normal-theory-confidence-intervals"></a>
 </h3>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/stats/confint.html" class="external-link">confint</a></span><span class="op">(</span><span class="va">metavar</span>, level <span class="op">=</span> <span class="fl">0.95</span><span class="op">)</span></span>
-<span><span class="co">#&gt; Error:</span></span>
-<span><span class="co">#&gt; ! object 'metavar' not found</span></span></code></pre></div>
+<span><span class="co">#&gt;                     2.5 %       97.5 %</span></span>
+<span><span class="co">#&gt; alpha[1,1]    2.754699010  3.193732990</span></span>
+<span><span class="co">#&gt; alpha[2,1]    1.976478157  2.392609229</span></span>
+<span><span class="co">#&gt; alpha[3,1]   -1.359473398 -1.266277046</span></span>
+<span><span class="co">#&gt; alpha[4,1]   -0.211109134 -0.122907820</span></span>
+<span><span class="co">#&gt; alpha[5,1]   -0.230699104 -0.157883068</span></span>
+<span><span class="co">#&gt; alpha[6,1]   -1.447467560 -1.349249666</span></span>
+<span><span class="co">#&gt; tau_sqr[1,1]  0.899129233  1.595035324</span></span>
+<span><span class="co">#&gt; tau_sqr[2,1]  0.287295484  0.799594275</span></span>
+<span><span class="co">#&gt; tau_sqr[2,2]  0.806714821  1.431335980</span></span>
+<span><span class="co">#&gt; tau_sqr[3,3]  0.006750883  0.035053537</span></span>
+<span><span class="co">#&gt; tau_sqr[4,3] -0.008250285  0.010746130</span></span>
+<span><span class="co">#&gt; tau_sqr[5,3] -0.007500036  0.008441230</span></span>
+<span><span class="co">#&gt; tau_sqr[6,3] -0.015885521  0.006766899</span></span>
+<span><span class="co">#&gt; tau_sqr[4,4] -0.003551443  0.021200066</span></span>
+<span><span class="co">#&gt; tau_sqr[5,4] -0.001690932  0.010749059</span></span>
+<span><span class="co">#&gt; tau_sqr[6,4] -0.014722048  0.007076029</span></span>
+<span><span class="co">#&gt; tau_sqr[5,5] -0.003581305  0.010580712</span></span>
+<span><span class="co">#&gt; tau_sqr[6,5] -0.004980240  0.011432219</span></span>
+<span><span class="co">#&gt; tau_sqr[6,6]  0.009511649  0.040642377</span></span>
+<span><span class="co">#&gt; i_sqr[1,1]    0.993298521  0.996210295</span></span>
+<span><span class="co">#&gt; i_sqr[2,1]    0.991919322  0.995428127</span></span>
+<span><span class="co">#&gt; i_sqr[3,1]    0.223052567  0.543026615</span></span>
+<span><span class="co">#&gt; i_sqr[4,1]   -0.027013751  0.386698228</span></span>
+<span><span class="co">#&gt; i_sqr[5,1]   -0.084843662  0.293856388</span></span>
+<span><span class="co">#&gt; i_sqr[6,1]    0.262408617  0.563286497</span></span></code></pre></div>
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/stats/confint.html" class="external-link">confint</a></span><span class="op">(</span><span class="va">metavar</span>, level <span class="op">=</span> <span class="fl">0.99</span><span class="op">)</span></span>
-<span><span class="co">#&gt; Error:</span></span>
-<span><span class="co">#&gt; ! object 'metavar' not found</span></span></code></pre></div>
+<span><span class="co">#&gt;                     0.5 %      99.5 %</span></span>
+<span><span class="co">#&gt; alpha[1,1]    2.685721773  3.26271023</span></span>
+<span><span class="co">#&gt; alpha[2,1]    1.911099227  2.45798816</span></span>
+<span><span class="co">#&gt; alpha[3,1]   -1.374115607 -1.25163484</span></span>
+<span><span class="co">#&gt; alpha[4,1]   -0.224966565 -0.10905039</span></span>
+<span><span class="co">#&gt; alpha[5,1]   -0.242139332 -0.14644284</span></span>
+<span><span class="co">#&gt; alpha[6,1]   -1.462898709 -1.33381852</span></span>
+<span><span class="co">#&gt; tau_sqr[1,1]  0.789794462  1.70437010</span></span>
+<span><span class="co">#&gt; tau_sqr[2,1]  0.206807510  0.88008225</span></span>
+<span><span class="co">#&gt; tau_sqr[2,2]  0.708579725  1.52947108</span></span>
+<span><span class="co">#&gt; tau_sqr[3,3]  0.002304214  0.03950021</span></span>
+<span><span class="co">#&gt; tau_sqr[4,3] -0.011234838  0.01373068</span></span>
+<span><span class="co">#&gt; tau_sqr[5,3] -0.010004591  0.01094578</span></span>
+<span><span class="co">#&gt; tau_sqr[6,3] -0.019444475  0.01032585</span></span>
+<span><span class="co">#&gt; tau_sqr[4,4] -0.007440187  0.02508881</span></span>
+<span><span class="co">#&gt; tau_sqr[5,4] -0.003645396  0.01270352</span></span>
+<span><span class="co">#&gt; tau_sqr[6,4] -0.018146774  0.01050076</span></span>
+<span><span class="co">#&gt; tau_sqr[5,5] -0.005806319  0.01280573</span></span>
+<span><span class="co">#&gt; tau_sqr[6,5] -0.007558824  0.01401080</span></span>
+<span><span class="co">#&gt; tau_sqr[6,6]  0.004620657  0.04553337</span></span>
+<span><span class="co">#&gt; i_sqr[1,1]    0.992841049  0.99666777</span></span>
+<span><span class="co">#&gt; i_sqr[2,1]    0.991368049  0.99597940</span></span>
+<span><span class="co">#&gt; i_sqr[3,1]    0.172781000  0.59329818</span></span>
+<span><span class="co">#&gt; i_sqr[4,1]   -0.092012614  0.45169709</span></span>
+<span><span class="co">#&gt; i_sqr[5,1]   -0.144341752  0.35335448</span></span>
+<span><span class="co">#&gt; i_sqr[6,1]    0.215137276  0.61055784</span></span></code></pre></div>
 </div>
 <div class="section level3">
 <h3 id="robust-confidence-intervals">Robust Confidence Intervals<a class="anchor" aria-label="anchor" href="#robust-confidence-intervals"></a>
 </h3>
 <div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/stats/confint.html" class="external-link">confint</a></span><span class="op">(</span><span class="va">metavar</span>, level <span class="op">=</span> <span class="fl">0.95</span>, robust <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
-<span><span class="co">#&gt; Error:</span></span>
-<span><span class="co">#&gt; ! object 'metavar' not found</span></span></code></pre></div>
+<span><span class="co">#&gt;                     2.5 %       97.5 %</span></span>
+<span><span class="co">#&gt; alpha[1,1]    2.753596609  3.194835391</span></span>
+<span><span class="co">#&gt; alpha[2,1]    1.975426910  2.393660475</span></span>
+<span><span class="co">#&gt; alpha[3,1]   -1.358278219 -1.267472225</span></span>
+<span><span class="co">#&gt; alpha[4,1]   -0.211826365 -0.122190589</span></span>
+<span><span class="co">#&gt; alpha[5,1]   -0.230846111 -0.157736061</span></span>
+<span><span class="co">#&gt; alpha[6,1]   -1.445580948 -1.351136278</span></span>
+<span><span class="co">#&gt; tau_sqr[1,1]  0.908532766  1.585631791</span></span>
+<span><span class="co">#&gt; tau_sqr[2,1]  0.284671049  0.802218709</span></span>
+<span><span class="co">#&gt; tau_sqr[2,2]  0.848704437  1.389346364</span></span>
+<span><span class="co">#&gt; tau_sqr[3,3]  0.006108136  0.035696285</span></span>
+<span><span class="co">#&gt; tau_sqr[4,3] -0.007487942  0.009983787</span></span>
+<span><span class="co">#&gt; tau_sqr[5,3] -0.007528531  0.008469725</span></span>
+<span><span class="co">#&gt; tau_sqr[6,3] -0.015333406  0.006214784</span></span>
+<span><span class="co">#&gt; tau_sqr[4,4] -0.002288340  0.019936963</span></span>
+<span><span class="co">#&gt; tau_sqr[5,4] -0.001044388  0.010102515</span></span>
+<span><span class="co">#&gt; tau_sqr[6,4] -0.012820415  0.005174397</span></span>
+<span><span class="co">#&gt; tau_sqr[5,5] -0.002925482  0.009924890</span></span>
+<span><span class="co">#&gt; tau_sqr[6,5] -0.004271695  0.010723675</span></span>
+<span><span class="co">#&gt; tau_sqr[6,6]  0.005252349  0.044901677</span></span>
+<span><span class="co">#&gt; i_sqr[1,1]    0.993337867  0.996170950</span></span>
+<span><span class="co">#&gt; i_sqr[2,1]    0.992155199  0.995192251</span></span>
+<span><span class="co">#&gt; i_sqr[3,1]    0.215786026  0.550293156</span></span>
+<span><span class="co">#&gt; i_sqr[4,1]   -0.005901416  0.365585893</span></span>
+<span><span class="co">#&gt; i_sqr[5,1]   -0.067306604  0.276319330</span></span>
+<span><span class="co">#&gt; i_sqr[6,1]    0.221218216  0.604476898</span></span></code></pre></div>
 <div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/stats/confint.html" class="external-link">confint</a></span><span class="op">(</span><span class="va">metavar</span>, level <span class="op">=</span> <span class="fl">0.99</span>, robust <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
-<span><span class="co">#&gt; Error:</span></span>
-<span><span class="co">#&gt; ! object 'metavar' not found</span></span></code></pre></div>
+<span><span class="co">#&gt;                      0.5 %       99.5 %</span></span>
+<span><span class="co">#&gt; alpha[1,1]    2.6842729719  3.264159028</span></span>
+<span><span class="co">#&gt; alpha[2,1]    1.9097176550  2.459369731</span></span>
+<span><span class="co">#&gt; alpha[3,1]   -1.3725448745 -1.253205570</span></span>
+<span><span class="co">#&gt; alpha[4,1]   -0.2259091662 -0.108107787</span></span>
+<span><span class="co">#&gt; alpha[5,1]   -0.2423325323 -0.146249640</span></span>
+<span><span class="co">#&gt; alpha[6,1]   -1.4604192809 -1.336297945</span></span>
+<span><span class="co">#&gt; tau_sqr[1,1]  0.8021527990  1.692011758</span></span>
+<span><span class="co">#&gt; tau_sqr[2,1]  0.2033584181  0.883531340</span></span>
+<span><span class="co">#&gt; tau_sqr[2,2]  0.7637634335  1.474287367</span></span>
+<span><span class="co">#&gt; tau_sqr[3,3]  0.0014595006  0.040344920</span></span>
+<span><span class="co">#&gt; tau_sqr[4,3] -0.0102329498  0.012728794</span></span>
+<span><span class="co">#&gt; tau_sqr[5,3] -0.0100420392  0.010983233</span></span>
+<span><span class="co">#&gt; tau_sqr[6,3] -0.0187188718  0.009600250</span></span>
+<span><span class="co">#&gt; tau_sqr[4,4] -0.0057801883  0.023428811</span></span>
+<span><span class="co">#&gt; tau_sqr[5,4] -0.0027956936  0.011853821</span></span>
+<span><span class="co">#&gt; tau_sqr[6,4] -0.0156476051  0.008001586</span></span>
+<span><span class="co">#&gt; tau_sqr[5,5] -0.0049444221  0.011943830</span></span>
+<span><span class="co">#&gt; tau_sqr[6,5] -0.0066276385  0.013079618</span></span>
+<span><span class="co">#&gt; tau_sqr[6,6] -0.0009770124  0.051131038</span></span>
+<span><span class="co">#&gt; i_sqr[1,1]    0.9928927576  0.996616059</span></span>
+<span><span class="co">#&gt; i_sqr[2,1]    0.9916780435  0.995669406</span></span>
+<span><span class="co">#&gt; i_sqr[3,1]    0.1632311473  0.602848035</span></span>
+<span><span class="co">#&gt; i_sqr[4,1]   -0.0642663028  0.423950780</span></span>
+<span><span class="co">#&gt; i_sqr[5,1]   -0.1212941515  0.330306877</span></span>
+<span><span class="co">#&gt; i_sqr[6,1]    0.1610039129  0.664691201</span></span></code></pre></div>
 <ul>
 <li>The fixed part of the random-effects model gives pooled means
 <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="bold-italic">𝜶</mi><mo>=</mo><mi mathvariant="double-struck">𝔼</mi><mrow><mo stretchy="true" form="prefix">[</mo><mrow><mi mathvariant="normal">V</mi><mi mathvariant="normal">e</mi><mi mathvariant="normal">c</mi></mrow><mrow><mo stretchy="true" form="prefix">(</mo><mi mathvariant="bold-italic">𝝁</mi><mo>,</mo><mi mathvariant="bold-italic">𝜷</mi><mo stretchy="true" form="postfix">)</mo></mrow><mo stretchy="true" form="postfix">]</mo></mrow></mrow><annotation encoding="application/x-tex">\boldsymbol{\alpha} = \mathbb{E} \left[ \mathrm{Vec} \left( \boldsymbol{\mu}, \boldsymbol{\beta} \right)  \right]</annotation></semantics></math>.</li>
@@ -447,17 +586,23 @@ across individuals.</li>
 </ul>
 <div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">means</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/extract.html">extract</a></span><span class="op">(</span><span class="va">metavar</span>, what <span class="op">=</span> <span class="st">"alpha"</span><span class="op">)</span></span>
-<span><span class="co">#&gt; Error:</span></span>
-<span><span class="co">#&gt; ! object 'metavar' not found</span></span>
 <span><span class="va">means</span></span>
-<span><span class="co">#&gt; Error:</span></span>
-<span><span class="co">#&gt; ! object 'means' not found</span></span>
+<span><span class="co">#&gt;         alpha</span></span>
+<span><span class="co">#&gt; y1  2.9742160</span></span>
+<span><span class="co">#&gt; y2  2.1845437</span></span>
+<span><span class="co">#&gt; y3 -1.3128752</span></span>
+<span><span class="co">#&gt; y4 -0.1670085</span></span>
+<span><span class="co">#&gt; y5 -0.1942911</span></span>
+<span><span class="co">#&gt; y6 -1.3983586</span></span>
 <span><span class="va">covariances</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/extract.html">extract</a></span><span class="op">(</span><span class="va">metavar</span>, what <span class="op">=</span> <span class="st">"tau_sqr"</span><span class="op">)</span></span>
-<span><span class="co">#&gt; Error:</span></span>
-<span><span class="co">#&gt; ! object 'metavar' not found</span></span>
 <span><span class="va">covariances</span></span>
-<span><span class="co">#&gt; Error:</span></span>
-<span><span class="co">#&gt; ! object 'covariances' not found</span></span></code></pre></div>
+<span><span class="co">#&gt;           y1        y2            y3           y4           y5           y6</span></span>
+<span><span class="co">#&gt; y1 1.2470823 0.5434449  0.0000000000  0.000000000 0.0000000000  0.000000000</span></span>
+<span><span class="co">#&gt; y2 0.5434449 1.1190254  0.0000000000  0.000000000 0.0000000000  0.000000000</span></span>
+<span><span class="co">#&gt; y3 0.0000000 0.0000000  0.0209022102  0.001247922 0.0004705969 -0.004559311</span></span>
+<span><span class="co">#&gt; y4 0.0000000 0.0000000  0.0012479223  0.008824311 0.0045290636 -0.003823009</span></span>
+<span><span class="co">#&gt; y5 0.0000000 0.0000000  0.0004705969  0.004529064 0.0034997038  0.003225990</span></span>
+<span><span class="co">#&gt; y6 0.0000000 0.0000000 -0.0045593110 -0.003823009 0.0032259898  0.025077013</span></span></code></pre></div>
 </div>
 </div>
 <div class="section level2">
