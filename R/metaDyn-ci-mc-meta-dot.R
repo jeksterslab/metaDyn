@@ -1,8 +1,8 @@
 .CIMCMeta <- function(object,
                       alpha,
-                      nrep = 1000L,
-                      seed = NULL,
-                      ncores = NULL) {
+                      nrep,
+                      seed,
+                      ncores) {
   if (!is.null(seed)) {
     set.seed(seed)
   }
