@@ -132,15 +132,16 @@
     rownames(out) <- names(est)
     out
   }
+
   target_names <- c(
     "alpha_vec",
     "gamma_vec",
-    "mu_x_vec",
     "beta_vec",
     "kappa_vec",
     "phi_vec",
     "omega_vec",
     "psi_vec",
+    "mu_x_vec",
     "sigma_x_vec",
     "tau_sqr_vec",
     "i_sqr_vec",
@@ -400,13 +401,6 @@
       alpha = alpha
     )
   }
-  if ("mu_x_vec" %in% target_names) {
-    out$x0 <- .CIMC(
-      est = est_list$mu_x_vec,
-      draws = draws_list$mu_x_vec,
-      alpha = alpha
-    )
-  }
   if ("beta_vec" %in% target_names) {
     out$yy <- .CIMC(
       est = est_list$beta_vec,
@@ -439,6 +433,13 @@
     out$psi <- .CIMC(
       est = est_list$psi_vec,
       draws = draws_list$psi_vec,
+      alpha = alpha
+    )
+  }
+  if ("mu_x_vec" %in% target_names) {
+    out$x0 <- .CIMC(
+      est = est_list$mu_x_vec,
+      draws = draws_list$mu_x_vec,
       alpha = alpha
     )
   }
