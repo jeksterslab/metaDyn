@@ -1334,6 +1334,20 @@
   annotation = {robustness},
 }
 
+@Article{Robins-Greenland-1992,
+  author = {James M. Robins and Sander Greenland},
+  date = {1992-03},
+  journaltitle = {Epidemiology},
+  title = {Identifiability and exchangeability for direct and indirect effects},
+  doi = {10.1097/00001648-199203000-00013},
+  issn = {1044-3983},
+  number = {2},
+  pages = {143--155},
+  volume = {3},
+  abstract = {We consider the problem of separating the direct effects of an exposure from effects relayed through an intermediate variable (indirect effects). We show that adjustment for the intermediate variable, which is the most common method of estimating direct effects, can be biased. We also show that, even in a randomized crossover trial of exposure, direct and indirect effects cannot be separated without special assumptions; in other words, direct and indirect effects are not separately identifiable when only exposure is randomized. If the exposure and intermediate never interact to cause disease and if intermediate effects can be controlled, that is, blocked by a suitable intervention, then a trial randomizing both exposure and the intervention can separate direct from indirect effects. Nonetheless, the estimation must be carried out using the G-computation algorithm. Conventional adjustment methods remain biased. When exposure and the intermediate interact to cause disease, direct and indirect effects will not be separable even in a trial in which both the exposure and the intervention blocking intermediate effects are randomly assigned. Nonetheless, in such a trial, one can still estimate the fraction of exposure-induced disease that could be prevented by control of the intermediate. Even in the absence of an intervention blocking the intermediate effect, the fraction of exposure-induced disease that could be prevented by control of the intermediate can be estimated with the G-computation algorithm if data are obtained on additional confounding variables.},
+  publisher = {Ovid Technologies (Wolters Kluwer Health)},
+}
+
 @Article{Saunders-Assland-Babor-etal-1993,
   author = {John B. Saunders and Olaf G. Aasland and Thomas F. Babor and Juan R. {de la Fuente} and Marcus Grant},
   date = {1993-06},
@@ -1386,6 +1400,20 @@
   journaltitle = {Journal of the American Statistical Association},
   abstract = {The bootstrap is proposed as a method for assessing the precision of Gaussian maximum likelihood estimates of the parameters of linear state-space models. Our results also apply to autoregressive moving average models, since they are a special case of state-space models. It is shown that for a time-invariant, stable system, the bootstrap applied to the innovations yields asymptotically consistent standard errors. To investigate the performance of the bootstrap for finite sample lengths, simulation results are presented for a two-state model with 50 and 100 observations; two cases are investigated, one with real characteristic roots and one with complex characteristic roots. The bootstrap is then applied to two real data sets, one used in a test for efficient capital markets and one used to develop an autoregressive integrated moving average model for quarterly earnings data. We find the bootstrap to be of definite value over the conventional asymptotics.},
   publisher = {Informa {UK} Limited},
+}
+
+@Article{Suls-Green-Hillis-1998,
+  author = {Jerry Suls and Peter Green and Stephen Hillis},
+  date = {1998-02},
+  journaltitle = {Personality and Social Psychology Bulletin},
+  title = {Emotional reactivity to everyday problems, affective inertia, and neuroticism},
+  doi = {10.1177/0146167298242002},
+  issn = {1552-7433},
+  number = {2},
+  pages = {127--136},
+  volume = {24},
+  abstract = {A naturalistic diary recording study was conducted to assess affective responses to everyday stress. Community-residing male participants made diary recordings regarding problem occurrence and mood several times a day for 8 days. In addition to reporting more frequent daily problems, persons scoring high in neuroticism were more reactive to stressors and were more distressed by recurrent problems than were persons scoring low in neuroticism. New problems affected everyone comparably. There was also evidence of affective inertia, such that bad mood was more likely to carry over to the next assessment. This lag effect tended to be stronger among more neurotic individuals.},
+  publisher = {SAGE Publications},
 }
 
 @Article{Tibshirani-1996,
@@ -1680,7 +1708,7 @@
 }
 
 @Manual{Costa-McCrae-1992,
-  author = {Jr. {Paul T. Costa} and Robert R. McCrae},
+  author = {Paul T. Costa and Robert R. McCrae},
   title = {Revised {NEO} Personality Inventory ({NEO-PI-R}) and {NEO} Five-Factor Inventory ({NEO-FFI})},
   subtitle = {Professional Manual},
   year = {1992},
@@ -2164,6 +2192,20 @@ The generality of the block bootstrap is contrasted with sieve bootstraps. We di
   publisher = {Wiley},
 }
 
+@Article{Coffey-Berenbaum-Kerns-2003,
+  author = {Erin Coffey and Howard Berenbaum and John Kerns},
+  date = {2003-01},
+  journaltitle = {Cognition and Emotion},
+  title = {The dimensions of emotional intelligence, alexithymia, and mood awareness: Associations with personality and performance on an emotional {Stroop} task},
+  doi = {10.1080/02699930302304},
+  issn = {1464-0600},
+  number = {4},
+  pages = {671--679},
+  volume = {17},
+  abstract = {This study examined the different facets of emotional intelligence, alexithymia, and mood awareness. Undergraduate students (N = 129) completed the Trait Meta-Mood Scale (TMMS), the Toronto Alexithymia Scale (TAS-20), and the Mood Awareness Scale (MAS). A factor analysis revealed two dimensions, attention to and clarity of emotions, that cut across all three instruments. These two dimensions were differentially associated with personality, as measured by the neuroticism, extraversion, and openness to experience portions of the NEO-FFI, and with performance on an emotional Stroop task. We discuss the implications for the conceptualisation of broad constructs such as emotional intelligence and alexithymia, as well as the potential utility of more narrowly defined individual differences.},
+  publisher = {Informa UK Limited},
+}
+
 @Article{Cole-Martin-Steiger-2005,
   author = {David A. Cole and Nina C. Martin and James H. Steiger},
   date = {2005-03},
@@ -2354,6 +2396,20 @@ The generality of the block bootstrap is contrasted with sieve bootstraps. We di
   pages = {95--122},
   volume = {17},
   abstract = {Hierarchical linear and generalized linear models can be fit using Gibbs samplers and Metropolis algorithms; these models, however, often have many parameters, and convergence of the seemingly most natural Gibbs and Metropolis algorithms can sometimes be slow. We examine solutions that involve reparameterization and over-parameterization. We begin with parameter expansion using working parameters, a strategy developed for the EM algorithm. This strategy can lead to algorithms that are much less susceptible to becoming stuck near zero values of the variance parameters than are more standard algorithms. Second, we consider a simple rotation of the regression coefficients based on an estimate of their posterior covariance matrix. This leads to a Gibbs algorithm based on updating the transformed parameters one at a time or a Metropolis algorithm with vector jumps; either of these algorithms can perform much better (in terms of total CPU time) than the two standard algorithms: one-at-a-time updating of untransformed parameters or vector updating using a linear regression at each step. We present an innovative evaluation of the algorithms in terms of how quickly they can get away from remote areas of parameter space, along with some more standard evaluation of computation and convergence speeds. We illustrate our methods with examples from our applied work. Our ultimate goal is to develop a fast and reliable method for fitting a hierarchical linear model as easily as one can now fit a nonhierarchical model, and to increase understanding of Gibbs samplers for hierarchical models in general.},
+  publisher = {Informa UK Limited},
+}
+
+@Article{Gohm-Clore-2002,
+  author = {Carol L. Gohm and Gerald L. Clore},
+  date = {2002-07},
+  journaltitle = {Cognition and Emotion},
+  title = {Four latent traits of emotional experience and their involvement in well-being, coping, and attributional style},
+  doi = {10.1080/02699930143000374},
+  issn = {1464-0600},
+  number = {4},
+  pages = {495--518},
+  volume = {16},
+  abstract = {In two samples of college students (Ns = 116 and 141), this research investigated the ways in which individuals differ in their experience of emotion. Four latent traits emerged from scales assessing such differences---Intensity, Attention, Expression, and Clarity. In both samples, these latent traits were found to be involved in reports of personality, well-being, coping, and explanatory style. Clarity was positively associated with measures of positive well-being and negatively associated with measures of negative well-being. Individuals who experience intense emotions (Intensity), who attend to them often (Attention), or who notably express them (Expression), reported coping by focusing on and venting their emotions and by seeking social support. Individuals who are adept at identifying their emotions (Clarity) reported engaging in active, planful coping and in positive reinterpretations of events. Individuals high on Clarity made self-affirming attributions for good events.},
   publisher = {Informa UK Limited},
 }
 
@@ -2619,6 +2675,20 @@ The generality of the block bootstrap is contrasted with sieve bootstraps. We di
   volume = {36},
   abstract = {This article combines procedures for single-level mediational analysis with multilevel modeling techniques in order to appropriately test mediational effects in clustered data. A simulation study compared the performance of these multilevel mediational models with that of single-level mediational models in clustered data with individual- or group-level initial independent variables, individual- or group-level mediators, and individual level outcomes. The standard errors of mediated effects from the multilevel solution were generally accurate, while those from the single-level procedure were downwardly biased, often by 20\% or more. The multilevel advantage was greatest in those situations involving group-level variables, larger group sizes, and higher intraclass correlations in mediator and outcome variables. Multilevel mediational modeling methods were also applied to data from a preventive intervention designed to reduce intentions to use steroids among players on high school football teams. This example illustrates differences between single-level and multilevel mediational modeling in real-world clustered data and shows how the multilevel technique may lead to more accurate results.},
   publisher = {Informa UK Limited},
+}
+
+@Article{Lahey-2009,
+  author = {Benjamin B. Lahey},
+  date = {2009},
+  journaltitle = {American Psychologist},
+  title = {Public health significance of neuroticism.},
+  doi = {10.1037/a0015309},
+  issn = {0003-066X},
+  number = {4},
+  pages = {241--256},
+  volume = {64},
+  abstract = {The personality trait of neuroticism refers to relatively stable tendencies to respond with negative emotions to threat, frustration, or loss. Individuals in the population vary markedly on this trait, ranging from frequent and intense emotional reactions to minor challenges to little emotional reaction even in the face of significant difficulties. Although not widely appreciated, there is growing evidence that neuroticism is a psychological trait of profound public health significance. Neuroticism is a robust correlate and predictor of many different mental and physical disorders, comorbidity among them, and the frequency of mental and general health service use. Indeed, neuroticism apparently is a predictor of the quality and longevity of our lives. Achieving a full understanding of the nature and origins of neuroticism, and the mechanisms through which neuroticism is linked to mental and physical disorders, should be a top priority for research. Knowing why neuroticism predicts such a wide variety of seemingly diverse outcomes should lead to improved understanding of commonalities among those outcomes and improved strategies for preventing them. },
+  publisher = {American Psychological Association (APA)},
 }
 
 @Article{Laurenceau-Bolger-2005,
@@ -3260,6 +3330,20 @@ The generality of the block bootstrap is contrasted with sieve bootstraps. We di
   annotation = {mediation, mediation-bootstrap, mediation-jointtest},
 }
 
+@Article{Thompson-Dizen-Berenbaum-2009,
+  author = {Renee J. Thompson and M{\"u}ge Diz{\a'e}n and Howard Berenbaum},
+  date = {2009-10},
+  journaltitle = {Journal of Research in Personality},
+  title = {The unique relations between emotional awareness and facets of affective instability},
+  doi = {10.1016/j.jrp.2009.07.006},
+  issn = {0092-6566},
+  number = {5},
+  pages = {875--879},
+  volume = {43},
+  abstract = {The relation between affective instability and two facets of emotional awareness, attention to emotion and clarity of emotion, was examined in two community samples (Ns = 303, 101) and one student sample (N = 409). Affective instability was positively associated with attention to emotion and negatively associated with clarity of emotion. The two facets of affective instability, affect intensity and emotional variability, were differentially associated with the two components of emotional awareness. As hypothesized, affect intensity was uniquely associated with attention to emotion, whereas emotional variability was uniquely (inversely) associated with clarity of emotion even after taking into account shared variance with neuroticism and gender.},
+  publisher = {Elsevier BV},
+}
+
 @Article{Thompson-Higgins-2002,
   author = {Simon G. Thompson and Julian P. T. Higgins},
   date = {2002-05},
@@ -3874,6 +3958,20 @@ The final chapter succinctly summarizes all the main findings while also suggest
   publisher = {Hogrefe Publishing Group},
 }
 
+@Article{Boden-Thompson-Dizen-etal-2013,
+  author = {Matthew Tyler Boden and Renee J. Thompson and M{\"u}ge Diz{\a'e}n and Howard Berenbaum and John P. Baker},
+  date = {2013-09},
+  journaltitle = {Cognition and Emotion},
+  title = {Are emotional clarity and emotion differentiation related?},
+  doi = {10.1080/02699931.2012.751899},
+  issn = {1464-0600},
+  number = {6},
+  pages = {961--978},
+  volume = {27},
+  abstract = {Distinct literatures have developed regarding the constructs of emotional clarity (people's meta-knowledge of their affective experience) and emotion differentiation (people's ability to differentiate affective experience into discrete categories, e.g., anger vs. fear). Conceptually, emotion differentiation processes might be expected to contribute to increased emotional clarity. However, the relation between emotional clarity and emotion differentiation has not been directly investigated. In two studies with independent, undergraduate student samples, we measured emotional clarity using a self-report measure and derived emotion differentiation scores from scenario-based (Study 1) and event-sampling-based (Study 2) measures of affect. We found that emotional clarity and emotion differentiation are: (i) associated to a very small and statistically insignificant degree; and (ii) differentially associated with trait and scenario-based/event-sampling-based measures of affect intensity and variability. These results suggest that emotional clarity and differentiation are distinct constructs with unique relations to various facets of affective experience.},
+  publisher = {Informa UK Limited},
+}
+
 @Article{Boettiger-Eddelbuettel-2017,
   author = {Carl Boettiger and Dirk Eddelbuettel},
   date = {2017},
@@ -3886,6 +3984,20 @@ The final chapter succinctly summarizes all the main findings while also suggest
   abstract = {We describe the Rocker project, which provides a widely-used suite of Docker images with customized R environments for particular tasks. We discuss how this suite is organized, and how these tools can increase portability, scaling, reproducibility, and convenience of R users and developers.},
   publisher = {The R Foundation},
   annotation = {container, container-docker, container-docker-rocker},
+}
+
+@Article{Bolger-Schilling-1991,
+  author = {Niall Bolger and Elizabeth A. Schilling},
+  date = {1991-09},
+  journaltitle = {Journal of Personality},
+  title = {Personality and the problems of everyday life: The role of neuroticism in exposure and reactivity to daily stressors},
+  doi = {10.1111/j.1467-6494.1991.tb00253.x},
+  issn = {1467-6494},
+  number = {3},
+  pages = {355--386},
+  volume = {59},
+  abstract = {This article investigates mechanisms through which neuroticism leads to distress in daily life. Neuroticism may lead to distress through exposing people to a greater number of stressful events, through increasing their reactivity to those events, or through a mechanism unrelated to environmental events. This article evaluates the relative importance of these three explanations. Subjects were 339 persons who provided daily reports of minor stressful events and mood for 6 weeks. Exposure and reactivity to these minor stressors explained over 40\% of the distress difference between high- and low-neuroticism subjects. Reactivity to stressors accounted for twice as much of the distress difference as exposure to stressors. These results suggest that reactions within stressful situations are more important than situation selection in explaining how neuroticism leads to distress in daily life.},
+  publisher = {Wiley},
 }
 
 @Article{Bollen-Brand-2010,
@@ -5144,7 +5256,7 @@ system, canonicality, nuclear reactor noise analysis},
   publisher = {Frontiers Media SA},
 }
 
-@Article{Kuiper-Oisin-2018,
+@Article{Kuiper-Ryan-2018,
   author = {Rebecca M. Kuiper and Oisin Ryan},
   date = {2018-03},
   journaltitle = {Structural Equation Modeling: A Multidisciplinary Journal},
@@ -5984,6 +6096,20 @@ system, canonicality, nuclear reactor noise analysis},
   annotation = {mediation, mediation-bootstrap},
 }
 
+@Article{Thompson-Kuppens-Mata-etal-2015,
+  author = {Renee J. Thompson and Peter Kuppens and Jutta Mata and Susanne M. Jaeggi and Martin Buschkuehl and John Jonides and Ian H. Gotlib},
+  date = {2015-10},
+  journaltitle = {Emotion},
+  title = {Emotional clarity as a function of neuroticism and major depressive disorder.},
+  doi = {10.1037/emo0000067},
+  issn = {1528-3542},
+  number = {5},
+  pages = {615--624},
+  volume = {15},
+  abstract = {Investigators have begun to document links between emotional clarity and forms of negative emotionality, including neuroticism and major depressive disorder (MDD). Researchers to date have relied almost exclusively on global self-reports of emotional clarity; moreover, no studies have examined emotional clarity as a function of valence, although this may prove to be crucial in understanding the relation of emotional clarity to maladjustment. In 2 studies, we used experience-sampling methodology and multilevel modeling to examine the associations between emotional clarity and 2 constructs that have been linked theoretically with emotional clarity: neuroticism and depression. In Study 1 we assessed 95 college students who completed a self-report measure of neuroticism. In Study 2 we examined 53 adults diagnosed with MDD and 53 healthy adults. Reaction times to negative and positive emotion ratings during the experience-sampling protocols were used as an indirect measure of emotional clarity. Neuroticism was related to lower clarity of negative, but not of positive, emotion. Similarly, compared with the healthy controls, individuals with MDD had lower clarity of negative, but not of positive, emotion. It is important to note, findings from both studies held after controlling for baseline RTs and current levels of negative and positive emotion. These findings highlight the importance of assessing valence when examining emotional clarity and increase our understanding of the nature of the emotional disturbances that characterize neuroticism and MDD.},
+  publisher = {American Psychological Association (APA)},
+}
+
 @Article{Tibshirani-2011,
   author = {Robert Tibshirani},
   date = {2011-04},
@@ -6820,6 +6946,19 @@ This edition includes R code for each numerical example in addition to Appendix 
   publisher = {Wiley},
 }
 
+@Article{Bringmann-2021,
+  author = {Laura F. Bringmann},
+  date = {2021-10},
+  journaltitle = {Current Opinion in Psychology},
+  title = {Person-specific networks in psychopathology: Past, present, and future},
+  doi = {10.1016/j.copsyc.2021.03.004},
+  issn = {2352-250X},
+  pages = {59--64},
+  volume = {41},
+  abstract = {In the psychological network approach, mental disorders such as major depressive disorder are conceptualized as networks. The network approach focuses on the symptom structure or the connections between symptoms instead of the severity (i.e., mean level) of a symptom. To infer a person-specific network for a patient, time-series data are needed. By far the most common model to statistically model the person-specific interactions between symptoms or momentary states has been the vector autoregressive (VAR) model. Although the VAR model helps to bring psychological network theory into clinical research and closer to clinical practice, several discrepancies arise when we map the psychological network theory onto the VAR-based network models. These challenges and possible solutions are discussed in this review.},
+  publisher = {Elsevier BV},
+}
+
 @Article{Chen-Pustejovsky-2024,
   author = {Man Chen and James E. Pustejovsky},
   date = {2024-06},
@@ -7185,6 +7324,19 @@ This edition includes R code for each numerical example in addition to Appendix 
   publisher = {Informa UK Limited},
 }
 
+@Article{Hisler-Krizan-DeHart-etal-2020,
+  author = {Garrett C. Hisler and Zlatan Krizan and Tracy DeHart and Aidan G.C. Wright},
+  date = {2020-08},
+  journaltitle = {Journal of Research in Personality},
+  title = {Neuroticism as the intensity, reactivity, and variability in day-to-day affect},
+  doi = {10.1016/j.jrp.2020.103964},
+  issn = {0092-6566},
+  pages = {103964},
+  volume = {87},
+  abstract = {Neuroticism has been linked to typical levels of affect, affect reactivity to negative events, and variability in affect over time. However, the intercorrelations among these characteristics make it unclear whether neuroticism reflects unique variance in each of these aspects of emotional life. Data from two daily-diary samples revealed that neuroticism was associated with average levels and variability of positive and negative affect and reactivity of negative affect to stressors, but was only uniquely related to mean levels of positive and negative affect. Findings highlight the substantial overlap in affect indices, suggesting that mean levels of affect, at the very least, are at the core of neuroticism, and reveal the need for further research using more nuanced approaches.},
+  publisher = {Elsevier BV},
+}
+
 @Article{Hoekstra-Epskamp-Borsboom-2023,
   author = {Ria H. A. Hoekstra and Sacha Epskamp and Denny Borsboom},
   date = {2023},
@@ -7280,6 +7432,17 @@ This edition includes R code for each numerical example in addition to Appendix 
   volume = {59},
   abstract = {In psychology, the use of portable technology and wearable devices to ease participant burden in data collection is on the rise. This creates increased interest in collecting real-time or near real-time data from individuals within their natural environments. As a result, vast amounts of observational time series data are generated. Often, motivation for collecting this data hinges on understanding within-person processes that underlie psychological phenomena. Motivated by the body of Dr. Peter Molenaar's life work calling for analytical approaches that consider potential heterogeneity and non-ergodicity, the focus of this paper is on using idiographic analyses to generate population inferences for within-person processes. Meta-analysis techniques using one-stage and two-stage random effects meta-analysis as implemented in single-case experimental designs are presented. The case for preferring a two-stage approach for meta-analysis of single-subject observational time series data is made and demonstrated using an empirical example. This provides a novel implementation of the methodology as prior implementations focus on applications to short time series with experimental designs. Inspired by Dr. Molenaar's work, we describe how an approach, two-stage random effects meta-analysis (2SRE-MA), aligns with recent calls to consider idiographic approaches when making population-level inferences regarding within-person processes.},
   publisher = {Informa UK Limited},
+}
+
+@Article{Lee-GrahamEngeland-Lee-etal-2026,
+  author = {Sun Ah Lee and Jennifer E. Graham-Engeland and Soomi Lee and David M. Almeida},
+  date = {2026-05},
+  journaltitle = {Biopsychosocial Science and Medicine},
+  title = {The mediating role of daily affect dynamics in bidirectional and longitudinal associations between depressive symptoms and inflammation},
+  doi = {10.1097/psy.0000000000001494},
+  issn = {2998-8756},
+  abstract = {Objectives: Extensive research has established relationships between depression and inflammation, yet greater attention is needed to elucidate mechanisms through which these processes unfold across multiple levels of analysis and time scales. This cohort panel study evaluated the role of daily affect dynamics in bidirectional and longitudinal associations between depressive symptoms and inflammation. Methods: Using data from the second and third waves of the Midlife in the United States (MIDUS) study, the sample included 563 adults ($M_{age} = 52.4$; $57\%$ female; $84\%$ White). During the Biomarker Project, depressive symptoms were assessed at a single time point using the CESD-20, and the inflammatory markers were collected including CRP and four cytokines (IL-6, IL-8, TNF$\alpha$, IL-10). During the Daily Diary Project, daily affect and stress were measured over eight consecutive days. Two affect dynamics indicators were specified: affective variability and reactivity to daily stressors. Multilevel structural equation models simultaneously tested autoregressive and cross-lagged associations between depressive symptoms and inflammation at the person-level, and day-level mediated paths involving daily affect dynamics. Results: Results revealed that affective variability and reactivity mediated the autoregressive paths of depressive symptoms across two waves. Positive affective variability mediated the pathway from heightened baseline depressive symptoms to higher CRP levels at follow-up. Negative affective reactivity to daily stressors mediated the pathway from higher baseline CRP to subsequent depressive symptoms. Conclusions: Findings suggest daily affective processes as potential mechanisms linking depressive symptoms and inflammation, underscoring the significance of promoting affective stability and adaptive stress responses in everyday life.},
+  publisher = {Ovid Technologies (Wolters Kluwer Health)},
 }
 
 @Article{Li-Oravecz-Ji-etal-2024,
@@ -7903,6 +8066,19 @@ This edition includes R code for each numerical example in addition to Appendix 
   publisher = {Springer Science and Business Media LLC},
 }
 
+@Article{Rush-Charles-Willroth-etal-2024,
+  author = {Jonathan Rush and Susan T Charles and Emily C Willroth and Eric S Cerino and Jennifer R Piazza and David M Almeida},
+  date = {2024-12},
+  journaltitle = {Annals of Behavioral Medicine},
+  title = {Changes in daily stress reactivity and changes in physical health across 18 years of adulthood},
+  doi = {10.1093/abm/kaae086},
+  issn = {1532-4796},
+  number = {1},
+  volume = {59},
+  abstract = {Background: Stress plays a pivotal role in physical health. Although many studies have linked stress reactivity (daily within-person associations between stress exposure and negative affect) to physical health outcomes, we know surprisingly little about how changes in stress reactivity are related to changes in physical health. Purpose: The current study examines how change in stress reactivity over 18 years is related to changes in functional health and chronic health conditions. Methods: Three measurement bursts from the National Study of Daily Experiences ($N = 2880$; $55\%$ female) each included daily measures of stressor exposure and negative affect across 8 consecutive days, yielding 33,944 days of data across 18 years of adulthood. At each wave, participants reported their functional health limitations (ie, basic activities of daily living [ADL] and instrumental activities of daily living [IADL]) and chronic health conditions. Multilevel structural equation models simultaneously modeled stress reactivity at Level 1, longitudinal changes in stress reactivity at Level 2, and the association between changes in stress reactivity and changes in functional limitations and chronic conditions at Level 3. Results: Higher levels of stress reactivity at baseline were associated with more functional health limitations 18 years later (ADLs: Est. = 0.90, $P = .001$; IADLs: Est. = 1.78, $P < .001$). Furthermore, individuals who increased more in their stress reactivity across the 18-year period also showed greater increases in their functional health limitations (ADLs: Est. = 4.02, $P = .017$; IADLs: Est. = 5.74, $P < .001$) and chronic conditions (Est. = 11.17, $P = .008$). Conclusions: These findings highlight the strong connection between health and stress in daily life, and how they travel together across adulthood.},
+  publisher = {Oxford University Press (OUP)},
+}
+
 @Article{Russell-LindenCarmichael-Lanza-etal-2020,
   author = {Michael A. Russell and Ashley N. Linden-Carmichael and Stephanie T. Lanza and Emily V. Fair and Kenneth J. Sher and Thomas M. Piasecki},
   date = {2020-05},
@@ -8159,6 +8335,19 @@ Across various disciplines of human study, researchers are increasingly seeking 
 },
 }
 
+@Book{Geffner-Dechter-Halpern-2022,
+  editor = {Rina Dechter {Hector Geffner} and Joseph Y. Halpern},
+  title = {Probabilistic and causal inference: The works of {Judea Pearl}},
+  year = {2022},
+  isbn = {9781450395861},
+  doi = {10.1145/3501714},
+  publisher = {Association for Computing Machinery},
+  address = {New York, NY, USA},
+  edition = {1},
+  volume = {36},
+  abstract = {Professor Judea Pearl won the 2011 Turing Award ``for fundamental contributions to artificial intelligence through the development of a calculus for probabilistic and causal reasoning.'' This book contains the original articles that led to the award, as well as other seminal works, divided into four parts: heuristic search, probabilistic reasoning, causality, first period (1988-2001), and causality, recent period (2002-2020). Each of these parts starts with an introduction written by Judea Pearl. The volume also contains original, contributed articles by leading researchers that analyze, extend, or assess the influence of Pearl's work in different fields: from AI, Machine Learning, and Statistics to Cognitive Science, Philosophy, and the Social Sciences. The first part of the volume includes a biography, a transcript of his Turing Award Lecture, two interviews, and a selected bibliography annotated by him.},
+}
+
 @Book{Hayes-2022,
   author = {Andrew F. Hayes},
   date = {2022},
@@ -8193,6 +8382,18 @@ Across various disciplines of human study, researchers are increasingly seeking 
   isbn = {9789461666925},
   location = {Leuven, Belgium},
   publisher = {Leuven University Press},
+}
+
+@InBook{Pearl-2022,
+  author = {Judea Pearl},
+  date = {2022-02},
+  title = {Direct and Indirect Effects},
+  booktitle = {Probabilistic and causal inference: The works of {Judea Pearl}},
+  editor = {Rina Dechter {Hector Geffner} and Joseph Y. Halpern},
+  doi = {10.1145/3501714.3501736},
+  isbn = {9781450395861},
+  pages = {373--392},
+  publisher = {Association for Computing Machinery},
 }
 
 @InBook{Vanhasbroeck-Ariens-Tuerlinckx-etal-2021,

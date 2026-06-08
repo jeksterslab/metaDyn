@@ -1,7 +1,7 @@
 metaDyn
 ================
 Ivan Jacob Agaloos Pesigan
-2026-05-08
+2026-06-08
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
@@ -58,7 +58,7 @@ package documentation.
 ## References
 
 <div id="refs" class="references csl-bib-body hanging-indent"
-entry-spacing="0" line-spacing="2">
+data-entry-spacing="0" data-line-spacing="2">
 
 <div id="ref-Cheung-2015" class="csl-entry">
 
