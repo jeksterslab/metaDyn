@@ -14,6 +14,7 @@
 #' @author Ivan Jacob Agaloos Pesigan
 #'
 #' @param object Output of the [fitVARMxID::FitVARMxID()] function.
+#' @param drop Optional vector of unique IDs to drop.
 #' @param effects Logical.
 #'   If `effects = TRUE`,
 #'   include estimates of the dynamic effects matrix, if available.
@@ -125,6 +126,7 @@
 MetaVARMx <- function(object,
                       x = NULL,
                       z = NULL,
+                      drop = NULL,
                       random = TRUE,
                       fixed_x = TRUE,
                       alpha_free = NULL,
@@ -198,6 +200,10 @@ MetaVARMx <- function(object,
       object,
       "varmxid"
     )
+  )
+  object <- .DropID(
+    object = object,
+    drop = drop
   )
   y <- fitVARMxID:::coef.varmxid(
     object = object,
