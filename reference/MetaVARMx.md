@@ -17,6 +17,7 @@ MetaVARMx(
   object,
   x = NULL,
   z = NULL,
+  drop = NULL,
   random = TRUE,
   fixed_x = TRUE,
   alpha_free = NULL,
@@ -105,6 +106,10 @@ MetaVARMx(
 
   An optional list. Each element of the list is a numeric vector of
   distal outcomes.
+
+- drop:
+
+  Optional vector of unique IDs to drop.
 
 - random:
 
