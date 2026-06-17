@@ -8,6 +8,7 @@ MetaVARMx(
   object,
   x = NULL,
   z = NULL,
+  drop = NULL,
   random = TRUE,
   fixed_x = TRUE,
   alpha_free = NULL,
@@ -86,6 +87,8 @@ Each element of the list is a numeric vector of covariates.}
 
 \item{z}{An optional list.
 Each element of the list is a numeric vector of distal outcomes.}
+
+\item{drop}{Optional vector of unique IDs to drop.}
 
 \item{random}{Logical.
 If \code{random = TRUE},
