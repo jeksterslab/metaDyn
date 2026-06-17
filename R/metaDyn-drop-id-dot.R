@@ -13,20 +13,26 @@
 .DropID <- function(object,
                     drop = NULL) {
   if (is.null(drop)) {
-    return(object)
+    return(object) # nolint: return_linter.
   }
   if (length(drop) < 1L) {
-    return(object)
+    return(object) # nolint: return_linter.
   }
   if (is.null(object$converged)) {
     stop(
-      "`object$converged` is required when `drop` is not NULL.",
+      paste(
+        "`object$converged`",
+        "is required when `drop` is not NULL."
+      ),
       call. = FALSE
     )
   }
   if (is.null(names(object$converged))) {
     stop(
-      "`object$converged` must be a named logical vector when `drop` is not NULL.",
+      paste(
+        "`object$converged`",
+        "must be a named logical vector when `drop` is not NULL."
+      ),
       call. = FALSE
     )
   }
@@ -52,7 +58,7 @@
       "No entries in `drop` matched names in `object$converged`.",
       call. = FALSE
     )
-    return(object)
+    return(object) # nolint: return_linter.
   }
 
   object$converged[drop_id] <- FALSE
