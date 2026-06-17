@@ -62,23 +62,7 @@ sessionInfo()
 ``` r
 installed.packages()[, c("Package", "Version")]
 #>                   Package             Version     
-#> BH                "BH"                "1.90.0-1"  
-#> cli               "cli"               "3.6.6.9000"
-#> digest            "digest"            "0.6.39"    
-#> fitVARMxID        "fitVARMxID"        "1.0.4"     
-#> lifecycle         "lifecycle"         "1.0.5"     
 #> metaDyn           "metaDyn"           "1.0.2"     
-#> mvtnorm           "mvtnorm"           "1.4-1"     
-#> OpenMx            "OpenMx"            "2.22.11"   
-#> Rcpp              "Rcpp"              "1.1.1-1.1" 
-#> RcppArmadillo     "RcppArmadillo"     "15.2.7-1"  
-#> RcppEigen         "RcppEigen"         "0.3.4.0.2" 
-#> RcppParallel      "RcppParallel"      "5.1.11-2"  
-#> rlang             "rlang"             "1.2.0"     
-#> rpf               "rpf"               "1.0.15"    
-#> rProject          "rProject"          "0.0.25"    
-#> simStateSpace     "simStateSpace"     "1.2.16"    
-#> StanHeaders       "StanHeaders"       "2.32.10"   
 #> abind             "abind"             "1.4-8"     
 #> Amelia            "Amelia"            "1.8.3"     
 #> arm               "arm"               "1.15-3"    
@@ -89,10 +73,10 @@ installed.packages()[, c("Package", "Version")]
 #> assertthat        "assertthat"        "0.2.1"     
 #> backports         "backports"         "1.5.1"     
 #> base64enc         "base64enc"         "0.1-6"     
-#> betaDelta         "betaDelta"         "1.0.7"     
-#> betaMC            "betaMC"            "1.3.3"     
-#> betaNB            "betaNB"            "1.0.6"     
-#> betaSandwich      "betaSandwich"      "1.0.9"     
+#> betaDelta         "betaDelta"         "1.0.7.9000"
+#> betaMC            "betaMC"            "1.3.4.9000"
+#> betaNB            "betaNB"            "1.0.7.9000"
+#> betaSandwich      "betaSandwich"      "1.0.9.9000"
 #> BH                "BH"                "1.90.0-1"  
 #> bibtex            "bibtex"            "0.5.2"     
 #> biocmake          "biocmake"          "1.4.0"     
@@ -132,7 +116,7 @@ installed.packages()[, c("Package", "Version")]
 #> crayon            "crayon"            "1.5.3"     
 #> credentials       "credentials"       "2.0.3"     
 #> crosstalk         "crosstalk"         "1.2.2"     
-#> cTMed             "cTMed"             "1.0.10"    
+#> cTMed             "cTMed"             "1.0.9.9000"
 #> ctsem             "ctsem"             "3.10.6"    
 #> curl              "curl"              "7.1.0"     
 #> data.table        "data.table"        "1.18.4"    
@@ -148,7 +132,7 @@ installed.packages()[, c("Package", "Version")]
 #> diffobj           "diffobj"           "0.3.6"     
 #> digest            "digest"            "0.6.39"    
 #> dir.expiry        "dir.expiry"        "1.20.0"    
-#> distributional    "distributional"    "0.7.0"     
+#> distributional    "distributional"    "0.7.1"     
 #> distro            "distro"            "0.1.1"     
 #> doBy              "doBy"              "4.7.1"     
 #> docopt            "docopt"            "0.7.2"     
@@ -158,7 +142,8 @@ installed.packages()[, c("Package", "Version")]
 #> dtplyr            "dtplyr"            "1.3.3"     
 #> duckdb            "duckdb"            "1.5.2"     
 #> dynr              "dynr"              "0.1.16-114"
-#> dynUtils          "dynUtils"          "0.9.1"     
+#> dynTools          "dynTools"          "0.0.0.9000"
+#> dynUtils          "dynUtils"          "0.9.2"     
 #> ellipse           "ellipse"           "0.5.0"     
 #> ellipsis          "ellipsis"          "0.3.3"     
 #> evaluate          "evaluate"          "1.0.5"     
@@ -290,11 +275,11 @@ installed.packages()[, c("Package", "Version")]
 #> numDeriv          "numDeriv"          "2016.8-1.1"
 #> nycflights13      "nycflights13"      "1.0.2"     
 #> OpenMx            "OpenMx"            "2.22.11"   
-#> openssl           "openssl"           "2.4.1"     
+#> openssl           "openssl"           "2.4.2"     
 #> openxlsx          "openxlsx"          "4.2.8.1"   
 #> ordinal           "ordinal"           "2025.12-29"
 #> otel              "otel"              "0.2.0"     
-#> pak               "pak"               "0.9.5"     
+#> pak               "pak"               "0.10.0"    
 #> pan               "pan"               "1.9"       
 #> pander            "pander"            "0.6.6"     
 #> parallelly        "parallelly"        "1.47.0"    
@@ -309,7 +294,7 @@ installed.packages()[, c("Package", "Version")]
 #> pkgbuild          "pkgbuild"          "1.4.8"     
 #> pkgconfig         "pkgconfig"         "2.0.3"     
 #> pkgdown           "pkgdown"           "2.2.0"     
-#> pkgload           "pkgload"           "1.5.2"     
+#> pkgload           "pkgload"           "1.5.3"     
 #> plyr              "plyr"              "1.8.9"     
 #> png               "png"               "0.1-9"     
 #> posterior         "posterior"         "1.7.0"     
@@ -384,7 +369,7 @@ installed.packages()[, c("Package", "Version")]
 #> RSQLite           "RSQLite"           "3.53.1"    
 #> rstan             "rstan"             "2.32.7"    
 #> rstantools        "rstantools"        "2.6.0"     
-#> rstudioapi        "rstudioapi"        "0.18.0"    
+#> rstudioapi        "rstudioapi"        "0.19.0"    
 #> RUnit             "RUnit"             "0.4.33.1"  
 #> rversions         "rversions"         "3.0.0"     
 #> rvest             "rvest"             "1.0.5"     
@@ -394,8 +379,8 @@ installed.packages()[, c("Package", "Version")]
 #> scales            "scales"            "1.4.0"     
 #> selectr           "selectr"           "0.5-1"     
 #> sem               "sem"               "3.1-16"    
-#> semlbci           "semlbci"           "0.11.5"    
-#> semmcci           "semmcci"           "1.1.6"     
+#> semlbci           "semlbci"           "0.11.6"    
+#> semmcci           "semmcci"           "1.1.6.9000"
 #> semPlot           "semPlot"           "1.1.8"     
 #> sessioninfo       "sessioninfo"       "1.2.4"     
 #> sfd               "sfd"               "0.1.0"     
@@ -458,7 +443,7 @@ installed.packages()[, c("Package", "Version")]
 #> xtable            "xtable"            "1.8-8"     
 #> yaml              "yaml"              "2.3.12"    
 #> yardstick         "yardstick"         "1.4.0"     
-#> zip               "zip"               "2.3.3"     
+#> zip               "zip"               "3.0.0"     
 #> zoo               "zoo"               "1.8-15"    
 #> base              "base"              "4.6.0"     
 #> boot              "boot"              "1.3-32"    
@@ -513,7 +498,7 @@ installed.packages()[, c("Package", "Version")]
 #> CPU(s) scaling MHz:                      49%
 #> CPU max MHz:                             5060.9761
 #> CPU min MHz:                             1219.5129
-#> BogoMIPS:                                4990.58
+#> BogoMIPS:                                4990.87
 #> Flags:                                   fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush mmx fxsr sse sse2 ht syscall nx mmxext fxsr_opt pdpe1gb rdtscp lm constant_tsc rep_good amd_lbr_v2 nopl xtopology nonstop_tsc cpuid extd_apicid aperfmperf rapl pni pclmulqdq monitor ssse3 fma cx16 sse4_1 sse4_2 movbe popcnt aes xsave avx f16c rdrand lahf_lm cmp_legacy svm extapic cr8_legacy abm sse4a misalignsse 3dnowprefetch osvw ibs skinit wdt tce topoext perfctr_core perfctr_nb bpext perfctr_llc mwaitx cpb cat_l3 cdp_l3 hw_pstate ssbd mba perfmon_v2 ibrs ibpb stibp ibrs_enhanced vmmcall fsgsbase tsc_adjust bmi1 avx2 smep bmi2 erms invpcid cqm rdt_a avx512f avx512dq rdseed adx smap avx512ifma clflushopt clwb avx512cd sha_ni avx512bw avx512vl xsaveopt xsavec xgetbv1 xsaves cqm_llc cqm_occup_llc cqm_mbm_total cqm_mbm_local user_shstk avx_vnni avx512_bf16 clzero irperf xsaveerptr rdpru wbnoinvd cppc arat npt lbrv svm_lock nrip_save tsc_scale vmcb_clean flushbyasid decodeassists pausefilter pfthreshold v_vmsave_vmload vgif x2avic v_spec_ctrl vnmi avx512vbmi umip pku ospke avx512_vbmi2 gfni vaes vpclmulqdq avx512_vnni avx512_bitalg avx512_vpopcntdq rdpid bus_lock_detect movdiri movdir64b overflow_recov succor smca fsrm avx512_vp2intersect flush_l1d amd_lbr_pmc_freeze
 #> Virtualization:                          AMD-V
 #> L1d cache:                               768 KiB (16 instances)
@@ -547,7 +532,7 @@ installed.packages()[, c("Package", "Version")]
 
 ```
 #>                total        used        free      shared  buff/cache   available
-#> Mem:            44Gi       7.6Gi        25Gi        14Mi        11Gi        36Gi
-#> Swap:           22Gi       512Ki        22Gi
-#> Total:          66Gi       7.6Gi        47Gi
+#> Mem:            44Gi       6.7Gi        15Gi        13Mi        23Gi        37Gi
+#> Swap:           22Gi       1.0Mi        22Gi
+#> Total:          66Gi       6.7Gi        37Gi
 ```
