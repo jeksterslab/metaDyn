@@ -19,7 +19,7 @@ lapply(
     }
     if (identical(Sys.getenv("GITHUB_TEST"), "true")) {
       ci <- TRUE
-      n <- 1000
+      n <- 2000
       robust <- TRUE
       tol <- 0.50
     } else {
