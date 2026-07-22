@@ -11,5 +11,7 @@ export(Meta)
 export(MetaVARMx)
 export(extract)
 import(OpenMx)
-importFrom(stats,coef)
-importFrom(stats,vcov)
+importFrom(stats,
+  coef,
+  vcov
+)
