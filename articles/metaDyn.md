@@ -30,19 +30,12 @@ using dynamic model estimates from each individual.
 
 You can install the CRAN release of `metaDyn` with:
 
-``` r
-
-install.packages("metaDyn")
-```
+[`install.packages`](https://rdrr.io/r/utils/install.packages.html)`(``"metaDyn"``)`
 
 You can install the development version of `metaDyn` from
 [GitHub](https://github.com/jeksterslab/metaDyn) with:
 
-``` r
-
-if (!require("pak")) install.packages("pak")
-pak::pkg_install("jeksterslab/metaDyn")
-```
+`if`` ``(``!`[`require`](https://rdrr.io/r/base/library.html)`(`[`"pak"`](https://pak.r-lib.org/)`)``)`` `[`install.packages`](https://rdrr.io/r/utils/install.packages.html)`(``"pak"``)`` ``pak``::`[`pkg_install`](https://pak.r-lib.org/reference/pkg_install.html)`(``"jeksterslab/metaDyn"``)`
 
 ## Documentation
 
