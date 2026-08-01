@@ -1,6 +1,6 @@
 # Changelog
 
-## metaDyn 1.0.2
+## metaDyn 1.0.3
 
 ### Patch
 
