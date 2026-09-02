@@ -30,12 +30,15 @@ using dynamic model estimates from each individual.
 
 You can install the CRAN release of `metaDyn` with:
 
+\
 [`install.packages`](https://rdrr.io/r/utils/install.packages.html)`(``"metaDyn"``)`
 
 You can install the development version of `metaDyn` from
 [GitHub](https://github.com/jeksterslab/metaDyn) with:
 
-`if`` ``(``!`[`require`](https://rdrr.io/r/base/library.html)`(`[`"pak"`](https://pak.r-lib.org/)`)``)`` `[`install.packages`](https://rdrr.io/r/utils/install.packages.html)`(``"pak"``)`` ``pak``::`[`pkg_install`](https://pak.r-lib.org/reference/pkg_install.html)`(``"jeksterslab/metaDyn"``)`
+\
+`if`` ``(``!`[`require`](https://rdrr.io/r/base/library.html)`(`[`"pak"`](https://pak.r-lib.org/)`)``)`` `[`install.packages`](https://rdrr.io/r/utils/install.packages.html)`(``"pak"``)`\
+`pak``::`[`pkg_install`](https://pak.r-lib.org/reference/pkg_install.html)`(``"jeksterslab/metaDyn"``)`
 
 ## Documentation
 
@@ -46,17 +49,6 @@ package documentation.
 
 Cheung, M. W.-L. (2015). *Meta-analysis: A structural equation modeling
 approach*. Wiley. <https://doi.org/10.1002/9781118957813>
-
-Hunter, M. D. (2017). State space modeling in an open source, modular,
-structural equation modeling environment. *Structural Equation Modeling:
-A Multidisciplinary Journal*, *25*(2), 307–324.
-<https://doi.org/10.1080/10705511.2017.1369354>
-
-Neale, M. C., Hunter, M. D., Pritikin, J. N., Zahery, M., Brick, T. R.,
-Kirkpatrick, R. M., Estabrook, R., Bates, T. C., Maes, H. H., & Boker,
-S. M. (2015). OpenMx 2.0: Extended structural equation and statistical
-modeling. *Psychometrika*, *81*(2), 535–549.
-<https://doi.org/10.1007/s11336-014-9435-8>
 
 R Core Team. (2026). *R: A language and environment for statistical
 computing*. R Foundation for Statistical Computing.
