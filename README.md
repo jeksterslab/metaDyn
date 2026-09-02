@@ -1,7 +1,7 @@
 metaDyn
 ================
 Ivan Jacob Agaloos Pesigan
-2026-08-01
+2026-09-02
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
@@ -64,25 +64,6 @@ data-entry-spacing="0" data-line-spacing="2">
 
 Cheung, M. W.-L. (2015). *Meta-analysis: A structural equation modeling
 approach*. Wiley. <https://doi.org/10.1002/9781118957813>
-
-</div>
-
-<div id="ref-Hunter-2017" class="csl-entry">
-
-Hunter, M. D. (2017). State space modeling in an open source, modular,
-structural equation modeling environment. *Structural Equation Modeling:
-A Multidisciplinary Journal*, *25*(2), 307–324.
-<https://doi.org/10.1080/10705511.2017.1369354>
-
-</div>
-
-<div id="ref-Neale-Hunter-Pritikin-etal-2015" class="csl-entry">
-
-Neale, M. C., Hunter, M. D., Pritikin, J. N., Zahery, M., Brick, T. R.,
-Kirkpatrick, R. M., Estabrook, R., Bates, T. C., Maes, H. H., & Boker,
-S. M. (2015). OpenMx 2.0: Extended structural equation and statistical
-modeling. *Psychometrika*, *81*(2), 535–549.
-<https://doi.org/10.1007/s11336-014-9435-8>
 
 </div>
 

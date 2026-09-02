@@ -342,7 +342,8 @@ confint.metadynmeta <- function(object,
     object$output@output$vcov <- sandwich$cov
     object$output@output$standardErrors <- sandwich$SE
   }
-  ci <- switch(ci_type,
+  ci <- switch(
+    EXPR = ci_type,
     wald = .CIWaldMeta(
       object = object,
       alpha = 1 - level

@@ -70,9 +70,11 @@
   if (!is.null(seed)) {
     set.seed(seed)
   }
+
   threads <- OpenMx::mxOption(
     key = "Number of Threads"
   )
+
   on.exit(
     OpenMx::mxOption(
       key = "Number of Threads",
@@ -80,9 +82,11 @@
     ),
     add = TRUE
   )
+
   # nocov start
   if (!is.null(ncores)) {
     ncores <- as.integer(ncores)
+
     if (ncores > 1) {
       OpenMx::mxOption(
         key = "Number of Threads",
@@ -91,6 +95,7 @@
     }
   }
   # nocov end
+
   model <- .MetaModel(
     y = y,
     v = v,
@@ -156,6 +161,28 @@
     psi_l_ubound = psi_l_ubound,
     alpha = alpha
   )
+
+  # Parameters in tau_sqr_d are the unconstrained
+  # softplus parameters underlying the diagonal of T^2.
+  #
+  # Their lower bound is an admissible boundary:
+  # reaching it corresponds to effectively zero
+  # between-unit heterogeneity.
+  free_parameters <- OpenMx::omxGetParameters(
+    model
+  )
+
+  tau_sqr_d_labels <- grep(
+    pattern = "^tau_sqr_d(_|$)",
+    x = names(free_parameters),
+    value = TRUE
+  )
+
+  allowed_bounds <- list(
+    lower = tau_sqr_d_labels,
+    upper = character(0)
+  )
+
   model <- .MxHelperRun(
     model = model,
     grad_tol = 1e-2,
@@ -167,6 +194,7 @@
     cond_max = 1e12,
     silent = silent
   )
+
   if (
     .MxHelperNeedsRescue(
       model = model,
@@ -178,7 +206,8 @@
       check_condition = FALSE,
       cond_max = 1e12,
       abs_bnd_tol = 1e-6,
-      rel_bnd_tol = 1e-4
+      rel_bnd_tol = 1e-4,
+      allowed_bounds = allowed_bounds
     )
   ) {
     model <- .MxHelperEnsureGoodHessian(
@@ -202,8 +231,10 @@
       rerun_code6 = TRUE,
       relax_streak = 3,
       relax_min_attempt = 3,
-      silent = silent
+      silent = silent,
+      allowed_bounds = allowed_bounds
     )
   }
+
   model
 }
