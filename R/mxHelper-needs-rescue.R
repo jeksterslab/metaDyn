@@ -4,10 +4,11 @@
                                  require_finite_fit = TRUE,
                                  hess_tol_abs = 1e-8,
                                  hess_tol_rel = 1e-10,
-                                 check_condition = FALSE,
+                                 check_condition = TRUE,
                                  cond_max = 1e12,
                                  abs_bnd_tol = 1e-6,
-                                 rel_bnd_tol = 1e-4) {
+                                 rel_bnd_tol = 1e-4,
+                                 allowed_bounds = NULL) {
   bad_status <- (
     is.null(model$output) ||
       is.null(model$output$status) ||
@@ -21,6 +22,7 @@
     return(TRUE)
     # nolint end
   }
+
   good_fit <- tryCatch(
     .MxHelperIsGoodFit(
       x = model,
@@ -30,11 +32,13 @@
     ),
     error = function(e) FALSE
   )
+
   if (!isTRUE(good_fit)) {
     # nolint start
     return(TRUE)
     # nolint end
   }
+
   pd_hessian <- tryCatch(
     .MxHelperHasPdHessian(
       x = model,
@@ -45,18 +49,29 @@
     ),
     error = function(e) FALSE
   )
+
   if (!isTRUE(pd_hessian)) {
     # nolint start
     return(TRUE)
     # nolint end
   }
-  at_bounds_any <- tryCatch(
+
+  bd <- tryCatch(
     .MxHelperAtBounds(
       x = model,
       abs_bnd_tol = abs_bnd_tol,
-      rel_bnd_tol = rel_bnd_tol
-    )$any,
-    error = function(e) FALSE
+      rel_bnd_tol = rel_bnd_tol,
+      allowed_bounds = allowed_bounds
+    ),
+    error = function(e) NULL
   )
-  isTRUE(at_bounds_any)
+
+  if (is.null(bd)) {
+    # If bound assessment fails, be conservative.
+    # nolint start
+    return(TRUE)
+    # nolint end
+  }
+
+  isTRUE(bd$actionable)
 }
