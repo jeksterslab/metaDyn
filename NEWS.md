@@ -1,6 +1,10 @@
-# metaDyn 1.0.3.9000
+# metaDyn 1.0.4
 
-* Latest development version.
+## Patch
+
+* Improved convergence assessment and Hessian-rescue behavior, including more robust selection of the best candidate fit.
+* Treats lower-bound solutions for softplus covariance-diagonal parameters as admissible rather than automatically classifying them as convergence failures.
+* Hardened parameter-bound detection, nudging, and bound relaxation.
 
 # metaDyn 1.0.3
 

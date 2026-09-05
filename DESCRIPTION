@@ -1,6 +1,6 @@
 Package: metaDyn
 Title: Multivariate Meta-Analysis of Dynamic Model Estimates
-Version: 1.0.3.9000
+Version: 1.0.4
 Authors@R: 
     person(given = "Ivan Jacob Agaloos",
            family = "Pesigan",
@@ -21,7 +21,7 @@ Depends:
     OpenMx (>= 2.22.10)
 Imports:
     Matrix,
-    fitVARMxID (>= 1.0.5)
+    fitVARMxID (>= 1.0.6)
 Suggests:
     knitr,
     rmarkdown,
