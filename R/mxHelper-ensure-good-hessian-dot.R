@@ -239,7 +239,7 @@
       extraTries = tries_local,
       silent = silent,
       jitterDistrib = "rnorm",
-      loc = 0.05,
+      scale = 0.05,
       checkHess = TRUE
     )
   } else {
@@ -518,7 +518,7 @@
       extraTries = tries_local,
       silent = silent,
       jitterDistrib = "rnorm",
-      loc = local_scale,
+      scale = local_scale,
       checkHess = TRUE
     )
 
